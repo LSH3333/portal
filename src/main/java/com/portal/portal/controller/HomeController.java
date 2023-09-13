@@ -10,6 +10,18 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return"home";
+        return "index";
     }
+
+    @GetMapping("/portfolio")
+    public String portfolio() {
+        return "portfolio";
+    }
+
+    @GetMapping("aboutme")
+    public String aboutme() {
+        return "aboutme";
+    }
+
+
 }
