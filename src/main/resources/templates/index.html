@@ -52,6 +52,16 @@
             </div>
         </div>
         <div id="mainBlock2">
+            <!-- 베지어 곡선 따라 이동하는 오브젝트들 -->
+            <span style="position: absolute;" id="obj"><img id="imgObj" src="/images/Enemy1_1.png" alt=""></span>
+            <span style="position: absolute;" id="obj2"><img id="imgObj2" src="/images/Enemy2_1.png" alt=""></span>
+            <span style="position: absolute;" id="obj3"><img id="imgObj3" src="/images/Enemy3_1.png" alt=""></span>
+            <span style="position: absolute;" id="obj4"><img id="imgObj4" src="/images/Enemy4_1.png" alt=""></span>
+            <!-- 조절점들 -->
+            <span style="position: absolute;" id="p1"></span>
+            <span style="position: absolute;" id="p2"></span>
+            <span style="position: absolute;" id="p3"></span>
+            <span style="position: absolute;" id="p4"></span>
             <div id="mainBlock2Content">
                 <p>What I did</p>
                 제가 만든 웹사이트와 게임들,<br> 한 번 구경해보실래요?<br>
@@ -59,10 +69,10 @@
             </div>
             <div class="imgBlock">
                 <img src="/static/images/instawebLogo.png" th:src="@{/images/instawebLogo.png}" alt="">
-                <img src="/static/images/galagaLogo.png" th:src="@{/images/galagaLogo.png}" alt="">                
-                <img src="/static/images/manyGamesLogo.png" th:src="@{/images/manyGamesLogo.png}" alt="">                
+                <img src="/static/images/galagaLogo.png" th:src="@{/images/galagaLogo.png}" alt="">
+                <img src="/static/images/manyGamesLogo.png" th:src="@{/images/manyGamesLogo.png}" alt="">
             </div>
-            
+
         </div>
         <div id="mainBlock3">
             <div class="imgBlock">
@@ -91,6 +101,8 @@
             <li>|</li>
         </ul>
     </footer>
+
+    <script type="text/javascript" src="/static/js/bezierHome.js" th:src="@{/js/bezierHome.js}"></script>
 </body>
 
 </html>

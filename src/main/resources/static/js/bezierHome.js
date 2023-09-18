@@ -21,21 +21,21 @@ imgObj4.style.opacity = 0;
 
 // 두 조절점을 잇는 선분을 그린다. 선 분의 시작점에서 t 떨어진 곳에 새로운 점을 찍는다.
 // t 값 증가량 
-let t_incrase = 0.002;
+let t_incrase = 0.001;
 
 // 4개 조절점 사용 
 let p1 = document.getElementById("p1")
 p1.style.left = 0 + "px";
-p1.style.bottom = parent.offsetHeight + "px";
+p1.style.bottom = 0 + "px";
 let p2 = document.getElementById("p2")
-p2.style.left = 1100 + "px";
-p2.style.bottom = (parent.offsetHeight / 3 * 2) + "px";
+p2.style.left = (parent.offsetWidth/3) + "px";
+p2.style.bottom = 100 + "px";
 let p3 = document.getElementById("p3")
-p3.style.left = 0 + "px";
-p3.style.bottom = (parent.offsetHeight / 3) + "px";
+p3.style.left = (parent.offsetWidth/3*2) + "px";
+p3.style.bottom = -100 + "px";
 let p4 = document.getElementById("p4")
-p4.style.left = 700 + "px";
-p4.style.bottom = 0 + "px";
+p4.style.left = (parent.offsetWidth-60) + "px";
+p4.style.bottom = 100 + "px";
 
 
 StartMoving();

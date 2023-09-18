@@ -152,6 +152,7 @@ main {
     display: flex;
     justify-content: space-around;
     padding: 2% 20%;
+    position: relative;
     /* margin: 5% 0; */
 }
 
