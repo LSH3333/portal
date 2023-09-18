@@ -59,7 +59,7 @@ nav {
     /* 최초 width 0 으로 안보임, :hover 시 보이도록 처리  */
     width: 0%;
     height: 2px;
-    background: #f44336;
+    background: #3db39e;
     display: block;
     margin: auto;
 }
@@ -72,7 +72,7 @@ nav {
 
 /* header-text-box */
 #header-text-box {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     color: white;
     width: 90%;
     /* 가장 가까운 relative 부모는 <header> */
