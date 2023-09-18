@@ -106,12 +106,13 @@ main {
     padding-top: 100px;
 }
 
+
 /* mainBlock1 */
 #mainBlock1 {
     /* background-color: aquamarine; */
     /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/instaweb.png); */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 2% 6%;
     margin: 5% 0;
 }
@@ -121,7 +122,7 @@ main {
 }
 
 #mainBlock1 .imgBlock img {
-    max-width: 100%;
+    max-width: 70%;
 }
 
 #mainBlock1 #mainBlock1Content {
@@ -132,32 +133,6 @@ main {
     font-size: 40px;
     margin: 5% 0;
     color: #3db39e;
-}
-
-
-#readmoreBtn {
-    background-color: black;
-    text-decoration: none;
-    color: white;
-    border-radius: 20px;
-    width: 100px;
-    height: 40px;
-    font-size: 15px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#readmoreBtn:hover {
-    cursor: pointer;
-    background-color: #3db39e;
-}
-
-#readmoreBtn a {
-    text-decoration: none;
-    color: white;  
 }
 
 
@@ -202,4 +177,61 @@ main {
     font-size: 40px;
     margin: 5% 0;
     color: #3db39e;
+}
+
+
+/* mainBlock3 */
+#mainBlock3 {
+    /* background-color: aquamarine; */
+    /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/instaweb.png); */
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2% 6%;
+    margin: 5% 0;
+}
+
+#mainBlock3 .imgBlock {
+    max-width: 40%;
+}
+
+#mainBlock3 .imgBlock img {
+    max-width: 60%;
+}
+
+#mainBlock3 #mainBlock3Content {
+    /* background-color: aliceblue; */
+}
+
+#mainBlock3 #mainBlock3Content p {
+    font-size: 40px;
+    margin: 5% 0;
+    color: #3db39e;
+}
+
+
+
+/* Read more Btn */
+#readmoreBtn {
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#readmoreBtn:hover {
+    cursor: pointer;
+    background-color: #3db39e;
+}
+
+#readmoreBtn a {
+    text-decoration: none;
+    color: white;  
 }
