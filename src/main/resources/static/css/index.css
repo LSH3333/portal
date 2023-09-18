@@ -106,27 +106,36 @@ main {
     padding-top: 100px;
 }
 
+.imgBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* mainBlock1 */
 #mainBlock1 {
     /* background-color: aquamarine; */
     /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/instaweb.png); */
     display: flex;
-    justify-content: space-evenly;
-    padding: 2% 6%;
+    justify-content: space-around;
+    padding: 2% 20%;
     margin: 5% 0;
 }
 
 #mainBlock1 .imgBlock {
-    max-width: 40%;
+    /* background-color: #3db39e; */
+    max-width: 40%;    
+    margin-right: 0px;
 }
 
-#mainBlock1 .imgBlock img {
-    max-width: 70%;
+#mainBlock1 .imgBlock img {  
+    max-width: 60%;
 }
 
 #mainBlock1 #mainBlock1Content {
     /* background-color: aliceblue; */
+    margin-left: 0px;
 }
 
 #mainBlock1 #mainBlock1Content p {
@@ -142,8 +151,8 @@ main {
     background-color: rgb(239, 239, 245);
     display: flex;
     justify-content: space-around;
-    padding: 2% 6%;
-    margin: 5% 0;
+    padding: 2% 20%;
+    /* margin: 5% 0; */
 }
 
 /* #mainBlock2 .imgBlock {    
@@ -154,7 +163,7 @@ main {
 } */
 
 #mainBlock2 .imgBlock {    
-    max-width: 40%;        
+    /* max-width: 40%;         */
     /* background-color: #f44336; */
     display: flex;
     flex-direction: row;
@@ -166,11 +175,12 @@ main {
     border-radius: 50%;
     width: 170px;
     height: 60px;
-    margin: 0 5%;
+    margin: 0 3%;
 }
 
 #mainBlock2 #mainBlock2Content {
     /* background-color: aliceblue; */
+    margin-right: 0px;
 }
 
 #mainBlock2 #mainBlock2Content p {
@@ -185,8 +195,8 @@ main {
     /* background-color: aquamarine; */
     /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/instaweb.png); */
     display: flex;
-    justify-content: space-evenly;
-    padding: 2% 6%;
+    justify-content: space-around;
+    padding: 2% 20%;
     margin: 5% 0;
 }
 

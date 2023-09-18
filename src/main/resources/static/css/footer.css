@@ -14,11 +14,11 @@ footer h3 {
 }
 
 footer ul {
-    
 }
 
 footer ul li {
     display: inline-block;
+    margin: 0 3px;
 }
 
 footer ul li a {
