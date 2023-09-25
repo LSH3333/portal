@@ -102,7 +102,6 @@ main {
     /* width: 80%; */
     width: 100%;
     margin: auto;
-    /* text-align: center; */
     padding-top: 100px;
 }
 
@@ -115,34 +114,42 @@ main {
 
 /* mainBlock1 */
 #mainBlock1 {
-    /* background-color: aquamarine; */
-    /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/instaweb.png); */
-    display: flex;
-    justify-content: space-around;
-    padding: 2% 20%;
-    margin: 5% 0;
+    /* background-color: blue; */
+    position: relative;
+    height:50vh;
 }
-
-#mainBlock1 .imgBlock {
-    /* background-color: #3db39e; */
-    max-width: 40%;    
-    margin-right: 0px;
+#mainBlock1Content {
+    /* background-color: red; */
+    position: absolute;
+    right:-15%;
+    transition: right 0.5s ease;
 }
-
-#mainBlock1 .imgBlock img {  
-    max-width: 60%;
+#mainBlock1Content:hover {
+    right:15%;
 }
-
-#mainBlock1 #mainBlock1Content {
-    /* background-color: aliceblue; */
-    margin-left: 0px;
-}
-
-#mainBlock1 #mainBlock1Content p {
+#mainBlock1Content p {
     font-size: 40px;
     margin: 5% 0;
     color: #3db39e;
 }
+
+
+#mainBlock1 #imgBlock1 {
+    /* background-color: #3db39e; */
+    max-width: 40%;    
+    margin-right: 0px;    
+    position:absolute;
+    left:15%;    
+}
+
+#mainBlock1 #imgBlock1 img {  
+    max-width: 50%;
+}
+
+
+
+
+
 
 
 
