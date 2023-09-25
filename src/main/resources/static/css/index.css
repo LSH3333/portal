@@ -122,10 +122,10 @@ main {
     /* background-color: red; */
     position: absolute;
     right:-15%;
-    transition: right 0.5s ease;
+    transition: right 1s ease;
 }
-#mainBlock1Content:hover {
-    right:15%;
+#mainBlock1Content.slide-right {
+    right: 15%; /* Move to 15% when the slide-right class is applied */
 }
 #mainBlock1Content p {
     font-size: 40px;
@@ -134,14 +134,16 @@ main {
 }
 
 
-#mainBlock1 #imgBlock1 {
+#imgBlock1 {
     /* background-color: #3db39e; */
     max-width: 40%;    
-    margin-right: 0px;    
     position:absolute;
-    left:15%;    
+    left:-15%;    
+    transition: left 1s ease;
 }
-
+#imgBlock1.slide-left {
+    left:15%;  
+}
 #mainBlock1 #imgBlock1 img {  
     max-width: 50%;
 }
