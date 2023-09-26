@@ -37,12 +37,16 @@ header {
     text-decoration: none;
     display: flex;
     align-items: center;
+    font-family: 'Cedarville Cursive', cursive;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Skranji', cursive;
 }
 
 #navLinks {
     flex: 1;
     text-align: right;
 }
+
 #navLinks ul {
     height: 100%;
 }
@@ -52,8 +56,9 @@ header {
     list-style: none;
     /* li 하나의 행에 배치  */
     display: inline-block;
-    padding: 0 12px;    
+    padding: 0 12px;
 }
+
 .menu a {
     display: flex;
     align-items: center;
@@ -61,44 +66,58 @@ header {
     color: black;
     text-decoration: none;
     font-size: 15px;
+    font-weight:normal;
 }
 
 .menu:hover {
     background-color: #2c2a29;
 }
+
 .menu:hover .navSub {
     opacity: 1;
     visibility: visible;
-    height:20vh;
+    height: 20vh;
 }
-.menu:hover a {
-    color:#3db39e;
+
+.menu:hover>a {
+    color: #3db39e;
 }
+
+.menu:hover .navSub ul {
+    opacity: 1;
+}
+
 .navSub {
     position: absolute;
-    background-color: #2c2a29;    
+    background-color: #2c2a29;
     height: 0vh;
     opacity: 0;
     visibility: hidden;
-    width:100vw;
+    width: 100%;
     top: 100%;
     left: 0;
     transition: height 0.5s;
+}
 
-    /* height: 20vh;
-    opacity: 1;
-    visibility: visible; */
-    
-}
 .navSub ul {
-    
+    opacity: 0;
+    transition: opacity 0.5s;
+    margin: 2% 5%;
 }
-.navSub ul,
-.navSub ul li
- {
+
+.navSub li {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    text-align: left;
+}
+
+.navSub li a {
+    margin: 1%;
+    color: white;
+    display: inline;
+}
+
+.navSub li a:hover {
+    text-decoration: underline;
 }
 
 
@@ -120,44 +139,6 @@ header {
 #header-text-box h1 {
     font-size: 60px;
 }
-
-
-
-
-/* .dropdown-menu {
-    visibility: hidden;
-    opacity: 1;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-3em);
-    z-index: -1;
-    transition: all 0.3s ease 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
-}
-
-.menu:hover .dropdown-menu {
-    visibility: visible;
-    opacity: 1;
-    z-index: 1;
-    transform: translateY(0);
-    transition-delay: 0s, 0s, 0.3s;
-}
-nav a {
-    display: block;
-    text-decoration: none;
-}
-.dropdown-menu a {
-    width: 70%;
-}
-nav ul,
-nav ul li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-} */
-
-
 
 
 

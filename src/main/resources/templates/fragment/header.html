@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- HEADER -->
+<header th:fragment="header">
+    <nav>
+        <div id="navMain">
+            <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
+            <div id="navLinks">
+                <ul>
+                    <li class="menu"><a href="/templates/index.html" th:href="@{/}">HOME</a>
+                        <!-- <div class="navSub"></div> -->
+                    </li>
+                    <li class="menu"><a href="/templates/portfolio.html" th:href="@{/portfolio}">PORTFOLIO</a>
+                        <div class="navSub">
+                            <ul>
+                                <li><a href="#">InstaWeb</a></li>
+                                <li><a href="#">Galaga</a></li>
+                                <li><a href="#">ManyGames</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">ABOUT ME</a>
+                        <div class="navSub">
+                            <ul>
+                                <li><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
+                                <li><a href="https://github.com/LSH3333" target="_blank">Git</a></li>
+                                <li><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="header-text-box">
+        <h1>LSH's Portal</h1>
+    </div>
+</header>
