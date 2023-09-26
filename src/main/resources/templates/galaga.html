@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/portfolio.css" th:href="@{/css/portfolio.css}" />
+    <title>Galaga</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/galaga.css" th:href="@{/css/galaga.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
-    <!-- fontawsome -->
-    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +16,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&family=Skranji&display=swap"
         rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -53,39 +54,12 @@
             </div>
         </nav>
         <div id="header-text-box">
-            <h1>PORTFOLIO</h1>
+            <h1>GALAGA</h1>
         </div>
     </header>
 
     <!-- MAIN -->
     <main>
-        <!-- MainBlock1 -->
-        <div id="mainBlock1">
-            <div class="imgBlock">
-                <img src="/static/images/instaweb.png" th:src="@{/images/instaweb.png}" alt="">
-            </div>
-            <div id="mainBlock1Content">
-                <p>
-                    로그인 후 글, 댓글을 작성할수 있는 웹.<br><br>
-                    백엔드는 스프링, 데이터 저장은 jpa 를 사용했고 db는 postgresql, 클라이언트 사이드는 javascript, 프론트 디자인은 html 과 css 로 구현했습니다.
-                    <!-- 서버 사이드는 Spring을 사용해 구현했고 클라이언트 사이드는 javascript, 프론트 디자인은 html 과 css 로 구현했습니다. -->
-                    <br><br>
-                    <a href="https://lsh-instaweb.herokuapp.com/" target="_blank">visit web →</a><br>
-                    <a href="https://github.com/LSH3333/Instaweb" target="_blank"><i class="fa-brands fa-github"></i>
-                        visit git →</a>
-                </p>
-                <div class="techStack">
-                    <img src="/static/images/spring.svg" th:src="@{/images/spring.svg}" alt="">
-                    <img src="/static/images/hibernate.svg" th:src="@{/images/hibernate.svg}" alt="">
-                    <img src="/static/images/html.svg" th:src="@{/images/html.svg}" alt="">
-                    <img src="/static/images/css.svg" th:src="@{/images/css.svg}" alt="">
-                    <img src="/static/images/thymeleaf.svg" th:src="@{/images/thymeleaf.svg}" alt="">
-                    <img src="/static/images/js.svg" th:src="@{/images/js.svg}" alt="">
-                    <img src="/static/images/heroku.svg" th:src="@{/images/heroku.svg}" alt="">
-                    <img src="/static/images/postgres.svg" th:src="@{/images/postgres.svg}" alt="">
-                </div>
-            </div>
-        </div>
         <!-- MainBlock2 -->
         <div id="mainBlock2">
             <!-- 베지어 곡선 따라 이동하는 오브젝트들 -->
@@ -120,49 +94,10 @@
             </div>
         </div>
         <!-- MainBlock3 -->
-        <div id="mainBlock3">
-            <div class="imgBlock">
-                <img src="/static/images/score board.png" th:src="@{/images/score board.png}" alt="">
-                <img src="/static/images/jumper.png" th:src="@{/images/jumper.png}" alt="">
-                <img src="/static/images/angryBird.png" th:src="@{/images/angryBird.png}" alt="">
-                <img src="/static/images/flappy.png" th:src="@{/images/flappy.png}" alt="">
-                <img src="/static/images/night1.png" th:src="@{/images/night1.png}" alt="">
-                <img src="/static/images/night2.png" th:src="@{/images/night2.png}" alt="">
-            </div>
-            <div id="mainBlock3Content">
-                <p>
-                    유니티로 구현한 여러가지 게임들을 통합.<br>
-                    통합할때 중점이 된 부분은 각 개별 게임들이 공통으로 쓰이는 기능들을 추상적으로 구현해 모든 게임에서 쓰이도록 하는 것이었습니다.
-                    <br><br>
-                    <a href="https://lsh3333.itch.io/manygames" target="_blank">play game →</a><br>
-                    <a href="https://github.com/LSH3333/Unity_ManyGames" target="_blank"><i
-                            class="fa-brands fa-github"></i> visit
-                        git →</a>
-                </p>
-                <div class="techStack">
-                    <img src="/static/images/csharp.svg" th:src="@{/images/csharp.svg}" alt="">
-                    <img src="/static/images/unity.svg" th:src="@{/images/unity.svg}" alt="">
-                </div>
-            </div>
-        </div>
+        <div id="mainBlock3"></div>
+
     </main>
 
-
-    <!-- FOOTER -->
-    <footer>
-        <h3>LSH</h3>
-        <ul>
-            <li>@ LSH Portal</li>
-            <li>|</li>
-            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-            <li>|</li>
-            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
-            <li>|</li>
-            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
-                </a></li>
-            <li>|</li>
-        </ul>
-    </footer>
 
     <script type="text/javascript" src="/static/js/bezier.js" th:src="@{/js/bezier.js}"></script>
 </body>

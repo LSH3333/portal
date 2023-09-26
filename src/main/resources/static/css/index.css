@@ -8,7 +8,6 @@
 }
 
 /* HEADER */
-
 header {
     min-height: 100vh;
     width: 100%;
@@ -97,6 +96,7 @@ header {
     top: 100%;
     left: 0;
     transition: height 0.5s;
+    z-index: 1;
 }
 
 .navSub ul {

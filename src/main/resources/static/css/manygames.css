@@ -153,85 +153,6 @@ main {
 
 }
 
-/* mainBlock1 */
-#mainBlock1 {
-    /* width: 100%; */
-    /* background-color: antiquewhite; */
-    /* background-color: rgb(239, 239, 245); */
-    justify-content: space-around;
-    padding: 6% 6%;
-    min-height: 45vh;
-
-    display: flex;
-    /* align-items: center; */
-}
-
-#mainBlock1 .imgBlock {
-    max-width: 70%;
-    /* border: 1px solid gray; */
-}
-
-#mainBlock1 .imgBlock img {
-    max-width: 100%;
-}
-
-#mainBlock1 #mainBlock1Content {
-    max-width: 30%;
-}
-
-#mainBlock1Content p {
-
-}
-
-#mainBlock1Content a {
-    font-size: 18px;
-    font-style: italic;
-    text-decoration-line: underline;
-    color: black;
-}
-
-#mainBlock1Content .techStack {
-    margin-top: 20%;
-}
-
-
-
-/* mainBlock2 */
-#mainBlock2 {
-    background-color: rgb(239, 239, 245);
-    display: flex;
-    justify-content: space-around;
-    padding: 6% 6%;
-    min-height: 45vh;
-    position: relative;
-
-    display: flex;
-    align-items: center;
-}
-
-#mainBlock2 .imgBlock {
-    max-width: 60%;
-}
-
-#mainBlock2 .imgBlock img {
-    max-width: 70%;
-}
-
-#mainBlock2 #mainBlock2Content {
-    max-width: 30%;
-}
-
-#mainBlock2 #mainBlock2Content a {
-    font-size: 18px;
-    font-style: italic;
-    text-decoration-line: underline;
-    color: black;
-}
-
-#mainBlock2 #mainBlock2Content .techStack {
-    margin-top: 20%;
-}
-
 
 /* mainBlock3 */
 #mainBlock3 {
@@ -270,10 +191,16 @@ main {
     margin-top: 5%;
 }
 
-/* 
-#mainBlock3 p {
-    background-color:yellow;
-    max-width: 100%;
-    margin-top: 1%;
-} */
 
+/* mainBlock4 */
+#mainBlock4 {
+    background-color: rgb(239, 239, 245);
+    display: flex;
+    justify-content: space-around;
+    padding: 6% 6%;
+    min-height: 45vh;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+}

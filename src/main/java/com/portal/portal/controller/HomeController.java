@@ -18,10 +18,24 @@ public class HomeController {
         return "portfolio";
     }
 
-    @GetMapping("aboutme")
+    @GetMapping("/aboutme")
     public String aboutme() {
         return "aboutme";
     }
 
+    @GetMapping("/galaga")
+    public String galaga() {
+        return "galaga";
+    }
+
+    @GetMapping("instaweb")
+    public String instaweb() {
+        return "instaweb";
+    }
+
+    @GetMapping("manygames")
+    public String manygames() {
+        return "manygames";
+    }
 
 }

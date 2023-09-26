@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     /* font-family: 'Poppins', sans-serif; */
-    /* font-size: 20px; */
 
     font-family: 'Cedarville Cursive', cursive;
     font-family: 'Noto Sans KR', sans-serif;
@@ -143,6 +142,9 @@ header {
 
 
 
+
+
+
 /* MAIN */
 main {
     /* background-color: gray; */
@@ -154,51 +156,10 @@ main {
 }
 
 /* mainBlock1 */
-#mainBlock1 {
-    /* width: 100%; */
-    /* background-color: antiquewhite; */
-    /* background-color: rgb(239, 239, 245); */
-    justify-content: space-around;
-    padding: 6% 6%;
-    min-height: 45vh;
-
-    display: flex;
-    /* align-items: center; */
-}
-
-#mainBlock1 .imgBlock {
-    max-width: 70%;
-    /* border: 1px solid gray; */
-}
-
-#mainBlock1 .imgBlock img {
-    max-width: 100%;
-}
-
-#mainBlock1 #mainBlock1Content {
-    max-width: 30%;
-}
-
-#mainBlock1Content p {
-
-}
-
-#mainBlock1Content a {
-    font-size: 18px;
-    font-style: italic;
-    text-decoration-line: underline;
-    color: black;
-}
-
-#mainBlock1Content .techStack {
-    margin-top: 20%;
-}
-
-
 
 /* mainBlock2 */
 #mainBlock2 {
-    background-color: rgb(239, 239, 245);
+    /* background-color: rgb(239, 239, 245); */
     display: flex;
     justify-content: space-around;
     padding: 6% 6%;
@@ -233,47 +194,16 @@ main {
 }
 
 
+
 /* mainBlock3 */
 #mainBlock3 {
-    /* background-color: aquamarine; */
+    background-color: rgb(239, 239, 245);
+    display: flex;
+    justify-content: space-around;
     padding: 6% 6%;
     min-height: 45vh;
-    text-align: center;
+    position: relative;
+
+    display: flex;
+    align-items: center;
 }
-
-#mainBlock3 .imgBlock {
-    display: inline-block;
-    text-align: center;
-    /* background-color: #f44336; */
-    max-width: 100%;
-    margin-bottom: 1%;
-}
-
-#mainBlock3 .imgBlock img {
-    max-width: 30%;
-    padding: 0 2.5px;
-}
-
-#mainBlock3 #mainBlock3Content {
-    /* max-width: 30%; */
-    margin-top: 5%;
-}
-
-#mainBlock3 #mainBlock3Content a {
-    font-size: 18px;
-    font-style: italic;
-    text-decoration-line: underline;
-    color: black;
-}
-
-#mainBlock3 #mainBlock3Content .techStack {
-    margin-top: 5%;
-}
-
-/* 
-#mainBlock3 p {
-    background-color:yellow;
-    max-width: 100%;
-    margin-top: 1%;
-} */
-

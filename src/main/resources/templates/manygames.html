@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ManyGames</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/manygames.css" th:href="@{/css/manygames.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&family=Skranji&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div id="navMain">
+                <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
+                <div id="navLinks">
+                    <ul>
+                        <li class="menu"><a href="/templates/index.html" th:href="@{/}">HOME</a>
+                        </li>
+                        <li class="menu"><a href="/templates/portfolio.html" th:href="@{/portfolio}">PORTFOLIO</a>
+                            <div class="navSub">
+                                <ul>
+                                    <li><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></li>
+                                    <li><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></li>
+                                    <li><a href="/templates/manygames.html" th:href="@{/manygames}">ManyGames</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">ABOUT ME</a>
+                            <div class="navSub">
+                                <ul>
+                                    <li><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
+                                    <li><a href="https://github.com/LSH3333" target="_blank">Git</a></li>
+                                    <li><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="header-text-box">
+            <h1>MANYGAMES</h1>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <!-- MainBlock3 -->
+        <div id="mainBlock3">
+            <div class="imgBlock">
+                <img src="/static/images/score board.png" th:src="@{/images/score board.png}" alt="">
+                <img src="/static/images/jumper.png" th:src="@{/images/jumper.png}" alt="">
+                <img src="/static/images/angryBird.png" th:src="@{/images/angryBird.png}" alt="">
+                <img src="/static/images/flappy.png" th:src="@{/images/flappy.png}" alt="">
+                <img src="/static/images/night1.png" th:src="@{/images/night1.png}" alt="">
+                <img src="/static/images/night2.png" th:src="@{/images/night2.png}" alt="">
+            </div>
+            <div id="mainBlock3Content">
+                <p>
+                    유니티로 구현한 여러가지 게임들을 통합.<br>
+                    통합할때 중점이 된 부분은 각 개별 게임들이 공통으로 쓰이는 기능들을 추상적으로 구현해 모든 게임에서 쓰이도록 하는 것이었습니다.
+                    <br><br>
+                    <a href="https://lsh3333.itch.io/manygames" target="_blank">play game →</a><br>
+                    <a href="https://github.com/LSH3333/Unity_ManyGames" target="_blank"><i
+                            class="fa-brands fa-github"></i> visit
+                        git →</a>
+                </p>
+                <div class="techStack">
+                    <img src="/static/images/csharp.svg" th:src="@{/images/csharp.svg}" alt="">
+                    <img src="/static/images/unity.svg" th:src="@{/images/unity.svg}" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- MainBlock4 -->
+        <div id="mainBlock4"></div>
+    </main>
+
+</body>
+
+</html>
