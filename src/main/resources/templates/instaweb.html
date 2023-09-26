@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -89,10 +89,82 @@
         </div>
         <!-- MainBlock2 -->
         <div id="mainBlock2">
+            <div id="mainBlock2Content">
+                <div class="ContentBlock">
+                    <h2>도메인 모델</h2>
+                    <hr>
+                    <img src="/static/images/domainModel.jpg" th:src="@{/images/domainModel}" alt="">
+                </div>
+                <div class="ContentBlock">
+                    <h2>기술 스택</h2>
+                    <hr>
+                    <img src="/static/images/spring.svg" th:src="@{/images/spring.svg}" alt="">
+                    <img src="/static/images/hibernate.svg" th:src="@{/images/hibernate.svg}" alt="">
+                    <img src="/static/images/html.svg" th:src="@{/images/html.svg}" alt="">
+                    <img src="/static/images/css.svg" th:src="@{/images/css.svg}" alt="">
+                    <img src="/static/images/thymeleaf.svg" th:src="@{/images/thymeleaf.svg}" alt="">
+                    <img src="/static/images/js.svg" th:src="@{/images/js.svg}" alt="">
+                    <br>
+                    <img src="/static/images/heroku.svg" th:src="@{/images/heroku.svg}" alt="">
+                    <img src="/static/images/postgres.svg" th:src="@{/images/postgres.svg}" alt="">
+                </div>
+                <div class="ContentBlock">
+                    <h2>주요 기능</h2>
+                    <hr>
+                    <h4>가입</h4>
+                    <img src="/static/images/instaweb_reg.png" th:src="@{/images/instaweb_reg.png}" alt="">
+                    <p>입력한 내용이 주어진 조건에 맞는지 확인, db에 중복되는 loginId, name 있는지 확인.</p>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/main/src/main/java/web/instaweb/controller/MemberController.java"
+                        target="_blank">MemberController.java</a>                    
+                    <div class="divider"><hr></div>
 
+                    <h4>로그인</h4>
+                    <img src="/static/images/instaweb_login.png" th:src="@{/images/instaweb_login.png}" alt="">
+                    <p>로그인 여부 확인은 Spring Interceptor 통해서 진행.</p>
+                    <p>모든 경로 막아 놓고 로그인 불필요한 경로(home 화면, 글 보기, ajax 요청 경로 등) 만 Interceptor 거치치 않도록 함.</p>
+                    <p>회원가입 없이 guest 아이디 로그인 지원.</p>
+                    <br>
+                    <p><a target="_blank" href="https://github.com/LSH3333/Instaweb/blob/3055332448adafbf4d22b2a890ca155be510a96b/src/main/java/web/instaweb/interceptor/LoginCheckInterceptor.java#L13-L37">로그인 체크 인터셉터</a></p>
+                    <p><a target="_blank" href="https://github.com/LSH3333/Instaweb/blob/3055332448adafbf4d22b2a890ca155be510a96b/src/main/java/web/instaweb/WebConfig.java#L9-L40">WebConfig</a></p>                    
+                    <div class="divider"><hr></div>
+
+                    <h4>글 작성, 수정, 삭제</h4>
+                    <img src="/static/images/instaweb_edit.png" th:src="@{/images/instaweb_edit.png}" alt="">
+                    <p>글 작성, 수정에서 작성된 모든 내용 (제목,콘텐츠,이미지 등) 들은 모두 ajax 요청으로 서버로 보내서 저장 처리.</p>
+                    <p>수정시 서버에서 해당 글에 저장된 모든것들 불러와서 다시 로드함.</p>
+                    <br>
+                    <p><b>이미지</b>는 사용자가 삽입했다가 지웠다가 할 수 있으므로 삽입시 html에 img 태그 삽입과 함께 고유 uuid 부여해서 해당 값을 key 값으로하는 map 에 저장해놓는다.</p>
+                    <p>이미지를 사용자가 지우면 img 태그가 지워진다.</p>
+                    <p>글 작성이 끝나고 서버에 정보들이 보내질때 img 태그들과 map 을 대조해서 지워지지 않은 이미지들만 서버로 보낸다.</p>
+                    <p>작성된 내용들은 html 그대로 db 에 저장된다.</p>
+                    <br>
+                    <p><b>에디터</b> 내 복사 붙여넣기 지원. (html element 를 통째로 복사해서 붙여 넣는 방법으로 속성(폰트크기 등)들 유지됨)</p>
+                    <p>외부 프로그램에서 복사 붙여 넣기 시 모두 단순 텍스트로 변형해서 붙여넣어짐.</p>
+                    <p>에디터 기능은 글 작성, 수정에서 동일하게 쓰이므로 thymeleaf fragment 로 만들어서 관리함.</p>
+                    <p><a href="https://github.com/LSH3333/Instaweb/blob/main/src/main/resources/templates/fragment/editorData.html">editorData fragment</a></p>
+                    <div class="divider"><hr></div>
+
+                    
+                </div>
+            </div>
         </div>
     </main>
 
+    <!-- FOOTER -->
+    <footer>
+        <h3>LSH</h3>
+        <ul>
+            <li>@ LSH Portal</li>
+            <li>|</li>
+            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            <li>|</li>
+            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
+            <li>|</li>
+            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
+                </a></li>
+            <li>|</li>
+        </ul>
+    </footer>
 </body>
 
 </html>
