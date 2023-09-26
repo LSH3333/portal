@@ -21,21 +21,30 @@
     <!-- HEADER -->
     <header>
         <nav>
-            <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
-            <div id="navLinks">
-                <ul>
-                    <li class="menu"><a href="/templates/index.html" th:href="@{/}">Home</a></li>
-                    <li class="menu"><a href="/templates/portfolio.html" th:href="@{/portfolio}">Portfolio</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">menu1</a></li>
-                            <li><a href="#">menu2</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">About me</a></li>
-                    <li class="menu"><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
-                    <li class="menu"><a href="https://github.com/LSH3333" target="_blank">Git</a></li>
-                    <li class="menu"><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a></li>
-                </ul>
+            <div id="navMain">
+                <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
+                <div id="navLinks">
+                    <ul>
+                        <li class="menu"><a href="/templates/index.html" th:href="@{/}">Home</a>
+                            <div class="navSub"></div>
+                        </li>
+                        <li class="menu"><a href="/templates/portfolio.html" th:href="@{/portfolio}">Portfolio</a>
+                            <div class="navSub"></div>
+                        </li>
+                        <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">About me</a>
+                            <div class="navSub"></div>
+                        </li>
+                        <li class="menu"><a href="https://tose33.tistory.com/" target="_blank">Blog</a>
+                            <div class="navSub"></div>
+                        </li>
+                        <li class="menu"><a href="https://github.com/LSH3333" target="_blank">Git</a>
+                            <div class="navSub"></div>
+                        </li>
+                        <li class="menu"><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a>
+                            <div class="navSub"></div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <div id="header-text-box">
