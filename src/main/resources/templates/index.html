@@ -24,12 +24,17 @@
             <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
             <div id="navLinks">
                 <ul>
-                    <li><a href="/templates/index.html" th:href="@{/}">Home</a></li>
-                    <li><a href="/templates/portfolio.html" th:href="@{/portfolio}">Portfolio</a></li>
-                    <li><a href="/templates/aboutme.html" th:href="@{/aboutme}">About me</a></li>
-                    <li><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
-                    <li><a href="https://github.com/LSH3333" target="_blank">Git</a></li>
-                    <li><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a></li>
+                    <li class="menu"><a href="/templates/index.html" th:href="@{/}">Home</a></li>
+                    <li class="menu"><a href="/templates/portfolio.html" th:href="@{/portfolio}">Portfolio</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">menu1</a></li>
+                            <li><a href="#">menu2</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">About me</a></li>
+                    <li class="menu"><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
+                    <li class="menu"><a href="https://github.com/LSH3333" target="_blank">Git</a></li>
+                    <li class="menu"><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a></li>
                 </ul>
             </div>
         </nav>

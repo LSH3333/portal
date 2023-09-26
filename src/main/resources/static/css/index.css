@@ -13,9 +13,8 @@ header {
     min-height: 100vh;
     width: 100%;
     /* linear-gradient: 이미지에 명암을 줌 (default는 to bottom) */
-    /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(headerImg.jpeg); */
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/interface-3614766_1280.png);
-    /* background-color: gray; */
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/interface-3614766_1280.png);    
+    /* background-color: black; */
     background-position: center;
     background-size: cover;
     position: relative;
@@ -26,12 +25,13 @@ nav {
     padding: 2% 6%;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
 }
 
 #logo {
     /* border: 1px solid white; */
     font-size: 30px;
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
@@ -52,11 +52,12 @@ nav {
 
 #navLinks ul li a {
     color: white;
+    color: black;
     text-decoration: none;
     font-size: 13px;
 }
 
-/* li 에 마우스 hover 시 아래 빨간선으로 표시 */
+/* li 에 마우스 hover 시 아래 선으로 표시 */
 #navLinks ul li::after {
     content: '';
     /* 최초 width 0 으로 안보임, :hover 시 보이도록 처리  */
@@ -92,7 +93,56 @@ nav {
     font-size: 60px;
 }
 
-
+.menu {
+    position : relative;
+}
+.dropdown-menu {
+    visibility: hidden;
+    opacity: 1;
+    position: absolute;
+    top: 100%;
+    left:0;
+    width:100%;
+    transform: translateY(-3em);
+    z-index: -1;
+    transition: all 0.3s ease 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+}
+.menu:hover .dropdown-menu {
+    visibility: visible;    
+    opacity: 1;
+    z-index: 1;
+    transform: translateY(0);
+    transition-delay: 0s, 0s, 0.3s;
+}
+nav a {
+    /* color: #fff; */
+    display: block;
+    /* padding: 15px 60px; */
+    text-decoration: none;
+}
+.dropdown-menu a {
+    width: 70%;
+    /* padding: 15px 30px;     */
+}
+.dropdown-menu a:hover {
+    /* background: #262626; */
+}
+nav a:hover {
+    /* background: crimson; */
+}
+nav ul, nav ul li {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+nav > ul {
+    /* background: #262626;
+    text-align: center; */
+}
+#navLinks > ul > li {
+    /* display: inline-block;
+    border-left: 1px solid #fff; */
+}
 
 
 
