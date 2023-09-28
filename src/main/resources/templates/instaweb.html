@@ -144,7 +144,70 @@
                     <p><a href="https://github.com/LSH3333/Instaweb/blob/main/src/main/resources/templates/fragment/editorData.html">editorData fragment</a></p>
                     <div class="divider"><hr></div>
 
+                    <h4>글 삭제</h4>
+                    <p>로그인한 Member 가 작성한 Page 는 삭제할수 있다.</p>
+                    <img src="/static/images/instaweb_delete1.png" th:src="@{/images/instaweb_delete1.png}" alt="">
+                    <img src="/static/images/instaweb_delete2.png" th:src="@{/images/instaweb_delete2.png}" alt="">
+                    <p>스프링 인터셉터로 등록된 LoginCheckInterceptor 에서는 삭제를 포함한 모든 로그인이 필요한 요청에 대해, 로그인되지 않은 상태로 요청할 경우 로그인 화면으로 리다이렉트하도록 되어있다.</p>
+                    <p><a href="https://github.com/LSH3333/Instaweb/blob/a32aabc8b8631e3889c0daf8c77fc8c7de525973/src/main/java/web/instaweb/interceptor/LoginCheckInterceptor.java#L13-L37">LoginCheckInterceptor</a></p>
+                    <div class="divider"><hr></div>
 
+                    <h4>홈</h4>
+                    <img src="/static/images/instaweb_home.png" th:src="@{/images/instaweb_home.png}" alt="">
+                    <p>홈에서는 모든 유저들이 작성한 글들을 볼 수 있다.</p>
+                    <p>홈과 작성된 글들은 로그인 여부에 상관 없이 볼 수 있다.</p>
+                    <p>(스프링 인터셉터에서 LoginCheckInterceptor 의 검사 경로에서 제외)</p>
+                    <p><a href="https://github.com/LSH3333/Instaweb/blob/af3e3fab8dc91a822f6ada977f9685d21311b588/src/main/java/web/instaweb/WebConfig.java#L12-L30">WebConfig 인터셉터 경로 제외</a></p>
+                    <div class="divider"><hr></div>
+
+                    <h4>나의 작성 목록</h4>
+                    <img src="/static/images/instaweb_mypage.png" th:src="@{/images/instaweb_mypage.png}" alt="">
+                    <p>나의 작성 목록 탭에서는 내가 작성한 글들만 표시된다.</p>
+                    <div class="divider"><hr></div>
+
+                    <h4>Infinite Scroll</h4>
+                    <p><b>홈, 나의 작성 목록</b>에서 Page 목록이 보여질때는 스크롤을 내리면 서버에서 클라이언트로 새로운 Page 들을 ajax 로 보내준다.</p>
+                    <p>서버에서 Page 들은 생성일 기준으로 정렬되어 저장되어 있고, 차례대로 클라이언트로 보내지기 때문에 최근에 작성된 Page 가 먼저 클라이언트로 보내진다.</p>
+                    <p>서버에서 Page 와 Page 에 속하는 첫 번째 이미지를 Wrap 해서 클라이언트로 보내주고, 클라이언트는 받아서 화면에 띄운다.</p>
+                    <img src="/static/images/instaweb_page1.png" th:src="@{/images/instaweb_page1.png}" alt="">
+                    <p><a href="https://github.com/LSH3333/Instaweb/blob/af3e3fab8dc91a822f6ada977f9685d21311b588/src/main/java/web/instaweb/controller/PageController.java#L159-L204">서버에서 클라이언트로 wrap data 전송</a></p>
+                    <div class="divider"><hr></div>
+
+                    <h4>글 검색</h4>
+                    <img src="/static/images/instaweb_search1.png" th:src="@{/images/instaweb_search1.png}" alt="">
+                    <p>글 검색은 db 에서 저장된 Page 들을 가져와서 title, content에 유저가 검색한 searchQuery 문자와 일치하는 문자가 있는지 탐색한다.</p>
+                    <p>content 는 html 통째로 저장되기 때문에 단순히 searchQuery 와 일치하는 문자열이 존재하는지 탐색하면 element 와 충돌하는 경우가 있는데 ("a" 검색시 태그를 찾음)</p>
+                    <p>해결하기 위해 element 들을 모두 골라내 text 부분만을 대상으로 searchQuery 와 대조해본다.</p>
+                    <p><a href="https://github.com/LSH3333/Instaweb/blob/4bc9a2228f3c4b98ee0f3d970ff2c20d8d33e25e/src/main/java/web/instaweb/repository/PageRepository.java#L119-L143">checkContentWithSearchQuery</a></p>
+                    <img src="/static/images/instaweb_search2.png" th:src="@{/images/instaweb_search2.png}" alt="">
+                    <img src="/static/images/instaweb_search3.png" th:src="@{/images/instaweb_search3.png}" alt="">
+                    <div class="divider"><hr></div>
+
+                    <h4>댓글</h4>
+                    <img src="/static/images/instaweb_comment.png" th:src="@{/images/instaweb_comment.png}" alt="">
+                    <p>댓글 입력, 삭제할때는 ajax 로 동적으로 처리.</p>
+                    <p>변경 발생할때마다 클라이언트의 댓글 모두 지우고, 서버에서 통째로 가져와서 다시 디스플레이하는 방식.</p>
+                    <p><a href="https://github.com/LSH3333/Instaweb/blob/main/src/main/resources/templates/pages/pageView.html#L73-L206">클라이언트에서 서버로 댓글 데이터 보내고 받기</a></p>
+                    <div class="divider"><hr></div>
+
+                    <h4>모바일 ui 지원</h4>
+                    <img style="max-width: 40%;" src="/static/images/instaweb_mob1.png" th:src="@{/images/instaweb_mob1.png}" alt="">
+                    <img style="max-width: 40%;" src="/static/images/instaweb_mob2.jpg" th:src="@{/images/instaweb_mob2.jpg}" alt="">
+                    <p>좌: 데스크톱 웹</p>
+                    <p>우: 모바일</p>
+                    <p>css @media 로 화면 크기 감지해서 html element 변경으로 처리.</p>
+                    <div class="divider"><hr></div>
+
+                    <h4>게임</h4>
+                    <img src="/static/images/instaweb_game1.png" th:src="@{/images/instaweb_game1.png}" alt="">
+                    <img src="/static/images/instaweb_game2.png" th:src="@{/images/instaweb_game2.png}" alt="">
+                    <p>Unity 로 만든 게임들을 itch.io 라는 인디게임들을 올릴수 있는 사이트에 올려 놓았는데 링크를 타고 가서 게임을 플레이해볼수 있다.</p>
+                    <p><a href="https://github.com/LSH3333/Galaga">Galaga git</a></p>
+                    <p><a href="https://github.com/LSH3333/Unity_ManyGames">ManyGames git</a></p>
+                    
+
+
+                    
                 </div>
             </div>
         </div>
