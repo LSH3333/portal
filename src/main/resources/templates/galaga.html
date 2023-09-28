@@ -60,8 +60,8 @@
 
     <!-- MAIN -->
     <main>
-        <!-- MainBlock2 -->
-        <div id="mainBlock2">
+        <!-- MainBlock1 -->
+        <div id="mainBlock1">
             <!-- 베지어 곡선 따라 이동하는 오브젝트들 -->
             <span style="position: absolute;" id="obj"><img id="imgObj" src="/images/Enemy1_1.png" alt=""></span>
             <span style="position: absolute;" id="obj2"><img id="imgObj2" src="/images/Enemy2_1.png" alt=""></span>
@@ -72,7 +72,7 @@
             <span style="position: absolute;" id="p2"></span>
             <span style="position: absolute;" id="p3"></span>
             <span style="position: absolute;" id="p4"></span>
-            <div id="mainBlock2Content">
+            <div id="mainBlock1Content">
                 <p>
                     Unity 로 구현한 갤러그.<br><br>
                     중점은 오브젝트의 곡선 이동 구현이었고 <a href="https://tose33.tistory.com/848" target="_blank">베지어 곡선</a>으로
@@ -93,8 +93,26 @@
                 <img src="/static/images/galaga1.png" th:src="@{/images/galaga1.png}" alt="">
             </div>
         </div>
-        <!-- MainBlock3 -->
-        <div id="mainBlock3"></div>
+        <!-- MainBlock2 -->
+        <div id="mainBlock2">
+            <div id="mainBlock2Content">
+                <div class="ContentBlock">
+                    <img style="max-width: 40%;" src="/static/images/galaga2.png" th:src="@{/images/galaga2.jpg}" alt="">
+                    <img style="max-width: 40%;" src="/static/images/galaga1.png" th:src="@{/images/galaga1.jpg}" alt="">
+                    <p>베지어 곡선을 이용한 적들의 곡선 이동 구현.</p>
+                    <p><a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116" target="_blank">Bezier 곡선 구현</a></p>
+                    <div class="divider"><hr></div>
+
+                    <p>조절점 3개</p>
+                    <img style="width: 60%;" src="/static/images/galaga_bezier1.gif" th:src="@{/images/galaga_bezier1.gif}" alt="">
+                    <p>조절점 4개</p>
+                    <img style="width: 60%;" src="/static/images/galaga_bezier2.gif" th:src="@{/images/galaga_bezier2.gif}" alt="">
+                    <p>고리모양</p>
+                    <img  style="width: 60%;" src="/static/images/galaga_bezier3.gif" th:src="@{/images/galaga_bezier3.gif}" alt="">
+                    
+                </div>
+            </div>
+        </div>
 
     </main>
 

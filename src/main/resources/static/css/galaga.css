@@ -156,9 +156,7 @@ main {
 }
 
 /* mainBlock1 */
-
-/* mainBlock2 */
-#mainBlock2 {
+#mainBlock1 {
     /* background-color: rgb(239, 239, 245); */
     display: flex;
     justify-content: space-around;
@@ -170,40 +168,92 @@ main {
     align-items: center;
 }
 
-#mainBlock2 .imgBlock {
+#mainBlock1 .imgBlock {
     max-width: 60%;
 }
 
-#mainBlock2 .imgBlock img {
+#mainBlock1 .imgBlock img {
     max-width: 70%;
 }
 
-#mainBlock2 #mainBlock2Content {
+#mainBlock1 #mainBlock1Content {
     max-width: 30%;
 }
 
-#mainBlock2 #mainBlock2Content a {
+#mainBlock1 #mainBlock1Content a {
     font-size: 18px;
     font-style: italic;
     text-decoration-line: underline;
     color: black;
 }
 
-#mainBlock2 #mainBlock2Content .techStack {
+#mainBlock1 #mainBlock1Content .techStack {
     margin-top: 20%;
 }
 
 
 
-/* mainBlock3 */
-#mainBlock3 {
+/* mainBlock2 */
+/* mainBlock2 */
+#mainBlock2 {  
     background-color: rgb(239, 239, 245);
+    min-height: 50vh;
     display: flex;
     justify-content: space-around;
-    padding: 6% 6%;
-    min-height: 45vh;
-    position: relative;
-
-    display: flex;
-    align-items: center;
+    padding: 2% 16%;
+    margin: 5% 0;
+    line-height: 2;
 }
+
+#mainBlock2 .imgBlock {
+    max-width: 40%;
+}
+
+#mainBlock2 .imgBlock img {
+    max-width: 100%;
+}
+
+#mainBlock2Content {
+    width: 100%;
+}
+
+#mainBlock2Content #title {
+    font-size: 30px;
+    margin: 5% 0;
+    color: #3db39e;
+}
+
+#mainBlock2Content p {
+
+}
+
+#mainBlock2Content a {
+    color: black;
+    text-decoration: underline;
+}
+
+.ContentBlock {
+    width: 100%;
+    margin: 5% 0;
+}
+.ContentBlock p {
+    margin: 2.5% 0;
+    line-height: 1.5;
+}
+.ContentBlock img {
+    margin: 2% 0;
+    max-width: 100%;
+}
+.ContentBlock > hr {
+    margin: 2% 0;
+}
+
+.divider {
+    margin: 5%;
+}
+.divider hr {
+    margin: 0 auto;
+    width: 10%;
+    border: 2px solid gray; 
+}
+
