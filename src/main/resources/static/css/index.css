@@ -46,7 +46,7 @@ header {
     text-align: right;
 }
 
-#navLinks ul {
+#navLinks > ul {
     height: 100%;
 }
 
@@ -97,28 +97,43 @@ header {
     left: 0;
     transition: height 0.5s;
     z-index: 1;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 10%;
 }
 
 .navSub ul {
     opacity: 0;
     transition: opacity 0.5s;
-    margin: 2% 5%;
+    box-sizing: border-box;
+    /* background-color: red; */
+    height: 20vh;
+    width: 20vw;
+    padding: 2%;
 }
 
-.navSub li {
+.navSub ul li {
     list-style: none;
     text-align: left;
 }
-
-.navSub li a {
-    margin: 1%;
-    color: white;
-    display: inline;
+.navSub > ul > li:first-child {
+    margin-bottom: 5%;
+}
+.navSub > ul > li:first-child a {
+    color: white; 
+}
+.navSub > ul > li a {
+    color: gray; 
 }
 
-.navSub li a:hover {
+
+.navSub ul li a:hover {
     text-decoration: underline;
 }
+
+
+
+
 
 
 /* header-text-box */
