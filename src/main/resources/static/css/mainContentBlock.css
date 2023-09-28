@@ -1,0 +1,66 @@
+/* 내용 작성 블록 */
+
+/* mainContentBlock */
+#mainContentBlock {  
+    /* background-color: rgb(239, 239, 245); */
+    min-height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    padding: 2% 16%;
+    margin: 5% 0;
+    line-height: 2;
+}
+#mainContentBlock a {
+    color: black;
+}
+#mainContentBlock .imgBlock {
+    max-width: 40%;
+}
+
+#mainContentBlock .imgBlock img {
+    max-width: 100%;
+}
+
+
+
+/* mainContentBlockWrap */
+#mainContentBlockWrap {
+    width: 100%;
+}
+#mainContentBlockWrap #title {
+    font-size: 30px;
+    margin: 5% 0;
+    color: #3db39e;
+}
+#mainContentBlockWrap a {
+    color: black;
+    text-decoration: underline;
+}
+
+
+
+/* .ContentBlock */
+.ContentBlock {
+    width: 100%;
+    margin: 5% 0;
+}
+.ContentBlock p {
+    margin: 2.5% 0;
+    line-height: 1.5;
+}
+.ContentBlock img {
+    margin: 2% 0;
+    max-width: 100%;
+}
+.ContentBlock > hr {
+    margin: 2% 0;
+}
+
+.divider {
+    margin: 5%;
+}
+.divider hr {
+    margin: 0 auto;
+    width: 10%;
+    border: 2px solid gray; 
+}

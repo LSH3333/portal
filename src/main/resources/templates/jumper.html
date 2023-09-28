@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jumper</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/jumper.css" th:href="@{/css/jumper.css}" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&family=Skranji&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header th:replace="fragment/header :: header"></header>
+
+    <!-- MAIN -->
+    <main>
+        <div id="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <p>Jumper 게임 구현의 중점은 캐릭터가 타고 올라가는 발판의 랜덤 생성이었습니다.</p>
+                    <p>캐릭터가 계속 위로 올라가기 때문에 발판들은 플레이어가 보는 화면에서는 보이지 않는 위쪽에 미리 소환하도록 했습니다.</p>
+                    <img style="width: 60%;" src="/static/images/jumper.png" th:src="@{/images/jumper.png}"
+                    alt="">
+                    <p><a href="https://github.com/LSH3333/Unity_ManyGames/blob/4e359047afa77ec15fee49381b57bb495ce4aed1/Assets/Jumper/Scripts/LevelGenerator.cs#L27-L61">발판 랜덤 생성 로직</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>LSH</h3>
+        <ul>
+            <li>@ LSH Portal</li>
+            <li>|</li>
+            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            <li>|</li>
+            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
+            <li>|</li>
+            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
+                </a></li>
+            <li>|</li>
+        </ul>
+    </footer>
+</body>
+
+</html>

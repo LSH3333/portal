@@ -43,11 +43,11 @@
                                 </ul>
                                 <ul>
                                     <li><a href="/templates/manygames.html" th:href="@{/manygames}">ManyGames</a></li>
-                                    <li><a href="/templates/manygames.html" th:href="@{/manygames}">AngryBird</a></li>
-                                    <li><a href="/templates/manygames.html" th:href="@{/manygames}">FlappyBird</a></li>
-                                    <li><a href="/templates/manygames.html" th:href="@{/manygames}">Jumper</a></li>
-                                    <li><a href="/templates/manygames.html" th:href="@{/manygames}">Nightmare</a></li>
-
+                                    <li><a href="/templates/angrybird.html" th:href="@{/angrybird}">AngryBird</a></li>
+                                    <li><a href="/templates/flappybird.html" th:href="@{/flappybird}">FlappyBird</a>
+                                    </li>
+                                    <li><a href="/templates/jumper.html" th:href="@{/jumper}">Jumper</a></li>
+                                    <li><a href="/templates/nightmare.html" th:href="@{/nightmare}">Nightmare</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -69,9 +69,9 @@
             </div>
         </nav>
         <div id="header-text-box">
-            <h1>LSH's Portal</h1>
+            <h1 th:text="${headerTextBoxText}">LSH's Portal</h1>
         </div>
-    </header>    
+    </header>
 
     <!-- MAIN -->
     <main>

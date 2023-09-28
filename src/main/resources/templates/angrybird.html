@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngryBird</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/angrybird.css" th:href="@{/css/angrybird.css}" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&family=Skranji&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header th:replace="fragment/header :: header"></header>
+
+    <!-- MAIN -->
+    <main>
+        <div id="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <p>AngryBird 게임 구현의 중점은 랜덤 구조물 생성이었습니다.</p>
+                    <p>랜덤으로 구조물 소환시 문제점은 유니티에서 오브젝트가 강체(Rigidbody) 를 갖는 경우 오브젝트들이 게임에 소환되는 순간 서로 간섭을 받아 무너져 내릴수 있습니다.
+                    </p>
+                    <p>따라서 오브젝트의 크기에 따라 정확한 소환 좌표들을 계산해서, 정확한 위치에 소환해야 합니다.</p>
+                    <img style="width: 45%;" src="/static/images/angryBird.png" th:src="@{/images/angryBird.png}"
+                        alt="">
+                    <img style="width: 45%;" src="/static/images/angryBird2.png" th:src="@{/images/angryBird2.png}"
+                        alt="">
+                    <p><a target="_blank" href="https://github.com/LSH3333/Unity_ManyGames/blob/master/Assets/AngryBird/Scripts/AB_CreateMap.cs#L1-L64">랜덤 맵 생성 로직</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <h3>LSH</h3>
+        <ul>
+            <li>@ LSH Portal</li>
+            <li>|</li>
+            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            <li>|</li>
+            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
+            <li>|</li>
+            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
+                </a></li>
+            <li>|</li>
+        </ul>
+    </footer>
+</body>
+
+</html>
