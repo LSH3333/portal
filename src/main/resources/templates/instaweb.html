@@ -8,6 +8,7 @@
     <title>InstaWeb</title>
     <link rel="stylesheet" type="text/css" href="/static/css/instaweb.css" th:href="@{/css/instaweb.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,40 +24,7 @@
 
 <body>
     <!-- HEADER -->
-    <header>
-        <nav>
-            <div id="navMain">
-                <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
-                <div id="navLinks">
-                    <ul>
-                        <li class="menu"><a href="/templates/index.html" th:href="@{/}">HOME</a>
-                        </li>
-                        <li class="menu"><a href="/templates/portfolio.html" th:href="@{/portfolio}">PORTFOLIO</a>
-                            <div class="navSub">
-                                <ul>
-                                    <li><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></li>
-                                    <li><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></li>
-                                    <li><a href="/templates/manygames.html" th:href="@{/manygames}">ManyGames</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">ABOUT ME</a>
-                            <div class="navSub">
-                                <ul>
-                                    <li><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
-                                    <li><a href="https://github.com/LSH3333" target="_blank">Git</a></li>
-                                    <li><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div id="header-text-box">
-            <h1>INSTAWEB</h1>
-        </div>
-    </header>
+    <header th:replace="fragment/header :: header"></header>
 
     <!-- MAIN -->
     <main>

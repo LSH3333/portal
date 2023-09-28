@@ -8,6 +8,7 @@
     <title>Galaga</title>
     <link rel="stylesheet" type="text/css" href="/static/css/galaga.css" th:href="@{/css/galaga.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,40 +24,7 @@
 
 <body>
     <!-- HEADER -->
-    <header>
-        <nav>
-            <div id="navMain">
-                <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
-                <div id="navLinks">
-                    <ul>
-                        <li class="menu"><a href="/templates/index.html" th:href="@{/}">HOME</a>
-                        </li>
-                        <li class="menu"><a href="/templates/portfolio.html" th:href="@{/portfolio}">PORTFOLIO</a>
-                            <div class="navSub">
-                                <ul>
-                                    <li><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></li>
-                                    <li><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></li>
-                                    <li><a href="/templates/manygames.html" th:href="@{/manygames}">ManyGames</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">ABOUT ME</a>
-                            <div class="navSub">
-                                <ul>
-                                    <li><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
-                                    <li><a href="https://github.com/LSH3333" target="_blank">Git</a></li>
-                                    <li><a href="https://www.acmicpc.net/user/chadol51" target="_blank">PS</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div id="header-text-box">
-            <h1>GALAGA</h1>
-        </div>
-    </header>
+    <header th:replace="fragment/header :: header"></header>
 
     <!-- MAIN -->
     <main>
@@ -97,41 +65,50 @@
         <div id="mainBlock2">
             <div id="mainBlock2Content">
                 <div class="ContentBlock">
-                    <img style="max-width: 30%;" src="/static/images/galaga_start.png" th:src="@{/images/galaga2.png}" alt="">
-                    <img style="max-width: 30%;" src="/static/images/galaga_spawn.png" th:src="@{/images/galaga1.png}" alt="">
-                    <img style="max-width: 30%;" src="/static/images/galaga_drain.png" th:src="@{/images/galaga_drain.png}" alt="">
+                    <img style="max-width: 30%;" src="/static/images/galaga_start.png" th:src="@{/images/galaga2.png}"
+                        alt="">
+                    <img style="max-width: 30%;" src="/static/images/galaga_spawn.png" th:src="@{/images/galaga1.png}"
+                        alt="">
+                    <img style="max-width: 30%;" src="/static/images/galaga_drain.png"
+                        th:src="@{/images/galaga_drain.png}" alt="">
                     <p>베지어 곡선을 이용한 적들의 곡선 이동 구현.</p>
-                    <p><a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116" target="_blank">Bezier 곡선 구현</a></p>
-                    <div class="divider"><hr></div>
+                    <p><a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116"
+                            target="_blank">Bezier 곡선 구현</a></p>
+                    <div class="divider">
+                        <hr>
+                    </div>
 
                     <p>조절점 3개</p>
-                    <img style="width: 60%;" src="/static/images/galaga_bezier1.gif" th:src="@{/images/galaga_bezier1.gif}" alt="">
+                    <img style="width: 60%;" src="/static/images/galaga_bezier1.gif"
+                        th:src="@{/images/galaga_bezier1.gif}" alt="">
                     <p>조절점 4개</p>
-                    <img style="width: 60%;" src="/static/images/galaga_bezier2.gif" th:src="@{/images/galaga_bezier2.gif}" alt="">
+                    <img style="width: 60%;" src="/static/images/galaga_bezier2.gif"
+                        th:src="@{/images/galaga_bezier2.gif}" alt="">
                     <p>고리모양</p>
-                    <img  style="width: 60%;" src="/static/images/galaga_bezier3.gif" th:src="@{/images/galaga_bezier3.gif}" alt="">
-                    
+                    <img style="width: 60%;" src="/static/images/galaga_bezier3.gif"
+                        th:src="@{/images/galaga_bezier3.gif}" alt="">
+
                 </div>
             </div>
         </div>
 
     </main>
 
-        <!-- FOOTER -->
-        <footer>
-            <h3>LSH</h3>
-            <ul>
-                <li>@ LSH Portal</li>
-                <li>|</li>
-                <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                <li>|</li>
-                <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
-                <li>|</li>
-                <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
-                    </a></li>
-                <li>|</li>
-            </ul>
-        </footer>
+    <!-- FOOTER -->
+    <footer>
+        <h3>LSH</h3>
+        <ul>
+            <li>@ LSH Portal</li>
+            <li>|</li>
+            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            <li>|</li>
+            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
+            <li>|</li>
+            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
+                </a></li>
+            <li>|</li>
+        </ul>
+    </footer>
 
     <script type="text/javascript" src="/static/js/bezierGalaga.js" th:src="@{/js/bezierGalaga.js}"></script>
 </body>
