@@ -60,8 +60,8 @@
 
     <!-- MAIN -->
     <main>
-        <!-- MainBlock3 -->
-        <div id="mainBlock3">
+        <!-- MainBlock1 -->
+        <div id="mainBlock1">
             <div class="imgBlock">
                 <img src="/static/images/score board.png" th:src="@{/images/score board.png}" alt="">
                 <img src="/static/images/jumper.png" th:src="@{/images/jumper.png}" alt="">
@@ -70,7 +70,7 @@
                 <img src="/static/images/night1.png" th:src="@{/images/night1.png}" alt="">
                 <img src="/static/images/night2.png" th:src="@{/images/night2.png}" alt="">
             </div>
-            <div id="mainBlock3Content">
+            <div id="mainBlock1Content">
                 <p>
                     유니티로 구현한 여러가지 게임들을 통합.<br>
                     통합할때 중점이 된 부분은 각 개별 게임들이 공통으로 쓰이는 기능들을 추상적으로 구현해 모든 게임에서 쓰이도록 하는 것이었습니다.
@@ -86,25 +86,88 @@
                 </div>
             </div>
         </div>
-        <!-- MainBlock4 -->
-        <div id="mainBlock4"></div>
+        <!-- MainBlock2 -->
+        <div id="mainBlock2">
+            <div id="mainBlock2Content">
+                <div class="ContentBlock">
+                    <p>유니티로 만들어본 여러가지 게임들을 하나로 통합.</p>
+                    <p>회원가입, 로그인 후 각 게임들 플레이 가능.</p>
+                    <p>각 게임별 유저의 점수 저장, 랭킹 보드 기능.</p>
+                    <div class="divider">
+                        <hr>
+                    </div>
+
+                    <h2>여러가지 미니 게임들 통합 관리</h2>
+                    <img src="/static/images/manygames_domain.png" th:src="@{/images/manygames_domain.png}" alt="">
+                    <p>기존에 만들어 놓은 미니게임들을 통합하면서 가장 신경 썼던 부분은 게임 시작 로직, 점수 저장, 결과창 등 모든 미니게임들에서 공통으로 쓰이는 부분을 추상적으로 구현해 각각의
+                        게임에서 사용할수 있도록 하는 것이었습니다.</p>
+                    <p>Manage 클래스에 공통으로 쓰이는 Canvas에 UI 띄우는 기능, 점수 등을 정의해놓고 각 미니게임들에서 상속받아 사용합니다.</p>
+                    <p>예를들어 각 게임에는 점수들이 존재하기 때문에 무조건 Manage 에 저장하도록 하고,</p>
+                    <p>SetStart() 같은 게임 시작 로직은 모든 게임에 필요하지만 각 게임마다 로직이 살짝 다르기 때문에 abstract 로 만들었습니다.</p><br>
+                    <p><a
+                            href="https://github.com/LSH3333/Unity_ManyGames/blob/master/Assets/PublicResources/Manage/Manage.cs">Manager
+                            class</a></p>
+                    <p><a
+                            href="https://github.com/LSH3333/Unity_ManyGames/blob/master/Assets/Jumper/Scripts/JumperManagerGame.cs">Manager
+                            클래스를 상속받아 사용하는 JumperManagerGame 클래스</a></p>
+                    <div class="divider">
+                        <hr>
+                    </div>
+                </div>
+                <div class="ContentBlock">
+                    <h2>DB</h2>
+                    <p>db 는 NCMB mbaas (mobile backend as service) 서비스를 사용했습니다.</p>
+                    <p><a href="https://mbaas.nifcloud.com/doc/current/tutorial/tutorial_unity.html">NCMB doc</a></p>
+                    <p>NCMB 에서 제공하는 application key 와 Client key 로 유니티와 ncmb 를 연결해서 데이터를 보관할수 있습니다.</p>
+                    <img src="/static/images/manygames_ncmb.png" th:src="@{/images/manygames_ncmb.png}" alt="">
+                    <p><a
+                            href="https://github.com/LSH3333/Unity_ManyGames/blob/c79bf3f0f0e651308ca3da77280a224a1aaad34c/Assets/PublicResources/RankingSystem/Result.cs#L78-L95">게임의
+                            유저 정보를 NCMB Database 로 보내기</a></p>
+                    <p>이런 baas 서비스를 이용하면 간단하게 이런 식으로 클라이언트의 데이터를 서버로 보내 저장 할 수 있습니다.</p>
+                    <div class="divider">
+                        <hr>
+                    </div>
+                </div>
+                <div class="ContentBlock">
+                    <h4>가입</h4>
+                    <img style="width: 60%;" src="/static/images/manygames_reg.png"
+                        th:src="@{/images/manygames_reg.png}" alt="">
+                    <h4>로그인</h4>
+                    <img style="width: 60%;" src="/static/images/manygames_login.png"
+                        th:src="@{/images/manygames_login.png}" alt="">
+                    <h4>미니게임 목록</h4>
+                    <img style="width: 60%;" src="/static/images/manygames_list.png"
+                        th:src="@{/images/manygames_list.png}" alt="">
+                    <h4>게임 별 랭킹 보드 열람</h4>
+                    <img style="width: 60%;" src="/static/images/manygames_ranking.png"
+                        th:src="@{/images/manygames_ranking.png}" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- MainBlock3 -->
+        <!-- <div id="mainBlock3">
+            <div class="ContentBlock">
+
+            </div>
+        </div> -->
+
     </main>
 
-        <!-- FOOTER -->
-        <footer>
-            <h3>LSH</h3>
-            <ul>
-                <li>@ LSH Portal</li>
-                <li>|</li>
-                <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                <li>|</li>
-                <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
-                <li>|</li>
-                <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
-                    </a></li>
-                <li>|</li>
-            </ul>
-        </footer>
+    <!-- FOOTER -->
+    <footer>
+        <h3>LSH</h3>
+        <ul>
+            <li>@ LSH Portal</li>
+            <li>|</li>
+            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+            <li>|</li>
+            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
+            <li>|</li>
+            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
+                </a></li>
+            <li>|</li>
+        </ul>
+    </footer>
 </body>
 
 </html>

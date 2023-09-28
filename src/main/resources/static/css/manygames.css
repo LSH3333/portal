@@ -13,11 +13,15 @@ header {
     min-height: 50vh;
     width: 100%;
     /* linear-gradient: 이미지에 명암을 줌 (default는 to bottom) */
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/interface-3614766_1280.png);
-    /* background-color: black; */
-    background-position: center;
-    background-size: cover;
-    position: relative;
+    /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/interface-3614766_1280.png); */
+    background-image: url(../images/Official_unity_logo.png);    
+    background-position: center;    
+    background-size: 70% 70%;
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    background-color: rgba(4, 9, 30, 0.7);
+
+    position: relative;    
 }
 
 #navMain {
@@ -66,7 +70,7 @@ header {
     color: black;
     text-decoration: none;
     font-size: 15px;
-    font-weight:normal;
+    font-weight: normal;
 }
 
 .menu:hover {
@@ -154,15 +158,15 @@ main {
 }
 
 
-/* mainBlock3 */
-#mainBlock3 {
+/* mainBlock1 */
+#mainBlock1 {
     /* background-color: aquamarine; */
     padding: 6% 6%;
     min-height: 45vh;
     text-align: center;
 }
 
-#mainBlock3 .imgBlock {
+#mainBlock1 .imgBlock {
     display: inline-block;
     text-align: center;
     /* background-color: #f44336; */
@@ -170,37 +174,106 @@ main {
     margin-bottom: 1%;
 }
 
-#mainBlock3 .imgBlock img {
+#mainBlock1 .imgBlock img {
     max-width: 30%;
     padding: 0 2.5px;
 }
 
-#mainBlock3 #mainBlock3Content {
+#mainBlock1 #mainBlock1Content {
     /* max-width: 30%; */
     margin-top: 5%;
 }
 
-#mainBlock3 #mainBlock3Content a {
+#mainBlock1 #mainBlock1Content a {
     font-size: 18px;
     font-style: italic;
     text-decoration-line: underline;
     color: black;
 }
 
-#mainBlock3 #mainBlock3Content .techStack {
+#mainBlock1 #mainBlock1Content .techStack {
     margin-top: 5%;
 }
 
 
-/* mainBlock4 */
-#mainBlock4 {
+/* mainBlock2 */
+#mainBlock2 {
     background-color: rgb(239, 239, 245);
+    min-height: 50vh;
     display: flex;
     justify-content: space-around;
-    padding: 6% 6%;
-    min-height: 45vh;
-    position: relative;
+    padding: 2% 16%;
+    margin: 5% 0;
+    line-height: 2;
+}
 
+#mainBlock2 .imgBlock {
+    max-width: 40%;
+}
+
+#mainBlock2 .imgBlock img {
+    max-width: 100%;
+}
+
+#mainBlock2Content {
+    width: 100%;
+}
+
+#mainBlock2Content #title {
+    font-size: 30px;
+    margin: 5% 0;
+    color: #3db39e;
+}
+
+#mainBlock2Content p {}
+
+#mainBlock2Content a {
+    color: black;
+    text-decoration: underline;
+}
+
+
+/* mainBlock3 */
+#mainBlock3 {
+    background-color: white;
+    min-height: 50vh;
     display: flex;
-    align-items: center;
+    justify-content: space-around;
+    padding: 2% 16%;
+    margin: 5% 0;
+    line-height: 2;
+}
+
+
+
+
+
+
+.ContentBlock {
+    width: 100%;
+    margin: 5% 0;
+}
+
+.ContentBlock p {
+    margin: 2.5% 0;
+    line-height: 1.5;
+}
+
+.ContentBlock img {
+    margin: 2% 0;
+    max-width: 100%;
+}
+
+.ContentBlock>hr {
+    margin: 2% 0;
+}
+
+.divider {
+    margin: 5%;
+}
+
+.divider hr {
+    margin: 0 auto;
+    width: 10%;
+    border: 2px solid gray;
 }
