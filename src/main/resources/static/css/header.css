@@ -73,7 +73,7 @@ header {
 .menu:hover .navSub {
     opacity: 1;
     visibility: visible;
-    height: 25vh;
+    height: 150px;
 }
 
 .menu:hover>a {
