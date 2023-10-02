@@ -35,8 +35,7 @@
         <div id="mainContentBlock">
             <div class="mainContentBlockWrap">
                 <div class="ContentBlock">
-                    <img style="width: 60%;" src="/static/images/flappy.png" th:src="@{/images/flappy.png}"
-                    alt="">
+                    <img style="width: 60%;" src="/static/images/flappy.png" th:src="@{/images/flappy.png}" alt="">
                     <p>FlappyBird 게임 구현의 중점은 중 Rigidbody 와 Collider 의 사용이었습니다.</p>
                     <p>Rigidbody 를 통해 오브젝트에 적용되는 모든 '힘' 을 관리할수 있습니다.</p>
                     <p>Collider 는 오브젝트와 다른 오브젝트의 접촉, 충돌을 관리 합니다.</p>
@@ -47,20 +46,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer>
-        <h3>LSH</h3>
-        <ul>
-            <li>@ LSH Portal</li>
-            <li>|</li>
-            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-            <li>|</li>
-            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
-            <li>|</li>
-            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
-                </a></li>
-            <li>|</li>
-        </ul>
-    </footer>
+    <footer th:replace="fragment/footer :: footer"></footer>
 </body>
 
 </html>
