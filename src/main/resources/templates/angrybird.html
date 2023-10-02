@@ -48,6 +48,112 @@
                 </div>
             </div>
         </div>
+        <!-- <div id="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <meta charset="utf-8">
+                    <html lang="ko">
+
+                    <head>
+                        <link rel="stylesheet" type="text/css" href="./../style.css">
+                        <title>백준 14890. 경사로</title>
+                    </head>
+
+                    <body id="tt-body-page" class="">
+                        <div id="wrap" class="wrap-right">
+                            <div id="container">
+                                <main class="main ">
+                                    <div class="area-main">
+                                        <div class="area-view">
+                                            <div class="article-header">
+                                                <div class="inner-article-header">
+                                                    <div class="box-meta">
+                                                        <h2 class="title-article">백준 14890. 경사로</h2>
+                                                        <div class="box-info">
+                                                            <p class="category">PS</p>
+                                                            <p class="date">2023-09-25 20:13:29</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="article-view">
+                                                <div class="contents_style">
+                                                    <p data-ke-size="size16"><a
+                                                            href="https://www.acmicpc.net/problem/14890" target="_blank"
+                                                            rel="noopener">https://www.acmicpc.net/problem/14890</a></p>
+                                                    <figure id="og_1695640075778" contenteditable="false"
+                                                        data-ke-type="opengraph" data-ke-align="alignCenter"
+                                                        data-og-type="website" data-og-title="14890번: 경사로"
+                                                        data-og-description="첫째 줄에 N (2 &le; N &le; 100)과 L (1 &le; L &le; N)이 주어진다. 둘째 줄부터 N개의 줄에 지도가 주어진다. 각 칸의 높이는 10보다 작거나 같은 자연수이다."
+                                                        data-og-host="www.acmicpc.net"
+                                                        data-og-source-url="https://www.acmicpc.net/problem/14890"
+                                                        data-og-url="https://www.acmicpc.net/problem/14890"
+                                                        data-og-image="https://scrap.kakaocdn.net/dn/vTJJO/hyT2vcQRxi/GnUj0Yffptljf2yETcsutk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/eGj0zJ/hyT2udWkCH/DKXEv4N2Q0tdQvHG9gjtV1/img.png?width=2052&amp;height=317&amp;face=0_0_2052_317,https://scrap.kakaocdn.net/dn/ccCx72/hyTY2cjffC/lSnkPSbknbBo8yAF7OyF8k/img.png?width=677&amp;height=677&amp;face=0_0_677_677">
+                                                        <a href="https://www.acmicpc.net/problem/14890" target="_blank"
+                                                            rel="noopener"
+                                                            data-source-url="https://www.acmicpc.net/problem/14890">
+                                                            <div class="og-image"
+                                                                style="background-image: url('https://scrap.kakaocdn.net/dn/vTJJO/hyT2vcQRxi/GnUj0Yffptljf2yETcsutk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/eGj0zJ/hyT2udWkCH/DKXEv4N2Q0tdQvHG9gjtV1/img.png?width=2052&amp;height=317&amp;face=0_0_2052_317,https://scrap.kakaocdn.net/dn/ccCx72/hyTY2cjffC/lSnkPSbknbBo8yAF7OyF8k/img.png?width=677&amp;height=677&amp;face=0_0_677_677');">
+                                                                &nbsp;</div>
+                                                            <div class="og-text">
+                                                                <p class="og-title" data-ke-size="size16">14890번: 경사로
+                                                                </p>
+                                                                <p class="og-desc" data-ke-size="size16">첫째 줄에 N (2 &le;
+                                                                    N &le; 100)과 L (1
+                                                                    &le; L &le; N)이 주어진다. 둘째 줄부터 N개의 줄에 지도가 주어진다. 각 칸의
+                                                                    높이는 10보다 작거나 같은
+                                                                    자연수이다.</p>
+                                                                <p class="og-host" data-ke-size="size16">www.acmicpc.net
+                                                                </p>
+                                                            </div>
+                                                        </a>
+                                                    </figure>
+                                                    <p data-ke-size="size16">&nbsp;</p>
+                                                    <p data-ke-size="size16">구현 문제.</p>
+                                                    <p data-ke-size="size16">&nbsp;</p>
+                                                    <p data-ke-size="size16">이 문제는 우선 다음위치가 아닌 현재위치에서부터 길이 L 경사로를 짓는다고
+                                                        생각해야 편하다.</p>
+                                                    <p data-ke-size="size16">그리고 행, 열을 하나의 2차원 배열로 보지 않고 <b>분리해서 각 행과 열을
+                                                            하나의
+                                                            vector&lt;int&gt; 로 바꿔서 풀었다</b>.</p>
+                                                    <p data-ke-size="size16">이렇게 하면 몇행 몇열인지 신경쓰지 않고 하나의 index 로 관리할수 있어서
+                                                        편하다.</p>
+                                                    <p data-ke-size="size16">&nbsp;</p>
+                                                    <p data-ke-size="size16"><b>재귀적으로 다음칸으로 이동하면서 끝까지 이동 가능하면 true 를
+                                                            반환</b>하도록 했다.</p>
+                                                    <p data-ke-size="size16">만약 다음칸이 1차이가 난다면 경사로를 지을수 있는지 검사해봐야 한다.</p>
+                                                    <p data-ke-size="size16"><b>내리막길은 현재위치 기준 다음 L 칸을 검사</b>해야하고,
+                                                        <b>오르막길은 뒤를 봐서 이전 L 칸을
+                                                            검사</b>한다.
+                                                    </p>
+                                                    <p data-ke-size="size16">&nbsp;</p>
+                                                    <p data-ke-size="size16">중요한건 검사한후 경사로를 설치 가능하면 높이도 바꿔줘야 하고,
+                                                        vector&lt;bool&gt; 에 해당 칸에는
+                                                        경사로를 설치했음도 표시해야한다.</p>
+                                                    <p data-ke-size="size16">&nbsp;</p>
+                                                    <p data-ke-size="size16">이래저래 신경쓸게 좀 많은 문제였다.</p>
+                                                    <p data-ke-size="size16">&nbsp;</p>
+                                                    <p data-ke-size="size16">&nbsp;</p>
+                                                    <script
+                                                        src="https://gist.github.com/LSH3333/18d4ba9dddc71d05f2f87ea632ee1b85.js"></script>
+                                                </div>
+                                                <br />
+                                                <div class="tags">
+                                                    #Simulation #Implementation
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+                        </div>
+                    </body>
+
+                    </html>
+                </div>
+            </div>
+        </div> -->
     </main>
 
     <!-- FOOTER -->
