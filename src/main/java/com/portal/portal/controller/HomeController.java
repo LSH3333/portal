@@ -78,10 +78,10 @@ public class HomeController {
         return "blog/tistoryTest";
     }
 
-//    @GetMapping("tistoryTest")
-//    public String tistoryTest(Model model) {
-//        model.addAttribute("headerTextBoxText", "TISTORYTEST");
-//        return "blog/tistoryTest";
-//    }
+    @GetMapping("tistory1")
+    public String tistory1(Model model) {
+        model.addAttribute("headerTextBoxText", "TISTORY1");
+        return "blog/tistory1";
+    }
 
 }
