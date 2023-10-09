@@ -1,7 +1,7 @@
 /* 내용 작성 블록 */
 
 /* mainContentBlock */
-#mainContentBlock {  
+.mainContentBlock {  
     /* background-color: rgb(239, 239, 245); */
     min-height: 50vh;
     display: flex;
@@ -10,29 +10,29 @@
     margin: 5% 0;
     line-height: 2;
 }
-#mainContentBlock a {
+.mainContentBlock a {
     color: black;
 }
-#mainContentBlock .imgBlock {
+.mainContentBlock .imgBlock {
     max-width: 40%;
 }
 
-#mainContentBlock .imgBlock img {
+.mainContentBlock .imgBlock img {
     max-width: 100%;
 }
 
 
 
 /* mainContentBlockWrap */
-#mainContentBlockWrap {
+.mainContentBlockWrap {
     width: 100%;
 }
-#mainContentBlockWrap #title {
+.mainContentBlockWrap #title {
     font-size: 30px;
     margin: 5% 0;
     color: #3db39e;
 }
-#mainContentBlockWrap a {
+.mainContentBlockWrap a {
     color: black;
     text-decoration: underline;
 }
