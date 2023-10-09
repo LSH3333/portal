@@ -68,4 +68,20 @@ public class HomeController {
         model.addAttribute("headerTextBoxText", "NIGHTMARE");
         return "nightmare";
     }
+
+
+
+
+    @GetMapping("blog")
+    public String blog(Model model) {
+        model.addAttribute("headerTextBoxText", "BLOG");
+        return "blog/tistoryTest";
+    }
+
+    @GetMapping("tistory1")
+    public String tistory1(Model model) {
+        model.addAttribute("headerTextBoxText", "TISTORY1");
+        return "blog/tistory1";
+    }
+
 }

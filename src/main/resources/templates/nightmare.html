@@ -34,33 +34,24 @@
         <div id="mainContentBlock">
             <div class="mainContentBlockWrap">
                 <div class="ContentBlock">
-                  <p>Nightmare 게임 구현의 중점은 총을 쏘고 맞는 로직의 구현이었습니다.</p>
-                  <p>이는 Ray (빛) 을 이용했는데, 빛이 쏘아지는 시작지점과 길이를 설정해서 빛이 충돌한 오브젝트를 구할수 있습니다.</p>
-                  <p>즉 플레이어가 쏘는 총구에서 부터 빛을 쏴서 해당 빛에 맞는 오브젝트 (적 오브젝트) 는 총에 맞았다고 볼 수 있습니다.</p>
-                  <img style="width: 45%;" src="/static/images/night3.png" th:src="@{/images/night3.png}" alt="">
-                  <img style="width: 45%;" src="/static/images/night4.png" th:src="@{/images/night4.png}" alt="">
-                  <img style="width: 45%;" src="/static/images/night_shooting.png" th:src="@{/images/night_shooting.png}" alt="">
-                  <p><a href="https://github.com/LSH3333/Unity_ManyGames/blob/4e359047afa77ec15fee49381b57bb495ce4aed1/Assets/Nightmare/03.%20Scripts/PlayerShooting_NM.cs#L55-L91">Player Shoot, bullet 충돌 로직</a></p>
+                    <iframe frameborder="0" src="https://itch.io/embed-upload/8827783?color=333333" allowfullscreen="" width="980" height="688"><a href="https://lsh3333.itch.io/nightmare">Play Nightmare on itch.io</a></iframe>
+                    <p>Nightmare 게임 구현의 중점은 총을 쏘고 맞는 로직의 구현이었습니다.</p>
+                    <p>이는 Ray (빛) 을 이용했는데, 빛이 쏘아지는 시작지점과 길이를 설정해서 빛이 충돌한 오브젝트를 구할수 있습니다.</p>
+                    <p>즉 플레이어가 쏘는 총구에서 부터 빛을 쏴서 해당 빛에 맞는 오브젝트 (적 오브젝트) 는 총에 맞았다고 볼 수 있습니다.</p>
+                    <img style="width: 45%;" src="/static/images/night3.png" th:src="@{/images/night3.png}" alt="">
+                    <img style="width: 45%;" src="/static/images/night4.png" th:src="@{/images/night4.png}" alt="">
+                    <img style="width: 45%;" src="/static/images/night_shooting.png"
+                        th:src="@{/images/night_shooting.png}" alt="">
+                    <p><a
+                            href="https://github.com/LSH3333/Unity_ManyGames/blob/4e359047afa77ec15fee49381b57bb495ce4aed1/Assets/Nightmare/03.%20Scripts/PlayerShooting_NM.cs#L55-L91">Player
+                            Shoot, bullet 충돌 로직</a></p>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- FOOTER -->
-    <footer>
-        <h3>LSH</h3>
-        <ul>
-            <li>@ LSH Portal</li>
-            <li>|</li>
-            <li><a href="https://github.com/LSH3333" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-            <li>|</li>
-            <li><a href="https://tose33.tistory.com/" target="_blank"><i class="fa-solid fa-t"></i></a></li>
-            <li>|</li>
-            <li><a href="https://www.acmicpc.net/user/language/chadol51" target="_blank"><i class="fa-solid fa-b"></i>
-                </a></li>
-            <li>|</li>
-        </ul>
-    </footer>
+    <footer th:replace="fragment/footer :: footer"></footer>
 </body>
 
 </html>
