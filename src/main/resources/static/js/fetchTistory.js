@@ -13,7 +13,9 @@ function fetchHTML(htmlSrc) {
         })
         .catch(error => console.error('Error:', error));
 }
-fetchHTML('/tistory/1183-백준-13335.-트럭.html');
+// console.log(fetchURL)
+fetchHTML(fetchURL);
+
 
 
 function dynamicallyAddGist() {

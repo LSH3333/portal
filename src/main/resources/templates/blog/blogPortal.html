@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TistoryTest</title>
+    <title>BLOG TESTING</title>
     <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
         th:href="@{/css/mainContentBlock.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
-    <link rel="stylesheet" type="text/css" href="/static/css/angrybird.css" th:href="@{/css/angrybird.css}" />
-    <!-- <link rel="stylesheet" type="text/css" href="/static/style.css" th:href="@{/style.css}" /> -->
+    <link rel="stylesheet" type="text/css" href="/static/css/blogPortal.css" th:href="@{/css/blogPortal.css}" />
+
 
 
     <!-- Google Fonts -->
@@ -38,6 +38,19 @@
         <div id="mainContentBlock">
             <div class="mainContentBlockWrap">
                 <div id="ContentBlock">
+                    <div>
+                        <a href="/templates/instaweb.html"
+                            th:href="@{/blog/1183-백준-13335.-트럭.html}">1183-백준-13335.-트럭.html</a>
+                    </div>
+                    <div>
+                        <a href="/templates/instaweb.html"
+                            th:href="@{/blog/1176-백준-14284.-간선-이어가기-2.html}">1176-백준-14284.-간선-이어가기-2.html</a>
+                    </div>
+                    <div>
+                        <a href="/templates/instaweb.html"
+                            th:href="@{/blog/1182-백준-14395.-4연산.html}">1182-백준-14395.-4연산.html</a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -49,7 +62,7 @@
     <!-- gist style -->
     <link rel="stylesheet" href="https://github.githubassets.com/assets/gist-embed-dc3feb7a9d65.css">
     <!--  -->
-    <script async type="text/javascript" src="/static/js/fetchTistory.js" th:src="@{/js/fetchTistory.js}"></script>
+    <!-- <script async type="text/javascript" src="/static/js/fetchTistory.js" th:src="@{/js/fetchTistory.js}"></script> -->
 
 </body>
 
