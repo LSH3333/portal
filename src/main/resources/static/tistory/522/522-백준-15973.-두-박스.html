@@ -1,0 +1,111 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 15973. 두 박스</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 15973. 두 박스</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-02-09 22:28:47</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/15973" target="_blank" rel="noopener">https://www.acmicpc.net/problem/15973</a></p>
+<figure id="og_1644412823809" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="15973번: 두 박스" data-og-description="표준 입력으로 두 박스의 정보가 한 줄에 하나씩 주어진다. 각 박스의 정보는 왼쪽 아래 꼭짓점 좌표 (x1, y1)과 오른쪽 위 꼭짓점 좌표 (x2, y2)로 구성되는데 이들 좌푯값 x1, y1, x2, y2 (x1 &lt; x2, y1 &lt; y2)" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/15973" data-og-url="https://www.acmicpc.net/problem/15973" data-og-image="https://scrap.kakaocdn.net/dn/ciyEpG/hyNmzs2Z5J/PFsKacMwlwk2uvULPLzo50/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/15973" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/15973">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/ciyEpG/hyNmzs2Z5J/PFsKacMwlwk2uvULPLzo50/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">15973번: 두 박스</p>
+<p class="og-desc" data-ke-size="size16">표준 입력으로 두 박스의 정보가 한 줄에 하나씩 주어진다. 각 박스의 정보는 왼쪽 아래 꼭짓점 좌표 (x1, y1)과 오른쪽 위 꼭짓점 좌표 (x2, y2)로 구성되는데 이들 좌푯값 x1, y1, x2, y2 (x1 &lt; x2, y1 &lt; y2)</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">먼저 문제에서 첫번째로 주어지는 사각형이 왼쪽에 있다는 보장이 없기 때문에,</p>
+<p data-ke-size="size16">케이스를 나누기 쉽게 좌측하단 꼭짓점이 더 왼쪽에 있는 사각형이 <b>왼쪽 사각형, 나머지 사각형이 오른쪽 사각형</b>이 되도록 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그 후에 케이스는 왼쪽 사각형의 오른쪽면과, 오른쪽 사각형의 왼쪽면을 기준으로 나눴다.</p>
+<p data-ke-size="size16"><b>1)&nbsp; 왼쪽 사각형의 오른쪽면과, 오른쪽 사각형의 왼쪽면이 같을때</b></p>
+<p data-ke-size="size16">이 경우에는 사각형들의 y값에 따라 POINT 거나 LINE 이거나 NULL이 될수 있다.</p>
+<p data-ke-size="size16">&nbsp; &nbsp; 1-1) 왼쪽 사각형의 오른쪽상단 꼭짓점과, 오른쪽 사각형의 좌측하단 꼭짓점이 같을때 = "POINT"</p>
+<p data-ke-size="size16">&nbsp; &nbsp; 1-2) 왼쪽 사각형의 오른쪽하단 꼭짓점과, 오른쪽 사각형의 좌측상단 꼭짓점이 같을떄 = "POINT"</p>
+<p data-ke-size="size16">&nbsp; &nbsp; 1-3) 왼쪽 사각형의 아랫면이, 오른쪽 사각형의 윗면 보다 위에 있을때 = "NULL"</p>
+<p data-ke-size="size16">&nbsp; &nbsp; 1-4) 이 외에는 서로 면이 맞닿아 있는 "LINE" 이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2) 오른쪽 사각형의 왼쪽면이, 왼쪽 사각형의 오른쪽 면보다 왼쪽에 있을때&nbsp;</b></p>
+<p data-ke-size="size16">이 경우에는 사각형들의 y값에 따라 LINE, NULL, FACE가 될 수 있다.</p>
+<p data-ke-size="size16"><b>&nbsp; &nbsp;</b>2-1) 왼쪽 사각형의 윗면과, 오른쪽 사각형의 아랫면이 같을 떄 = "LINE"</p>
+<p data-ke-size="size16">&nbsp; &nbsp;2-2) 왼쪽 사각형의 아랫면과, 오른쪽 사각형의 윗면이 같을때 = "LINE"</p>
+<p data-ke-size="size16">&nbsp; &nbsp;2-3) 왼쪽 사각형의 윗면이, 오른쪽 사각형의 아랫면 보다 아래 있을때 = "NULL"</p>
+<p data-ke-size="size16">&nbsp; &nbsp;2-4) 왼쪽 사각형의 아랫면이, 오른쪽 사각형의 윗면보다 위에 있을때 = "NULL"</p>
+<p data-ke-size="size16">&nbsp; &nbsp;2-5) 이 외에는 "FACE"</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>3) 왼쪽 사각형의 오른쪽 면이, 오른쪽 사각형의 왼쪽면보다 왼쪽에 있을때&nbsp;</b></p>
+<p data-ke-size="size16">이 경우에는 항상 "NULL" 이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/a204c16ca9b3607aa56d961eedf5c2d9.js"></script>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">2022.02.20</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1번 사각형의 x축, 2번 사각형의 x축&nbsp;</p>
+<p data-ke-size="size16">1번 사각형의 y축, 2번 사각형의 y축&nbsp;</p>
+<p data-ke-size="size16">이렇게 나눠서 생각한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1번 사각형의 두 x축을 x1, x2</p>
+<p data-ke-size="size16">2번 사각형의 두 x축을 x3, y3&nbsp;</p>
+<p data-ke-size="size16">1번 사각형의 두 y축을 y1, y2&nbsp;</p>
+<p data-ke-size="size16">2번 사각형의 두 y축을 y3,&nbsp; y4&nbsp;</p>
+<p data-ke-size="size16">라고 하고</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">두 사각형의 x축과 y축의 상태를 생각해본다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1) x2와 x3이 떨어져있는 경우&nbsp;</p>
+<p data-ke-size="size16">2) x2와 x3이 맞닿아 있는 경우&nbsp;</p>
+<p data-ke-size="size16">3) x3이 x1,x2 사이에 있는 경우 or x4이 x1,x2 사이에 있는 경우&nbsp;</p>
+<p data-ke-size="size16">4) x4와 x1이 맞닿아 있는 경우&nbsp;</p>
+<p data-ke-size="size16">5) x4가 x1과 떨어져 있는 경우&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1,5번 세트</p>
+<p data-ke-size="size16">2,4번 세트&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">y축도 동일.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">x축과 y축의 상태를 구한후에는 이제 사각형으로 생각해본다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- x축 or y축이 떨어져있는 경우 (x축이 1번인 경우 or y축이 1번인 경우) : NULL&nbsp;</p>
+<p data-ke-size="size16">- x축도 맞닿아 있고, y축도 맞닿아 있는 경우 (x축 2번 and y축 y축 2번) : POINT&nbsp;</p>
+<p data-ke-size="size16">- x축은 맞닿아 있는데, y축은 겹쳐 있는 경우 (x축 2번 and y축 3번) : LINE&nbsp;</p>
+<p data-ke-size="size16">- x축은 서로 겹쳐있고, y축은 맞닿아 있는 경우 (x축 3번 and y축 2번) :&nbsp; LINE&nbsp;</p>
+<p data-ke-size="size16">- x축은 서로 겹쳐있고, y축도 겹쳐져 있는 경우 (x축 and y축 3번) : FACE&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/f07256198f1fa1079f20d17b57e42b3c.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

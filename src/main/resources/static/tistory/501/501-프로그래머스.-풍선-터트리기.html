@@ -1,0 +1,134 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>프로그래머스. 풍선 터트리기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">프로그래머스. 풍선 터트리기</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-01-27 21:43:28</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://programmers.co.kr/learn/courses/30/lessons/68646" target="_blank" rel="noopener">https://programmers.co.kr/learn/courses/30/lessons/68646</a></p>
+<figure id="og_1643286534601" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="코딩테스트 연습 - 풍선 터트리기" data-og-description="[-16,27,65,-2,58,-92,-71,-68,-61,-33] 6" data-og-host="programmers.co.kr" data-og-source-url="https://programmers.co.kr/learn/courses/30/lessons/68646" data-og-url="https://programmers.co.kr/learn/courses/30/lessons/68646" data-og-image="https://scrap.kakaocdn.net/dn/rqOLE/hyNeDhve62/FCS4hAhvq5C7kiwF4WPlUK/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/bCJtry/hyNeEAHTz6/fkK5OkUyCObKonQlqFKxik/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626"><a href="https://programmers.co.kr/learn/courses/30/lessons/68646" target="_blank" rel="noopener" data-source-url="https://programmers.co.kr/learn/courses/30/lessons/68646">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/rqOLE/hyNeDhve62/FCS4hAhvq5C7kiwF4WPlUK/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/bCJtry/hyNeEAHTz6/fkK5OkUyCObKonQlqFKxik/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">코딩테스트 연습 - 풍선 터트리기</p>
+<p class="og-desc" data-ke-size="size16">[-16,27,65,-2,58,-92,-71,-68,-61,-33] 6</p>
+<p class="og-host" data-ke-size="size16">programmers.co.kr</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">풍선 두개를 선택하고 두개 중 하나를 터트리는데,&nbsp;</p>
+<p data-ke-size="size16">번호가 더 작은 풍선을 터트리는 것은 단 한번만 할 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">a가 다음과 같을 때&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #202b3d; color: #cdd7e0;">[-16,27,65,-2,58,-92,-71,-68,-61,-33]</span></p>
+<p data-ke-size="size16">-16 풍선을 남길수 있는지 생각해보자.</p>
+<p data-ke-size="size16">번호가 더 작은 풍선을 터트리는 것은 한번만 할 수 있기 때문에&nbsp;</p>
+<p data-ke-size="size16">마지막에 풍선 두개가 남았을때 (-16과 어떤 풍선),&nbsp;</p>
+<p data-ke-size="size16">또 다른 풍선이 -16보다 큰 값일 때를 대비해 마지막까지 남겨 놓아야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그말은 두개의 풍선씩 비교했을때 작은 풍선 만이 남는다는 뜻이고 결국 -16을 제외하고 제일 작은 값의 풍선이 남을것이다.</p>
+<p data-ke-size="size16">[-16, -92]</p>
+<p data-ke-size="size16">이때 아직까지 번호가 더 작은 풍선을 터트릴수 있는 기회를 사용하지 않았기 때문에 -92를 터트리면 되고,</p>
+<p data-ke-size="size16">-16은 최후까지 남을수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위의 말을 정리해보면 하나의 풍선이 최후까지 남을수 있는지 아닌지 판단할때</p>
+<p data-ke-size="size16">해당하는 풍선 양쪽에서 두 풍선씩 비교했을때 큰 풍선만이 터질 것이며&nbsp;</p>
+<p data-ke-size="size16">결국 마지막에는&nbsp;</p>
+<p data-ke-size="size16"><b>(해당하는 풍선의 좌측의 최솟값을 갖는 풍선, 해당하는 풍선, 해당하는 풍선의 우측의 최솟값을 갖는 풍선)</b></p>
+<p data-ke-size="size16">이렇게 남을것이다.</p>
+<p data-ke-size="size16">이렇게 3개의 풍선이 남았을때 만약 양쪽에 있는 풍선이 둘 다 가운데에 있는 풍선보다 작은 값이라면</p>
+<p data-ke-size="size16">이 풍선은 터트릴수 없다는 것을 알 수&nbsp; 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 이 문제는 모든 풍선들마다 좌측 최솟값과 우측 최솟값을 구하는 문제다.</p>
+<p data-ke-size="size16">그런데 배열의 최대 크기가 100만이기 때문에 그냥 일일히 구하는것은 불가능하며</p>
+<p data-ke-size="size16">정렬되어 있는 것도 아니기 때문에 이분탐색도 불가능하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">방법은 처음에서 부터 끝까지,&nbsp;</p>
+<p data-ke-size="size16">그리고 끝에서부터 처음까지 두번 순회를 도는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #202b3d; color: #cdd7e0;">[-16,27,65,-2,58,-92,-71,-68,-61,-33]</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 배열에서 처음부터 끝까지 순회를 돌면서 최솟값을 갱신하면&nbsp;</p>
+<p data-ke-size="size16">-16 -16 -16 -16 -16 -92 -92 -92 -92 -92</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">끝에서부터 처음까지 순회를 돌면서 최솟값을 갱신하면</p>
+<p data-ke-size="size16">-92 -92 -92 -92 -92 -92 -71 -68 -61 -33</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 해당 하는 풍선의 좌측 최솟값과 우측 최솟값을 구할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<table style="border-collapse: collapse; width: 100%;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr>
+<td style="width: 10%;">-16</td>
+<td style="width: 10%;">27</td>
+<td style="width: 10%;">65</td>
+<td style="width: 10%;">-2</td>
+<td style="width: 10%;">58</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-71</td>
+<td style="width: 10%;">-68</td>
+<td style="width: 10%;">-61</td>
+<td style="width: 10%;">-33</td>
+</tr>
+<tr>
+<td style="width: 10%;">-16</td>
+<td style="width: 10%;">-16</td>
+<td style="width: 10%;">-16</td>
+<td style="width: 10%;">-16</td>
+<td style="width: 10%;">-16</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+</tr>
+<tr>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-92</td>
+<td style="width: 10%;">-71</td>
+<td style="width: 10%;">-68</td>
+<td style="width: 10%;">-61</td>
+<td style="width: 10%;">-33</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/63570471bf76fb258ae793c519188400.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

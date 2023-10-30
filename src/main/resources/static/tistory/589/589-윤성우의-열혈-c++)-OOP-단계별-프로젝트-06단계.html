@@ -1,0 +1,288 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) OOP 단계별 프로젝트 06단계</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) OOP 단계별 프로젝트 06단계</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-19 21:45:55</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <pre class="cpp"><code>/*
+ * Account 클래스를 상속하는 NormalAccount, HighCreditAccount 클래스
+ */
+
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+const int NAME_LEN = 20;
+enum { MAKE = 1, DEPOSIT, WITHDRAW, INQUIRE, EXIT };
+enum {NORMAL = 1, HIGH_CREDIT = 2};
+enum {A_RATING = 1, B_RATING, C_RATING};
+
+// entity class
+class Account
+{
+private:
+    int accID;
+    int balance;
+    char * cusName;
+
+public:
+    Account(int _accID, int _balance, char * _cusName)
+            : accID(_accID), balance(_balance)
+    {
+        cusName = new char[strlen(_cusName)+1];
+        strcpy(cusName, _cusName);
+    }
+
+    // 깊은 복사 진행하는 복사 생성자
+    Account(const Account &amp;copy) : accID(copy.accID), balance(copy.balance)
+    {
+        // 새롭게 동적 할당해서 깊은 복사 진행
+        cusName = new char[strlen(copy.cusName) + 1];
+        strcpy(cusName, copy.cusName);
+    }
+
+    int Get_accID() const { return accID; }
+
+    void ShowAccInfo() const
+    {
+        cout &lt;&lt; "계좌ID: " &lt;&lt; accID &lt;&lt; endl;
+        cout &lt;&lt; "이 름: " &lt;&lt; cusName &lt;&lt; endl;
+        cout &lt;&lt; "잔 액: " &lt;&lt; balance &lt;&lt; endl &lt;&lt; endl;
+    }
+
+    virtual void DepositMoney(int amount)
+    {
+        balance += amount;
+    }
+
+    int WithDrawMoney(int amount)
+    {
+        if(balance &lt; amount)
+        {
+            return -1;
+        }
+        balance -= amount;
+        return balance;
+    }
+
+    ~Account()
+    {
+        delete cusName;
+    }
+};
+
+class NormalAccount : public Account
+{
+private:
+    int interest;
+public:
+    NormalAccount(int _accID, int _balance, char * _cusName, int _interest)
+    : Account(_accID, _balance, _cusName), interest(_interest) {}
+
+    virtual void DepositMoney(int amount)
+    {
+        Account::DepositMoney(amount + (int)(amount * (interest/100.0)));
+    }
+};
+
+class HighCreditAccount : public NormalAccount
+{
+private:
+    int rating; // 신용등급
+public:
+    HighCreditAccount(int _accID, int _balance, char * _cusName, int _interest, int _rating)
+    : NormalAccount(_accID, _balance, _cusName, _interest), rating(_rating) {}
+
+    virtual void DepositMoney(int amount)
+    {
+        int additional_interest;
+        switch(this-&gt;rating)
+        {
+            case A_RATING:
+                additional_interest = (int)(amount * (7/100.0)); break;
+            case B_RATING:
+                additional_interest = (int)(amount * (4/100.0)); break;
+            case C_RATING:
+                additional_interest = (int)(amount * (2/100.0)); break;
+        }
+        NormalAccount::DepositMoney(amount); // 원금 + 이자
+        Account::DepositMoney(additional_interest);
+    }
+};
+
+// control class
+class AccountHandler
+{
+private:
+    Account * accounts[100];
+    int accNum;
+
+public:
+    AccountHandler() : accNum(0) {}
+
+    int PrintMenu()
+    {
+        cout &lt;&lt; "----- MENU -----" &lt;&lt; endl;
+        cout &lt;&lt; "1. 계좌개설" &lt;&lt; endl;
+        cout &lt;&lt; "2. 입 금" &lt;&lt; endl;
+        cout &lt;&lt; "3. 출 금" &lt;&lt; endl;
+        cout &lt;&lt; "4. 계좌정보 전체 출력" &lt;&lt; endl;
+        cout &lt;&lt; "5. 프로그램 종료" &lt;&lt; endl;
+        cout &lt;&lt; "선택: ";
+        int chose; cin &gt;&gt; chose;
+        cout &lt;&lt; endl;
+        return chose;
+    }
+
+    void MakeAccount()
+    {
+        int choice;
+        cout &lt;&lt; "[계좌종류선택]" &lt;&lt; endl;
+        cout &lt;&lt; "1.보통예금계좌 2.신용신뢰계좌" &lt;&lt; endl;
+        cout &lt;&lt; "선택: "; cin &gt;&gt; choice;
+
+        if(choice == NORMAL) MakeNormalAccount();
+        else MakeHighCreditAccount();
+    }
+
+    void MakeNormalAccount()
+    {
+        int accID, balance, interest;
+        char cusName[NAME_LEN];
+
+        cout &lt;&lt; "[보통예금계좌 개설]" &lt;&lt; endl;
+        cout &lt;&lt; "계좌ID: "; cin &gt;&gt; accID;
+        cout &lt;&lt; "이 름: "; cin &gt;&gt; cusName;
+        cout &lt;&lt; "입금액: "; cin &gt;&gt; balance;
+        cout &lt;&lt; "이자율: "; cin &gt;&gt; interest;
+
+        // 동적으로 객체 생성
+        accounts[accNum++] = new NormalAccount(accID, balance, cusName, interest);
+    }
+
+    void MakeHighCreditAccount()
+    {
+        int accID, balance, interest, rating;
+        char cusName[NAME_LEN];
+
+        cout &lt;&lt; "[신용신뢰계좌 개설]" &lt;&lt; endl;
+        cout &lt;&lt; "계좌ID: "; cin &gt;&gt; accID;
+        cout &lt;&lt; "이 름: "; cin &gt;&gt; cusName;
+        cout &lt;&lt; "입금액: "; cin &gt;&gt; balance;
+        cout &lt;&lt; "이자율: "; cin &gt;&gt; interest;
+        cout &lt;&lt; "신용등급(1toA, 2toB, 3toC): "; cin &gt;&gt; rating;
+
+        accounts[accNum++] = new HighCreditAccount(accID, balance, cusName, interest, rating);
+    }
+
+    void Deposit()
+    {
+        int accID, balance;
+        cout &lt;&lt; "[입   금]" &lt;&lt; endl;
+        cout &lt;&lt; "계좌ID: "; cin &gt;&gt; accID;
+        cout &lt;&lt; "입금액: "; cin &gt;&gt; balance;
+        cout &lt;&lt; "입금완료" &lt;&lt; endl;
+
+        for(int i = 0; i &lt; accNum; i++)
+        {
+            if(accounts[i]-&gt;Get_accID() == accID)
+            {
+                accounts[i]-&gt;DepositMoney(balance);
+                return;
+            }
+        }
+        cout &lt;&lt; "존재하지 않는 계좌ID 입니다 " &lt;&lt; endl;
+    }
+
+    void WithDraw()
+    {
+        int accID, balance;
+        cout &lt;&lt; "[출   금]" &lt;&lt; endl;
+        cout &lt;&lt; "계좌ID: "; cin &gt;&gt; accID;
+        cout &lt;&lt; "출금액: "; cin &gt;&gt; balance;
+        cout &lt;&lt; "출금완료" &lt;&lt; endl;
+
+        for(int i = 0; i &lt; accNum; i++)
+        {
+            if(accounts[i]-&gt;Get_accID() == accID)
+            {
+                if(accounts[i]-&gt;WithDrawMoney(balance) == -1)
+                    cout &lt;&lt; "잔액이 부족합니다" &lt;&lt; endl;
+                else cout &lt;&lt; "출금 완료" &lt;&lt; endl;
+                return;
+            }
+        }
+        cout &lt;&lt; "존재하지 않는 계좌ID 입니다 " &lt;&lt; endl;
+    }
+
+    void PrintAllAccountsInfo()
+    {
+        for(int i = 0; i &lt; accNum; i++)
+        {
+            accounts[i]-&gt;ShowAccInfo();
+        }
+    }
+
+    ~AccountHandler()
+    {
+        for(int i = 0; i &lt; accNum; i++) delete accounts[i];
+    }
+};
+
+int main()
+{
+    AccountHandler accHandler;
+    while(true)
+    {
+        int chose = accHandler.PrintMenu();
+        switch(chose)
+        {
+            case MAKE:
+                accHandler.MakeAccount(); break;
+            case DEPOSIT:
+                accHandler.Deposit(); break;
+            case WITHDRAW:
+                accHandler.WithDraw(); break;
+            case INQUIRE:
+                accHandler.PrintAllAccountsInfo(); break;
+            case EXIT:
+                return 0;
+        }
+        cout &lt;&lt; endl;
+    }
+}
+</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

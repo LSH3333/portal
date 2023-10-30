@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DP</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/algorithm.css" th:href="@{/css/algorithm.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/algorithm/dp.css"
+        th:href="@{/css/algorithm/dp.css}" />
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&family=Skranji&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header th:replace="fragment/header :: header"></header>
+
+    <!-- MAIN -->
+    <main>
+        <!-- SIDE TAB -->
+        <div th:replace="fragment/algorithm-sidetab">
+        </div>
+        <div class="content">
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1165-백준-1562.-계단-수.html}">백준-1562.-계단-수</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1162-백준-2098.-외판원-순회.html}">백준-2098.-외판원-순회</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1223-백준-1082.-방-번호.html}">백준-1082.-방-번호</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/906-백준-1103.-게임.html}">백준-1103.-게임</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/792-백준-1516.-게임-개발.html}">백준-1516.-게임-개발</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/579-백준-1520.-내리막길.html}">백준-1520.-내리막길</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/827-백준-1937.-욕심쟁이-판다.html}">백준-1937.-욕심쟁이-판다</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1167-백준-2342.-Dance-Dance-Revolution.html}">백준-2342.-Dance-Dance-Revolution</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/938-백준-2533.-사회망-서비스(SNS).html}">백준-2533.-사회망-서비스(SNS)</a>
+            </div>
+            <div class="postList">
+                <a href="#" th:href="@{/blog/914-백준-2629.-양팔저울.html}">백준-2629.-양팔저울</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer th:replace="fragment/footer :: footer"></footer>
+
+
+</body>
+
+</html>

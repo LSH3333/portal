@@ -1,0 +1,357 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) Chapter 11. 연산자 오버로딩2</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) Chapter 11. 연산자 오버로딩2</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-22 16:21:51</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>대입 연산자의 오버로딩&nbsp;</b></h2>
+<p data-ke-size="size16">- 대입연산자의 오버로딩은 복사 생성자와 매우 유사하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 둘 의 호출 시점에 차이가 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>복사 생성자</b></p>
+<pre class="c++ arduino" data-ke-language="c++"><code>int main() 
+{
+    Point pos1(1, 2);
+    Point pos2 = pos1; // 복사 생성자 호출 
+}</code></pre>
+<p data-ke-size="size16">복사 생성자는 위와 같이 새로 생성하는 pos2 객체의 초기화에 기존에 존재하던 pos1 객체를 사용한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>대입 연산자 오버로딩</b></p>
+<pre class="c++ arduino" data-ke-language="c++"><code>int main()
+{
+    Point pos1(1, 2);
+    Point pos2(3, 4);
+    pos2 = pos1; // pos2.operator=(pos1) 
+}</code></pre>
+<p data-ke-size="size16">대입 연산자의 오버로딩은 위와 같이 이미 존재하는 두 객체같의 대입연산시 호출된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>디폴트 대입 연산자&nbsp;</b></h2>
+<p data-ke-size="size16">대입 연산자도 복사 생성자와 같이 정의 되어 있지 않으면 <b>디폴트 대입 연산자가 자동 삽입</b>된다.&nbsp;</p>
+<p data-ke-size="size16">그런데 디폴트 대입 연산자도 디폴트 복사 생성자와 거의 같은<b> 문제</b>를 발생시킨다.</p>
+<p data-ke-size="size16">디폴트 복사 생성자와 마찬가지로 디폴트 대입 연산자도 얕은 복사를 진행하기 때문에 생성자 내에서 동적 할당을 하는 경우 <b>객체가 소멸될때 두 가지 문제가 발생</b>한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1. 데이터를 가르키는 곳의 주소 값을 잃게 된다.&nbsp;</b> (메모리 누수)&nbsp;</p>
+<p data-ke-size="size16">=&gt; 하나의 객체에 또 다른 객체로 얕은 복사를 진행하면 기존에 가르키던 데이터의 주소 정보가 덧씌워 지므로 데이터의 주소 값을 잃게 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2. 객체의 소멸 과정에서 중복 소멸이 일어난다.&nbsp;</b></p>
+<p data-ke-size="size16">=&gt; 얕은 복사 진행 시, 두 객체는 같은 주소값 정보를 갖고있다.&nbsp;</p>
+<p data-ke-size="size16">이때 두 객체의 소멸이 진행되면 먼저 하나의 객체가 소멸될때 이 주소값이 제거된다.</p>
+<p data-ke-size="size16">그리고 다음 객체의 소멸이 진행될때 같은 주소값의 소멸이 진행된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+class Person
+{
+private:
+    char *name;
+    int age;
+public:
+    Person(char *myname, int myage) : age(myage)
+    {
+        name = new char[strlen(myname)+1];
+        strcpy(name, myname);
+    }
+    void ShowPersonInfo()
+    {
+        cout &lt;&lt; "이름: " &lt;&lt; name &lt;&lt; endl;
+        cout &lt;&lt; "나이: " &lt;&lt; age &lt;&lt; endl;
+    }
+    Person&amp; operator= (const Person&amp; ref)
+    {
+        // 이 객체의 name의 주소값은 새로 할당될 것이기 때문에 필요가 없다
+        // 메모리 누수를 위해 이미 존재하는 주소값은 삭제한다 
+        delete[] name; 
+        age = ref.age;
+        name = new char[strlen(ref.name)+1];
+        strcpy(name, ref.name);
+        return *this;
+    }
+    ~Person()
+    {
+        delete[] name;
+        cout &lt;&lt; "called Destructor" &lt;&lt; endl;
+    }
+};
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>상속 구조에서의 대입 연산자 호출&nbsp;</b></h2>
+<p data-ke-size="size16">- <b>생성자</b>: 유도 클래스의 생성자 아무런 명시를 하지 않아도 기초 클래스의 생성자가 <b>호출</b>된다.</p>
+<p data-ke-size="size16">- <b>대입 연산자</b>: 유도 클래스의 대입 연산자에 아무런 명시를 하지 않으면 기초 클래스의 대입 연산자는 <b>호출 되지 않는다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 다음과 같이 기초 클래스인 First 클래스의 대입 연산자를 명시적으로 호출해줘야 한다.</p>
+<pre class="c++ arduino" data-ke-language="c++"><code>// 기초 클래스: First, 유도 클래스: Second 
+Second&amp; operator= (const Second&amp; ref)
+{
+    First::operator=(ref); 
+    num3 = ref.num3;
+    num4 = ref.num4;
+    return *this;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>문제 11-1 [깊은 복사를 하는 대입 연산자의 정의]</b></h2>
+<p data-ke-size="size16"><b>문제 1&nbsp;</b></p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+class Gun
+{
+private:
+    int bullet;
+public:
+    Gun(int bnum) : bullet(bnum) {}
+    void Shot()
+    {
+        cout &lt;&lt; "BBANG!" &lt;&lt; endl;
+        bullet--;
+    }
+};
+
+class Police
+{
+private:
+    int handcuffs;
+    Gun *pistol;
+public:
+    // 생성자
+    Police(int bnum, int bcuff) : handcuffs(bcuff)
+    {
+        if(bnum &gt; 0)
+            pistol = new Gun(bnum);
+        else
+            pistol = NULL;
+    }
+    // 복사 생성자
+    Police(const Police &amp;ref) : handcuffs(ref.handcuffs)
+    {
+        if(ref.pistol != NULL)
+            pistol = new Gun(*(ref.pistol)); // Gun의 디폴트 복사 생성자 호출
+        else
+            pistol = NULL;
+    }
+    // 대입 연산자 오버로딩
+    Police&amp; operator= (const Police &amp;ref)
+    {
+        // 현재 객체에 저장된 pistol 주소 정보 있다면 메모리 누수 방지 위해 삭제
+        if(pistol != NULL)
+            delete pistol;
+
+        // 전달 받은 객체에 pistol 주소 정보 있다면 깊은 복사 진행
+        if(ref.pistol != NULL)
+            pistol = new Gun(*(ref.pistol));
+        else
+            pistol = NULL;
+
+        handcuffs = ref.handcuffs;
+        return *this;
+    }
+
+    void PutHandcuff()
+    {
+        cout &lt;&lt; "SNAP!" &lt;&lt; endl;
+        handcuffs--;
+    }
+    void Shot()
+    {
+        if(pistol == NULL)
+            cout &lt;&lt; "No Pistol" &lt;&lt; endl;
+        else
+            pistol-&gt;Shot();
+    }
+    ~Police()
+    {
+        if(pistol != NULL) delete pistol;
+    }
+};
+
+int main()
+{
+    Police police1(2, 3);
+    Police police2 = police1; // 복사 생성자 호출
+    police2.Shot();
+
+    Police police3(1,1);
+    police3 = police2; // 오버로딩된 대입 연산자 호출
+    police3.PutHandcuff();
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>문제 2</b></p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+class Book
+{
+private:
+    char * title;
+    char * isbn; // 국제표준도서번호
+    int price;
+
+public:
+    Book(char * _title, char * _isbn, int _price) : price(_price)
+    {
+        title = new char[strlen(title) + 1];
+        strcpy(title, _title);
+        isbn = new char[strlen(_isbn) + 1];
+        strcpy(isbn, _isbn);
+    }
+    // 복사 생성자
+    Book(const Book &amp;ref) : price(ref.price)
+    {
+        title = new char[strlen(ref.title)+1];
+        strcpy(title, ref.title);
+        isbn = new char[strlen(ref.isbn)+1];
+        strcpy(isbn, ref.isbn);
+    }
+    // 대입 연산자 오버로딩
+    Book&amp; operator= (const Book &amp;ref)
+    {
+        // 기존 주소값 삭제 (메모리 누수 방지) 
+        delete []title;
+        delete []isbn;
+
+        price = ref.price;
+        // 동적 할당 
+        title = new char[strlen(ref.title)+1];
+        strcpy(title, ref.title);
+        isbn = new char[strlen(ref.isbn)+1];
+        strcpy(isbn, ref.isbn);
+        return *this;
+    }
+
+    void ShowBookInfo()
+    {
+        cout &lt;&lt; "제목: " &lt;&lt; title &lt;&lt; endl;
+        cout &lt;&lt; "ISBN: " &lt;&lt; isbn &lt;&lt; endl;
+        cout &lt;&lt; "가격: " &lt;&lt; price &lt;&lt; endl;
+    }
+
+    ~Book()
+    {
+        delete []title;
+        delete []isbn;
+    }
+
+};
+
+class EBook : public Book
+{
+private:
+    char * DRMKey;
+
+public:
+    EBook(char * _title, char * _isbn, int _price, char * _DRMKey)
+            : Book(_title, _isbn, _price)
+    {
+        DRMKey = new char[strlen(_DRMKey) + 1];
+        strcpy(DRMKey, _DRMKey);
+    }
+    // 복사 생성자
+    EBook(const EBook &amp;ref) : Book(ref)
+    {
+        DRMKey = new char[strlen(ref.DRMKey)+1];
+        strcpy(DRMKey, ref.DRMKey);
+    }
+    // 대입 연산자 오버로딩
+    EBook&amp; operator= (const EBook &amp;ref)
+    {
+        Book::operator=(ref);
+        delete []DRMKey; // 기존 정보 삭제
+        DRMKey = new char[strlen(ref.DRMKey)+1];
+        strcpy(DRMKey, ref.DRMKey);
+        return *this;
+    }
+
+    void ShowEBookInfo()
+    {
+        ShowBookInfo();
+        cout &lt;&lt; "인증키: " &lt;&lt; DRMKey &lt;&lt; endl;
+    }
+
+    ~EBook()
+    {
+        delete []DRMKey;
+    }
+};
+
+int main()
+{
+    EBook ebook1("좋은 C++ ebook", "555-12345-890-1", 10000, "fdx9w018kiw");
+    EBook ebook2 = ebook1; // 복사 생성자 호출
+    ebook2.ShowEBookInfo();
+    cout &lt;&lt; endl;
+
+    EBook ebook3("dumy", "dumy", 0, "dumy");
+    ebook3 = ebook2; // 대입 연산자 호출
+    ebook3.ShowEBookInfo();
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>이니셜라이저로 초기화 했을시 성능향상 이유&nbsp;</b></h2>
+<p data-ke-size="size16">- 이니셜라이저로 초기화하면 대입 연산자로 초기화 했을때 보다 약간의 성능상 이득이 있다.</p>
+<p data-ke-size="size16">다음과 같이<b> 이니셜라이저</b>에 의해 객체를 초기화 하면&nbsp;</p>
+<pre class="angelscript"><code>class BBB
+{
+private:
+    AAA mem;
+public:
+    BBB(const AAA &amp;ref) : mem(ref) {} // 이니셜라이저에 의한 초기화 
+};</code></pre>
+<p data-ke-size="size16"><i>"이니셜라이저를 이용하면 선언과 동시에 초기화가 이뤄지는 형태로 바이너리 코드가 생성"</i>되므로&nbsp;</p>
+<p data-ke-size="size16"><i>mem(ref)</i>는 <i>AAA mem = ref</i> 로 컴파일된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">반면 다음과 같이&nbsp;<b>대입연산</b>에 의해 초기화 하면&nbsp;</p>
+<pre class="angelscript"><code>class CCC
+{
+private:
+    AAA mem;
+public:
+    CCC(const AAA &amp;ref) { mem = ref; } // 대입연산에 의한 초기화 
+};</code></pre>
+<p data-ke-size="size16"><i>"생성자의 몸체 부분에서 대입연산을 통한 초기화를 진행하면, 선언과 초기화를 각각 별도의 문장에서 진행하는 형태로 바이너리 코드가 생성"</i>되므로 생성자와 대입연산자가 각각 한번씩 호출된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 함수 호출의 횟수가 1번 적은 이니셜라이저에 의한 초기화가 약간이나마 성능에서 이득이 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

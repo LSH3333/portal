@@ -1,0 +1,474 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) Chapter 08. 상속과 다형성</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) Chapter 08. 상속과 다형성</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-19 21:44:50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h3 data-ke-size="size23">가상함수 (virtual)</h3>
+<p data-ke-size="size16">- c++ 컴파일러는 포인터 연산의 가능성 여부를 판단 할때, <b>포인터 변수의 자료형을 기준으로 판단</b>한다.</p>
+<p data-ke-size="size16">&nbsp; (실제 포인터 변수가 가르키는 객체의 자료형으로 판단하지 않는다.)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 함수가 <b>가상함수</b>로 선언되면 해당 함수 호출 시, 포인터의 자료형을 기반으로 호출대상을 정하지 않고,</p>
+<p data-ke-size="size16">포인터 변수가 실제로 가르키는 객체를 참조하여 호출함.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 기초 클래스의 함수가 가상 함수로 선언되었으면, 유도 클래스의 해당 함수들은 별도로 virtual 선언을 하지 않아도 가상함수임. 하지만 알기 쉽도록 virtual을 붙여주는것이 좋음.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23">가상 소멸자</h3>
+<p data-ke-size="size16">다음과 같은 상황에서는&nbsp;</p>
+<pre class="angelscript"><code>
+class Base
+{
+    // 생략 
+};
+
+class Derived : public Base 
+{
+    // 생략 
+};
+
+int main()
+{
+    Derived derived;
+    return 0;
+}</code></pre>
+<p data-ke-size="size16">Derived 형 derived 객체가 삭제될때 Derived 클래스의 소멸자가 호출된후 Base의 소멸자가 호출된다.</p>
+<p data-ke-size="size16">즉</p>
+<p data-ke-size="size16">1. 유도 클래스의 객체가 소멸될 때에는, 유도 클래스의 소멸자가 실행되고 난 다음 기초 클래스의 소멸자가 실행된다.</p>
+<p data-ke-size="size16">2. 스택에 생성된 객체의 소멸순서는 생성순서와 반대이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">하지만 다음과 같은 상황에서는&nbsp;</p>
+<pre class="angelscript"><code>
+class First
+{
+public:
+    ~First() {}
+};
+
+class Second : public First
+{
+public:
+    ~Second() {} 
+};
+
+class Third : public Second
+{
+public:
+    ~Third() {} 
+};
+
+int main()
+{
+    First * ptr = new Third();
+    delete ptr;
+}</code></pre>
+<p data-ke-size="size16"><span>컴파일러는 포인터 연산의 가능성 여부를 판단 할때,<span>&nbsp;</span></span><b>포인터 변수의 자료형을 기준으로 판단</b>하기 때문에 메인 함수의 첫번째 줄을 실행하면 *ptr의 자료형 First에 의해 First 클래스의 소멸자가 호출되고 끝난다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 객체의 소멸과정에서는 delete 연산자에 사용된 포인터 변수의 자료형과 상관없이 모든 소멸자가 호출되어야 하고 소멸자에 virtual 선언을 추가해 가상 소멸자로 만들어주면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="cpp"><code>
+class First
+{
+public:
+    virtual ~First() {}
+};
+
+class Second : public First
+{
+public:
+    virtual ~Second() {}
+};
+
+class Third : public Second
+{
+public:
+    virtual ~Third() {}
+};
+
+int main()
+{
+    First * ptr = new Third();
+    delete ptr;
+}</code></pre>
+<p data-ke-size="size16">위 경우 delete 연산으로 객체를 지웠을때 실행순서는&nbsp;</p>
+<p data-ke-size="size16">1. ptr이 First형 이므로 First 클래스의 소멸자를 호출한다</p>
+<p data-ke-size="size16">2. First 클래스의 소멸자가 virtual 이기 때문에 상속 계층구조상 가장 아래인 Third의 소멸자가 호출된다.</p>
+<p data-ke-size="size16">3. 계층 구조 위로 올라가면서 소멸자가 호출 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">참고로 상속의 계층구조상 맨 위인 기초 클래스의 소멸자만 가상 소멸자로 선언하면,&nbsp;</p>
+<p data-ke-size="size16">해당 기초 클래스를 상속하는 모든 클래스의 소멸자도 가상 소멸자로 자동으로 선언된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">'오렌지미디어 급여관리 확장성 문제'</h2>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+// 순수 가상함수를 지닌 불완전한 클래스 = 추상 클래스 = 객체 생성이 불가능한 클래스
+class Employee
+{
+private:
+//    char name[100];
+    string name;
+public:
+    Employee(string name)
+    {
+//        strcpy(this-&gt;name, name);
+        this-&gt;name = name;
+    }
+    void ShowYourName() const
+    {
+        cout &lt;&lt; "name: " &lt;&lt; name &lt;&lt; endl;
+    }
+    // 자료형 기반이 아닌 하위 클래스를 가르키는 객체의 함수가 호출 되도록 가상함수화
+    // = 0 으로 표현해 순수 가상함수화
+    virtual int GetPay() const = 0;
+    virtual void ShowSalaryInfo() const = 0;
+};
+
+// 정규직
+class PermanentWorker : public Employee
+{
+private:
+    int salary;
+public:
+    PermanentWorker(string name, int money)
+    : Employee(name), salary(money) {}
+
+    virtual int GetPay() const
+    {
+        return salary;
+    }
+    virtual void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout &lt;&lt; "salary: " &lt;&lt; GetPay() &lt;&lt; endl &lt;&lt; endl;
+    }
+};
+
+// 임시직
+class TemporaryWorker : public Employee
+{
+private:
+    int workTime;
+    int payPerHour;
+public:
+    TemporaryWorker(string name, int pay)
+    : Employee(name), workTime(0), payPerHour(pay) {}
+
+    void AddWorkTime(int time) { workTime += time; }
+    virtual int GetPay() const { return workTime * payPerHour; }
+    virtual void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout &lt;&lt; "salary: " &lt;&lt; GetPay() &lt;&lt; endl &lt;&lt; endl;
+    }
+};
+
+// 영업직은 정규직의 일종
+class SalesWorker : public PermanentWorker
+{
+private:
+    int salesResult;
+    double bonusRatio;
+public:
+    SalesWorker(string name, int money, double ratio)
+    : PermanentWorker(name, money), salesResult(0), bonusRatio(ratio) {}
+
+    // function overriding
+    void AddSalesResult(int value) { salesResult += value; }
+    virtual int GetPay() const
+    {
+        // 함수명이 같다면 기본적으로 현재 클래스의 함수 호출, 따라서 상속받은 기초 클래스의 함수를 콜하고 싶다면
+        // 앞에 명시해줌
+        return PermanentWorker::GetPay() + (int)(salesResult * bonusRatio);
+    }
+    virtual void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout &lt;&lt; "salary: " &lt;&lt; GetPay() &lt;&lt; endl &lt;&lt; endl;
+    }
+
+};
+
+// control class
+class EmployeeHandler
+{
+private:
+    Employee * empList[50];
+    int empNum;
+public:
+    EmployeeHandler() : empNum(0) {}
+
+    void AddEmployee(Employee * emp)
+    {
+        empList[empNum++] = emp;
+    }
+
+    void ShowAllSalaryInfo() const
+    {
+        for(int i = 0; i &lt; empNum; i++)
+        {
+            empList[i]-&gt;ShowSalaryInfo();
+        }
+    }
+
+    void ShowTotalSalary() const
+    {
+        int sum = 0;
+        for(int i = 0; i &lt; empNum; i++)
+            sum += empList[i]-&gt;GetPay();
+        cout &lt;&lt; "salary sum: " &lt;&lt; sum &lt;&lt; endl;
+    }
+
+    ~EmployeeHandler()
+    {
+        for(int i = 0; i &lt; empNum; i++) delete empList[i];
+    }
+
+};
+
+int main()
+{
+    EmployeeHandler handler;
+
+    // 정규직 등록
+    handler.AddEmployee(new PermanentWorker("KIM", 1000));
+    handler.AddEmployee(new PermanentWorker("LEE", 1500));
+
+    // 임시직 등록
+    TemporaryWorker * alba = new TemporaryWorker("JUNG", 700);
+    alba-&gt;AddWorkTime(5);
+//    handler.AddEmployee(new TemporaryWorker("JUNG", 700));
+    handler.AddEmployee(alba);
+
+    // 영업직 등록
+    SalesWorker * seller = new SalesWorker("HONG", 1000, 0.1);
+    seller-&gt;AddSalesResult(7000);
+    handler.AddEmployee(seller);
+
+    // 이번 달에 지불해야 할 급여의 정보
+    handler.ShowAllSalaryInfo();
+
+    // 이번 달에 지불해야 할 금액의 총합
+    handler.ShowTotalSalary();
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">문제 08-1 [상속 관계의 확장과 추상 클래스]</h2>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+namespace RISK_LEVEL
+{
+    enum {RISK_A=30, RISK_B=20, RISK_C=10};
+}
+
+// 순수 가상함수를 지닌 불완전한 클래스 = 추상 클래스 = 객체 생성이 불가능한 클래스
+class Employee
+{
+private:
+//    char name[100];
+    string name;
+public:
+    Employee(string name)
+    {
+//        strcpy(this-&gt;name, name);
+        this-&gt;name = name;
+    }
+    void ShowYourName() const
+    {
+        cout &lt;&lt; "name: " &lt;&lt; name &lt;&lt; endl;
+    }
+    // 자료형 기반이 아닌 하위 클래스를 가르키는 객체의 함수가 호출 되도록 가상함수화
+    // = 0 으로 표현해 순수 가상함수화
+    virtual int GetPay() const = 0;
+    virtual void ShowSalaryInfo() const = 0;
+};
+
+// 정규직
+class PermanentWorker : public Employee
+{
+private:
+    int salary;
+public:
+    PermanentWorker(string name, int money)
+            : Employee(name), salary(money) {}
+
+    virtual int GetPay() const
+    {
+        return salary;
+    }
+    virtual void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout &lt;&lt; "salary: " &lt;&lt; GetPay() &lt;&lt; endl &lt;&lt; endl;
+    }
+};
+
+// 임시직
+class TemporaryWorker : public Employee
+{
+private:
+    int workTime;
+    int payPerHour;
+public:
+    TemporaryWorker(string name, int pay)
+            : Employee(name), workTime(0), payPerHour(pay) {}
+
+    void AddWorkTime(int time) { workTime += time; }
+    virtual int GetPay() const { return workTime * payPerHour; }
+    virtual void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout &lt;&lt; "salary: " &lt;&lt; GetPay() &lt;&lt; endl &lt;&lt; endl;
+    }
+};
+
+// 영업직은 정규직의 일종
+class SalesWorker : public PermanentWorker
+{
+private:
+    int salesResult;
+    double bonusRatio;
+public:
+    SalesWorker(string name, int money, double ratio)
+            : PermanentWorker(name, money), salesResult(0), bonusRatio(ratio) {}
+
+    // function overriding
+    void AddSalesResult(int value) { salesResult += value; }
+    virtual int GetPay() const
+    {
+        // 함수명이 같다면 기본적으로 현재 클래스의 함수 호출, 따라서 상속받은 기초 클래스의 함수를 콜하고 싶다면
+        // 앞에 명시해줌
+        return PermanentWorker::GetPay() + (int)(salesResult * bonusRatio);
+    }
+    virtual void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout &lt;&lt; "salary: " &lt;&lt; GetPay() &lt;&lt; endl &lt;&lt; endl;
+    }
+
+};
+
+class ForeignSalesWorker : public SalesWorker
+{
+private:
+    const int riskLevel;
+
+public:
+    ForeignSalesWorker(string name, int money, double ratio, int risk)
+    : SalesWorker(name, money, ratio), riskLevel(risk) {}
+
+    int GetRiskPay() const
+    {
+        return (int)(SalesWorker::GetPay() * (riskLevel/100.0));
+    }
+
+    virtual int GetPay() const
+    {
+        return SalesWorker::GetPay() + GetRiskPay();
+    }
+
+    virtual void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout &lt;&lt; "salary: " &lt;&lt; SalesWorker::GetPay() &lt;&lt; endl;
+        cout &lt;&lt; "risk pay: " &lt;&lt; GetRiskPay() &lt;&lt; endl;
+        cout &lt;&lt; "sum: " &lt;&lt; GetPay() &lt;&lt; endl &lt;&lt; endl;
+    }
+};
+
+// control class
+class EmployeeHandler
+{
+private:
+    Employee * empList[50];
+    int empNum;
+public:
+    EmployeeHandler() : empNum(0) {}
+
+    void AddEmployee(Employee * emp)
+    {
+        empList[empNum++] = emp;
+    }
+
+    void ShowAllSalaryInfo() const
+    {
+        for(int i = 0; i &lt; empNum; i++)
+        {
+            empList[i]-&gt;ShowSalaryInfo();
+        }
+    }
+
+    void ShowTotalSalary() const
+    {
+        int sum = 0;
+        for(int i = 0; i &lt; empNum; i++)
+            sum += empList[i]-&gt;GetPay();
+        cout &lt;&lt; "salary sum: " &lt;&lt; sum &lt;&lt; endl;
+    }
+
+    ~EmployeeHandler()
+    {
+        for(int i = 0; i &lt; empNum; i++) delete empList[i];
+    }
+
+};
+
+
+
+int main()
+{
+    EmployeeHandler handler;
+
+    ForeignSalesWorker * fseller1 = new ForeignSalesWorker("HONG", 1000, 0.1, RISK_LEVEL::RISK_A);
+    fseller1-&gt;AddSalesResult(7000);
+    handler.AddEmployee(fseller1);
+
+    ForeignSalesWorker * fseller2 = new ForeignSalesWorker("YOON", 1000, 0.1, RISK_LEVEL::RISK_B);
+    fseller2-&gt;AddSalesResult(7000);
+    handler.AddEmployee(fseller2);
+
+    ForeignSalesWorker * fseller3 = new ForeignSalesWorker("LEE", 1000, 0.1, RISK_LEVEL::RISK_C);
+    fseller3-&gt;AddSalesResult(7000);
+    handler.AddEmployee(fseller3);
+
+    handler.ShowAllSalaryInfo();
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
