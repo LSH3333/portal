@@ -1,0 +1,85 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1789. 수들의 합</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1789. 수들의 합</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-06 16:32:31</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1789" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1789</a></p>
+<figure id="og_1628234766636" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1789번: 수들의 합" data-og-description="첫째 줄에 자연수 S(1 &le; S &le; 4,294,967,295)가 주어진다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1789" data-og-url="https://www.acmicpc.net/problem/1789" data-og-image="https://scrap.kakaocdn.net/dn/BasLw/hyK8yw0ViE/gIKjGtCseqArUzjAmo17Tk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/1789" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1789">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/BasLw/hyK8yw0ViE/gIKjGtCseqArUzjAmo17Tk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1789번: 수들의 합</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 자연수 S(1 &le; S &le; 4,294,967,295)가 주어진다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">서로 다른 n개의 자연수의 합이 s일때, n이 최대가 되도록 하려면</p>
+<p data-ke-size="size16">작은 수들끼리 더해야 n이 최대가 될것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">sum이 1부터 순서대로 더했을때 1+2+3+... 값이라고 한다면</p>
+<p data-ke-size="size16">s-sum이 마지막으로 더한값보다 작다면 s를 만들기 위해 필요한 수가 이미 쓰인 자연수이기 때문에 불가능하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 s=200이면&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #6897bb;">1</span>+<span style="color: #6897bb;">2</span>+<span style="color: #6897bb;">3</span>+<span style="color: #6897bb;">4</span>+<span style="color: #6897bb;">5</span>+<span style="color: #6897bb;">6</span>+<span style="color: #6897bb;">7</span>+<span style="color: #6897bb;">8</span>+<span style="color: #6897bb;">9</span>+<span style="color: #6897bb;">10</span>+<span style="color: #6897bb;">11</span>+<span style="color: #6897bb;">12</span>+<span style="color: #6897bb;">13</span>+<span style="color: #6897bb;">14</span>+<span style="color: #6897bb;">15</span>+<span style="color: #6897bb;">16</span>+<span style="color: #6897bb;">17</span>+<span style="color: #6897bb;">18 = 171 이다.</span></p>
+<p data-ke-size="size16">200-171=29 이므로 뒤에 29를 더하면 19개로 200을 만들수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #6897bb;">1</span>+<span style="color: #6897bb;">2</span>+<span style="color: #6897bb;">3</span>+<span style="color: #6897bb;">4</span>+<span style="color: #6897bb;">5</span>+<span style="color: #6897bb;">6</span>+<span style="color: #6897bb;">7</span>+<span style="color: #6897bb;">8</span>+<span style="color: #6897bb;">9</span>+<span style="color: #6897bb;">10</span>+<span style="color: #6897bb;">11</span>+<span style="color: #6897bb;">12</span>+<span style="color: #6897bb;">13</span>+<span style="color: #6897bb;">14</span>+<span style="color: #6897bb;">15</span>+<span style="color: #6897bb;">16</span>+<span style="color: #6897bb;">17</span>+<span style="color: #6897bb;">18+19 = 190 이다.</span></p>
+<p data-ke-size="size16">200-190은 10이므로 200을 만들려면 10이 필요한데 10은 이미 쓴 자연수 이므로 불가능하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1628234774999" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    long long n;
+    cin &gt;&gt; n;
+    long long sum = 0;
+    int cnt;
+    for(int i = 1; i &lt;= n; i++)
+    {
+        sum += i;
+        if(n-sum &lt;= i)
+        {
+            cnt = i;
+            break;
+        }
+    }
+    cout &lt;&lt; cnt;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

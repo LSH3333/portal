@@ -1,0 +1,63 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>java, Pair 클래스 만들고 사용하기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">java, Pair 클래스 만들고 사용하기</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2020-08-25 18:59:52</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>java는 pair클래스가 없는 것 같다.&nbsp;</p>
+<p>직접 만들고 사용하기.</p>
+<p>&nbsp;</p>
+<pre id="code_1598349580026" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.*;
+
+class Pair { // Queue에 넣을 데이터 클래스
+    int x, y;
+    public Pair(int _x, int _y) {
+        x = _x;
+        y = _y;
+    }
+}
+
+public class Sub {
+    public static void main(String args[]) {
+        Queue&lt;Pair&gt; q = new LinkedList&lt;Pair&gt;();
+
+        q.add(new Pair(1, 2));
+        Pair _p = q.remove();
+        System.out.println(_p.x + " " + _p.y);
+    }
+}</code></pre>
+<p>결과: 1 2</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

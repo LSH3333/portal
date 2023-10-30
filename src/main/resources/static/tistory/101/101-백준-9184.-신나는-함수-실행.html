@@ -1,0 +1,111 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 9184. 신나는 함수 실행</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 9184. 신나는 함수 실행</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-03-09 20:12:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/9184" target="_blank" rel="noopener">www.acmicpc.net/problem/9184</a></p>
+<figure id="og_1615203314493" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="9184번: 신나는 함수 실행" data-og-description="입력은 세 정수 a, b, c로 이루어져 있으며, 한 줄에 하나씩 주어진다. 입력의 마지막은 -1 -1 -1로 나타내며, 세 정수가 모두 -1인 경우는 입력의 마지막을 제외하면 없다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/9184" data-og-url="https://www.acmicpc.net/problem/9184" data-og-image="https://scrap.kakaocdn.net/dn/KmzMJ/hyJvQryM0w/3gEWheK8FQu79SqVt62Ng1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/9184" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/9184">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/KmzMJ/hyJvQryM0w/3gEWheK8FQu79SqVt62Ng1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">9184번: 신나는 함수 실행</p>
+<p class="og-desc">입력은 세 정수 a, b, c로 이루어져 있으며, 한 줄에 하나씩 주어진다. 입력의 마지막은 -1 -1 -1로 나타내며, 세 정수가 모두 -1인 경우는 입력의 마지막을 제외하면 없다.</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>이 문제는 일단 memoization을 이용해 재귀함수의 시간을 줄이는 문제인데,</p>
+<p>처음에 신경 써야할 부분이 두 군데 있다고 느꼈다.</p>
+<p>&nbsp;</p>
+<p>1. 함수에 memoization 추가</p>
+<p>2. 함수의 input인 a,b,c가 -50 &lt;= a, b, c &lt;= 50 이므로 음수값이 들어오는 것을 고려해야한다.</p>
+<p>&nbsp;</p>
+<p>그런데 주어진 함수를 보면 조건중에 a or b or c 중에 하나라도 0이하면 어처피 1을 리턴하기 때문에 음수값은 고려하지 않아도 된다는것을 알게됐다.&nbsp;</p>
+<p>그래도 배열에 음수 인덱스에 대해 궁금해져서 찾아봤다.</p>
+<p>(글: <a href="https://tose33.tistory.com/102" target="_blank" rel="noopener">tose33.tistory.com/102</a>)</p>
+<p>&nbsp;</p>
+<p>따라서 이 문제는 그냥 3차원 배열 선언하고, memoization만 추가해주면 되는 간단한 문제였는데..</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>아무리봐도 맞았는데 계속 틀렸다고 나왔다.. 뭔가 특별한 조건이 있나 싶어서 계속 들여다봤지만.</p>
+<p>알고보니까 답이&nbsp;</p>
+<p>w(1,<span> </span>1,<span> </span>1)<span> </span>=<span> </span>2</p>
+<p>w(2,<span> </span>2,<span> </span>2)<span> </span>=<span> </span>4</p>
+<p>w(10,<span> </span>4,<span> </span>6)<span> </span>=<span> </span>523</p>
+<p>w(50,<span> </span>50,<span> </span>50)<span> </span>=<span> </span>1048576</p>
+<p>w(-1,<span> </span>7,<span> </span>18)<span> </span>=<span> </span>1</p>
+<p>이런 식으로 앞에 w(a,b,c) =&nbsp; ... 이것까지 출력해야되는데 제대로 안보고 그냥 우변의 답만 출력해서 틀린것이었다. 내시간.</p>
+<p>&nbsp;</p>
+<pre id="code_1615288307360" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+long long mem[110][110][110];
+
+long long recur(long long a, long long b, long long c) {
+    if(a &lt;= 0 || b &lt;= 0 || c &lt;= 0) { return 1; }
+
+    if(a &gt; 20 || b &gt; 20 || c &gt; 20) {  return recur(20,20,20); }
+    if(mem[a][b][c] != 0) {
+        return mem[a][b][c]; // memoization
+    }
+
+
+    if(a &lt; b &amp;&amp; b &lt; c) { mem[a][b][c] = recur(a,b,c-1) + recur(a,b-1,c-1) - recur(a, b-1, c); }
+    else
+    {
+        mem[a][b][c] = recur(a-1,b,c) + recur(a-1, b-1, c) + recur(a-1,b,c-1) - recur(a-1, b-1,c-1);
+    }
+    return mem[a][b][c];
+
+
+}
+
+int main() {
+    while(true) {
+        long long a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+
+        if(a == -1 &amp;&amp; b == -1 &amp;&amp; c == -1) break;
+
+        cout &lt;&lt; "w(" &lt;&lt; a &lt;&lt; ", " &lt;&lt; b &lt;&lt; ", " &lt;&lt; c &lt;&lt; ") = " &lt;&lt; recur(a,b,c) &lt;&lt; '\n';
+    }
+}</code></pre>
+<p>&nbsp;</p>
+<p>문제를 끝까지 잘보자 ㅜ</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

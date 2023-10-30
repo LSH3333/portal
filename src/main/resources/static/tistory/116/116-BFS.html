@@ -1,0 +1,83 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>BFS</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">BFS</h2>
+                                <div class="box-info">
+                                    <p class="category">알고리즘</p>
+                                    <p class="date">2021-03-17 16:55:23</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <pre id="code_1615967305600" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;int&gt; edge[10];
+bool mark[10];
+
+void bfs(int n) {
+    queue&lt;int&gt; q;
+    q.push(n);
+    mark[n] = true;
+
+    while(!q.empty()) {
+        int v = q.front();
+        cout &lt;&lt; v &lt;&lt; ' ';
+        q.pop(); // 첫 원소 pop
+
+        // bfs : 현재 정점에 연결된 모든 정점 q.push (방문 안한)
+        for(int x : edge[v]) {
+            if(!mark[x]) {
+                q.push(x);
+                mark[x] = true;
+            }
+        }
+    }
+}
+
+int main() {
+    int v, e;
+    cin &gt;&gt; v &gt;&gt; e;
+
+    for(int i = 0; i &lt; e; i++) {
+        int f, t;
+        cin &gt;&gt; f &gt;&gt; t;
+        edge[f].push_back(t);
+        edge[t].push_back(f);
+    }
+
+    bfs(1);
+}</code></pre>
+<p>현재 정점에 연결된 모든 정점을 방문해야 되기 때문에 DFS와 다르게 queue를 쓴다 (first in first out)</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

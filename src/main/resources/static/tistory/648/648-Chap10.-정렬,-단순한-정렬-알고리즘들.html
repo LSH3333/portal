@@ -1,0 +1,190 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap10. 정렬, 단순한 정렬 알고리즘들</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap10. 정렬, 단순한 정렬 알고리즘들</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-14 17:44:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">단순하고 구현이 쉽다는 것은 결국 성능이 떨어진다는 것을 의미한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>버블 정렬 (Bubble Sort)</b></h2>
+<p data-ke-size="size16"><b>시간복잡도 : O(N^2) </b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.gif"  />
+    </span>
+    <figcaption>https://en.wikipedia.org/wiki/Bubble_sort</figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">버블 정렬은 인접한 두 개의 데이터를 비교해가며 데이터를 정렬한다.</p>
+<p data-ke-size="size16">크기 n의 최초 루프때 두개의 데이터를 비교해가며 <b>우선순위가 가장 낮은 데이터를 가장 뒤로 보낸다.</b></p>
+<p data-ke-size="size16">그 다음 루프때 우선순위가 다음으로 낮은 데이터를 뒤에서 한 칸 앞으로 보낸다 ...&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 두 인접한 데이터를 비교하는<b> 비교 연산의 횟수</b>는 <b>n, n-1, n-2 ...&nbsp;&nbsp;</b>이며 이는 등차수열의 합에 해당하므로&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="245" height="69" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="245" height="69"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><b>버블 정렬 비교 연산의 시간복잡도는 O(N^2)</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">데이터 이동 연산은 이미 정렬 상태인 최선의 경우는 교환이 일어나지 않지만,&nbsp;</p>
+<p data-ke-size="size16">반대로 정렬된 최악의 경우 이동의 횟수는 비교의 횟수와 일치한다</p>
+<p data-ke-size="size16"><b>버블 정렬 이동 연산의 시간복잡도는 O(N^2) </b>이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="c++ arduino" data-ke-language="c++"><code>/*
+ * 버블 정렬
+ * 시간복잡도 : O(N^2)
+ */
+void BubbleSort(int arr[], int n)
+{
+    int i, j;
+    int temp;
+
+    for(i = 0; i &lt; n-1; i++)
+    {
+        for(j = 0; j &lt; (n-i)-1; j++)
+        {
+            if(arr[j] &gt; arr[j+1])
+            {
+                // swap
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>선택 정렬 (Selection Sort)</b></h2>
+<p data-ke-size="size16"><b>시간복잡도 : O(N^2) </b></p>
+<p><figure class="imageblock alignLeft" width="49" height="182" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.gif" width="49" height="182"  />
+    </span>
+    <figcaption>https://commons.wikimedia.org/wiki/File:Selection-Sort-Animation.gif</figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">선택 정렬은<b> 정렬 순서상 가장 앞서는 것을 가장 왼쪽으로 이동시키고, 원래 그 자리에 있던 데이터는 빈 자리에 가져다 놓는다.</b></p>
+<p data-ke-size="size16">바깥 루프는 비교의 기준이 되는 원소를, 안쪽 루프는 기준이 되는 원소와 비교할 다른 원소를 찾아 비교한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">선택 정렬 역시 비교 연산의 횟수가 <b>n-1, n-2, ... , 1</b>&nbsp; 즉 버블 정렬과 같다.</p>
+<p data-ke-size="size16"><b>선택정렬의 비교 연산 시간복잡도 : O(N^2)</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이동 연산은 버블 정렬과 차이가 있는데 선택 정렬은 바깥 루프 1번 당 1번의 이동 연산이 있으므로</p>
+<p data-ke-size="size16"><b>선택정렬의 이동 연산 시간복잡도 : O(N)&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">하지만 버블 정렬은 최선의 경우 데이터 이동이 아예 없다는 점을 감안하면 선택 정렬과 버블 정렬의 우열을 가릴수는 없다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="c++ arduino" data-ke-language="c++"><code>/*
+ * 선택 정렬 (Selection Sort)
+ * 시간복잡도 : O(N^2)
+ */
+void SelSort(int arr[], int n)
+{
+    int i, j;
+    int maxIdx;
+    int temp;
+
+    for(i = 0; i &lt; n-1; i++)
+    {
+        maxIdx = i; // 기준
+
+        // 최솟값 탐색
+        for(j = i+1; j &lt; n; j++)
+        {
+            if(arr[j] &lt; arr[maxIdx])
+                maxIdx = j;
+        }
+
+        // swap
+        temp = arr[i];
+        arr[i] = arr[maxIdx];
+        arr[maxIdx] = temp;
+    }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>삽입 정렬 (Insertion Sort)</b></h2>
+<p data-ke-size="size16"><b>시간 복잡도 : O(N^2)&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.gif"  />
+    </span>
+    <figcaption>https://en.wikipedia.org/wiki/Insertion_sort</figcaption>
+</figure></p>
+<p data-ke-size="size16">삽입 정렬은 배열을 정렬이 완료된 부분과 아직 완료되지 않은 부분을 나눠서, 정렬이 안된 부분의 데이터를 완료된 부분에서 자리를 찾아 삽입한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">삽입 정렬은 이미 배열이 정렬이된 최선의 경우 데이터의 이동이 아예 발생하지 않아 빠르다.</p>
+<p data-ke-size="size16">하지만 역정렬된 최악의 경우는 역시 데이터의 이동도, 비교 연산도 O(N^2)이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>선택 정렬의 비교 연산 시간복잡도 : O(N^2)</b></p>
+<p data-ke-size="size16"><b>선택 정렬의 이동 연산 시간복잡도 : O(N^2)</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="angelscript"><code>/*
+ * 삽입 정렬 (Insertion Sort)
+ * 시간복잡도 : O(N^2)
+ */
+void InsertSort(int arr[], int n)
+{
+    int i, j;
+    int insData;
+
+    for(i = 1; i &lt; n; i++)
+    {
+        insData = arr[i]; // 정렬대상
+
+        for(j = i-1; j &gt;= 0; j--)
+        {
+            if(arr[j] &gt; insData)
+                arr[j+1] = arr[j]; // 비교대상 한 칸 뒤로 밀림
+            else
+                break;
+        }
+        // 찾은 위치에 정렬 대상 삽입
+        arr[j+1] = insData;
+    }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #sort #자료구조 #C 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>위상 정렬 (Topology sort)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">위상 정렬 (Topology sort)</h2>
+                                <div class="box-info">
+                                    <p class="category">알고리즘</p>
+                                    <p class="date">2022-04-01 15:43:56</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b>토폴로지</b><span style="background-color: #ffffff; color: #202122;">(</span><span style="background-color: #ffffff; color: #202122;"><a href="https://ko.wikipedia.org/wiki/%EC%98%81%EC%96%B4">영어</a>:<span>&nbsp;</span></span><span style="background-color: #ffffff; color: #202122;">topology</span><span style="background-color: #ffffff; color: #202122;">,<span>&nbsp;</span></span><span style="background-color: #ffffff; color: #202122;"><a href="https://ko.wikipedia.org/wiki/%EB%AC%B8%ED%99%94%EC%96%B4">문화어</a>:</span><span style="background-color: #ffffff; color: #202122;"><span>&nbsp;</span>망구성방식)는<span>&nbsp;</span></span><a href="https://ko.wikipedia.org/wiki/%EC%BB%B4%ED%93%A8%ED%84%B0_%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC">컴퓨터 네트워크</a><span style="background-color: #ffffff; color: #202122;">의 요소들(</span><a href="https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%A7%81%ED%81%AC">링크</a><span style="background-color: #ffffff; color: #202122;">,<span>&nbsp;</span></span><a href="https://ko.wikipedia.org/wiki/%EB%85%B8%EB%93%9C">노드</a><span style="background-color: #ffffff; color: #202122;"><span>&nbsp;</span>등)을 물리적으로 연결해 놓은 것, 또는 그 연결 방식을 말한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://m.blog.naver.com/ndb796/221236874984" target="_blank" rel="noopener">https://m.blog.naver.com/ndb796/221236874984</a></p>
+<figure id="og_1648793327466" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="25. 위상 정렬(Topology Sort)" data-og-description="위상 정렬(Topology Sort)은 '순서가 정해져있는 작업'을 차례로 수행해야 할 때 그 순서를 결정해주기 ..." data-og-host="blog.naver.com" data-og-source-url="https://m.blog.naver.com/ndb796/221236874984" data-og-url="https://blog.naver.com/ndb796/221236874984" data-og-image="https://scrap.kakaocdn.net/dn/3zrIL/hyNR8b1n2l/T8kIMWnrAdJBAuUPgGJrx0/img.png?width=743&amp;height=216&amp;face=0_0_743_216,https://scrap.kakaocdn.net/dn/bLe7Lp/hyNSfvtcRH/2VMwHRfWOKn6h2j4M1Tg7k/img.png?width=80&amp;height=28&amp;face=0_0_80_28,https://scrap.kakaocdn.net/dn/nGbX3/hyNSbfvAal/7saM8EihLmW2IA9nHTrhHK/img.png?width=80&amp;height=23&amp;face=0_0_80_23"><a href="https://m.blog.naver.com/ndb796/221236874984" target="_blank" rel="noopener" data-source-url="https://m.blog.naver.com/ndb796/221236874984">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/3zrIL/hyNR8b1n2l/T8kIMWnrAdJBAuUPgGJrx0/img.png?width=743&amp;height=216&amp;face=0_0_743_216,https://scrap.kakaocdn.net/dn/bLe7Lp/hyNSfvtcRH/2VMwHRfWOKn6h2j4M1Tg7k/img.png?width=80&amp;height=28&amp;face=0_0_80_28,https://scrap.kakaocdn.net/dn/nGbX3/hyNSbfvAal/7saM8EihLmW2IA9nHTrhHK/img.png?width=80&amp;height=23&amp;face=0_0_80_23');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">25. 위상 정렬(Topology Sort)</p>
+<p class="og-desc" data-ke-size="size16">위상 정렬(Topology Sort)은 '순서가 정해져있는 작업'을 차례로 수행해야 할 때 그 순서를 결정해주기 ...</p>
+<p class="og-host" data-ke-size="size16">blog.naver.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">(위 안경잡이개발자 님의 블로그를 보고 공부했습니다.)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>위상정렬</b>은 순서가 정해져있는 작업을 순서대로 수행할때 그 순서를 결정해준다.</p>
+<p data-ke-size="size16">위상정렬은 서로다른 두&nbsp;<b>일</b>이 우선순위를 갖고있을때 전체적인 순서를 정해준다. 이 우선순위는 모든 일들에 대하여 주어지지 않을수 있으므로 위상정렬 결과는 여러가지가 나올수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>위상정렬의 조건</b></p>
+<p data-ke-size="size16">위상정렬은 사이클이 발생하지 않는 방향 그래프에서만 가능하다. (시작점이 존재해야한다!)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위상정렬 알고리즘의 작동은 다음과 같다</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 모든 노드들의 진입차수를 계산한다. (진입차수란 노드에 진입하는 간선의 갯수다)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 진입차수가 0인 노드들을 큐에 푸쉬한다. (시작점)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. 큐에서 노드를 꺼내면서 꺼낸 노드와 연결된 노드들의 진입차수를 감소시킨다. 감소시킨 결과 0이 되면 (해당 노드에 진입하는 간선이 모두 사라졌다면) 큐에 삽입한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2-3 반복한다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">4. 큐에서 꺼낸 노드의 순서가 위상정렬의 결과다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/0b6a99b71dfbab0d83da37aa639b9971.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위상정렬을 이용한 문제&nbsp;</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/617" target="_blank" rel="noopener">https://tose33.tistory.com/617</a></p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #위상정렬 #topology sort 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

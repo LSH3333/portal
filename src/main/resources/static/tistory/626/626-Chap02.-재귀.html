@@ -1,0 +1,107 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap02. 재귀</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap02. 재귀</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-04 16:10:57</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">- 재귀 함수는 함수의 호출 순서를 100프로 파악할 필요는 없다.&nbsp;</p>
+<p data-ke-size="size16">재귀 함수는 엄청나게 많은 함수의 호출을 동반하기 때문에 오히려 혼란의 가중을 일으킨다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 수식을 =&gt; 코드로 옮긴다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>이분탐색의 재귀적 구성</b></h2>
+<pre class="c++ arduino" data-ke-language="c++"><code>int BinarySearchRecur(int ar[], int first, int last, int target)
+{
+    if(first &gt; last) return -1; // 실패
+
+    int mid = (first + last) / 2;
+    if(ar[mid == target]) return mid;
+    else if(target &lt; ar[mid])
+        return BinarySearchRecur(ar, first, mid-1, target);
+    else
+        return BinarySearchRecur(ar, mid+1, last, target);
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>하노이 타워의 재귀적 해결</b></h2>
+<pre class="c++ arduino" data-ke-language="c++"><code>#include &lt;cstdio&gt;
+
+void HanoiTowerMove(int num, char from, char by, char to)
+{
+    if(num == 1)
+    {
+        // 가장 작은 원반 
+        printf("원반 1을 %c에서 %c로 이동\n", from, to); 
+        return;
+    }
+
+    // 우선 n-1개의 원반을 A에서 B로 이동시킴 (C를 거쳐)
+    HanoiTowerMove(num-1, from, to, by);
+    // 맨 아래 큰 원반을 A에서 C로 이동
+    printf("원반 %d를 %c에서 %c로 이동\n", num, from, to);
+    // B에 있는 n-1개를 C로 이동
+    HanoiTowerMove(num-1, by, from, to);
+}
+
+int main()
+{
+    HanoiTowerMove(3, 'A', 'B', 'C');
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">가장 작고 위에 있는 원반 1, 가운데 원반 2, 가장 크고 아래 있는 원반 3이 A 막대에 있다.</p>
+<p data-ke-size="size16">원반 3을 C로 옮기려면 1,2 원반 부터 B로 옮겨야 한다.</p>
+<p data-ke-size="size16">이제 원반 3을 C로 옮기고, 원반 1,2를 C로 옮긴다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1. 작은 원반 n-1개를 A에서 B로 이동</b></p>
+<p data-ke-size="size16"><b>2. 큰 원반 1개를 C로 이동&nbsp;</b></p>
+<p data-ke-size="size16"><b>3. 작은 원반 n-1개를 B에서 C로 이동&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 원반 n개를 이동하는 문제는 원반 n-1개를 옮기는 문제로 세분화된다.</p>
+<p data-ke-size="size16">원반 n-1개를 옮기는 문제는 n-2개를 옮기는 문제로 세분화된다.&nbsp;</p>
+<p data-ke-size="size16">...</p>
+<p data-ke-size="size16">원반 2개를 옮기는 문제는 1개를 옮기는 문제로 세분화된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">하노이탑 백준 문제: 하노이 탑 이동 순서&nbsp;</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/625" target="_blank" rel="noopener">https://tose33.tistory.com/625</a></p>
+<figure id="og_1649056241681" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="백준 11729. 하노이 탑 이동 순서" data-og-description="https://www.acmicpc.net/problem/11729 11729번: 하노이 탑 이동 순서 세 개의 장대가 있고 첫 번째 장대에는 반경이 서로 다른 n개의 원판이 쌓여 있다. 각 원판은 반경이 큰 순서대로 쌓여있다. 이제 수도승" data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/625" data-og-url="https://tose33.tistory.com/625" data-og-image="https://scrap.kakaocdn.net/dn/cltLmF/hyNVPuC4kp/C7PEaIDVUcdA3qyv0OvJRk/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/NovTZ/hyNUt7NFMs/r6CTkKdaOb1DMjl5WitCTK/img.png?width=800&amp;height=800&amp;face=0_0_800_800"><a href="https://tose33.tistory.com/625" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/625">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cltLmF/hyNVPuC4kp/C7PEaIDVUcdA3qyv0OvJRk/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/NovTZ/hyNUt7NFMs/r6CTkKdaOb1DMjl5WitCTK/img.png?width=800&amp;height=800&amp;face=0_0_800_800');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">백준 11729. 하노이 탑 이동 순서</p>
+<p class="og-desc" data-ke-size="size16">https://www.acmicpc.net/problem/11729 11729번: 하노이 탑 이동 순서 세 개의 장대가 있고 첫 번째 장대에는 반경이 서로 다른 n개의 원판이 쌓여 있다. 각 원판은 반경이 큰 순서대로 쌓여있다. 이제 수도승</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자료구조 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

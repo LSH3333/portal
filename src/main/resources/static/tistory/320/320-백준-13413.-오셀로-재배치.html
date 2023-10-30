@@ -1,0 +1,104 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 13413. 오셀로 재배치</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 13413. 오셀로 재배치</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-23 17:07:39</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/13413" target="_blank" rel="noopener">https://www.acmicpc.net/problem/13413</a></p>
+<figure id="og_1629705781374" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="13413번: 오셀로 재배치" data-og-description="로봇을 좋아하는 세희는 로봇동아리에서 카메라와 센서, 라즈베리 파이, 집게발을 이용해 로봇을 완성하였다. 이 로봇을 통해서 오셀로 재배치라는 작업을 하려고 한다. 오셀로 말은 앞면이 검" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/13413" data-og-url="https://www.acmicpc.net/problem/13413" data-og-image="https://scrap.kakaocdn.net/dn/QgtZk/hyLlcA1wrL/K0e9phCj0mpyKqt7UUTSLk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/13413" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/13413">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/QgtZk/hyLlcA1wrL/K0e9phCj0mpyKqt7UUTSLk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">13413번: 오셀로 재배치</p>
+<p class="og-desc" data-ke-size="size16">로봇을 좋아하는 세희는 로봇동아리에서 카메라와 센서, 라즈베리 파이, 집게발을 이용해 로봇을 완성하였다. 이 로봇을 통해서 오셀로 재배치라는 작업을 하려고 한다. 오셀로 말은 앞면이 검</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">주어진 문자열 initial과 목표 문자열 goal을 비교하면서 서로 엇갈린 부분이 몇개인지 찾는다.</p>
+<p data-ke-size="size16">예를들어 initial과 goal이 다음과같다면</p>
+<p data-ke-size="size16"><b>B B W W B B</b></p>
+<p data-ke-size="size16"><b>W W B B W B</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">initial이 b고 goal이 w인 경우 bw = 3</p>
+<p data-ke-size="size16">initial이 w고 goal이 b인 경우 wb = 2</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">bw와 wb중 작은 수만큼 1번 연산을 해줄수 있고, 나머지는 2번연산으로 처리한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1629705782412" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+
+    int tc;
+    cin &gt;&gt; tc;
+
+    while(tc--)
+    {
+        int n;
+        string initial, goal;
+        cin &gt;&gt; n &gt;&gt; initial &gt;&gt; goal;
+
+        int bw = 0, wb = 0, none = 0;
+        for(int i = 0; i &lt; n; i++)
+        {
+            if(initial[i] == 'B' &amp;&amp; goal[i] == 'W')
+                bw++;
+
+            else if(initial[i] == 'W' &amp;&amp; goal[i] == 'B')
+                wb++;
+            else if(initial[i] != goal[i])
+                none++;
+        }
+
+        int minCnt = min(bw,wb);
+        int maxCnt = max(bw,wb);
+
+        int swapCnt = minCnt;
+        int left = maxCnt - swapCnt;
+        int ans = swapCnt + left + none;
+
+        cout &lt;&lt; ans &lt;&lt; '\n';
+    }
+
+
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Animator에서의 transition, trigger했을때 애니메이션 바로바로 진행되게하기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Animator에서의 transition, trigger했을때 애니메이션 바로바로 진행되게하기</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-02-16 17:59:31</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-filename="20210216174039.png" data-origin-width="523" data-origin-height="282" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20210216174039.png" data-origin-width="523" data-origin-height="282" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption>Animator</figcaption>
+</figure></p>
+<p>Animator를 보면 animation clip 사이에 transition(화살표)가 있다.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20210216174128.png" data-origin-width="449" data-origin-height="292" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20210216174128.png" data-origin-width="449" data-origin-height="292" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption>transition</figcaption>
+</figure></p>
+<p>transition의 <b>Has Exit Time</b> : 애니메이션 클립의 재생 시간을 보장할 것인가?</p>
+<p><b>활성화</b> : 종료 시점이 존재하게 되 condition을 만족해도 다음 상태로 전이하지 않음.</p>
+<p><b>비활성화</b> : condition 만족시 즉시 전이.</p>
+<p>&nbsp;</p>
+<p>즉 Idle-&gt;Attack transition에서 Has Exit Time이 활성화되어 있으면, condition을 만족해도 바로 다음 상태로 전이 하지 않고 Idle의 재생시간을 보장하고 넘어감.</p>
+<p>&nbsp;</p>
+<p>따라서 일반적으로</p>
+<p>condition 있으면 : Has Exit Time 비활성화</p>
+<p>condition 없으면 : Has Exit Time 활성화</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20210216175026.png" data-origin-width="458" data-origin-height="347" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-filename="20210216175026.png" data-origin-width="458" data-origin-height="347" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption>Settings</figcaption>
+</figure></p>
+<p><b>Exit Time</b> : Has Exit Time을 활성화 했을때만 사용가능. 예를들어 0.5(50퍼센트)로 설정하면 이 애니메이션 클립이 전이 condition을 만족하더라도 클립의 50퍼센트는 진행되어야 전이가 이루어짐.</p>
+<p>&nbsp;</p>
+<p><b>Transition Duration</b> : 앞클립과 뒤클립이 전환되는 시간.&nbsp;</p>
+<p>0으로 설정하면 앞클립에서 뒤클립이 바로 전환됨.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style2" />
+<p><figure class="imageblock alignCenter" data-filename="20210216175507.png" data-origin-width="228" data-origin-height="180" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-filename="20210216175507.png" data-origin-width="228" data-origin-height="180" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>버튼을 누르면 플레이어가 칼을 휘두르게하고 싶다. 즉 Idle -&gt; Attack일때 transition은</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20210216175632.png" data-origin-width="393" data-origin-height="162" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-filename="20210216175632.png" data-origin-width="393" data-origin-height="162" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><b>Idle -&gt; Attack&nbsp;&nbsp;</b></p>
+<p>Has Exit Time : 비활성화. 왜냐하면 버튼 클릭해서 trigger 만족했을때 바로 칼을 휘둘러야 하므로.</p>
+<p>&nbsp;</p>
+<p><b>Attack -&gt; Idle</b></p>
+<p>Has Exit Time : 활성화.&nbsp;</p>
+<p>Exit Time : 1</p>
+<p><span style="color: #333333;">// Attack 클립을 다 재생하고 Idle로 넘어가야함.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

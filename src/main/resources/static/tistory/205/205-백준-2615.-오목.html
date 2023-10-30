@@ -1,0 +1,312 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2615. 오목</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2615. 오목</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-15 18:36:49</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2615" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2615</a></p>
+<figure id="og_1626341382298" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2615번: 오목" data-og-description="오목은 바둑판에 검은 바둑알과 흰 바둑알을 교대로 놓아서 겨루는 게임이다. 바둑판에는 19개의 가로줄과 19개의 세로줄이 그려져 있는데 가로줄은 위에서부터 아래로 1번, 2번, ... ,19번의 번호" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2615" data-og-url="https://www.acmicpc.net/problem/2615" data-og-image="https://scrap.kakaocdn.net/dn/flQzh/hyKTQwTkb9/qSMkM8gK3jsyr9txsaguIK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/NQU2L/hyKSPzAfwt/4tIreekxXqmVR39KkUmkkK/img.png?width=548&amp;height=606&amp;face=0_0_548_606"><a href="https://www.acmicpc.net/problem/2615" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2615">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/flQzh/hyKTQwTkb9/qSMkM8gK3jsyr9txsaguIK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/NQU2L/hyKSPzAfwt/4tIreekxXqmVR39KkUmkkK/img.png?width=548&amp;height=606&amp;face=0_0_548_606');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2615번: 오목</p>
+<p class="og-desc" data-ke-size="size16">오목은 바둑판에 검은 바둑알과 흰 바둑알을 교대로 놓아서 겨루는 게임이다. 바둑판에는 19개의 가로줄과 19개의 세로줄이 그려져 있는데 가로줄은 위에서부터 아래로 1번, 2번, ... ,19번의 번호</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">오목판의 상태가 주어졌을 때, 백돌이 이겼는지 흑돌이 이겼는지, 아직 승자가 없는지 판별한다.</p>
+<p data-ke-size="size16">주의해야할 점은 여섯개의 연속된 돌이 있으면 이긴것이 아니라는 점이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">dfs를 이용해서 풀었는데 여섯개의 연속된 돌이 있으면 이긴것이 아니라는 점,&nbsp;</p>
+<p data-ke-size="size16">그리고 다 풀고나니 뭔가 조건들을 어거지로 추가한 느낌이라 그냥 dfs로 안풀었으면 더 좋았을것 같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">보드의 [0][0]부터 탐색해서 1이거나 2면 dfs 탐색을 시작해서 연속된 다섯알을 발견하면 아직 리턴하지 않고 이긴돌을 기억만 해놨다가</p>
+<p data-ke-size="size16">한칸더 탐색해본다 (여섯개의 연속된 돌이라면 이긴것이 아니기 때문에). 여섯번째 칸 마저 같은 색이라면 이긴돌을 무효화한다.</p>
+<p data-ke-size="size16">재귀함수가 모두 탐색해 승자돌이 확정되고 다시 depth가 0으로 돌아왔을때 반대방향의 돌도 같은 색이라면 또 승자를 무효화한다.</p>
+<p data-ke-size="size16">(이것도 여섯개의 연속된 돌이라면 이긴것이 아니기 때문에).</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">여섯개의 연속된 돌이라면 이긴것이 아니라는 조건 때문에 복잡해지고 베이스 케이스가 엄청 많아졌다.</p>
+<p data-ke-size="size16">말했다 싶이 원래 dfs로 안푸는 문제인것 같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그래도 요즘 한창 재귀함수 구성하는 방법을 연습하는 중이라 풀고나서 만족스럽고 도움은 된것 같다.</p>
+<pre id="code_1626341760817" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+
+using namespace std;
+#define MAX 19
+
+char map[21][21];
+bool mark[21][21];
+
+int dr[8] = {-1, -1, 0, 1, 1, 1, 0, -1};
+int dc[8] = {0, 1, 1, 1, 0, -1, -1, -1};
+
+char winner = '0';
+int curDir = 10;
+int ans_r=0, ans_c=0;
+
+
+int FindOpposite(int num)
+{
+    if(num &lt; 4)
+        return num+4;
+    else
+        return num-4;
+}
+
+void dfs(int r, int c, char cur, int depth, int dir)
+{
+    // 연속된 다섯알 발견
+    if(depth == 4)
+    {
+        winner = cur;
+        curDir = dir;
+        ans_r = r+1;
+        ans_c = c+1;
+        // 여섯알 이상이 연속일수도 있으므로 리턴하지 않고 일단 진행한다
+    }
+    // 여섯알 이상이 연속인 경우
+    if(depth == 5 &amp;&amp; cur == winner)
+    {
+        // winner를 무효화 하고 리턴
+        winner = '0';
+        curDir = 10;
+        ans_r = 0;
+        ans_c = 0;
+        return;
+    }
+    // 여섯번째가 연속은 아닌경우
+    else if(depth == 5 &amp;&amp; cur != winner)
+    {
+        return;
+    }
+
+    // 8방향 탐색
+    for(int i = 0; i &lt; 8; i++)
+    {
+        int _r = r + dr[i];
+        int _c = c + dc[i];
+
+        if(_r &lt; 0 || _r &gt;= MAX || _c &lt; 0 || _c &gt;= MAX) continue;
+
+        // 탐색 첫부분은 방향은 상관이없다
+        if(depth == 0)
+            dir = i;
+        // 이동지점이 현재 돌색과 같고 &amp; 아직 방문 안했고 &amp; 방향이 같다면
+        if(map[_r][_c] == cur &amp;&amp; !mark[_r][_c] &amp;&amp; i == dir)
+        {
+            mark[_r][_c] = true;
+            dfs(_r, _c, cur, depth+1, i);
+            mark[_r][_c] = false;
+        }
+
+        // 5개의 연속된 돌 찾았음
+        // 그런데 반대방향의 돌이 같은 색이라면 6개의 연속된 돌이 같은색이므로 무효
+        if(depth==0 &amp;&amp; winner == cur)
+        {
+            if(map[r+dr[FindOpposite(curDir)]][c+dc[FindOpposite(curDir)]] == winner)
+            {
+                winner = '0';
+                curDir = 10;
+            }
+        }
+    }
+
+}
+
+int main()
+{
+    // input
+    for(int i = 0; i &lt; MAX; i++)
+    {
+        for(int j = 0; j &lt; MAX; j++)
+        {
+            cin &gt;&gt; map[i][j];
+        }
+    }
+
+    for(int i = 0; i &lt; MAX; i++)
+    {
+        for(int j = 0; j &lt; MAX; j++)
+        {
+            // 1번돌 케이스
+            if(map[i][j] == '1')
+            {
+                dfs(i, j, '1', 0, 0);
+            }
+            // 2번돌 케이스
+            else if(map[i][j] == '2')
+            {
+                dfs(i, j, '2', 0, 0);
+            }
+
+            // 탐색후 winner가 확정되었다면
+            if(winner != '0')
+            {
+                // 다섯번째 돌이 첫번째 돌보다 왼쪽에 있을경우 다섯번째 돌의 위치를 출력한다
+                if(ans_c &lt; j)
+                {
+                    cout &lt;&lt; winner &lt;&lt; '\n';
+                    cout &lt;&lt; ans_r &lt;&lt; ' ' &lt;&lt; ans_c;
+                }
+                // 그렇지 않으면 첫번째 돌의 위치를 출력한다
+                else
+                {
+                    cout &lt;&lt; winner &lt;&lt; '\n';
+                    cout &lt;&lt; i+1 &lt;&lt; ' ' &lt;&lt; j+1;
+                }
+
+                return 0;
+            }
+        }
+    }
+    // 아직 승부가 결정되지 않음
+    cout &lt;&lt; '0';
+
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">2021.07.16 추가</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이전 내 코드가 상당히 더럽기도 하고 다른 더 좋은 방법이 있을것 같아서 구글링을 해봤다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">내 이전 코드가 더러워진 주요 원인은 여섯개의 돌이 이어져 있으면 이긴게 아니라는 조건 때문이었다.</p>
+<p data-ke-size="size16">그 조건 때문에 재귀로 짠 dfs 함수에 억지로 탈출조건을 이어 붙이느라 함수가 더러워졌다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또한 이긴돌의 좌측상단의 위치를 출력하는것도 더러워진 원인이었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이를 개선하기 위한 방법을 찾았다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">먼저 <b>좌측상단의 돌의 위치를 출력하기 위해서,</b></p>
+<p data-ke-size="size16">좌측상단에서 우측상단 방향으로 탐색(1행을 탐색 다하고 다음 행으로 넘어가는 방법)하지 않고</p>
+<p data-ke-size="size16">좌측상단에서 좌측하단 방향으로 탐색(1열을 탐색 다하고 다음 열로 넘어가는 방법)을 진행한다.</p>
+<p data-ke-size="size16">또한 이전에는 8방향을 탐색했는데 이번에는 남, 남동, 동, 북동 방향으로만 탐색한다.</p>
+<p data-ke-size="size16">이렇게 하면 무조건 좌측상단의 돌이 dfs탐색을 시작하는 지점이 되므로 다섯개의 돌을 찾으면 그냥 시작지점을 출력해주면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그 다음으로 <b>여섯개의 돌이 이어져있으면 무효처리 하는 방법인데</b></p>
+<p data-ke-size="size16">dfs 함수를 int를 리턴하도록 해서 해당 방향으로 쭉 탐색했을때 몇개의 같은색 돌이 이어져있는지를 리턴하도록 하고,</p>
+<p data-ke-size="size16">dfs를 리턴받았을때 5를 리턴받았으면 위치를 출력하도록 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">마지막으로 <b>여섯개의 돌이 이어져 있는데 두번째 돌부터 탐색을 시작해 첫번째 돌이 누락되는 것을 방지하는 방법이다.</b></p>
+<p data-ke-size="size16">방문 여부를 체크하는 mark[][] 배열을 2차원이 아닌 3차원으로 만들어서 방향정보까지 저장한다.</p>
+<p data-ke-size="size16">이렇게 하면 여섯개의 이어진 돌이 있는데 두번째 돌부터 탐색했을때 첫번째 돌이 누락되는 것을 막아준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 아래와 같이 6개의 같은 색 돌이 이어져 있을때</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 1 1 1 1 1</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1번째 돌이 4방향 탐색을 해서 동쪽 방향으로 6개의 돌이 이어져 있는것을 알았다면 mark 배열은&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">mark[r][c][동쪽] = true</p>
+<p data-ke-size="size16">mark[r][c+1][동쪽] = true</p>
+<p data-ke-size="size16">mark[r][c+2][동쪽] = true</p>
+<p data-ke-size="size16">mark[r][c+3][동쪽] = true</p>
+<p data-ke-size="size16">mark[r][c+4][동쪽] = true</p>
+<p data-ke-size="size16">mark[r][c+5][동쪽] = true</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런식으로 mark[r][c]에서 동쪽 방향으로 탐색했을때 6개의 돌이 이어져있었다는 것을 기록한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이후에 열우선 방향으로 탐색하다가 map[r][c+1]로 와서 4방향 탐색을 하다가 동쪽을 탐색할때 mark[r][c+1][동쪽]이 이미 true 이기 때문에 이전에 이 방향으로 탐색했다는 것을 알수있기 때문에 탐색을 중단한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런식으로 여섯개의 돌이 있을때 두번째 돌부터 탐색해서 첫번째 돌이 누락되는것을 방지할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1626411450893" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+#define MAX 19
+
+int map[21][21];
+bool mark[21][21][4];
+
+// 좌측상단 돌 위치를 출력하기 위해 8방향이 아닌 4방향 :남, 남동, 동, 북동 만 탐색한다
+int dr[4] = {1, 1, 0, -1};
+int dc[4] = {0, 1, 1, 1};
+
+// map[r][c]에서 dir 방향으로 탐색해서 map[r][c]와 같은 색의 돌이 몇개 이어져있는지 리턴한다
+int dfs(int r, int c, int dir, int stone)
+{
+    // 돌 색이 다르다면 0 리턴
+    if(map[r][c] != stone)
+        return 0;
+
+    int cnt = 1;
+    // 위치, 방향까지 기억해서 방문여부 확인
+    mark[r][c][dir] = true;
+
+    int _r = r + dr[dir];
+    int _c = c + dc[dir];
+
+    cnt += dfs(_r, _c, dir, stone);
+
+    return cnt;
+}
+
+int main()
+{
+    // input
+    for(int i = 0; i &lt; MAX; i++)
+    {
+        for(int j = 0; j &lt; MAX; j++)
+        {
+            cin &gt;&gt; map[i][j];
+        }
+    }
+
+
+    for(int i = 0; i &lt; MAX; i++)
+    {
+        for(int j = 0; j &lt; MAX; j++)
+        {
+            // 가장왼위에 있는 바둑알의 위치를 출력해야하므로 좌측상단에서 아래로 내려가는 방향으로 탐색해야한다
+            if(map[j][i] == 0) continue;
+            for(int k = 0; k &lt; 4; k++)
+            {
+                // 이미 방문한 방향이면 계산하지 않음
+                if(mark[j][i][k]) continue;
+                // 탐색했는데 5개의 돌이 연속이라면
+                if(dfs(j, i, k, map[j][i]) == 5)
+                {
+                    cout &lt;&lt; map[j][i] &lt;&lt; '\n';
+                    cout &lt;&lt; j+1 &lt;&lt; ' ' &lt;&lt; i+1 &lt;&lt; '\n';
+                    return 0;
+                }
+            }
+        }
+    }
+    // 아직 아무도 이기지 못한 상태
+    cout &lt;&lt; 0;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #재귀 #dfs 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

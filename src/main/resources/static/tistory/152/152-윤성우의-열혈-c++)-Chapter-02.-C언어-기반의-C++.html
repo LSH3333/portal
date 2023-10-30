@@ -1,0 +1,226 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) Chapter 02. C언어 기반의 C++</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) Chapter 02. C언어 기반의 C++</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-10 18:24:01</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">c++을 계속 써왔고 이제 제법 편하게 쓰고 있지만,&nbsp;</p>
+<p data-ke-size="size16">처음에 책을 보고 공부했을때 많은 부분을 제대로 이해 하지 않고 넘어간것 같기도 하고&nbsp;</p>
+<p data-ke-size="size16">프로그래밍에 대해 조금이나마 더 이해하게 된 지금 다시 책을 읽어 보고 싶다는 생각이 계속 있었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또한 이 책은 단순히 c++의 문법 말고도 객체 지향이라는 프로그래밍 방법에 대해서도 꽤 상세히 적혀있기에 너무 오래 전에 배워서 까먹어가는 c언어의 복습도 하면서 다시 한번 책을 정독해볼까 한다.</p>
+<h2 data-ke-size="size26">&nbsp;</h2>
+<h2 data-ke-size="size26">문제 2-1 [참조자 기반의 Call-by-reference 구현]&nbsp;</h2>
+<p data-ke-size="size16"><b>문제 1</b></p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void func1(int &amp;num)
+{
+    num++;
+}
+
+void func2(int &amp;num)
+{
+    num *= -1;
+}
+
+int main()
+{
+    int num = 1;
+    func1(num);
+    cout &lt;&lt; num &lt;&lt; endl;
+
+    func2(num);
+    cout &lt;&lt; num &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>문제 2</b></p>
+<p data-ke-size="size16">참조자 선언은 변수를 대상으로만 가능.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>문제 3</b></p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+void SwapPointer(int *(&amp;ptr1), int *(&amp;ptr2))
+{
+    int *temp = ptr1;
+    ptr1 = ptr2;
+    ptr2 = temp;
+}
+
+int main()
+{
+    int num1 = 5;
+    int *ptr1 = &amp;num1;
+    int num2 = 10;
+    int *ptr2 = &amp; num2;
+
+    cout &lt;&lt; num1 &lt;&lt; ' ' &lt;&lt; num2 &lt;&lt; endl;
+    cout &lt;&lt; *ptr1 &lt;&lt; ' ' &lt;&lt; *ptr2 &lt;&lt; endl;
+
+    SwapPointer(ptr1, ptr2);
+
+    cout &lt;&lt; *ptr1 &lt;&lt; ' ' &lt;&lt; *ptr2 &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">문제 2-2&nbsp;</h2>
+<p data-ke-size="size16">const 포인터와 const 참조자</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1620189946793" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    const int num = 12; // 상수화된 변수
+    // int *ptr = &amp;num;  // 컴파일 에러
+    const int *ptr = &amp;num; // 상수화된 변수를 카리키는 포인터또한 상수화해줘야함 
+    const int *(&amp;ref) = ptr; // 상수화된 변수를 카리키는 포인터의 참조자 
+
+    cout &lt;&lt; *ptr &lt;&lt; endl;
+    cout &lt;&lt; *ref &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>참조자의 선언은 상수가 아닌 변수에만 가능하다.</b></p>
+<p data-ke-size="size16">하지만 다음과 같은 선언은 가능하다</p>
+<p data-ke-size="size16">const int &amp;ref = 10;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">c++은 const 참조자를 이용해 상수를 참조할때 임시변수 라는것을 만듦.&nbsp;</p>
+<p data-ke-size="size16">이 임시변수에 10을 저장하고 참조자가 이를 참조하도록 함.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1620191063833" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int Adder(const int &amp;num1, const int &amp;num2)
+{
+	return num1 + num2;
+}
+
+int main() {
+	// const 참조자의 상수참조를 허용함으로서 이와같은 코드가 동작가능. 
+	cout &lt;&lt; Adder(3,4) &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>구조체 포인터 변수</b></p>
+<p data-ke-size="size16">struct point pos = {1,2};</p>
+<p data-ke-size="size16">struct point * pptr = &amp;pos;&nbsp; // 구조체 포인터</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">(*pptr).xpos = 10;&nbsp; // 구조체 포인터의 접근</p>
+<p data-ke-size="size16">(*pptr).xpos = 20;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">pptr-&gt;xpos = 10;&nbsp; // 이런식으로도 접근가능&nbsp;</p>
+<p data-ke-size="size16">pptr-&gt;ypos = 20;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">문제 2-3 [구조체에 대한 new &amp; delete 연산]&nbsp;</h2>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+
+struct Point
+{
+    int xpos;
+    int ypos;
+};
+
+Point&amp; PntAdder(const Point &amp;p1, const Point &amp;p2)
+{
+    Point *tmp = new Point;
+    tmp-&gt;xpos = p1.xpos + p2.xpos;
+    tmp-&gt;ypos = p2.xpos + p2.ypos;
+    return *tmp;
+}
+
+int main()
+{
+    Point *p1 = new Point;
+    p1-&gt;xpos = 10;
+    p1-&gt;ypos = 20;
+
+    Point *p2 = new Point;
+    p2-&gt;xpos = 10;
+    p2-&gt;ypos = 30;
+
+    Point &amp;res = PntAdder(*p1, *p2);
+    cout &lt;&lt; res.xpos &lt;&lt; ' ' &lt;&lt; res.ypos;
+
+    delete p1;
+    delete p2;
+    delete &amp;res; 
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">문제 2-4 [C++의 표준함수 호출]&nbsp;</h2>
+<p data-ke-size="size16"><b>&nbsp;문제 1</b></p>
+<pre class="cpp"><code>#include &lt;cstring&gt;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    char *str1 = "abcde";
+    char *str2 = "ABCD";
+    char str3[100];
+
+    cout &lt;&lt; strlen(str1) &lt;&lt; endl;
+    cout &lt;&lt; strlen(str2) &lt;&lt; endl;
+    strcpy(str3, str1);
+    cout &lt;&lt; str3 &lt;&lt; endl;
+    strcat(str3, str1);
+    cout &lt;&lt; str3 &lt;&lt; endl;
+
+    if(strcmp(str1, str2) == 0) cout &lt;&lt; "same" &lt;&lt; endl;
+    else cout &lt;&lt; "not same" &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>문제 2</b></p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;ctime&gt;
+#include &lt;cstdlib&gt;
+using namespace std;
+
+int main()
+{
+    // time을 기반으로 시드 설정
+    srand(time(NULL));
+    for(int i = 0; i &lt; 5; i++)
+    {
+        // 100 나머지 연산으로 100 미만의 값
+        cout &lt;&lt; rand() % 100 &lt;&lt; endl;
+    }
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>css) z-axis (z-index)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">css) z-axis (z-index)</h2>
+                                <div class="box-info">
+                                    <p class="category">html & css</p>
+                                    <p class="date">2021-08-13 17:45:21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음과 같이 3개의 이미지가 있고 각각의 클래스를 갖고있다</p>
+<p><figure class="imageblock alignCenter" data-origin-width="635" data-origin-height="173" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="635" data-origin-height="173" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption>index.html</figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1042" data-origin-height="664" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="1042" data-origin-height="664" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이미지들이 겹쳐져 있는데</p>
+<p data-ke-size="size16">이미지를 보면 .three 클래스의 이미지가 가장 앞쪽 (z축상)에 있고 .one 이미지가 가장 뒤쪽에 있다.</p>
+<p data-ke-size="size16">이유는 .one이 html 상 가장 앞에있고 그 다음 .two, .three 이기 때문이다.</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u><b>z-index</b></u></h3>
+<p data-ke-size="size16">디폴트로 0를 갖는다.</p>
+<p data-ke-size="size16">z-index 값이 큰 박스가 작은 박스보다 앞에 배치된다.</p>
+<p data-ke-size="size16"><b>position:static&nbsp;이라면 무시</b>된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음과 같이 세개의 이미지에 각각 z-index를 부여한다</p>
+<p><figure class="imageblock alignCenter" data-origin-width="985" data-origin-height="641" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="985" data-origin-height="641" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><b>.one</b>이 0</p>
+<p data-ke-size="size16"><b>.two</b>가 -1</p>
+<p data-ke-size="size16"><b>.three</b>가 -2&nbsp;</p>
+<p data-ke-size="size16">를 갖기때문에 첫번째 이미지가 가장 앞에 보인다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #CSS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

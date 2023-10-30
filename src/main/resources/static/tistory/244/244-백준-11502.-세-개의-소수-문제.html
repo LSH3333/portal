@@ -1,0 +1,220 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 11502. 세 개의 소수 문제</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 11502. 세 개의 소수 문제</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-31 15:39:24</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/11502" target="_blank" rel="noopener">https://www.acmicpc.net/problem/11502</a></p>
+<figure id="og_1627712864469" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="11502번: 세 개의 소수 문제" data-og-description="정수론(수학)에서, 세 개의 소수 문제(3-primes problem) 는 다음과 같은 추측을 말한다. '5보다 큰 임의의 홀수는 정확히 세 개의 소수들의 합으로 나타낼 수 있다. 물론 하나의 소수를 여러 번 더할 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/11502" data-og-url="https://www.acmicpc.net/problem/11502" data-og-image="https://scrap.kakaocdn.net/dn/IFFYv/hyK4IZxb9Y/COBkqMjG4BpafhGssMDed0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/11502" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/11502">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/IFFYv/hyK4IZxb9Y/COBkqMjG4BpafhGssMDed0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">11502번: 세 개의 소수 문제</p>
+<p class="og-desc" data-ke-size="size16">정수론(수학)에서, 세 개의 소수 문제(3-primes problem) 는 다음과 같은 추측을 말한다. '5보다 큰 임의의 홀수는 정확히 세 개의 소수들의 합으로 나타낼 수 있다. 물론 하나의 소수를 여러 번 더할</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 에라토스테네스의 체 방법으로 1000까지의 소수를 찾는다</p>
+<p data-ke-size="size16">2. 정수 k보다 작은 소수를 k에서 뺀 값 sub가 두 개의 소수로 이루어질수 있는지 찾는다</p>
+<p data-ke-size="size16">3. sub가 두개의 소수로 이루어질수 있는지 찾는 방법은&nbsp;</p>
+<p data-ke-size="size16">&nbsp; &nbsp;sub보다 작은 소수를 sub에서 뺀 값이 소수이면, sub가 두개의 소수로 이루어질 수 있다.</p>
+<p data-ke-size="size16">4. 3번이 참이라면 정수 k가 3개의 소수로 이루어질수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp; &nbsp;3개의 소수는: (k에서 뺀 정수 k보다 작은 소수, sub보다 작은 소수, sub에서 뺀값)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">ex)</p>
+<p data-ke-size="size16">정수 31이 3개의 소수로 이루어질수 있는지 찾는다.</p>
+<p data-ke-size="size16">31보다 작은 소수는 다음과 같다</p>
+<p data-ke-size="size16"><b>2 3 5 7 11 13 17 19 23 29</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">31과 가까운 수 부터 31에서 빼본다.</p>
+<p data-ke-size="size16">31 - 29 = 2&nbsp; &nbsp;// 2는 2보다 작은수가 1인데 1은 소수가 아니므로 불가&nbsp;</p>
+<p data-ke-size="size16"><b>31 - 23 = 8&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">8이 두개의 소수로 이루어질수 있다면 정수 31이 3개의 소수로 이루어질수 있다.</p>
+<p data-ke-size="size16">8보다 작은 소수는 다음과 같다</p>
+<p data-ke-size="size16"><b>2 3 5 7</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">8과 가까운 수 부터 8에서 빼본다</p>
+<p data-ke-size="size16">8 - 7 = 1 // 1은 소수가 아니다</p>
+<p data-ke-size="size16"><b>8 - 5 = 3&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3은 소수이므로 8은 (5,3) 두 개의 소수로 이루어질수 있다.</p>
+<p data-ke-size="size16">즉 31은 (3,5,23) 3개의 소수로 이루어질수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1627713552475" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+using namespace std;
+#define MAX 1000
+
+int primeNumbers[MAX+1];
+
+// 소수 찾기, 에라토스테네스의 체
+void FindPrimeNumbers()
+{
+    for(int i = 2; i &lt; MAX; i++)
+        primeNumbers[i] = i;
+
+    for(int i = 2; i &lt; sqrt(MAX); i++)
+    {
+        if(primeNumbers[i] == 0) continue;
+
+        for(int j = i * i; j &lt;= MAX; j+=i)
+        {
+            primeNumbers[j] = 0;
+        }
+    }
+}
+
+int main()
+{
+    FindPrimeNumbers();
+
+    int testcase;
+    cin &gt;&gt; testcase;
+
+    for(int tc = 0; tc &lt; testcase; tc++)
+    {
+        int a,b,c;
+        int n; // 31이 소수 3개로 이루어질수 있는가?
+        cin &gt;&gt; n;
+
+        // n2가 소수 두개로 이루어질수 있는지 판단
+        bool flag = false;
+        // i: 23, 31에서 소수인 23을 뺐을때 8이고, 8이 소수 두개로 이루어질수 있는가?
+        for(int i = n-1; i &gt;= 2; i--)
+        {
+            if(primeNumbers[i] == 0) continue;
+
+            int n2 = n - i; // 8
+
+
+            for(int j = n2-1; j &gt;= 2; j--)
+            {
+                if(primeNumbers[j] == 0) continue;
+                // 소수가 맞다면
+                if(primeNumbers[n2-j] != 0)
+                {
+                    a = n2-j;
+                    b = j;
+                    c = i;
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag) break;
+        }
+        if(flag)
+            cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; b &lt;&lt; ' ' &lt;&lt; c &lt;&lt; '\n';
+        else
+            cout &lt;&lt; 0 &lt;&lt; '\n';
+    }
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">소수를 찾는 것은 동일하게 에라토스테네스의 체를 이용하고</p>
+<p data-ke-size="size16">단순히 3중 for문으로 풀수도 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1627714598138" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+using namespace std;
+#define MAX 1000
+
+int primeNumbers[MAX+1];
+
+// 소수 찾기, 에라토스테네스의 체
+void FindPrimeNumbers()
+{
+    for(int i = 2; i &lt; MAX; i++)
+        primeNumbers[i] = i;
+
+    for(int i = 2; i &lt; sqrt(MAX); i++)
+    {
+        if(primeNumbers[i] == 0) continue;
+
+        for(int j = i * i; j &lt;= MAX; j+=i)
+        {
+            primeNumbers[j] = 0;
+        }
+    }
+}
+
+int main()
+{
+    int testcase;
+    cin &gt;&gt; testcase;
+    FindPrimeNumbers();
+
+    while(testcase--)
+    {
+        int n; cin &gt;&gt; n;
+        bool flag = false;
+
+        for(int i = 2; i &lt;= n; i++)
+        {
+            // 소수 아니면 continue
+            if(primeNumbers[i] == 0) continue;
+
+            for(int j = 2; j &lt;= n; j++)
+            {
+                if(primeNumbers[j] == 0) continue;
+
+                for(int k = 2; k &lt;= n; k++)
+                {
+                    if(primeNumbers[k] == 0) continue;
+
+                    if(i+j+k == n)
+                    {
+                        // 낮은 소수부터 탐색하므로 오름차순으로 출력이 보장된다
+                        cout &lt;&lt; i &lt;&lt; ' ' &lt;&lt; j &lt;&lt; ' ' &lt;&lt; k &lt;&lt; '\n';
+                        flag = true;
+                        break;
+                    }
+                }
+                if(flag) break;
+            }
+            if(flag) break;
+        }
+        if(!flag) cout &lt;&lt; 0 &lt;&lt; '\n';
+    }
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force #소수 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

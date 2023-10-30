@@ -1,0 +1,128 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2565. 전깃줄</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2565. 전깃줄</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-03-12 20:01:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/2565" target="_blank" rel="noopener">www.acmicpc.net/problem/2565</a></p>
+<figure id="og_1615546131271" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="2565번: 전깃줄" data-og-description="첫째 줄에는 두 전봇대 사이의 전깃줄의 개수가 주어진다. 전깃줄의 개수는 100 이하의 자연수이다. 둘째 줄부터 한 줄에 하나씩 전깃줄이 A전봇대와 연결되는 위치의 번호와 B전봇대와 연결되는" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2565" data-og-url="https://www.acmicpc.net/problem/2565" data-og-image="https://scrap.kakaocdn.net/dn/BhDvC/hyJw3lrP6q/7d4Ydj92iCmKioCfZKvhqk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2565" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2565">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/BhDvC/hyJw3lrP6q/7d4Ydj92iCmKioCfZKvhqk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">2565번: 전깃줄</p>
+<p class="og-desc">첫째 줄에는 두 전봇대 사이의 전깃줄의 개수가 주어진다. 전깃줄의 개수는 100 이하의 자연수이다. 둘째 줄부터 한 줄에 하나씩 전깃줄이 A전봇대와 연결되는 위치의 번호와 B전봇대와 연결되는</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>가장 긴 증가하는 부분수열(LIS) : <a href="https://tose33.tistory.com/18" target="_blank" rel="noopener">tose33.tistory.com/18</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>좌측 전봇대를 기준으로 우선 정렬한다.</p>
+<p><figure class="imageblock alignCenter" data-filename="SmartSelect_20210312-194951_Samsung Notes.jpg" data-origin-width="1271" data-origin-height="229" width="566" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.jpg" data-filename="SmartSelect_20210312-194951_Samsung Notes.jpg" data-origin-width="1271" data-origin-height="229" width="566" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>&nbsp;</p>
+<p>좌측 전봇대를 기준으로 정렬되있기 때문에,&nbsp;</p>
+<p>right의 수가 이전의 right의 수보다 감소하면, 전깃줄이 겹친다고 볼수 있다.</p>
+<p>&nbsp;</p>
+<p>예를들어,&nbsp;</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-filename="SmartSelect_20210312-195505_Samsung Notes.jpg" data-origin-width="721" data-origin-height="244" width="269" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.jpg" data-filename="SmartSelect_20210312-195505_Samsung Notes.jpg" data-origin-width="721" data-origin-height="244" width="269" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>이 상황만 보자.</p>
+<p>그림으로 그리면</p>
+<p><figure class="imageblock alignLeft" data-filename="SmartSelect_20210312-195522_Samsung Notes.jpg" data-origin-width="605" data-origin-height="465" width="297" height="NaN" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.jpg" data-filename="SmartSelect_20210312-195522_Samsung Notes.jpg" data-origin-width="605" data-origin-height="465" width="297" height="NaN" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>우측 전봇대가 : 2 9 1 이다.&nbsp;</p>
+<p>2-2. 3-9 까지는 안겹치는데 4-1이 겹친다.</p>
+<p>1이 9보다 작기 때문이다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>따라서 전봇대의 줄을 안겹치게 놓을수 있는 최대수를 구하려면</p>
+<p><b>1. 좌측 전봇대를 정렬한다</b></p>
+<p><b>2. 우측 전봇대의 LIS (가장 긴 증가하는 부분 수열) 을 구하면된다.</b></p>
+<p>&nbsp;</p>
+<p>전깃줄이 교차하지 않기위해 없에야 하는 전깃줄의 최소 개수는,&nbsp;</p>
+<p>총 전깃줄의 개수 - 전봇대의 줄을 안겹치게 놓을수 있는 최대수&nbsp;</p>
+<p>&nbsp;</p>
+<pre id="code_1615546784023" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    vector&lt;vector&lt;int&gt;&gt; v(n);
+    for(int i = 0; i &lt; n; i++) {
+        int num1;
+        cin &gt;&gt; num1;
+        v[i].push_back(num1);
+        int num2;
+        cin &gt;&gt; num2;
+        v[i].push_back(num2);
+    }
+
+    sort(v.begin(), v.end()); // 좌측 전봇대 기준 렬
+
+    int lis[101] = {0}; // 오른쪽 전봇대의 LIS 저장
+    lis[0] = 1; // LIS의 첫 요소는 항상 1
+    for(int i = 1; i &lt; n; i++) {
+        int max = 0;
+        for(int j = 0; j &lt; i; j++) {
+            if(v[j][1] &lt; v[i][1]) {
+                if(lis[j] &gt; max) max = lis[j];
+            }
+        }
+        lis[i] = max + 1;
+    }
+
+
+    cout &lt;&lt; n - *max_element(lis, lis+n);
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

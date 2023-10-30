@@ -1,0 +1,73 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2212. 센서</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2212. 센서</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-31 15:25:39</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2212" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2212</a></p>
+<figure id="og_1630390803430" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2212번: 센서" data-og-description="첫째 줄에 센서의 개수 N(1 &le; N &le; 10,000), 둘째 줄에 집중국의 개수 K(1 &le; K &le; 1000)가 주어진다. 셋째 줄에는 N개의 센서의 좌표가 한 개의 정수로 N개 주어진다. 각 좌표 사이에는 빈 칸이 하나&nbsp;있" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2212" data-og-url="https://www.acmicpc.net/problem/2212" data-og-image="https://scrap.kakaocdn.net/dn/b6QdZZ/hyLskKyIkZ/6pdMKmBF2k5Fx7n7iHOP5k/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2212" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2212">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/b6QdZZ/hyLskKyIkZ/6pdMKmBF2k5Fx7n7iHOP5k/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2212번: 센서</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 센서의 개수 N(1 &le; N &le; 10,000), 둘째 줄에 집중국의 개수 K(1 &le; K &le; 1000)가 주어진다. 셋째 줄에는 N개의 센서의 좌표가 한 개의 정수로 N개 주어진다. 각 좌표 사이에는 빈 칸이 하나&nbsp;있</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">13164. 행복 유치원이랑 거의 같은 문제였다. (<a href="https://tose33.tistory.com/334" target="_blank" rel="noopener">https://tose33.tistory.com/334</a>)&nbsp;&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 센서들을 정렬한후</p>
+<p data-ke-size="size16">각 센서들간의 거리를 구한다.</p>
+<p data-ke-size="size16">그리고 각 센서들을 k개의 집중국으로 묶어야 하는데,&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">각 집중국의 수신 가능영역의 거리의 합의 최솟값이 되도록 하려면 센서간의 거리가 큰 값이 경계가 되도록 하면된다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">예제에서 각 센서의 위치가 다음과 같다고 k=2라면&nbsp;</span><span style="color: #555555;"></span></p>
+<p data-ke-size="size16"><b><span style="color: #555555;">1 3 6 6 7 8 9</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">각 센서간의 거리는 다음과 같다</span></p>
+<p data-ke-size="size16"><b><span style="color: #555555;">2 3 0 1 1</span><span style="color: #555555;"> 1</span></b><span style="color: #555555;"></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">k=2이므로 두개의 집중국으로 묶을것이다.</p>
+<p data-ke-size="size16">따라서 k-1인 1개의 경계를 찾아야하고 가장 큰 거리인 3을 경계로한다.</p>
+<p data-ke-size="size16">거리 3은 센서 3,6간의 거리다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 (1,3) (6,6,7,8,9)를 묶는다.</p>
+<p data-ke-size="size16">답을 구할때는 그냥 최대거리인 3을 뺴고 나머지 거리들을 더하면된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/cef80ab0df1dda10d6046129d038d68f.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

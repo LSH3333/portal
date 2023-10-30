@@ -1,0 +1,150 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch05. 컴포넌트 스캔</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch05. 컴포넌트 스캔</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-06-24 17:27:06</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b>컴포넌트 스캔</b>은 스프링이 직접 클래스를 검색(스캔)해서 빈으로 등록해주는 기능이다.&nbsp;</p>
+<p data-ke-size="size16">스프링이 직접 빈으로 등록해주므로 컴포넌트 스캔을 사용하면 <b>설정 클래스의 코드가 크게 줄어든다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>@Component 애노테이션으로 스캔 대상 클래스 등록</b></h2>
+<p data-ke-size="size16">컴포넌트 스캔은 클래스에 <b>@Component</b> 애노테이션을 붙여서 해당 클래스가 스캔 대상임을 알린다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>@Component("abc") 처럼 애노테이션에 값을 주면</b>, 스캔 후 빈으로 등록할때 해당 값으로 빈 이름이 등록 된다.</p>
+<p data-ke-size="size16"><b>@Component</b> 처럼 <b>값을 주지 않으면,&nbsp;</b>해당 클래스의 첫 문자를 소문자로 바꾼 이름을 빈 이름으로 등록한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>@ComponentScan 애노테이션으로 설정 클래스가 스캔하도록함</b></h2>
+<p data-ke-size="size16">설정 클래스가 @Component 가 붙은 클래스를 스캔하도록 하려면, 설정 클래스에 @ComponentScan 애노테이션을 붙여줘야 한다.</p>
+<pre class="java"><code>@Configuration
+@ComponentScan(basePackages = {"spring"}) // 스캔 대상 페키지 = spring
+public class AppCtx
+{
+    @Bean
+    @Qualifier("printer")
+    public MemberPrinter memberPrinter1()
+    {
+        return new MemberPrinter();
+    }
+
+    @Bean
+    @Qualifier("summaryPrinter")
+    public MemberSummaryPrinter memberPrinter2()
+    {
+        return new MemberSummaryPrinter();
+    }
+
+    @Bean
+    public VersionPrinter versionPrinter()
+    {
+        VersionPrinter versionPrinter = new VersionPrinter();
+        versionPrinter.setMajorVersion(5);
+        versionPrinter.setMinorVersion(0);
+        return versionPrinter;
+    }
+}</code></pre>
+<p data-ke-size="size16"><b>@ComponentScan(basePackages = {"spring"})</b>&nbsp; 의 의미는 "spring" 패키지와 그 하위 패키지가 스캔 대상이라는 뜻이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>즉 spring 패키지와 그 하위 패키지의 클래스 중 @Component 애노테이션이 붙은 클래스의 객체를 생성해서 빈으로 등록한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>스캔 대상에서 제외하기</b></h2>
+<p data-ke-size="size16">@ComponentScan 의 <b>excludeFilters</b> 속성을 사용해 스캔 시 제외할 대상을 설정할수 있다.&nbsp;</p>
+<pre class="less"><code>@ComponentScan(basePackages = {"spring"}, 
+        excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "spring\\..*Dao"))</code></pre>
+<p data-ke-size="size16"><b>type 속성</b>은 ANNOTATION, REGEX 등이 있는데 REGEX는 정규표현식을 사용해 제외 대상을 지정한다는 것을 의미한다.</p>
+<p data-ke-size="size16"><b>pattern 속성</b>은 type에 적용할 값을 선택한다. 여기서는 타입이 REGEX 였으므로 정규표현식이 전달된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>컴포넌트 스캔에 따른 충돌</b></h2>
+<h4 data-ke-size="size20"><b>1. 빈 이름 충돌</b></h4>
+<p data-ke-size="size16">스캔 후 등록하려는 빈 이름이 같은 경우이다.&nbsp;</p>
+<p data-ke-size="size16">spring 패키지에 Apple라는 클래스가 있다 = <b>spring.Apple</b></p>
+<p data-ke-size="size16">spring2 패키지에 Apple라는 클래스가 있다 = <b>spring2.Apple&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리고 ComponentScan 속성을 다음과 같이 줬다.</p>
+<p data-ke-size="size16"><b>@ComponentScan(basePackage = {"spring", "spring2"})</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그러면 스프링은 spring과 spring2 패키지를 스캔해서 <b>spring 패키지의 Apple을 apple로 빈 등록</b>하고 (값을 주지 않으면 클래스의 첫 글자 소문자로 변경후 빈 등록), <b>spring2 패키지의 Apple을 마찬가지로 apple로 빈 등록</b>한다.</p>
+<p data-ke-size="size16">따라서 빈 이름 충돌이 일어난다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이럴때는 하나를 명시적으로 빈 이름을 지정해줘야 한다.</p>
+<p data-ke-size="size16">= @Component("apple2")&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>2. 수동 등록한 빈과 충돌</b></h4>
+<p data-ke-size="size16"><b>2-1. 두 이름이 같은 경우</b></p>
+<p data-ke-size="size16">@Component 애노테이션은 값을 지정해주지 않으면 해당 클래스의 첫 문자를 소문자로 변경 후 빈으로 등록한다.</p>
+<p data-ke-size="size16">만약 클래스에 <b>@Component 애노테이션으로 자동 스캔 후 빈 등록</b> 하도록 하고,&nbsp;</p>
+<p data-ke-size="size16"><b>설정 클래스에서 수동으로 빈 등록</b>을 해주면 <b>수동 등록한 빈을 우선한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="angelscript"><code>@Component
+public class MemberDao
+{</code></pre>
+<p data-ke-size="size16">MemberDao 클래스는 memberDao 라는 이름으로 빈이 등록된다.</p>
+<p data-ke-size="size16">그런데 설정 파일에서 아래와 같이 수동으로 memberDao라는 이름으로 또 등록해줬다.</p>
+<pre class="aspectj"><code>@Bean 
+public MemberDao memberDao()
+{
+    ...
+}</code></pre>
+<p data-ke-size="size16">이런 경우에는 수동 등록한 빈을 우선시해, <b>MemberDao 타입의 빈은 memberDao 하나만 존재한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>=&gt; 두 이름이 같으면 하나만 등록됨&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2-2. 두 이름이 다른 경우</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">MemberDao 클래스:</p>
+<pre class="angelscript"><code>@Component
+public class MemberDao
+{</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">설정 클래스:</p>
+<pre class="aspectj"><code>@Bean 
+public MemberDao memberDao2()
+{
+    ...
+}</code></pre>
+<p data-ke-size="size16">이렇게 되면 클래스 스캔 후 <b>memberDao 라는 이름의 빈이 하나 등록되고</b>,</p>
+<p data-ke-size="size16">설정 클래스에서 수동으로 등록된<b> memberDao2 라는 이름의 빈이 또 하나 등록된다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>=&gt; 두 이름이 다르면 둘 다 등록됨&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

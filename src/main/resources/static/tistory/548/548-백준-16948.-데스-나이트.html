@@ -1,0 +1,60 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 16948. 데스 나이트</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 16948. 데스 나이트</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-02-28 16:45:36</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/16948" target="_blank" rel="noopener">https://www.acmicpc.net/problem/16948</a></p>
+<figure id="og_1646034208899" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="16948번: 데스 나이트" data-og-description="게임을 좋아하는 큐브러버는 체스에서 사용할 새로운 말 &quot;데스 나이트&quot;를 만들었다. 데스 나이트가 있는 곳이 (r, c)라면,&nbsp;(r-2, c-1), (r-2, c+1), (r, c-2), (r, c+2), (r+2, c-1), (r+2, c+1)로 이동할 수 있다. 크" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/16948" data-og-url="https://www.acmicpc.net/problem/16948" data-og-image="https://scrap.kakaocdn.net/dn/bvXuKy/hyNxF8Qq6b/tTA5BkiVW9DuW2TTjujT11/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/16948" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/16948">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bvXuKy/hyNxF8Qq6b/tTA5BkiVW9DuW2TTjujT11/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">16948번: 데스 나이트</p>
+<p class="og-desc" data-ke-size="size16">게임을 좋아하는 큐브러버는 체스에서 사용할 새로운 말 "데스 나이트"를 만들었다. 데스 나이트가 있는 곳이 (r, c)라면,&nbsp;(r-2, c-1), (r-2, c+1), (r, c-2), (r, c+2), (r+2, c-1), (r+2, c+1)로 이동할 수 있다. 크</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">bfs로 모든 경우 탐색해보면 된다.&nbsp;</p>
+<p data-ke-size="size16">코드에서는 다음 위치가 r2,c2라면 cnt+1을 리턴하도록 했다.</p>
+<p data-ke-size="size16">이 문제 같은 경우 그렇게 많은 경우의 수가 있는게 아니기 때문에 상관은 없는데&nbsp;</p>
+<p data-ke-size="size16">엄청 많은 경우의 수가 생기는 문제의 경우에는, 최대한 큐에 값을 푸쉬하지 않고 끝낼수 있으면 좋은것 같다.</p>
+<p data-ke-size="size16">그렇지 않으면 메모리초과가 나는 경우가 생긴다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/935b03020819718983294ded9bc621cf.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,388 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap14. 최소 스패닝 트리, 크루스칼 알고리즘</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap14. 최소 스패닝 트리, 크루스칼 알고리즘</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-19 17:26:22</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">최소 스패닝 트리, 크루스칼 알고리즘에 대한 설명은 이미 쓴 글이 있으니 이로 대체한다.</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/485" target="_blank" rel="noopener">https://tose33.tistory.com/485</a></p>
+<figure id="og_1650356524086" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="최소 신장 트리(MST), 크루스칼 알고리즘 (kruskal)" data-og-description="학교에서 배웠었는데 알고리즘 문제에 필요해서 다시 한번 정리. Union-Find 알고리즘 : (https://tose33.tistory.com/614) - 크루스칼 알고리즘 최소의 비용으로 모든 노드를 연결하는 알고리즘 - 신장 트리 " data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/485" data-og-url="https://tose33.tistory.com/485" data-og-image="https://scrap.kakaocdn.net/dn/6t2DN/hyN5ygJZla/QkQ87jmx746DXvqhBFfUp0/img.png?width=586&amp;height=396&amp;face=0_0_586_396,https://scrap.kakaocdn.net/dn/cUsZ7e/hyN6RTe21C/jayCqakAoy2IJ97li1l401/img.png?width=586&amp;height=396&amp;face=0_0_586_396"><a href="https://tose33.tistory.com/485" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/485">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/6t2DN/hyN5ygJZla/QkQ87jmx746DXvqhBFfUp0/img.png?width=586&amp;height=396&amp;face=0_0_586_396,https://scrap.kakaocdn.net/dn/cUsZ7e/hyN6RTe21C/jayCqakAoy2IJ97li1l401/img.png?width=586&amp;height=396&amp;face=0_0_586_396');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">최소 신장 트리(MST), 크루스칼 알고리즘 (kruskal)</p>
+<p class="og-desc" data-ke-size="size16">학교에서 배웠었는데 알고리즘 문제에 필요해서 다시 한번 정리. Union-Find 알고리즘 : (https://tose33.tistory.com/614) - 크루스칼 알고리즘 최소의 비용으로 모든 노드를 연결하는 알고리즘 - 신장 트리</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>크루스칼 알고리즘의 흐름</b>은 다음과 같다</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>가중치를 기준으로 간선을 오름차순 정렬한다&nbsp;</li>
+<li>낮은 가중치의 간선부터 시작해서 하나씩 그래프에 추가한다&nbsp;</li>
+<li>사이클을 형성하는 간선은 추가하지 않는다&nbsp;</li>
+<li>간선의 갯수가 정점의 수보다 1개 적을때 MST는 완성된다. (MST에서 간선의 갯수는 정점의 갯수 보다 1개 적다)&nbsp;</li>
+</ul>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 이번에 알게된건 가중치를 기준으로 간선을 내림차순 하는 방식도 있다는 것이다.&nbsp;</p>
+<p data-ke-size="size16">오름차순 했을때 가중치가 작은 간선부터 하나씩 추가하는 방식이었다면, 내림차순 했을때는 반대로 그래프에서 가중치가 큰 간선을 1개씩 제거하는 방식이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>구현</b></h2>
+<p data-ke-size="size16">구현에는 연결리스트, 스택, 우선순위 큐의 기반이 되는 힙, 우선순위 큐의 파일들이 사용된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ALGraphKruskal.h</b></p>
+<pre class="cpp"><code>/*
+ * 인접 리스트 기반의 무방향 그래프 구현
+ */
+#ifndef CHAP14_ALGRAPH_ALGRAPH_H
+#define CHAP14_ALGRAPH_ALGRAPH_H
+
+#include "DLinkedList.h"
+#include "PriorityQueue.h"
+#include "ALEdge.h"
+
+// 정점의 이름 상수화
+enum {A, B, C, D, E, F, G, H, I, J};
+
+typedef struct _val
+{
+    int numV;
+    int numE;
+    List *adjList;
+    int *visitInfo; // 정점 방문 여부 기록
+    PQueue pqueue; // 간선 가중치 정보 저장
+} ALGraph;
+
+// 정점갯수 nv개의 그래프 생성
+void GraphInit(ALGraph *pg, int nv);
+void GraphDestroy(ALGraph *pg);
+void AddEdge(ALGraph *pg, int fromV, int toV, int weight);
+void ShowGraphEdgeInfo(ALGraph *pg);
+// startV 부터 정점 정보 출력 (DFS 기반)
+void DFSShowGraphVertex(ALGraph *pg, int startV);
+void ConKruskalMST(ALGraph *pg); // MST 구성
+void ShowGraphEdgeWeightInfo(ALGraph *pg); // 가중치 정보 출력
+
+
+#endif //CHAP14_ALGRAPH_ALGRAPH_H
+</code></pre>
+<p data-ke-size="size16"><b>ALGraphKruskal.c</b></p>
+<pre class="cpp"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+#include "DLinkedList.h"
+#include "ArrayBaseStack.h"
+#include "ALGraphKruskal.h"
+
+int WhoIsPrecede(int data1, int data2);
+// Priority Queue Cmp func
+int PQWeightComp(Edge d1, Edge d2)
+{
+    return d1.weight - d2.weight;
+}
+
+void GraphInit(ALGraph *pg, int nv)
+{
+    // 정점 갯수 nv개
+    pg-&gt;adjList = (List*)malloc(sizeof(List) * nv);
+    pg-&gt;numV = nv;
+    pg-&gt;numE = 0;
+
+    for(int i = 0; i &lt; nv; i++)
+    {
+        ListInit(&amp;(pg-&gt;adjList[i]));
+        SetSortRule(&amp;(pg-&gt;adjList[i]), WhoIsPrecede);
+    }
+
+    pg-&gt;visitInfo = (int*)malloc(sizeof(int) * pg-&gt;numV);
+    memset(pg-&gt;visitInfo, 0, sizeof(int)*pg-&gt;numV);
+    PQueueInit(&amp;(pg-&gt;pqueue), PQWeightComp);
+}
+
+void GraphDestroy(ALGraph *pg)
+{
+    if(pg-&gt;adjList != NULL)
+        free(pg-&gt;adjList);
+
+    if(pg-&gt;visitInfo != NULL)
+        free(pg-&gt;visitInfo);
+}
+
+void AddEdge(ALGraph *pg, int fromV, int toV, int weight)
+{
+    Edge edge = {fromV, toV, weight};
+
+    LInsert(&amp;(pg-&gt;adjList[fromV]), toV);
+    LInsert(&amp;(pg-&gt;adjList[toV]), fromV);
+    pg-&gt;numE += 1;
+
+    // 간선 가중치 정보 우선순위 큐에 저장
+    PEnqueue(&amp;(pg-&gt;pqueue), edge);
+}
+
+void ShowGraphEdgeInfo(ALGraph *pg)
+{
+    int i;
+    int vx;
+
+    for(i = 0; i &lt; pg-&gt;numV; i++)
+    {
+        printf("Vertex connected with %c: ", i+65);
+
+        if(LFirst(&amp;(pg-&gt;adjList[i]), &amp;vx))
+        {
+            printf("%c ", vx+65);
+            while(LNext(&amp;(pg-&gt;adjList[i]), &amp;vx))
+                printf("%c ", vx+65);
+        } printf("\n");
+    }
+}
+
+int WhoIsPrecede(int data1, int data2)
+{
+    if(data1 &lt; data2)
+        return 0;
+    else
+        return 1;
+}
+
+int VisitVertex(ALGraph *pg, int visitV)
+{
+    if(pg-&gt;visitInfo[visitV] == 0) // visitsV 정점에 아직 방문하지 않았다면
+    {
+        pg-&gt;visitInfo[visitV] = 1; // 방문 체크
+//        printf("%c ", visitV+65);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+void DFSShowGraphVertex(ALGraph *pg, int startV)
+{
+    Stack stack;
+    int visitV = startV;
+    int nextV;
+
+    StackInit(&amp;stack);
+    VisitVertex(pg, visitV); // 시작 정점 방문
+    SPush(&amp;stack, visitV); // 시작 정점 스택에 푸쉬
+
+    while(LFirst(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+    {
+        int visitFlag = FALSE;
+
+        // 현재 정점에서 방문할수 있는 다음 정점 찾음
+        if(VisitVertex(pg, nextV)) // 방문 성공
+        {
+            SPush(&amp;stack, visitV);
+            visitV = nextV;
+            visitFlag = TRUE;
+        }
+        else
+        {
+            while(LNext(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+            {
+                if(VisitVertex(pg, nextV)) // 방문 성공
+                {
+                    SPush(&amp;stack, visitV);
+                    visitV = nextV;
+                    visitFlag = TRUE;
+                    break;
+                }
+            }
+        }
+
+        // 방문 정점 없음
+        if(visitFlag == FALSE)
+        {
+            if(SIsEmpty(&amp;stack)) break;
+            else visitV = SPop(&amp;stack);
+        }
+    }
+    // 이후 탐색을 위해 방문기록 초기화
+    memset(pg-&gt;visitInfo, 0, sizeof(int) * pg-&gt;numV);
+}
+
+void RemoveWayEdge(ALGraph *pg, int fromV, int toV)
+{
+    int edge;
+
+    // adjList[fromV]에서 정점 toV 찾아서 제거
+    if(LFirst(&amp;(pg-&gt;adjList[fromV]), &amp;edge))
+    {
+        if(edge == toV)
+        {
+            LRemove(&amp;(pg-&gt;adjList[fromV]));
+            return;
+        }
+
+        while(LNext(&amp;(pg-&gt;adjList[fromV]), &amp;edge))
+        {
+            if(edge == toV)
+            {
+                LRemove(&amp;(pg-&gt;adjList[fromV]));
+                return;
+            }
+        }
+    }
+}
+
+// 그래프에서 간선 삭제
+void RemoveEdge(ALGraph *pg, int fromV, int toV)
+{
+    // 무방향 그래프이기 때문에 두개의 정보 지워야함
+    RemoveWayEdge(pg, fromV, toV);
+    RemoveWayEdge(pg, toV, fromV);
+    (pg-&gt;numE)--;
+}
+
+// 간선 정보 회복
+void RecoverEdge(ALGraph *pg, int fromV, int toV, int weight)
+{
+    LInsert(&amp;(pg-&gt;adjList[fromV]), toV);
+    LInsert(&amp;(pg-&gt;adjList[toV]), fromV);
+    (pg-&gt;numE)++;
+}
+
+
+// 두 정점이 연결되어 있는 상태인지 확인
+int IsConnVertex(ALGraph *pg, int v1, int v2)
+{
+    Stack stack;
+    int visitV = v1;
+    int nextV;
+
+    StackInit(&amp;stack);
+    VisitVertex(pg, visitV);
+    SPush(&amp;stack, visitV);
+
+
+
+    while(LFirst(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+    {
+        int visitFlag = FALSE;
+
+        // DFS 방식으로 정점 탐색하다가 v2 정점에 도착한다면, v1과 v2는 연결된 상태
+        if(nextV == v2)
+        {
+            memset(pg-&gt;visitInfo, 0, sizeof(int)*pg-&gt;numV);
+            return TRUE; // v1,v2는 연결된 상태
+        }
+
+        if(VisitVertex(pg, nextV))
+        {
+            SPush(&amp;stack, visitV);
+            visitV = nextV;
+            visitFlag = TRUE;
+        }
+        else
+        {
+            while(LNext(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+            {
+                if(nextV == v2)
+                {
+                    memset(pg-&gt;visitInfo, 0, sizeof(int)*pg-&gt;numV);
+                    return TRUE; // v1,v2는 연결된 상태
+                }
+
+                if(VisitVertex(pg, nextV))
+                {
+                    SPush(&amp;stack, visitV);
+                    visitV = nextV;
+                    visitFlag = TRUE;
+                    break;
+                }
+            }
+        }
+
+        if(!visitFlag)
+        {
+            if(SIsEmpty(&amp;stack)) break;
+            else visitV = SPop(&amp;stack);
+        }
+    }
+    // 이후 탐색을 위해 방문기록 초기화
+    memset(pg-&gt;visitInfo, 0, sizeof(int) * pg-&gt;numV);
+    return FALSE;
+}
+
+// 크루스칼 알고리즘 기반 MST 구성
+void ConKruskalMST(ALGraph *pg)
+{
+    Edge recvEdge[20]; // 복원할 간선 정보 저장
+    Edge edge;
+    int eidx = 0;
+    int i;
+
+    // MST의 간선의수 + 1 = 정점의수 이므로
+    while(pg-&gt;numE+1 &gt; pg-&gt;numV)
+    {
+        // 가중치 가장 큰 간선부터 제거
+        edge = PDequeue(&amp;(pg-&gt;pqueue));
+        RemoveEdge(pg, edge.v1, edge.v2);
+
+        // 간선 제거한 이후에 두 정점을 연결하는 간선이 없다면
+        if(!IsConnVertex(pg, edge.v1, edge.v2))
+        {
+            // 제거한 간선 복원
+            RecoverEdge(pg, edge.v1, edge.v2, edge.weight);
+            // 큐에서 다시 뺴지않도록 따로 보관
+            recvEdge[eidx++] = edge;
+        }
+    }
+
+    // PQ에서 삭제된 간선 정보 회복
+    for(i = 0; i &lt; eidx; i++)
+        PEnqueue(&amp;(pg-&gt;pqueue), recvEdge[i]);
+}
+
+void ShowGraphEdgeWeightInfo(ALGraph *pg)
+{
+    PQueue copyPQ = pg-&gt;pqueue;
+    Edge edge;
+
+    while(!PQIsEmpty(&amp;copyPQ))
+    {
+        edge = PDequeue(&amp;copyPQ);
+        printf("(%c-%c), w:%d \n", edge.v1+65, edge.v2+65, edge.weight);
+    }
+}
+
+
+
+</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C #크루스칼 #최소 비용 신장 트리 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

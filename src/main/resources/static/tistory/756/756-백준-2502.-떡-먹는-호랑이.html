@@ -1,0 +1,73 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2502. 떡 먹는 호랑이</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2502. 떡 먹는 호랑이</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-07-04 14:09:57</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2502" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2502</a></p>
+<figure id="og_1656911145039" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2502번: 떡 먹는 호랑이" data-og-description="첫줄에 첫 날에 준 떡의 개수 A를 출력하고 그 다음 둘째 줄에는 둘째 날에 준 떡의 개수 B를 출력한다. 이 문제에서 주어진 D, K에 대해서는 항상 정수 A, B (1&le; A &le; B)가 존재한다.&nbsp;" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2502" data-og-url="https://www.acmicpc.net/problem/2502" data-og-image="https://scrap.kakaocdn.net/dn/xOcNk/hyOYnyEXJE/KsK5XYuM380Io7PeQZAnBK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/2502" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2502">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/xOcNk/hyOYnyEXJE/KsK5XYuM380Io7PeQZAnBK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2502번: 떡 먹는 호랑이</p>
+<p class="og-desc" data-ke-size="size16">첫줄에 첫 날에 준 떡의 개수 A를 출력하고 그 다음 둘째 줄에는 둘째 날에 준 떡의 개수 B를 출력한다. 이 문제에서 주어진 D, K에 대해서는 항상 정수 A, B (1&le; A &le; B)가 존재한다.&nbsp;</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">dp와 브루트포스를 쓴 문제.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">마지막날인 D번째 날에 할머니가 호랑이에게 준 떡의 수 K가 주어진다.&nbsp;</p>
+<p data-ke-size="size16">그리고 우리는 첫째날과 둘째날에 할머니가 준 떡의 수를 구해야 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">호랑이는 피보나치 수열처럼 떡을 먹기 때문에 첫 번째날 준 떡의 수를 A 두 번째날 준 떡의 수를 B라고 하면 A와 B로 D번째 날 준 떡의 수를 표현할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1 번째 날 : A</b></p>
+<p data-ke-size="size16"><b>2 번째 날 : B</b></p>
+<p data-ke-size="size16"><b>3 번째 날 : A+B</b></p>
+<p data-ke-size="size16"><b>4 번째 날 : A + 2B</b></p>
+<p data-ke-size="size16"><b>5 번째 날 : 2A + 3B&nbsp;</b></p>
+<p data-ke-size="size16"><b>6 번째 날 : 3A + 5B&nbsp;</b></p>
+<p data-ke-size="size16"><b>...</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">구하는건 dp로 피보나치 수열의 값 구하듯이 구하면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 D번째 날을 A와 B로 표현하고 나면, 나머지는 브루트포스 방식으로 A에 값일 1부터 넣어보고, 그에 따른 B가 성립되면 답이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/ae5808a8c1acd46ef4ff5f8586509f34.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Brute Force #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

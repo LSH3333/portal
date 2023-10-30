@@ -1,0 +1,314 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) Chapter 15. 예외처리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) Chapter 15. 예외처리</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-28 12:50:21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>try catch throw&nbsp;</b></h2>
+<p data-ke-size="size16">- if 문이 아닌 예외처리문으로 예외처리 하는 이유는 if 문으로 예외처리시 예외처리를 위한 코드와 프로그램의 흐름을 구성하는 코드를 쉽게 구분하기 어렵기 때문이다. 즉 예외처리문만 봐도 이 코드는 예외처리를 위한 코드인것을 판단하기 쉬워진다. (if문은 예외처리 이외에도 많이 쓰이기 때문)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>try : 예외 발견&nbsp;</b></p>
+<p data-ke-size="size16">try문 안에서 if문으로 예외처리를 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>throw: 예외 발생 알림 (던짐)&nbsp;</b></p>
+<p data-ke-size="size16">예외가 되는 변수 혹은 객체를 throw 한다.&nbsp;</p>
+<p data-ke-size="size16">이렇게 throw한 변수 혹은 객체를 catch 문이 받게된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>catch: 예외를 잡는다&nbsp;</b></p>
+<p data-ke-size="size16">전달받은 예외를 처리한다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 예외가 발생하면 (throw절이 실행되면) 프로그램의 흐름이 중지되고, catch 블록에 의해 예외 처리과정을 거친다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main()
+{
+    int num1, num2;
+    cout &lt;&lt; "enter two numbers: ";
+    cin &gt;&gt; num1 &gt;&gt; num2;
+
+    try
+    {
+        if(num2 == 0) throw num2;
+        cout &lt;&lt; "니눗셈의 몫: " &lt;&lt; num1 / num2 &lt;&lt; endl;
+        cout &lt;&lt; "나눗셈의 나머지: " &lt;&lt; num1 % num2 &lt;&lt; endl;
+    }
+    catch(int expn)
+    {
+        cout &lt;&lt; "제수는 " &lt;&lt; expn &lt;&lt; "이 될 수 없습니다" &lt;&lt; endl;
+    }
+    cout &lt;&lt; "end of main" &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">- 예외가 발생하지 않는다면 13, 14 줄이 실행되고, 예외가 발생한다면 13,14줄은 실행되지 않고 catch 문으로 넘어간다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- try 블록 내에서 예외가 발생하면 catch 블록이 실행되고 나서, 예외가 발생한 지점 이후를 실행하는 것이 아닌 catch 블록의 이후가 실행된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>예외가 발생했는데 try~catch문으로 처리하지 않을 경우&nbsp;</b></h2>
+<p data-ke-size="size16">만약 함수 내에서 throw 절에 의해 예외가 발생했는데 try~catch문으로 처리하지 않으면 <b>발생한 예외는 해당 함수를 호출한 영역으로 전달</b>되고, 예외 처리에 대한 책임도 해당 영역으로 전달된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+// string to integer
+int StoI(char *str)
+{
+    int len = strlen(str);
+    int num = 0;
+    for(int i = 0; i &lt; len; i++)
+    {
+        if(str[i] &lt; '0' || str[i] &gt; '9')
+            throw str[i];
+        num += (int)(pow((double)10, (len-1)-i) * (str[i]+(7-'7')));
+    }
+    return num;
+}
+
+int main()
+{
+    char str1[100];
+    char str2[200];
+
+    while(true)
+    {
+        cout &lt;&lt; "두 개의 숫자 입력 ";
+        cin &gt;&gt; str1 &gt;&gt; str2;
+
+        try
+        {
+            // StoI 함수에서 throw절에 의해 예외 발생시 이 영역으로 예외가 옮겨지고 처리됨
+            int res = StoI(str1) + StoI(str2);
+            cout &lt;&lt; str1 &lt;&lt; " + " &lt;&lt; str2 &lt;&lt; " = " &lt;&lt; res &lt;&lt; endl;
+            // 예외가 발생하지 않으면 break
+            break;
+        }
+        // 예외가 발생했다면 catch문 실행
+        catch(char c)
+        {
+            cout &lt;&lt; "문자 " &lt;&lt; c &lt;&lt; "가 입력되었습니다" &lt;&lt; endl;
+            cout &lt;&lt; "재입력 진행합니다" &lt;&lt; endl &lt;&lt; endl;
+        }
+    }
+    cout &lt;&lt; "end of program" &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Stoi 함수내의 throw절에서 예외가 발생하면 해당 함수내에 try~catch 문이 없기 때문에<b> 함수가 호출된 영역으로 예외 데이터와 예외 처리의 책임이 옮겨진다.&nbsp;</b></p>
+<p data-ke-size="size16">예외가 발생하지 않으면 36줄의 break문에 의해 while 문을 빠져나가고, 예외가 발생하면 catch 문이 실행되 재입력을 진행한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또한 이렇게 함수내의 throw 문에 의하여 예외 데이터를 전달하면, <b>return문 처럼 해당 함수는 더이상 실행되지 않고 종료된다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>Stack Unwinding (스택풀기)</b></h2>
+<p data-ke-size="size16">위 처럼 예외가 발생했는데 예외를 처리하지 않아서 함수를 호출한 영역으로 예외 데이터가 전달되는것을 Stack Unwinding이라고 부른다. 왜 Stack Unwinding (스택 풀기)일까?</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">함수 내에서 예외가 발생했는데 예외 처리할 try~catch문이 없으면 throw절은 함수가 호출된 영역으로 예외 데이터를 전달한다고 하였다.</p>
+<p data-ke-size="size16">또한 이 경우 return문과 동일하게 해당 함수는 더이상 실행되지 않고 종료된다고 하였다.&nbsp;</p>
+<p data-ke-size="size16">따라서<b> 함수가 종료되었으므로 해당 함수의 스택은 반환된다</b>. (함수 실행시 함수는 스택영역에 쌓인다)</p>
+<p data-ke-size="size16">따라서 예외 데이터의 전달을 Stack Unwinding 이라고 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">만약 함수에 예외 처리부분이 없어 예외 데이터가 메인함수에 전달되었는데, 메인함수에도 예외 처리를 하는 try~catch문이 없다면 <b>terminate (프로그램을 종료시키는 함수) 함수가 호출되 프로그램이 종료된다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption>1) exception이 throw됐는데 catch하지 않으면 해당 terminate 함수가 호출됨</figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>하나의 try 블록과 다수의 catch 블록&nbsp;</b></h2>
+<p data-ke-size="size16">하나의 try 블록내에서 여러가지 예외 상황이 발생할수 있다. (여러가지 자료형이 throw 될수 있다).</p>
+<p data-ke-size="size16">이런 경우 try 블록 뒤의 catch 블록을 여러개 정의 할 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="c++ arduino" data-ke-language="c++"><code>#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+// string to integer
+int StoI(char *str)
+{
+    int len = strlen(str);
+    int num = 0;
+    
+    // int형 throw 
+    if(len != 0 &amp;&amp; str[0] == '0') throw 0;
+    
+    for(int i = 0; i &lt; len; i++)
+    {
+        // char 형 throw 
+        if(str[i] &lt; '0' || str[i] &gt; '9') throw str[i];         
+        num += (int)(pow((double)10, (len-1)-i) * (str[i]+(7-'7')));
+    }
+    return num;
+}
+
+int main()
+{
+    char str1[100];
+    char str2[200];
+
+    while(true)
+    {
+        cout &lt;&lt; "두 개의 숫자 입력 ";
+        cin &gt;&gt; str1 &gt;&gt; str2;
+
+        try
+        {
+            int res = StoI(str1) + StoI(str2);
+            cout &lt;&lt; str1 &lt;&lt; " + " &lt;&lt; str2 &lt;&lt; " = " &lt;&lt; res &lt;&lt; endl;
+            break;
+        }
+        // char형 catch 
+        catch(char c)
+        {
+            cout &lt;&lt; "문자 " &lt;&lt; c &lt;&lt; "가 입력되었습니다" &lt;&lt; endl;
+            cout &lt;&lt; "재입력 진행합니다" &lt;&lt; endl &lt;&lt; endl;
+        }
+        // int형 catch 
+        catch(int expn)
+        {
+            if(expn == 0) cout &lt;&lt; "0으로 시작되는 숫자는 입력불가" &lt;&lt; endl;
+            else cout &lt;&lt; "비정상적 입력이 이루어졌습니다" &lt;&lt; endl;
+            
+            cout &lt;&lt; "재입력 진행" &lt;&lt; endl; 
+        }
+    }
+    cout &lt;&lt; "end of program" &lt;&lt; endl;
+}</code></pre>
+<p data-ke-size="size16">41,47 줄을 보면 각각 char형, int형을 catch해서 예외 처리하고 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>예외 클래스, 상속 관계에 있는 예외 클래스&nbsp;</b></h2>
+<p data-ke-size="size16">클래스의 객체도 예외 데이터가 될수 있고, 예외 객체 생성을 위해 정의된 클래스를 <b>예외 클래스</b>라고 부른다.</p>
+<p data-ke-size="size16">또한 예외 클래스도 상속 관계를 구성할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+class AccountException
+{
+public:
+    virtual void ShowExceptionReason() = 0; // 순수 가상 함수
+};
+
+// 입금 예외, AccountException 클래스 상속함
+class DepositException : public AccountException
+{
+private:
+    int reqDep;
+public:
+    DepositException(int money) : reqDep(money) {}
+    void ShowExceptionReason() override
+    {
+        cout &lt;&lt; "[에외 메시지: " &lt;&lt; reqDep &lt;&lt; "는 입금불가]" &lt;&lt; endl;
+    }
+};
+
+
+// 출금 예외, AccountException 클래스 상속함
+class WithdrawException : public AccountException
+{
+private:
+    int balance;
+public:
+    WithdrawException(int money) : balance(money) {}
+    void ShowExceptionReason()
+    {
+        cout &lt;&lt; "[에외 메시지: 잔액 " &lt;&lt; balance &lt;&lt; " 잔액부족]" &lt;&lt; endl;
+    }
+};
+
+class Account
+{
+private:
+    char accNum[50];
+    int balance;
+public:
+    Account(char *acc, int money) : balance(money)
+    {
+        strcpy(accNum, acc);
+    }
+
+    // AccountException형 객체 throw 한다
+    // DepositException 클래스는 AccountException 클래스를 상속받았기에 가능
+    void Deposit(int money) throw (AccountException)
+    {
+        if(money &lt; 0)
+        {
+            // 예외객체는 c++의 예외처리 메커니즘에 의해 처리되기 때문에 코드상에서 이를 직접 참조할 필요 없음
+            // 따라서 예외 객체는 보통 임시객체로 생성한다.
+            throw DepositException(money);
+        }
+        balance += money;
+    }
+    // 마찬가지로 AccountException형 객체 throw
+    void Withdraw(int money) throw (AccountException)
+    {
+        if(money &gt; balance)
+            throw WithdrawException(balance);
+        balance -= money;
+    }
+
+    void ShowMyMoney()
+    {
+        cout &lt;&lt; "잔고: " &lt;&lt; balance &lt;&lt; endl &lt;&lt; endl;
+    }
+};
+
+int main()
+{
+    Account myAcc("123-123", 5000);
+
+    try
+    {
+        myAcc.Deposit(2000);
+        myAcc.Deposit(-300);
+    }
+    // 여기서 실제 전달되는 예외객체는 DepositException 혹은 WithdrawException 이지만
+    // 해당 클래스는 AccountException 클래스를 상속받았기 때문에 이와 같이 표현 가능하다
+    catch (AccountException &amp;expn)
+    {
+        expn.ShowExceptionReason();
+    }
+
+    myAcc.ShowMyMoney();
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

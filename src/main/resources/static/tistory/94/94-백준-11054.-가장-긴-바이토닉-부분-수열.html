@@ -1,0 +1,100 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 11054. 가장 긴 바이토닉 부분 수열</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 11054. 가장 긴 바이토닉 부분 수열</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-03-02 20:49:39</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>다시 푼 문제.</p>
+<p><a href="https://www.acmicpc.net/problem/11054" target="_blank" rel="noopener">www.acmicpc.net/problem/11054</a></p>
+<figure id="og_1614685729308" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="11054번: 가장 긴 바이토닉 부분 수열" data-og-description="첫째 줄에 수열 A의 크기 N이 주어지고, 둘째 줄에는 수열 A를 이루고 있는 Ai가 주어진다. (1 &le; N &le; 1,000, 1 &le; Ai &le; 1,000)" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/11054" data-og-url="https://www.acmicpc.net/problem/11054" data-og-image="https://scrap.kakaocdn.net/dn/btkdPU/hyJsnvExio/KkFKfMjmkeCqvqwCmTQ2wK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/11054" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/11054">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/btkdPU/hyJsnvExio/KkFKfMjmkeCqvqwCmTQ2wK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">11054번: 가장 긴 바이토닉 부분 수열</p>
+<p class="og-desc">첫째 줄에 수열 A의 크기 N이 주어지고, 둘째 줄에는 수열 A를 이루고 있는 Ai가 주어진다. (1 &le; N &le; 1,000, 1 &le; Ai &le; 1,000)</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>이전 글: <a href="https://tose33.tistory.com/20" target="_blank" rel="noopener">tose33.tistory.com/20</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<pre id="code_1614685768499" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+#include &lt;algorithm&gt;
+
+int a[1001];
+int up[1001];
+int down[1001];
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    for(int i = 1; i &lt;= n; i++) cin &gt;&gt; a[i];
+    up[1] = 1;
+    down[n] = 1;
+
+    // up
+    for(int i = 1; i &lt;= n; i++){
+        int memo = 0;
+        for(int j = 1; j &lt; i; j++) {
+            if(a[j] &lt; a[i] &amp;&amp; memo &lt; up[j]) {
+                memo = up[j];
+            }
+            up[i] = memo + 1;
+        }
+    }
+
+    // down
+    for(int i = n; i &gt;= 1; i--) {
+        int memo = 0;
+        for(int j = n; j &gt; i; j--) {
+            if(a[j] &lt; a[i] &amp;&amp; memo &lt; down[j]) {
+                memo = down[j];
+            }
+            down[i] = memo + 1;
+        }
+    }
+
+    int ans = 0;
+    for(int i = 1; i &lt;= n; i++) {
+        ans = max(ans, up[i] + down[i]);
+    }
+    cout &lt;&lt; ans-1;
+
+}</code></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

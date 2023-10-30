@@ -1,0 +1,136 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>프로그래머스. 리틀 프렌즈 사천성</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">프로그래머스. 리틀 프렌즈 사천성</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-12-17 15:44:43</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://programmers.co.kr/learn/courses/30/lessons/1836" target="_blank" rel="noopener">https://programmers.co.kr/learn/courses/30/lessons/1836</a></p>
+<figure id="og_1639722108882" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="코딩테스트 연습 - 리틀 프렌즈 사천성" data-og-description="리틀 프렌즈 사천성 언제나 맛있는 음식들이 가득한 평화로운 푸드 타운. 푸드 타운에서 행복하게 사는 리틀 프렌즈들은 마을에 있는 매직 스푼을 보물처럼 보관하고 있다. 매직 스푼은 재료만 " data-og-host="programmers.co.kr" data-og-source-url="https://programmers.co.kr/learn/courses/30/lessons/1836" data-og-url="https://programmers.co.kr/learn/courses/30/lessons/1836" data-og-image="https://scrap.kakaocdn.net/dn/PDkjL/hyMIXW0X4b/lg8nKDrAaUoF99pGP1aoc1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/H53zA/hyMIWw0Qs6/AFaW6R63TjzkNPKqTY0vh1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/bgRdYw/hyMJDCCJDh/OAGHiuc0QvMQK3HYL2mNTK/img.png?width=500&amp;height=441&amp;face=0_0_500_441"><a href="https://programmers.co.kr/learn/courses/30/lessons/1836" target="_blank" rel="noopener" data-source-url="https://programmers.co.kr/learn/courses/30/lessons/1836">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/PDkjL/hyMIXW0X4b/lg8nKDrAaUoF99pGP1aoc1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/H53zA/hyMIWw0Qs6/AFaW6R63TjzkNPKqTY0vh1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/bgRdYw/hyMJDCCJDh/OAGHiuc0QvMQK3HYL2mNTK/img.png?width=500&amp;height=441&amp;face=0_0_500_441');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">코딩테스트 연습 - 리틀 프렌즈 사천성</p>
+<p class="og-desc" data-ke-size="size16">리틀 프렌즈 사천성 언제나 맛있는 음식들이 가득한 평화로운 푸드 타운. 푸드 타운에서 행복하게 사는 리틀 프렌즈들은 마을에 있는 매직 스푼을 보물처럼 보관하고 있다. 매직 스푼은 재료만</p>
+<p class="og-host" data-ke-size="size16">programmers.co.kr</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">상당히 푸는데 오래 걸린 문제였다.</p>
+<p data-ke-size="size16">처음에 해가 여러가지인 경우 알파벳 순으로 먼저인 문자열 리턴하는것과 bfs 탐색을 한다는것은 금방 생각했고 구현했는데 틀렸다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">테스트케이스를 넣어보면서 틀린점을 발견했는데 bfs 탐색을 할때 보통의 bfs 알고리즘이라면</p>
+<p data-ke-size="size16">하나의 좌표에서 이동 가능한 모든 좌표로 동시에 이동하고 이동했음을 표시하고, 이동한 좌표는 다시 방문하지 않도록 한다.</p>
+<p data-ke-size="size16">여기서가 문제였는데 이 문제에서는 <b>만약 하나의 좌표에서 이동하고 이동한 곳을 방문표시하면 다른 좌표에서 그 좌표를 거쳐서 목적지에 도달할 가능성을 차단해버린다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 아래와 같이 먼저 이동하면&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="160" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2021-12-17 오후 3.36.31.png" width="160"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">아래처럼 한번 꺾어서 이동할수 있는 가능성이 차단된다.&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="180" >
+    <span data-lightbox="lightbox">
+        <img src="./img/스크린샷 2021-12-17 오후 3.36.44.png" width="180"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 문제점을 해결하고 제출했는데 이번에는 시간초과가 났다.</p>
+<p data-ke-size="size16">여기서 고민하다가 하루가 지났다..</p>
+<p data-ke-size="size16">결국 다른 분들 코드를 봤는데 시간초과과는 다음과 같이 해결했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">내 기존 코드는 큐에서 좌표를 뽑고, 다음 좌표를 계산해서 큐에 넣고, 다시 좌표를 뽑는 과정에서 예외 검사를 했다.</p>
+<p data-ke-size="size16">즉 일단 모든 다음 좌표를 큐에 모두 넣고 뽑을때 예외사항을 검사했는데,</p>
+<p data-ke-size="size16"><span style="font-family: -apple-system, BlinkMacSystemFont, AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, 돋움, sans-serif; letter-spacing: 0px;">먼저 예외검사를 하고 적합한 좌표만 큐에 넣도록 수정했다.&nbsp;&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또 이전 코드는 <b>방문여부를 확인하는 배열</b>을 bfs 탐색할때마다 초기화해줬는데,&nbsp;</p>
+<p data-ke-size="size16">방문여부 확인 배열이 필요가 없고, 그냥 다음 좌표가 이전 좌표로 돌아가는 경우만 아니면 된다.</p>
+<p data-ke-size="size16">여기서 방문여부 확인하는 배열의 유무 때문에 시간초과가 난 것 같다.&nbsp;&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/0960890de4bf1df33a2c6c2e3ea9406e.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16"><b>2022.01.07&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다시 풀어봤는데 또 틀림.</p>
+<p data-ke-size="size16">어디가 틀렸나 계속 찾아봤는데&nbsp;</p>
+<p data-ke-size="size16">while문 돌리면서 지워지는 문자를 answer에 추가하다가&nbsp;</p>
+<p data-ke-size="size16">모든 종류의 문자들이 answer에 추가됐다면 break해줘야함.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">틀린 코드:</p>
+<pre class="arduino"><code>while(true)
+{
+    bool possible = false;
+    for(int i = 0; i &lt; tmp.size(); i++)
+    {
+        if(mark[i]) continue;
+        if(bfs(map[tmp[i]].first, map[tmp[i]].second))
+        {
+            answer += tmp[i];
+            mark[i] = true;
+            possible = true;
+            break;
+        }
+    }
+    if(!possible) break;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">맞은 코드:</p>
+<pre class="arduino"><code>bool impos = false;
+vector&lt;bool&gt; mark(tmp.size(), false);
+while(true)
+{
+    bool possible = false;
+    for(int i = 0; i &lt; tmp.size(); i++)
+    {
+        if(mark[i]) continue;
+        if(bfs(map[tmp[i]].first, map[tmp[i]].second))
+        {
+            answer += tmp[i];
+            mark[i] = true;
+            possible = true;
+            break;
+        }
+    }
+    if(!possible) { impos = true; break; }
+    if(answer.size() == tmp.size()) {impos = false; break;}
+}
+
+if(impos) answer = "IMPOSSIBLE";
+return answer;</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>OnTriggerEnter가 작동 안될때 이유들</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">OnTriggerEnter가 작동 안될때 이유들</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-05-13 17:02:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size18">1. collider 내로 들어오는 오브젝트와 내 오브젝트 둘중 어느 오브젝트의 Collider도 isTrigger가 true가 아닐때.&nbsp;</p>
+<p data-ke-size="size18">즉 둘 중 하나는 isTrigger가 true 여야 한다.</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">2. 두 오브젝트 중 하나도 Rigidbody가 없을때.</p>
+<p data-ke-size="size18">OnTriggerEnter는 Rigidbody가 있어야 호출된다.</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">3. OnTriggerEnter와 OnTriggerEnter2D는 다르다.&nbsp;</p>
+<p data-ke-size="size18">Collider2D라면 OnTriggerEnter2D를 사용.</p>
+<p data-ke-size="size18">Collider라면 OnTriggerEnter 사용</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">4. Layers를 체크하자.</p>
+<p data-ke-size="size18">Edit - Project Settings - Physics 에서 레이어 체크!</p>
+<p data-ke-size="size18">Layer를 건든적이 없다면 유니티는 디폴트로 모든 레이어와 collider가 상호작용하도록 한다.</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

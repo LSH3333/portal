@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>2d에서 오브젝트를 특정 지점으로 이동시키기 (Vector2.MoveTowards )</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">2d에서 오브젝트를 특정 지점으로 이동시키기 (Vector2.MoveTowards )</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-04-16 22:33:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://docs.unity3d.com/kr/530/ScriptReference/Vector2.MoveTowards.html" target="_blank" rel="noopener">docs.unity3d.com/kr/530/ScriptReference/Vector2.MoveTowards.html</a></p>
+<figure id="og_1618579821687" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="Unity - 스크립팅 API: Vector2.MoveTowards" data-og-description="이것은 본질적 Vector2.Lerp와 동일합니다. 다만, speed가 maxDistanceDelta 를 초과하지 않도록 보장됩니다. /maxDistanceDelta/의 음수값은 /target/으로부터 멀리 밀쳐냅니다." data-og-host="docs.unity3d.com" data-og-source-url="https://docs.unity3d.com/kr/530/ScriptReference/Vector2.MoveTowards.html" data-og-url="https://docs.unity3d.com/kr/530/ScriptReference/Vector2.MoveTowards.html" data-og-image=""><a href="https://docs.unity3d.com/kr/530/ScriptReference/Vector2.MoveTowards.html" target="_blank" rel="noopener" data-source-url="https://docs.unity3d.com/kr/530/ScriptReference/Vector2.MoveTowards.html">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">Unity - 스크립팅 API: Vector2.MoveTowards</p>
+<p class="og-desc">이것은 본질적 Vector2.Lerp와 동일합니다. 다만, speed가 maxDistanceDelta 를 초과하지 않도록 보장됩니다. /maxDistanceDelta/의 음수값은 /target/으로부터 멀리 밀쳐냅니다.</p>
+<p class="og-host">docs.unity3d.com</p>
+</div>
+</a></figure>
+<p><b>public static Vector2.MoveTowards(Vector2 current, Vector2 target, float maxDistanceDelta)</b></p>
+<p>&nbsp;</p>
+<p>current 에서 target으로 이동.</p>
+<p>speed가 maxDistanceDelta를 초과하지 않도록 보장한다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>MoveTowards 함수를 이용해 적캐릭터가 플레이어에게 이동시킨다면</p>
+<pre id="code_1618580008009" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>private void Update() {
+	transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y),
+            new Vector2(target.transform.position.x, target.transform.position.y),
+            speed * Time.deltaTime);
+}
+
+</code></pre>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

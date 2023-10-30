@@ -1,0 +1,70 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>kotlin 자주쓰는 함수 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">kotlin 자주쓰는 함수 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2021-12-31 14:18:54</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">계속 추가 ...&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>문자열 정렬&nbsp;</b></h3>
+<p><figure class="imageblock alignLeft" width="439" height="224" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="439" height="224"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">내림차순 정렬은</p>
+<pre class="css"><code>arr.sortedDescending()</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>BufferedReader, BufferedWriter</b></h3>
+<p data-ke-size="size16">java와 동일하게 사용 가능&nbsp;</p>
+<pre class="lisp"><code>val br = BufferedReader(InputStreamReader(System.`in`))
+val bw = BufferedWriter(OutputStreamWriter(System.`out`))</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>ArrayList removeAt, remove&nbsp;</b></h3>
+<p data-ke-size="size16">java에서는 다음과 같이 쓰면&nbsp;</p>
+<pre class="java" data-ke-language="java"><code>static ArrayList&lt;Integer&gt; v = new ArrayList&lt;&gt;();
+v.remove(v.size()-1);</code></pre>
+<p data-ke-size="size16">어레이리스트의 마지막 원소가 pop된다.</p>
+<p data-ke-size="size16">하지만 kotlin에서 이와 같이 하려면 remove 함수가 아닌&nbsp;<b>removeAt&nbsp;</b>함수를 사용해야 한다.</p>
+<p data-ke-size="size16">remove 함수는 파라미터로 주어진 원소를 찾아서 지운다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="kotlin" data-ke-language="kotlin"><code>var v = ArrayList&lt;Int&gt;()
+v.removeAt(v.size-1)</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Kotlin 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

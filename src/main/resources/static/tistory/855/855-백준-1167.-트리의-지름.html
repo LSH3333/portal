@@ -1,0 +1,85 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1167. 트리의 지름</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1167. 트리의 지름</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-08-23 12:29:17</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1167" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1167</a></p>
+<figure id="og_1661225219128" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1167번: 트리의 지름" data-og-description="트리가 입력으로 주어진다. 먼저 첫 번째 줄에서는 트리의 정점의 개수 V가 주어지고 (2 &le; V &le; 100,000)둘째 줄부터 V개의 줄에 걸쳐 간선의 정보가 다음과 같이 주어진다. 정점 번호는 1부터 V까지" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1167" data-og-url="https://www.acmicpc.net/problem/1167" data-og-image="https://scrap.kakaocdn.net/dn/R10NK/hyPyLK6M7Y/nJJs4XL405dXHyGun6VBL0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/1167" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1167">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/R10NK/hyPyLK6M7Y/nJJs4XL405dXHyGun6VBL0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1167번: 트리의 지름</p>
+<p class="og-desc" data-ke-size="size16">트리가 입력으로 주어진다. 먼저 첫 번째 줄에서는 트리의 정점의 개수 V가 주어지고 (2 &le; V &le; 100,000)둘째 줄부터 V개의 줄에 걸쳐 간선의 정보가 다음과 같이 주어진다. 정점 번호는 1부터 V까지</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/753" target="_blank" rel="noopener">https://tose33.tistory.com/753</a></p>
+<figure id="og_1661225234494" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="백준 1967. 트리의 지름" data-og-description="https://www.acmicpc.net/problem/1967 1967번: 트리의 지름 파일의 첫 번째 줄은 노드의 개수 n(1 &le; n &le; 10,000)이다. 둘째 줄부터 n-1개의 줄에 각 간선에 대한 정보가 들어온다. 간선에 대한 정보는 세 개의.." data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/753" data-og-url="https://tose33.tistory.com/753" data-og-image="https://scrap.kakaocdn.net/dn/nojwb/hyPxrU8Ao3/ffhnxtogloJkgx3ddfxUhk/img.png?width=800&amp;height=413&amp;face=0_0_800_413,https://scrap.kakaocdn.net/dn/c0S5qf/hyPyELYKXS/vBZEx82egfcNpQpYSkjsR1/img.png?width=800&amp;height=413&amp;face=0_0_800_413,https://scrap.kakaocdn.net/dn/LpkZh/hyPxg0gJJM/4EEgeLAZI3K9EJjtHBVrbK/img.png?width=832&amp;height=430&amp;face=0_0_832_430"><a href="https://tose33.tistory.com/753" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/753">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/nojwb/hyPxrU8Ao3/ffhnxtogloJkgx3ddfxUhk/img.png?width=800&amp;height=413&amp;face=0_0_800_413,https://scrap.kakaocdn.net/dn/c0S5qf/hyPyELYKXS/vBZEx82egfcNpQpYSkjsR1/img.png?width=800&amp;height=413&amp;face=0_0_800_413,https://scrap.kakaocdn.net/dn/LpkZh/hyPxg0gJJM/4EEgeLAZI3K9EJjtHBVrbK/img.png?width=832&amp;height=430&amp;face=0_0_832_430');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">백준 1967. 트리의 지름</p>
+<p class="og-desc" data-ke-size="size16">https://www.acmicpc.net/problem/1967 1967번: 트리의 지름 파일의 첫 번째 줄은 노드의 개수 n(1 &le; n &le; 10,000)이다. 둘째 줄부터 n-1개의 줄에 각 간선에 대한 정보가 들어온다. 간선에 대한 정보는 세 개의..</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 1967번과 이름도 같고 내용도 같은 문제였다.</p>
+<p data-ke-size="size16">1967번을 풀었을때는 모든 리프 노드들에 대하여 dfs로 다른 노드까지의 거리를 구해서 풀었는데 풀고난 후 다른 분들 코드를 보니 트리의 지름을 구하는 방법이 있었다.</p>
+<p data-ke-size="size16">이번에는 그 방법으로 풀었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>트리의 지름 구하는 법</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" width="470" height="243" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="470" height="243"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><b>1) 임의의 노드 a에서 가장 먼 노드b를 찾는다.&nbsp;</b></p>
+<p data-ke-size="size16">위 그림에서 임의의 노드를 5로 정하면 가장 먼 노드는 거리 11+9+10=30인 노드 12이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2) 찾은 노드 b에서 가장 먼 노드 c를 찾는다.</b></p>
+<p data-ke-size="size16">b노드는 12이고 이 노드에서 가장 먼 노드는 거리 10+9+11+15=45인 9이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>3) b-c가 트리의 지름이다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/852c74c2c028c4c328568ba5e07e9cb9.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Tree #graph 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

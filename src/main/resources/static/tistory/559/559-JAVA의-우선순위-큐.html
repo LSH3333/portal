@@ -1,0 +1,65 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>JAVA의 우선순위 큐</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">JAVA의 우선순위 큐</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2022-03-03 22:19:47</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">c++에서 벡터에 pair이나 tuple을 저장을 java에서는 클래스를 따로 만들어서 사용한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="angelscript"><code>class Pair
+{
+    int distance, cur;
+    public Pair(int _dis, int _cur) { distance = _dis; cur = _cur; }
+}</code></pre>
+<p data-ke-size="size16">이런식으로.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">자바의 우선순위큐에 custom class를 넣으면 c++의 compare 함수를 정의하듯이 우선순위큐가 비교할 기준을 제시해 줘야한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="angelscript"><code>class Pair implements Comparable&lt;Pair&gt;
+{
+    int distance, cur;
+    public Pair(int _dis, int _cur) { distance = _dis; cur = _cur; }
+
+    @Override
+    public int compareTo(Pair target) {
+        return this.distance &lt; target.distance ? 1 : -1;
+    }
+}</code></pre>
+<p data-ke-size="size16">이렇게 comparable interface를 implement한다.</p>
+<p data-ke-size="size16">compareTo에 전달되는 Pair&nbsp; target 객체는 this 객체와 비교할 객체이다.&nbsp;</p>
+<p data-ke-size="size16">여기서는 Pair의 distance 변수를 기준으로 내림차순하고 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Java #priority queue 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

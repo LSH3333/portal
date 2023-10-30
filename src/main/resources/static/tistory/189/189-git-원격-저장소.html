@@ -1,0 +1,105 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>git 원격 저장소</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">git 원격 저장소</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2021-07-08 14:11:55</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EC%A0%80%EC%9E%A5%EC%86%8C" target="_blank" rel="noopener">https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EC%A0%80%EC%9E%A5%EC%86%8C</a></p>
+<figure id="og_1625719565340" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Git - 리모트 저장소" data-og-description="원격 저장소라 하더라도 로컬 시스템에 위치할 수도 있다. remote'' 저장소라고 이름이 붙어있어도 이 원격 저장소가 사실 같은 로컬 시스템에 존재할 수도 있다. 여기서 remote'' 라는 이름은 반드" data-og-host="git-scm.com" data-og-source-url="https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EC%A0%80%EC%9E%A5%EC%86%8C" data-og-url="https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EC%A0%80%EC%9E%A5%EC%86%8C" data-og-image=""><a href="https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EC%A0%80%EC%9E%A5%EC%86%8C" target="_blank" rel="noopener" data-source-url="https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EC%A0%80%EC%9E%A5%EC%86%8C">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Git - 리모트 저장소</p>
+<p class="og-desc" data-ke-size="size16">원격 저장소라 하더라도 로컬 시스템에 위치할 수도 있다. remote'' 저장소라고 이름이 붙어있어도 이 원격 저장소가 사실 같은 로컬 시스템에 존재할 수도 있다. 여기서 remote'' 라는 이름은 반드</p>
+<p class="og-host" data-ke-size="size16">git-scm.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>리모트 저장소</b>란 인터넷이나 네트워크 어딘가에 있는 저장소를 말한다.</p>
+<p data-ke-size="size16">저장소를 클론하면 <b>'origin'</b> 이라는 리모트 저장소가 자동으로 등록된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>리모트 저장소 확인</b></h4>
+<p data-ke-size="size16"><i>git remote</i> 명령으로 현재 프로젝트에 등록된 리모트 저장소를 확인할수 있다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="203" data-origin-height="42" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="203" data-origin-height="42" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><i>git remote -v </i>명령으로 이름과 url을 같이 볼수 있다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="522" data-origin-height="64" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="522" data-origin-height="64" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>리모트 저장소 추가하기</b></h4>
+<p data-ke-size="size16">git remote add [리모트 저장소 별명 지정] [url]</p>
+<p><figure class="imageblock alignLeft" data-origin-width="689" data-origin-height="85" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="689" data-origin-height="85" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>리모트 저장소에서 데이터 가져오기</b></h4>
+<p data-ke-size="size16">git fetch [리코트 저장소 이름]</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 명령어로 로컬에는 없지만, 리모트 저장소에는 있는 데이터를 모두 가져온다.</p>
+<p data-ke-size="size16">이렇게 하면 리모트 저장소의 모든 브랜치를 로컬에서 접근할 수 있어서,&nbsp;</p>
+<p data-ke-size="size16">언제든지 Merge하거나 내용을 볼 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>fetch와 pull의 차이</b></h4>
+<p data-ke-size="size16">fetch는 리모트 저장소에서 필요한 파일들을 다운로드만 받는다.</p>
+<p data-ke-size="size16">즉 fetch 후 merge를 해야 pull과 같은 효과.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">pull은 리모트 저장소로부터 데이터를 다운받고 병합까지 수행한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>리모트 저장소에 push</b></h4>
+<p data-ke-size="size16">git push [리모트 저장소 이름] [브랜치 이름]</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>리모트 저장소 이름 변경, 삭제</b></h4>
+<p data-ke-size="size16">변경:</p>
+<p data-ke-size="size16">git remote rename [리모트 저장소 이름]</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">삭제:</p>
+<p data-ke-size="size16">git remote remove [리모트 저장소 이름]</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #GIT #원격 저장소 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

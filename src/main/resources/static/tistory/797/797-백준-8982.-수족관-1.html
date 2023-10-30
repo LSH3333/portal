@@ -1,0 +1,108 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 8982. 수족관 1</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 8982. 수족관 1</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-07-19 13:47:18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/8982" target="_blank" rel="noopener">https://www.acmicpc.net/problem/8982</a></p>
+<figure id="og_1658205205340" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="8982번: 수족관 1" data-og-description="입력의 첫 줄은 수족관의 경계에 있는 꼭짓점의 개수 N(1 &le; N &le; 5,000)이 주어진다. N은 짝수이다. 수족관의 경계는 항상 꼭짓점 (0, 0)부터 시작한다. 그리고 마지막 꼭짓점은 (A, 0)의 형태로 끝난" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/8982" data-og-url="https://www.acmicpc.net/problem/8982" data-og-image="https://scrap.kakaocdn.net/dn/FoKa3/hyO7uLHMOW/IE0YHUkCr9Lv22SlFQuIk0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/p08bd/hyO7x2Gapx/aRWSETw4KcG2HKXtAaBf0K/img.png?width=528&amp;height=420&amp;face=0_0_528_420,https://scrap.kakaocdn.net/dn/cYzIWp/hyO7BxgXRn/ItGBPkyvqexf1p7J5KrlG1/img.png?width=528&amp;height=402&amp;face=0_0_528_402"><a href="https://www.acmicpc.net/problem/8982" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/8982">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/FoKa3/hyO7uLHMOW/IE0YHUkCr9Lv22SlFQuIk0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/p08bd/hyO7x2Gapx/aRWSETw4KcG2HKXtAaBf0K/img.png?width=528&amp;height=420&amp;face=0_0_528_420,https://scrap.kakaocdn.net/dn/cYzIWp/hyO7BxgXRn/ItGBPkyvqexf1p7J5KrlG1/img.png?width=528&amp;height=402&amp;face=0_0_528_402');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">8982번: 수족관 1</p>
+<p class="og-desc" data-ke-size="size16">입력의 첫 줄은 수족관의 경계에 있는 꼭짓점의 개수 N(1 &le; N &le; 5,000)이 주어진다. N은 짝수이다. 수족관의 경계는 항상 꼭짓점 (0, 0)부터 시작한다. 그리고 마지막 꼭짓점은 (A, 0)의 형태로 끝난</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제 해결 방법을 떠올리기 까지 좀 걸린 문제였다.&nbsp;</p>
+<p data-ke-size="size16">처음에는 주어지는 꼭짓점들로 어떻게 배열을 구성할지 고민했다.</p>
+<p data-ke-size="size16">하지만 이 문제는 그렇게 하지 않고, 주어지는 꼭지점들로 각 열들의 깊이만 구성하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 주어지는 input이 다음과 같다면&nbsp;</p>
+<pre id="sample-input-2" class="java" data-ke-language="java"><code>14
+0 0  
+0 5
+1 5
+1 3
+2 3
+2 4
+3 4
+3 2
+5 2
+5 4
+6 4
+6 3
+8 3
+8 0
+2
+1 3 2 3
+3 2 5 2</code></pre>
+<p data-ke-size="size16">첫째 줄에 꼭지점의 수 14가 주어진다.</p>
+<p data-ke-size="size16">그리고 두번째 줄은 (0,0)이고 세번째 줄부터 보면 되는데,</p>
+<p data-ke-size="size16">세번째 줄 부터는 <b>두 줄 씩 짝지어 보면 된다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 3번 줄은 (0,5)고 4번 줄은 (1,5)인데 이는 첫 번째 열의 깊이가 5라는 의미다.</p>
+<p data-ke-size="size16">또 다른 예로는 9번째줄은 (3,2)고, 10번째 줄은 (5,2)인데 이는 4,5번 열의 깊이가 2라는 의미다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 열 별로 깊이를 <b>depth[]</b>에 저장하면, 각 열의 깊이를 뜻하는 depth[]는 다음과 같아진다.</p>
+<pre id="code_1658205568691" class="java" data-ke-language="java" data-ke-type="codeblock"><code>5 3 4 2 2 4 3 3</code></pre>
+<p><figure class="imageblock alignCenter" width="323" height="251" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="323" height="251"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리고 <b>구멍에</b> 관한 정보는 다음과 같이 주어지는데&nbsp;</p>
+<pre id="sample-input-2" class="basic"><code>2
+1 3 2 3
+3 2 5 2</code></pre>
+<p data-ke-size="size16">첫 번째 구멍은 (행,열)로 따지면 (3,1)과 (3,2) 수평선분의 가운데에 있다는 의미인데, 어처피 수평끼리는 깊이가 같기 때문에 다 필요 없고 첫 번째로 주어지는 값 1 만이 중요하다.&nbsp;</p>
+<p data-ke-size="size16">1은 곧 우리가 구한 depth[]의 depth[1] 위치에 구멍이 존재한다는 의미다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이제 구멍을 하나씩 열면서 물을 빼보면 된다.</p>
+<p data-ke-size="size16">depth[]에서 구멍의 위치 기준 왼쪽, 오른쪽으로 이동하면서<b> 구멍의 깊이 보다 현재 깊이가 깊으면</b> (현재 구멍의 깊이 - 구멍의 깊이)가 남은 물의 높이가 된다.&nbsp; 이때 여러 구멍들을 탐색할것이기 때문에 해당 열의 물의 높이와, 새로 구한 물의 높이 중 작은 값을 택해야 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">현재 깊이가 구멍의 깊이 보다 같거나 작다면, 해당 위치 이후로는 물이 빠지지 않는 것을 의미한다.&nbsp;</p>
+<p data-ke-size="size16">따라서 해당 열의 물의 높이는 0이 되고, 그 이후로는 구멍의 깊이가 아닌 현재 위치의 깊이와 비교해야 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/38aab2159c51f218a23d3ee697de302e.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Implementation 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

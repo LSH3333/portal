@@ -1,0 +1,98 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2571. 색종이 - 3</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2571. 색종이 - 3</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-12-15 15:21:54</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2571" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2571</a></p>
+<figure id="og_1671084565559" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2571번: 색종이 - 3" data-og-description="가로, 세로의 크기가 각각 100인 정사각형 모양의 흰색 도화지가 있다. 이 도화지 위에 가로, 세로의 크기가 각각 10인 정사각형 모양의 검은색 색종이를 색종이의 변과 도화지의 변이 평행하도록" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2571" data-og-url="https://www.acmicpc.net/problem/2571" data-og-image="https://scrap.kakaocdn.net/dn/BxK9Z/hyQUVFraOd/SyJWarc9w41aF8P0oWXrJ0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bnQznX/hyQTCm9NMu/VrkSKYS2QcgJyomSFRN3Sk/img.png?width=648&amp;height=514&amp;face=0_0_648_514,https://scrap.kakaocdn.net/dn/BW8vj/hyQTLxFqt8/qIL88FKOX2WfJkBbeFVqD0/img.png?width=648&amp;height=512&amp;face=0_0_648_512"><a href="https://www.acmicpc.net/problem/2571" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2571">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/BxK9Z/hyQUVFraOd/SyJWarc9w41aF8P0oWXrJ0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bnQznX/hyQTCm9NMu/VrkSKYS2QcgJyomSFRN3Sk/img.png?width=648&amp;height=514&amp;face=0_0_648_514,https://scrap.kakaocdn.net/dn/BW8vj/hyQTLxFqt8/qIL88FKOX2WfJkBbeFVqD0/img.png?width=648&amp;height=512&amp;face=0_0_648_512');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2571번: 색종이 - 3</p>
+<p class="og-desc" data-ke-size="size16">가로, 세로의 크기가 각각 100인 정사각형 모양의 흰색 도화지가 있다. 이 도화지 위에 가로, 세로의 크기가 각각 10인 정사각형 모양의 검은색 색종이를 색종이의 변과 도화지의 변이 평행하도록</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이전에 푼 문제인데 그때는 브루트포스 O(N^6) 방식으로 풀었다.</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/758" target="_blank" rel="noopener">https://tose33.tistory.com/758</a></p>
+<figure id="og_1671084569350" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="백준 2571. 색종이 - 3" data-og-description="https://www.acmicpc.net/problem/2571 2571번: 색종이 - 3 가로, 세로의 크기가 각각 100인 정사각형 모양의 흰색 도화지가 있다. 이 도화지 위에 가로, 세로의 크기가 각각 10인 정사각형 모양의 검은색 색종" data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/758" data-og-url="https://tose33.tistory.com/758" data-og-image="https://scrap.kakaocdn.net/dn/dyC599/hyQU5gZK6e/fwvRRVUlh1BAJB9NYHKQk1/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/l2Y58/hyQTzjIPk6/99ElVhkXutZWOXyaWYx640/img.png?width=800&amp;height=800&amp;face=0_0_800_800"><a href="https://tose33.tistory.com/758" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/758">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/dyC599/hyQU5gZK6e/fwvRRVUlh1BAJB9NYHKQk1/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/l2Y58/hyQTzjIPk6/99ElVhkXutZWOXyaWYx640/img.png?width=800&amp;height=800&amp;face=0_0_800_800');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">백준 2571. 색종이 - 3</p>
+<p class="og-desc" data-ke-size="size16">https://www.acmicpc.net/problem/2571 2571번: 색종이 - 3 가로, 세로의 크기가 각각 100인 정사각형 모양의 흰색 도화지가 있다. 이 도화지 위에 가로, 세로의 크기가 각각 10인 정사각형 모양의 검은색 색종</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이번에는 누적합으로 O(N^3) 이 되도록 풀어봤다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1. 높이의 누적합을 구한다&nbsp;</b></p>
+<p data-ke-size="size16">예제의 경우 대략 아래처럼 나올것이다.&nbsp;</p>
+<pre id="code_1671084760658" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code> 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+ 0  0  0  1  1  1  1  1  1  1  1  1  1  0  0  1  1  1  1  1  1  1  1  1  1  0  0  0  0  0  0 
+ 0  0  0  2  2  2  2  2  2  2  2  2  2  0  0  2  2  2  2  2  2  2  2  2  2  0  0  0  0  0  0 
+ 0  0  0  3  3  3  3  3  3  3  3  3  3  0  0  3  3  3  3  3  3  3  3  3  3  0  0  0  0  0  0 
+ 0  0  0  4  4  4  4  4  4  4  4  4  4  0  0  4  4  4  4  4  4  4  4  4  4  0  0  0  0  0  0 
+ 0  0  0  5  5  5  5  5  5  5  5  5  5  0  0  5  5  5  5  5  5  5  5  5  5  0  0  0  0  0  0 
+ 0  0  0  6  6  6  6  6  6  6  6  6  6  1  1  6  6  6  6  6  6  6  6  6  6  0  0  0  0  0  0 
+ 0  0  0  7  7  7  7  7  7  7  7  7  7  2  2  7  7  7  7  7  7  7  7  7  7  0  0  0  0  0  0 
+ 0  0  0  8  8  8  8  8  8  8  8  8  8  3  3  8  8  8  8  8  8  8  8  8  8  0  0  0  0  0  0 
+ 0  0  0  9  9  9  9  9  9  9  9  9  9  4  4  9  9  9  9  9  9  9  9  9  9  0  0  0  0  0  0 
+ 0  0  0 10 10 10 10 10 10 10 10 10 10  5  5 10 10 10 10 10 10 10 10 10 10  0  0  0  0  0  0 
+ 0  0  0  0  0 11 11 11 11 11 11 11 11  6  6  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+ 0  0  0  0  0 12 12 12 12 12 12 12 12  7  7  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+ 0  0  0  0  0 13 13 13 13 13 13 13 13  8  8  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+ 0  0  0  0  0 14 14 14 14 14 14 14 14  9  9  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 
+ 0  0  0  0  0 15 15 15 15 15 15 15 15 10 10  0  0  0  0  0  0  0  0  0  0  0</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2. 모든 좌표들에 대해 오른쪽으로 이동하면서 (가로길이를 늘리면서) 넓이를 구한다.</b></p>
+<p data-ke-size="size16">예를들어 위에서 (10,3)을 기준으로 탐색한다고 생각하면, 이말은 (10,3)을 좌측 하단으로 하는 직사각형을 탐색한다는 것이다.</p>
+<p data-ke-size="size16">[10][3] = 10 이므로 가로 길이가 1일때 넓이는 (1 * 10) 이다.</p>
+<p data-ke-size="size16">[10][4] = 10 이므로 가로 길이가 2일때 넓이는 (2 * 10) 이다.</p>
+<p data-ke-size="size16">[10][5] = 10 이므로 가로 길이가 3일때 넓이는 (3 * 10) 이다.</p>
+<p data-ke-size="size16">...</p>
+<p data-ke-size="size16">[10][13] = 5 이다.&nbsp;</p>
+<p data-ke-size="size16">그런데 우리가 현재 구하는건 (10,3)을 좌측하단으로 하는 직사각형이기 때문에 높이는 더 작은값인 5로 수정해야 직사각형이 된다.</p>
+<p data-ke-size="size16">따라서 가로 길이가 11일때는 (11 * 5) 이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 넓이를 계속 구해서 최댓값을 갱신해준다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/c34cd9230c9ab9678f2b51ac2001de46.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #누적합 #prefix sum 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

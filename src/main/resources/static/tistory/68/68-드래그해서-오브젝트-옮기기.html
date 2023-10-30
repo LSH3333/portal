@@ -1,0 +1,73 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>드래그해서 오브젝트 옮기기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">드래그해서 오브젝트 옮기기</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-02-01 22:42:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <pre id="code_1612186948967" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using UnityEngine;
+
+public class MoveObject : MonoBehaviour
+{
+    private bool clickedOn = false;
+
+    private void Update()
+    {
+        if(clickedOn) // 마우스 누른 상태라면
+        {
+            Vector3 mouseWorldPoint =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouseWorldPoint.z = 0f;
+
+            // 스톤의 위치를 마우스 클릭 지점으로 옮긴다
+            transform.position = mouseWorldPoint;
+        }
+    }
+
+    void OnMouseDown() { // 마우스 누르면 호출
+        clickedOn = true;
+    }
+
+    void OnMouseUp() // 마우스 때면 호출
+    {
+        clickedOn = false;
+    }
+
+
+
+
+}</code></pre>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

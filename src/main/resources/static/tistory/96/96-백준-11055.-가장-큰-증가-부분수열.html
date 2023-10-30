@@ -1,0 +1,81 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 11055. 가장 큰 증가 부분수열</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 11055. 가장 큰 증가 부분수열</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-03-04 17:58:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/11055" target="_blank" rel="noopener">www.acmicpc.net/problem/11055</a></p>
+<figure id="og_1614848019018" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="11055번: 가장 큰 증가 부분 수열" data-og-description="수열 A가 주어졌을 때, 그 수열의 증가 부분&nbsp;수열 중에서 합이 가장 큰 것을 구하는 프로그램을 작성하시오. 예를 들어, 수열 A = {1, 100, 2, 50, 60, 3, 5, 6, 7, 8} 인 경우에 합이 가장 큰 증가 부분&nbsp;수" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/11055" data-og-url="https://www.acmicpc.net/problem/11055" data-og-image="https://scrap.kakaocdn.net/dn/9g7fC/hyJsd8QP87/XzYQQEp8ZEtsNvE9w5fcK0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/11055" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/11055">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/9g7fC/hyJsd8QP87/XzYQQEp8ZEtsNvE9w5fcK0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">11055번: 가장 큰 증가 부분 수열</p>
+<p class="og-desc">수열 A가 주어졌을 때, 그 수열의 증가 부분&nbsp;수열 중에서 합이 가장 큰 것을 구하는 프로그램을 작성하시오. 예를 들어, 수열 A = {1, 100, 2, 50, 60, 3, 5, 6, 7, 8} 인 경우에 합이 가장 큰 증가 부분&nbsp;수</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p><a href="https://tose33.tistory.com/21" target="_blank" rel="noopener">tose33.tistory.com/21</a></p>
+<p><br />가장 긴 증가 부분 수열 문제와 유사.</p>
+<p>이전 숫자와 비교하면서 가장 큰값 계속 갱신하면 된다.</p>
+<p>&nbsp;</p>
+<pre id="code_1614848280861" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int a[1001];
+int d[1001];
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+
+    for(int i = 1; i &lt;= n; i++) cin &gt;&gt; a[i];
+    d[1] = a[1];
+    int ans = a[1];
+
+    for(int i = 2; i &lt;= n; i++) {
+        int max_sum = 0;
+        for(int j = 1; j &lt; i; j++) {
+            if(a[j] &lt; a[i]) {
+                max_sum = max(max_sum, d[j]);
+            }
+        }
+        d[i] = max_sum + a[i]; // 자신의 값까지 더한것이 d[i]
+        ans = max(ans, d[i]); // 최대값 계속 생신
+    }
+
+    cout &lt;&lt; ans;
+}</code></pre>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

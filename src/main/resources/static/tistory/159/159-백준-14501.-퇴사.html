@@ -1,0 +1,162 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 14501. 퇴사</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 14501. 퇴사</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-05-13 23:58:19</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/14501" target="_blank" rel="noopener">https://www.acmicpc.net/problem/14501</a></p>
+<figure id="og_1620917496563" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="14501번: 퇴사" data-og-description="첫째 줄에 백준이가 얻을 수 있는 최대 이익을 출력한다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/14501" data-og-url="https://www.acmicpc.net/problem/14501" data-og-image="https://scrap.kakaocdn.net/dn/eaMtee/hyKbnRoayp/5HSuIfORyWXAkGOWjZRDSk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/14501" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/14501">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/eaMtee/hyKbnRoayp/5HSuIfORyWXAkGOWjZRDSk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size18">14501번: 퇴사</p>
+<p class="og-desc" data-ke-size="size18">첫째 줄에 백준이가 얻을 수 있는 최대 이익을 출력한다.</p>
+<p class="og-host" data-ke-size="size18">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">n일 중 일을해서 벌수 있는 최대 돈을 구하는 문제이다.</p>
+<p data-ke-size="size18">그런데 일들은 걸리는 시간이 정해져있어서 만약에 1일에 주어진일이 2일 걸린다면 다음날의 일은 할수없게 된다.</p>
+<p data-ke-size="size18">먼저 위의 조건은 생각하지말고 그냥 일을 할수 있는 모든 조합을 permuation으로 구했다.</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">n일중 하루 일하는 경우:</p>
+<p data-ke-size="size18">1 0 0 0 0 0 0&nbsp; // day1을 일함&nbsp;<br />0 1 0 0 0 0 0&nbsp; // day2를 일함<br />0&nbsp;0&nbsp;1&nbsp;0&nbsp;0&nbsp;0&nbsp;0 <br />0&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;0&nbsp;0 <br />0&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;0 <br />0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;0 <br />0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;1</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">n일중 이틀 일하는 경우:</p>
+<p data-ke-size="size18">1 1 0 0 0 0 0&nbsp; // day1, day2 일함<br />1 0 1 0 0 0 0&nbsp; // day1, day3 일함<br />1&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;0&nbsp;0 <br />1&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;0 <br />1&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;0 <br />1&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;1 <br />0&nbsp;1&nbsp;1&nbsp;0&nbsp;0&nbsp;0&nbsp;0 <br />0&nbsp;1&nbsp;0&nbsp;1&nbsp;0&nbsp;0&nbsp;0 <br />0&nbsp;1&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;0 <br />0&nbsp;1&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;0 <br />0&nbsp;1&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;1 <br />0&nbsp;0&nbsp;1&nbsp;1&nbsp;0&nbsp;0&nbsp;0 <br />0&nbsp;0&nbsp;1&nbsp;0&nbsp;1&nbsp;0&nbsp;0 <br />0&nbsp;0&nbsp;1&nbsp;0&nbsp;0&nbsp;1&nbsp;0 <br />0&nbsp;0&nbsp;1&nbsp;0&nbsp;0&nbsp;0&nbsp;1 <br />0&nbsp;0&nbsp;0&nbsp;1&nbsp;1&nbsp;0&nbsp;0 <br />0&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;1&nbsp;0 <br />0&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;0&nbsp;1 <br />0&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;1&nbsp;0 <br />0&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;0&nbsp;1 <br />0&nbsp;0&nbsp;0&nbsp;0&nbsp;0&nbsp;1&nbsp;1</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">...</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">이렇게 모든 경우의 수를 구하고 조건을 고려해서&nbsp;</p>
+<p data-ke-size="size18">이전일 + 이전일 걸리는 시간이 현재 일수보다 커지면 그 경우는 제외한다.</p>
+<p data-ke-size="size18">또 현재일 + 현재일 걸리는 시간이 n보다 커지면 그일도 못하는 일이므로 제외한다.</p>
+<p data-ke-size="size18">&nbsp;</p>
+<pre id="code_1620917875238" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+#include &lt;vector&gt;
+
+int main() {
+    int n;
+    int T[100];
+    int P[100];
+    int ans = 0;
+
+    cin &gt;&gt; n;
+
+    for(int i = 1; i &lt;= n; i++) {
+        cin &gt;&gt; T[i] &gt;&gt; P[i];
+    }
+
+
+    for(int i = 1; i &lt;= n; i++) {
+        vector&lt;int&gt; v;
+        v.push_back(-1); // 1일부터이므로 인덱스맞추기 위해
+        // v에 들어갈 1의 갯수가 1,2, ... n개로 늘어남
+        for(int j = 0; j &lt; i; j++)
+            v.push_back(1);
+        // v에 들어갈 0의 갯수가 n, n-1, ... , 0개로 줄어듬
+        for(int j = 0; j &lt; n-i; j++)
+            v.push_back(0);
+
+        do {
+
+            int prev = 0;
+            int sum = 0;
+            for(int day = 1; day &lt;= n; day++) {
+                if(v[day] == 1) {
+                    // 이전일 + 이전일걸리는시간이 현재 일수보다 커지면 현재일은 못하는 일
+                    if(day &lt; prev + T[prev]) continue;
+                    // 현재일 + 현재일걸리는시간이 n보다 크면 현재일은 못하는 일
+                    if(day + T[day] &gt; n+1) continue;
+                    sum += P[day];
+
+                    prev = day;
+                }
+            }
+            ans = max(ans, sum);
+
+        } while(prev_permutation(v.begin()+1, v.end()));
+
+    }
+    cout &lt;&lt; ans;
+
+
+
+}</code></pre>
+<p data-ke-size="size18">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style7" />
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<p data-ke-size="size16">재귀를 이용한 방법.</p>
+<pre id="code_1621242164899" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#define MAX 16
+using namespace std;
+
+int n;
+int T[MAX];
+int P[MAX];
+
+int ans = 0;
+
+void solve(int cur_day, int total_money) {
+    if(cur_day &gt;= n+1) {
+        ans = max(ans, total_money);
+        return;
+    }
+
+    // 해당날에 상담하고, 해당 상담하는데 걸리는 일수만큼 넘어감
+    if(cur_day + T[cur_day] &lt;= n + 1)
+        solve(cur_day + T[cur_day], total_money + P[cur_day]);
+    // 해당날에 상담하지 않고, 그 바로 다음날로 넘어감
+    if(cur_day + 1 &lt;= n + 1)
+        solve(cur_day + 1, total_money);
+
+}
+
+int main() {
+    cin &gt;&gt; n;
+    for(int i = 1; i &lt;= n; i++)
+        cin &gt;&gt; T[i] &gt;&gt; P[i];
+
+    solve(1,0);
+    cout &lt;&lt; ans;
+}
+</code></pre>
+</div>
+</div>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

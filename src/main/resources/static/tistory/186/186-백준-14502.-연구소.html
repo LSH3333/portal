@@ -1,0 +1,273 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 14502. 연구소</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 14502. 연구소</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-06 19:58:03</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/14502" target="_blank" rel="noopener">https://www.acmicpc.net/problem/14502</a></p>
+<figure id="og_1625568296912" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="14502번: 연구소" data-og-description="인체에 치명적인 바이러스를 연구하던 연구소에서 바이러스가 유출되었다. 다행히 바이러스는 아직 퍼지지 않았고, 바이러스의 확산을 막기 위해서 연구소에 벽을 세우려고 한다. 연구소는 크" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/14502" data-og-url="https://www.acmicpc.net/problem/14502" data-og-image="https://scrap.kakaocdn.net/dn/iKeLg/hyKMSwkJwV/aCX7cJUvcqIh7ZWkkWMJe0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/14502" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/14502">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/iKeLg/hyKMSwkJwV/aCX7cJUvcqIh7ZWkkWMJe0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">14502번: 연구소</p>
+<p class="og-desc" data-ke-size="size16">인체에 치명적인 바이러스를 연구하던 연구소에서 바이러스가 유출되었다. 다행히 바이러스는 아직 퍼지지 않았고, 바이러스의 확산을 막기 위해서 연구소에 벽을 세우려고 한다. 연구소는 크</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제는&nbsp;</p>
+<p data-ke-size="size16">1. 연구실에 3개의 벽을 무작위로 설치하고</p>
+<p data-ke-size="size16">2. 3개의 벽이 설치된 후에 bfs 탐색으로 바이러스를 퍼트려서</p>
+<p data-ke-size="size16">3. 바이러스가 도달하지 못한 안전영역의 수를 샌다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2,3번은 문제 없었는데 1번에서 연구실에 3개의 벽을 무작위로 설치하는 것이 잘 안됐다.</p>
+<p data-ke-size="size16">그래서 무작위 벽 설치하는 방법은 검색을 해서 좀 찾아봤는데 재귀로 벽을 짓는 방법을 찾았다.</p>
+<p data-ke-size="size16">재귀... 재귀는 아무리 해도 뭔가 익숙해지질 않는다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3개의 벽을 짓는 방법은 다음과 같다.</p>
+<pre id="code_1625568693695" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>int main() {
+	MakeWalls(0);
+}
+
+void MakeWalls(int depth) {
+    // 3개 벽 설치 완료
+    if(depth == 3) {
+        // 이 시점에 벽 3개가 모두 설치됨.
+        // 이 문제에선 여기서 bfs 탐색을 돌리면 된다. 
+        return;
+    }
+
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; M; j++) {
+            // 비어있는 칸
+            if(map[i][j] == '0') {
+                // 벽 설치
+                map[i][j] = '1';
+                MakeWalls(depth+1);
+                // 다음 벽 설치를 위해 다시 벽을 허문다
+                map[i][j] = '0';
+            }
+        }
+    }
+}</code></pre>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">MakeWalls(0);</p>
+<p data-ke-size="size16">map[i][j] == '0' 즉 비어있는 칸이라면 벽을 설치하고&nbsp;</p>
+<p data-ke-size="size16">재귀로 다음 depth 로 이동한다.&nbsp;</p>
+<p data-ke-size="size16">MakeWalls(1)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 0 0&nbsp;</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">(0,0) 부터 탐색하는데 (0,0)은 1 이므로 (0,1)에 벽이 설치된다.&nbsp;</p>
+<p data-ke-size="size16">MakeWalls(2);</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 1 0&nbsp;</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">(0,0), (0,1)은 1이므로 (0,2)에 벽이 설치된다</p>
+<p data-ke-size="size16">MakeWalls(3);</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 1 1</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">depth == 3 이므로 리턴해서 이전 depth로 돌아간다.</p>
+<p data-ke-size="size16">방금 depth=2에서 설치한 (0,3)벽을 허문다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 1 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음 순서인 (1,0)에 벽을 세우고 다음 depth로 이동한다.</p>
+<p data-ke-size="size16">MakeWalls(3);</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 1 0</p>
+<p data-ke-size="size16">1 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">depth == 3이므로 이전 depth로 돌아간다.</p>
+<p data-ke-size="size16">depth=2에서 설치한 (1,0) 벽을 허문다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 1 0&nbsp;</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음 순서인 (1,1)에 벽을 세우고 다음 depth로 이동한다</p>
+<p data-ke-size="size16">MakeWalls(3);</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 1 0</p>
+<p data-ke-size="size16">0 1 0</p>
+<p data-ke-size="size16">0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런식으로 재귀를 이용해 3개의 벽을 짓는 모든 경우의 수를 구할수 있다.</p>
+<p data-ke-size="size16">이제 좀 재귀에 익숙해지고 싶다!!</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1625569063970" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int N,M;
+char map[8][8];
+char copy_map[8][8];
+bool mark[8][8];
+
+int dr[4] = {-1, 0, 1, 0};
+int dc[4] = {0, 1, 0, -1};
+int ans = 0;
+
+
+// 복사한 맵인 copy_map을 대상으로 바이러스가 퍼진 맵 만듦
+void bfs(int r, int c) {
+    queue&lt;pair&lt;int, int&gt;&gt; q;
+    q.push({r,c});
+    mark[r][c] = true;
+
+    while(!q.empty()) {
+        int _r = q.front().first;
+        int _c = q.front().second;
+        q.pop();
+
+        // 4방향으로 이동
+        for(int i = 0; i &lt; 4; i++) {
+            int _dr = _r + dr[i];
+            int _dc = _c + dc[i];
+            // 맵 범위 벗어난다면 수행하지 않음
+            if(_dr &lt; 0 || _dr &gt;= N || _dc &lt; 0 || _dc &gt;= M) continue;
+
+            if((!mark[_dr][_dc]) &amp;&amp; (copy_map[_dr][_dc] == '0')) {
+                // 방문 표시
+                mark[_dr][_dc] = true;
+                copy_map[_dr][_dc] = '5'; // 바이러스 퍼진칸
+                q.push({_dr, _dc});
+            }
+        }
+    }
+
+    // mark 초기화
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j  &lt; M; j++) {
+            mark[i][j] = false;
+        }
+    }
+}
+
+
+// bfs 탐색후 맵은 바뀌기 때문에
+// 원본 연구실맵은 유지되어야 한다
+void CopyMap() {
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; M; j++) {
+            copy_map[i][j] = map[i][j];
+        }
+    }
+}
+
+// copy_map의 SafeZone 갯수를 리턴
+int CountSafeZone() {
+    int cnt = 0;
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; M; j++) {
+            if(copy_map[i][j] == '0') {
+                cnt++;
+            }
+        }
+    }
+
+    return cnt;
+}
+
+
+void MakeWalls(int depth) {
+    // 3개 벽 설치 완료
+    if(depth == 3) {
+        // bfs 탐색 이후 맵이 바뀌기 때문에 복사하고
+        // 복사된 copy_map을 대상으로 bfs 탐색을 수행한다
+        CopyMap();
+
+        // copy_map에서 바이러스가 있는곳에서부터 bfs 탐색을 진행해 바이러스를 퍼트린다
+        for(int i = 0; i &lt; N; i++) {
+            for(int j = 0; j &lt; M; j++) {
+                if(copy_map[i][j] == '2') {
+                    bfs(i,j);
+                }
+            }
+        }
+
+        // 안전영역을 최댓값으로 계속 갱신한다
+        ans = max(ans, CountSafeZone());
+
+        return;
+    }
+
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; M; j++) {
+            // 비어있는 칸
+            if(map[i][j] == '0') {
+                // 벽 설치
+                map[i][j] = '1';
+                MakeWalls(depth+1);
+                // 다음 벽 설치를 위해 다시 벽을 허문다
+                map[i][j] = '0';
+            }
+        }
+    }
+}
+
+
+
+int main() {
+    cin &gt;&gt; N &gt;&gt; M;
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; M; j++) {
+            cin &gt;&gt; map[i][j];
+        }
+    }
+
+
+    MakeWalls(0);
+
+    cout &lt;&lt; ans;
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force #재귀 #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

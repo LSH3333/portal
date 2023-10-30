@@ -1,0 +1,122 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1747. 소수&팰린드롬</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1747. 소수&팰린드롬</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-30 17:08:29</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1747" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1747</a></p>
+<figure id="og_1627632422007" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1747번: 소수&amp;팰린드롬" data-og-description="어떤 수와 그 수의&nbsp;숫자 순서를 뒤집은 수가 일치하는 수를 팰린드롬이라 부른다. 예를 들어 79,197과 324,423 등이 팰린드롬 수이다. 어떤 수 N (1 &le; N &le; 1,000,000)이 주어졌을 때, N보다 크거나 같고," data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1747" data-og-url="https://www.acmicpc.net/problem/1747" data-og-image="https://scrap.kakaocdn.net/dn/h1mTD/hyK3EwPFb4/D5EuAmxo1AmYq0gUaGejC0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/1747" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1747">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/h1mTD/hyK3EwPFb4/D5EuAmxo1AmYq0gUaGejC0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1747번: 소수&amp;팰린드롬</p>
+<p class="og-desc" data-ke-size="size16">어떤 수와 그 수의&nbsp;숫자 순서를 뒤집은 수가 일치하는 수를 팰린드롬이라 부른다. 예를 들어 79,197과 324,423 등이 팰린드롬 수이다. 어떤 수 N (1 &le; N &le; 1,000,000)이 주어졌을 때, N보다 크거나 같고,</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">소수를 찾는데는 에라토스테네스의 체를 이용했다.</p>
+<p data-ke-size="size16">먼저 모든 소수를 찾은 다음,</p>
+<p data-ke-size="size16">n이상인 모든 소수들을 팰린드롬인지 판별해줬다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1627632426379" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;string&gt;
+#define MAX 1010001
+using namespace std;
+
+int n;
+int primeNumber[MAX];
+
+// 에라토스테네스의 체 
+void FindPrimeNumbers()
+{
+    // 숫자 채워넣음
+    for(int i = 2; i &lt; MAX; i++)
+    {
+        primeNumber[i] = i;
+    }
+
+    for(int i = 2; i &lt; sqrt(MAX); i++)
+    {
+        // 이미 소수로 판별 났다면 continue
+        if(primeNumber[i] == 0) continue;
+        // i의 배수들을 0으로 치환
+        for(int j = i * i; j &lt; MAX; j += i)
+        {
+            // 소수 아닌것 표시
+            primeNumber[j] = 0;
+        }
+    }
+}
+
+// int형인 숫자를 받아서 string으로 변환해서 팰린드롬인지 판별한다
+bool IsItPalindrome(int num)
+{
+    string str = to_string(num);
+    int mid = str.size() / 2;
+
+    for(int i = 0; i &lt; mid; i++)
+    {
+        if(str[i] != str[str.size()-1-i])
+            return false;
+    }
+    return true;
+}
+
+int main()
+{
+    cin &gt;&gt; n;
+
+    FindPrimeNumbers();
+
+
+    for(int i = n; i &lt;= MAX; i++)
+    {
+        // 소수인것들 중에서
+        if(primeNumber[i] == 0) continue;
+
+        // 소수이면서 팰린드롬이라면
+        if(IsItPalindrome(primeNumber[i]))
+        {
+            cout &lt;&lt; primeNumber[i];
+            return 0;
+        }
+    }
+
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force #에라토스테네스의 체 #palindrome 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

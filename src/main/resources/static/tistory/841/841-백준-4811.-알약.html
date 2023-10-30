@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 4811. 알약</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 4811. 알약</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-08-12 14:59:49</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/4811" target="_blank" rel="noopener">https://www.acmicpc.net/problem/4811</a></p>
+<figure id="og_1660283576798" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="4811번: 알약" data-og-description="입력은 최대 1000개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 한 줄이며, 병에 들어있는 약의 개수 N &le; 30 가 주어진다. 입력의 마지막 줄에는 0이 하나 주어진다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/4811" data-og-url="https://www.acmicpc.net/problem/4811" data-og-image="https://scrap.kakaocdn.net/dn/LIMo8/hyPpGc6JgA/18JJfqdpVq6T4KTOiV2LCk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/4811" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/4811">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/LIMo8/hyPpGc6JgA/18JJfqdpVq6T4KTOiV2LCk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">4811번: 알약</p>
+<p class="og-desc" data-ke-size="size16">입력은 최대 1000개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 한 줄이며, 병에 들어있는 약의 개수 N &le; 30 가 주어진다. 입력의 마지막 줄에는 0이 하나 주어진다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">dp 문제.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3차원 배열<b> [day][통에 남은 한 조각 갯수][통에 남은 반 조각 갯수] = 경우의 수&nbsp;</b> 을 만든다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">통에서 알약을 꺼냈을때 두 가지 경우가 있는데 <b>한 조각 짜리를 꺼냈을때</b>와 <b>반 조각 짜리를 꺼냈을 때</b>다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>다음날 한 조각 짜리를 꺼내는 경우</b>를 생각해보면 오늘 한조각 짜리가 통에 남아있는 경우에만 꺼낼수 있고, 한 조각 짜리를 꺼내면 통에 한조각 짜리가 1개 줄어들고 반 조각 짜리는 1 늘어나기 때문에<b> [day][W-1][H+1]</b>에 경우의 수를 더해주면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>다음날 반 조각 짜리를 꺼내는 경우</b>를 생각해보면 오늘 반조각 짜리가 통에 남아있는 경우에만 꺼낼수 있고, 반 조각 짜리를 꺼내면 통에 반 조각 짜리가 1개 줄어들기 때문에 <b>[day][W][H-1]</b>에 경우의 수를 더해주면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/d9ceccb63f0e4c4c312f013adb0dd16c.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

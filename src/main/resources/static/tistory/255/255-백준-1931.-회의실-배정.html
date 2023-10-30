@@ -1,0 +1,123 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1931. 회의실 배정</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1931. 회의실 배정</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-05 18:15:06</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1931" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1931</a></p>
+<figure id="og_1628154280433" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1931번: 회의실 배정" data-og-description="(1,4), (5,7), (8,11), (12,14) 를 이용할 수 있다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1931" data-og-url="https://www.acmicpc.net/problem/1931" data-og-image="https://scrap.kakaocdn.net/dn/cembJf/hyK7p1kK2X/QYAsK3BWUvnb0i8jJDH3OK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/1931" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1931">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cembJf/hyK7p1kK2X/QYAsK3BWUvnb0i8jJDH3OK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1931번: 회의실 배정</p>
+<p class="og-desc" data-ke-size="size16">(1,4), (5,7), (8,11), (12,14) 를 이용할 수 있다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제는 주어진 예제의 입력에 답이있었다.</p>
+<p data-ke-size="size16">예제를 보면 종료시간의 오름차순으로 주어져있는데 아주 중요한 포인트다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">처음에 나는 시작하는 시간을 기준으로 정렬을 했다.</p>
+<p data-ke-size="size16">그런데 시작하는 시간을 기준으로 오름차순 정렬하게 되면 다음과 같이 입력이 주어지고</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">0 300</p>
+<p data-ke-size="size16">1 3</p>
+<p data-ke-size="size16">2 5</p>
+<p data-ke-size="size16">3 10</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">처음부터 탐색을 시작한다고 하면 첫요소가 끝나는 시간이 300이므로 1번의 회의밖에 못하게된다.</p>
+<p data-ke-size="size16">그러면 첫요소를 제외하고 두번째 요소부터 선택했을때, 세번째 요소부터 선택했을때.. 모든 경우에 대해 계산해줘야한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>끝나는 시간을 기준으로 오름차순 정렬</b>하게 되면&nbsp;</p>
+<p data-ke-size="size16">1 3</p>
+<p data-ke-size="size16">2 5</p>
+<p data-ke-size="size16">3 10</p>
+<p data-ke-size="size16">0 300</p>
+<p data-ke-size="size16">한번의 루프만으로 답을 찾을수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또한 다음과 같이 입력이 주어지고 끝나는 시간 기준으로 오름차순하면</p>
+<p data-ke-size="size16">2 2</p>
+<p data-ke-size="size16">1 2</p>
+<p data-ke-size="size16">끝나는 시간이 동일하므로 첫번쨰 회의를 하고 끝나게 된다.</p>
+<p data-ke-size="size16">따라서<b> 끝나는 시간 기준으로 오름차순하고 끝나는 시간이 같다면 시작하는 시간 기준 오름차순 정렬</b>을 해줘야한다.</p>
+<p data-ke-size="size16">1 2&nbsp;</p>
+<p data-ke-size="size16">2 2</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리디 알고리즘 문제는 그리디를 썼을때 답이 보장되는지 안되는지 확인하는 것이 중요한것 같다.</p>
+<pre id="code_1628154856766" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;cmath&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int n;
+vector&lt;pair&lt;long long, long long&gt;&gt; v;
+
+bool cmp(const pair&lt;int,int&gt; &amp;a, const pair&lt;int,int&gt; &amp;b)
+{
+    if(a.second == b.second)
+        return a.first &lt; b.first;
+
+    return a.second &lt; b.second;
+}
+
+int main()
+{
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i++)
+    {
+        int a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        v.push_back({a,b});
+    }
+    // second 기준 오름차순 정렬하고 second 값이 같다면 first 기준 오름차순 정렬
+    sort(v.begin(), v.end(), cmp);
+
+    long long endTime = v[0].second;
+    int cnt = 1;
+    for(int i = 1; i &lt; n; i++)
+    {
+        if(v[i].first &lt; endTime) continue;
+        cnt++;
+        endTime = v[i].second;
+    }
+
+    cout &lt;&lt; cnt;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #sort #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

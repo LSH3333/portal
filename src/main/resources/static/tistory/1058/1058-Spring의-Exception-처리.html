@@ -1,0 +1,72 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Spring의 Exception 처리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Spring의 Exception 처리</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2023-02-11 21:24:44</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26">스프링에서 Exception 이 처리되는 원리</h2>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">요청이 오면 처리되는 흐름은 다음과 같다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>WAS 에서 request가 온다 -&gt; 필터 -&gt; 서블릿 -&gt; 인터셉터 -&gt; 컨트롤러&nbsp;</li>
+</ul>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">만약 컨트롤러에서 익셉션이 발생하면, 익셉션을 갖고 반대로 되돌아간다.</p>
+<p data-ke-size="size16">그래서 WAS가 익셉션 발생을 알게된다.</p>
+<p data-ke-size="size16">그러면 <b>WAS는 해당 익셉션에 대하여 지정된 경로로 다시 요청을 보낸다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">익셉션 마다 다시 요청을 보낼 경로를 지정할수 있다.</p>
+<p data-ke-size="size16">예를들어 404 익셉션에 대해서는 /error-404 경로를 지정했다면</p>
+<p data-ke-size="size16">WAS가 404 익셉션을 받았을때 /error-404 경로로 다시 요청을 보낸다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 우리는 각 익셉션 마다 에러 페이지를 만들어놓고, 익셉션이 터졌을때 각각의 에러 페이지로 보낼수 있는 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">스프링부트가 제공하는 BasicErrorController&nbsp;</h2>
+<p data-ke-size="size16">위처럼 익셉션 처리는 <b>서블릿이 제공하는 Filter</b>나 <b>스프링이 제공하는 Interceptor</b>로 할 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 스프링 부트에서는 기본적으로 WAS로 에러 발생이 전달되면 <b>"/error" 경로로 재 요청이 되도록 되어있다</b>.</p>
+<p data-ke-size="size16">또한 스프링 부트는<b> BasicErrorController</b> 를 자동으로 등록하는데 BasicErrorController가<b> 받는 경로가 "/error"</b> 이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">BasicErrorController는 <b>자신만의 룰</b>이 있다.</p>
+<p data-ke-size="size16">예를들어 뷰 이름이 4xx.html 이라면 400번대 에러는 모두 해당 뷰 경로로 이동된다.</p>
+<p data-ke-size="size16">또한 <b>자신만의 처리 우선순위</b>가 있는데, templates/error/ 를 먼저 처리하고, 이후 static/error/ , 이후 error.html 이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 우리는 그냥 에러 페이지만 만들어놓고 /error 경로에 넣어놓으면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 14890. 경사로</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 14890. 경사로</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-04-16 14:41:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/14890" target="_blank" rel="noopener">https://www.acmicpc.net/problem/14890</a></p>
+<figure id="og_1650086663693" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="14890번: 경사로" data-og-description="첫째 줄에 N (2&nbsp;&le; N &le; 100)과 L (1 &le; L &le; N)이 주어진다. 둘째 줄부터 N개의 줄에 지도가 주어진다. 각 칸의 높이는 10보다 작거나 같은 자연수이다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/14890" data-og-url="https://www.acmicpc.net/problem/14890" data-og-image="https://scrap.kakaocdn.net/dn/bMhtrn/hyN2En5izW/bRbfof10OJ0f9QFuqX7gB0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/ccr5jr/hyN3YFeTSB/JC5VyeZc6Bi4X3gZ2fEkPk/img.png?width=2052&amp;height=317&amp;face=0_0_2052_317,https://scrap.kakaocdn.net/dn/oVSDQ/hyN321VxBC/Xw5dLv58pm8TNQz2QKXSik/img.png?width=677&amp;height=677&amp;face=0_0_677_677"><a href="https://www.acmicpc.net/problem/14890" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/14890">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bMhtrn/hyN2En5izW/bRbfof10OJ0f9QFuqX7gB0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/ccr5jr/hyN3YFeTSB/JC5VyeZc6Bi4X3gZ2fEkPk/img.png?width=2052&amp;height=317&amp;face=0_0_2052_317,https://scrap.kakaocdn.net/dn/oVSDQ/hyN321VxBC/Xw5dLv58pm8TNQz2QKXSik/img.png?width=677&amp;height=677&amp;face=0_0_677_677');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">14890번: 경사로</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 N (2&nbsp;&le; N &le; 100)과 L (1 &le; L &le; N)이 주어진다. 둘째 줄부터 N개의 줄에 지도가 주어진다. 각 칸의 높이는 10보다 작거나 같은 자연수이다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">주어지는 지도에서 각 행과 열의 시작과 끝까지 도달할수&nbsp; 있는지 판단하는 문제다.</p>
+<p data-ke-size="size16">기본적으로 같은 높이어야 이동할수 있지만, 높이가 1차이라면 경사로를 깔아서 갈 수 있다.</p>
+<p data-ke-size="size16">그런데 예외 조건들이 좀 많아서 까다로웠다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 각 행과, 열 별로 계산해야 하기 때문에 햇갈리지 않도록 각 행들과 열들을 하나의 벡터로 만들어서 계산했다.</p>
+<p data-ke-size="size16">결국 총 2N개의 벡터가 생기는 셈이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이제 하나의 길을 기준으로 판단하면 된다.</p>
+<p data-ke-size="size16">나는 우선 길에서 가장 높은 지점을 찾고 그 지점에서 부터 내려가면서 양쪽 끝 지점까지 이동할수 있는지 판단했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">line[]:&nbsp;</p>
+<table style="border-collapse: collapse; width: 100%;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr>
+<td style="width: 16.6667%;">idx: 0</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">2</td>
+<td style="width: 16.6667%;">3</td>
+<td style="width: 16.6667%;">4</td>
+<td style="width: 16.6667%;">5</td>
+</tr>
+<tr>
+<td style="width: 16.6667%;"><b>lv: 1</b></td>
+<td style="width: 16.6667%;"><b>1</b></td>
+<td style="width: 16.6667%;"><b>1</b></td>
+<td style="width: 16.6667%;"><b>2</b></td>
+<td style="width: 16.6667%;"><b>2</b></td>
+<td style="width: 16.6667%;"><b>2</b></td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">경사로의 길이 L=2라고 했을때, 위 길을 기준으로 판단하면 <b>가장 높은 지점의 인덱스는 3</b>이다.&nbsp;</p>
+<p data-ke-size="size16">이 지점부터 오른쪽 끝, 왼쪽 끝으로 이동할수 있는지 판단하면 되는데 같은 높이면 그냥 이동하면 된다.</p>
+<p data-ke-size="size16">따라서 <b>오른쪽은 끝 까지 이동 할수 있다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">왼쪽은 line[2]가 1이기 때문에 2보다 작다. 따라서 경사로를 설치할수 있는지를 판단해야 하는데 [2]와 [1]이 같은 레벨인지 판단해서 같은 레벨이라면 경사로를 깔고 이동하면 된다. [2],[1]인 이유는 L=2이기 때문이다.&nbsp;</p>
+<p data-ke-size="size16">[2],[1]이 레벨 1로 같기 때문에 경사로를 깔고 이동하면 <b>왼쪽도 끝지점 까지 이동이 가능한것을 알 수 있다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>따라서 이 길은 처음부터 끝까지 이동 가능하다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>오르막길이 있는 경우 </b></h3>
+<p data-ke-size="size16">위와 같은 경우만 있다면 좋았겠지만 내리막길이 아닌 오르막길이 있는 경우도 있다.</p>
+<p data-ke-size="size16">다음과 같은 길을 보면&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">line[]:</p>
+<table style="border-collapse: collapse; width: 100%;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr>
+<td style="width: 16.6667%;">idx: 0</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">2</td>
+<td style="width: 16.6667%;">3</td>
+<td style="width: 16.6667%;">4</td>
+<td style="width: 16.6667%;">5</td>
+</tr>
+<tr>
+<td style="width: 16.6667%;"><b>lv: 3</b></td>
+<td style="width: 16.6667%;"><b>3</b></td>
+<td style="width: 16.6667%;"><b>2</b></td>
+<td style="width: 16.6667%;"><b>2</b></td>
+<td style="width: 16.6667%;"><b>3</b></td>
+<td style="width: 16.6667%;"><b>3</b></td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">가장 높은 지점은 [0]의 3이다.&nbsp;</p>
+<p data-ke-size="size16">이 지점은 왼쪽 끝이므로 왼쪽은 탐색할 필요 없고 오른쪽으로 탐색을 시작하면 된다.</p>
+<p data-ke-size="size16">우선 [1]은 같은 레벨이므로 그냥 이동.&nbsp;</p>
+<p data-ke-size="size16">[1]에서 다음인 [2]를 보니 내리막길이고 [2],[3]이 같은 레벨이라 경사로를 깔고 내려가면 된다.</p>
+<p data-ke-size="size16">그러면 [1] += 2 = [3]에 도착한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 [3]에서 다음 지점인 [4]를 보니 레벨이 3이다. 즉 오르막길인데, 내리막길은 이동 못하는 지점에서 경사로를 깔수 있는지 판단하고 그냥 깔고 내려가면 됐지만, 오르막길을 그렇지 않다는 것을 알 수 있다.</p>
+<p data-ke-size="size16"><b>따라서 이럴 경우 이전 지점들을 되돌아봐서 오르막길 경사로를 설치할수 있었는지 확인을 해야 한다.</b></p>
+<p data-ke-size="size16">현재지점 [3]과 [2]를 보면 같은 레벨이므로 [2]에서 부터 오르막길을 설치했다면 [2],[3]에 경사로가 설치되 [4]까지 이동이 가능하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>그런데 우리는 [1]에서부터 [2],[3]에 내리막길 경사로를 설치하고 내려왔으므로 이는 불가능하다.&nbsp;</b></p>
+<p data-ke-size="size16">따라서 경사로를 설치할때 경사로를 설치했는지 여부를 기록할수 있는 bool 형 배열에 기록하고, 오르막길을 맞딱 뜨렸을때 현재 지점 포함 이전 L개의 길들을 되돌아 보며&nbsp;<b>같은 레벨이고 &amp;&amp; 경사로가 설치되어있지 않으면&nbsp;</b>다음 지점으로 이동할수 있는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/7778c3f29d3a79325d303cbdcf0c8ecb.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">추가:</p>
+<p data-ke-size="size16">이후에 다른 분들 코드를 봤는데, 오르막길을 설치할수 있는지 판단하는 부분이 더 좋은 방법이 있었다.</p>
+<p data-ke-size="size16">나는 오르막길을 설치할수 있는지 판단하기 위해 이전 길들을 되돌아 봤는데 이때 O(L) 만큼의 시간이 소모된다.</p>
+<p data-ke-size="size16">그런데 <b>변수 하나를 선언하고 같은 레벨의 땅까리 이동할때 이 변수 값을 1씩 증가</b>시켜 주면, 오르막길을 맞딱 뜨렸을때 이 변수값이 경사로의 길이보다 크거나 같다면 오르막길을 설치할수 있는 평지가 이전에 있었던 것이므로 오르막길을 설치후 이동하면 된다.&nbsp;</p>
+<p data-ke-size="size16">이렇게 하면 내가 했던것 처럼 L만큼 반복문을 더 안돌아도 되고, bool형 배열을 선언하지 않아도 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리고 다 짜고 나서 알았는데 생각해보니 가장 큰 값에서 왼쪽, 오른쪽 끝까지 갈 수 있는지 판단하지 않고 그냥 왼쪽 끝에서 시작해도 될것 같다. 처음에 생각했을때 오르막길을 생각안하고 짜다가 중간에 깨달아서 이렇게 되버렸는데 그냥 왼쪽 끝에서 부터 오르막길, 내리막길 설치 가능 한지 판단하면 될듯.</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

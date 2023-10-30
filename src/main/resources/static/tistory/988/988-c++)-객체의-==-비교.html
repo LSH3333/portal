@@ -1,0 +1,84 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>c++) 객체의 == 비교</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">c++) 객체의 == 비교</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2022-12-20 21:28:46</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">자바에서 == 비교는 객체의 레퍼런스를 비교한다.</p>
+<p data-ke-size="size16">두 객체가 같은 값을 갖고 있어도 다른 레퍼런스를 갖으면 서로 다르고 == 비교 했을때 false이다.</p>
+<p data-ke-size="size16">예를들어 아래의 결과는 false 다.&nbsp;</p>
+<pre class="reasonml"><code>Member member1 = new Member("member");
+Member member2 = new Member("member");
+
+System.out.println(member1 == member2);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">java를 쓰다가 갑자기 c++에서 어땠는지 기억이 안났다;</p>
+<p data-ke-size="size16">그래서 직접해봤는데</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아래 cpp 코드는 <b>(member1 == member2) 부분에서 컴파일 에러가 난다.&nbsp;</b></p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+class Member {
+    string name;
+
+public:
+    Member(const string &amp;name) : name(name) {}
+};
+
+int main(){
+    Member member1 = Member("m1");
+    Member member2 = Member("m1");
+
+    cout &lt;&lt; (member1 == member2);
+
+}</code></pre>
+<p><figure class="imageblock alignLeft" width="377" height="392" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="377" height="392"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이게 기억이 잠깐 안났었는데 c++에서는 <b>연산자 오버로딩</b>이란게 있어서 Member 클래스에 == 오버로딩이 안되어 있기 때문에 == 에서 컴파일 에러가 난다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">== 로 비교를 하려면 해당 클래스에 == 연산자 오버로딩으로 정의가 되어있어야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또 자주 쓰는 컨테이너인 <b>vector</b>가 궁금해서 찾아봤는데 <b>vector의 == 연산자 오버로딩은 값에 대해 비교</b>한다.</p>
+<p data-ke-size="size16">즉 두 벡터가 크기가 같고, 같은 값들을 같은 순서로 갖고 있다면 == 연산시 true를 리턴한다.&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

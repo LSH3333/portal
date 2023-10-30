@@ -1,0 +1,511 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap14. 그래프, DFS, BFS</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap14. 그래프, DFS, BFS</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-19 17:02:46</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>인접 리스트 기반의 무방향 그래프 구현&nbsp;</b></h2>
+<p data-ke-size="size16">연결리스트는 구현된것 사용. (DLinkedList.h, DLinkedList.c)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ALGraph.h</b></p>
+<pre class="cpp"><code>/*
+ * 인접 리스트 기반의 무방향 그래프 구현
+ */
+#ifndef CHAP14_ALGRAPH_ALGRAPH_H
+#define CHAP14_ALGRAPH_ALGRAPH_H
+
+#include "DLinkedList.h" // 연결 리스트 사용
+// 정점의 이름 상수화
+enum {A, B, C, D, E, F, G, H, I, J};
+
+typedef struct _val
+{
+    int numV;
+    int numE;
+    List *adjList;
+} ALGraph;
+
+// 정점갯수 nv개의 그래프 생성
+void GraphInit(ALGraph *pg, int nv);
+void GraphDestroy(ALGraph *pg);
+void AddEdge(ALGraph *pg, int fromV, int toV);
+void ShowGraphInfoEdgeInfo(ALGraph *pg);
+
+#endif //CHAP14_ALGRAPH_ALGRAPH_H
+</code></pre>
+<p data-ke-size="size16"><b>ALGraph.c</b></p>
+<pre class="cpp"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "DLinkedList.h"
+#include "ALGraph.h"
+
+int WhoIsPrecede(int data1, int data2);
+
+void GraphInit(ALGraph *pg, int nv)
+{
+    // 정점 갯수 nv개
+    pg-&gt;adjList = (List*)malloc(sizeof(List) * nv);
+    pg-&gt;numV = nv;
+    pg-&gt;numE = 0;
+
+    for(int i = 0; i &lt; nv; i++)
+    {
+        ListInit(&amp;(pg-&gt;adjList[i]));
+        SetSortRule(&amp;(pg-&gt;adjList[i]), WhoIsPrecede);
+    }
+}
+
+void GraphDestroy(ALGraph *pg)
+{
+    if(pg-&gt;adjList != NULL)
+        free(pg-&gt;adjList);
+}
+
+void AddEdge(ALGraph *pg, int fromV, int toV)
+{
+    LInsert(&amp;(pg-&gt;adjList[fromV]), toV);
+    LInsert(&amp;(pg-&gt;adjList[toV]), fromV);
+    pg-&gt;numE += 1;
+}
+
+void ShowGraphInfoEdgeInfo(ALGraph *pg)
+{
+    int i;
+    int vx;
+
+    for(i = 0; i &lt; pg-&gt;numV; i++)
+    {
+        printf("%c와 연결된 정점: ", i+65);
+
+        if(LFirst(&amp;(pg-&gt;adjList[i]), &amp;vx))
+        {
+            printf("%c ", vx+65);
+            while(LNext(&amp;(pg-&gt;adjList[i]), &amp;vx))
+                printf("%c ", vx+65);
+        } printf("\n");
+    }
+}
+
+int WhoIsPrecede(int data1, int data2)
+{
+    if(data1 &lt; data2)
+        return 0;
+    else
+        return 1;
+}
+
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>DFS&nbsp;</b></h2>
+<p data-ke-size="size16">DFS는 재귀 혹은 스택을 이용해 구현한다.</p>
+<p data-ke-size="size16">여기서는 스택을 이용해 구현.&nbsp;</p>
+<p data-ke-size="size16">스택은 이전에 만들어놓은것 사용. (ArrayBaseStack.h, ArrayBaseStack.c)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ALGraphDFS.h</b></p>
+<pre class="cpp"><code>/*
+ * 인접 리스트 기반의 무방향 그래프 구현
+ */
+#ifndef CHAP14_ALGRAPH_ALGRAPH_H
+#define CHAP14_ALGRAPH_ALGRAPH_H
+
+#include "DLinkedList.h" // 연결 리스트 사용
+// 정점의 이름 상수화
+enum {A, B, C, D, E, F, G, H, I, J};
+
+typedef struct _val
+{
+    int numV;
+    int numE;
+    List *adjList;
+    int *visitInfo; // 정점 방문 여부 기록
+} ALGraph;
+
+// 정점갯수 nv개의 그래프 생성
+void GraphInit(ALGraph *pg, int nv);
+void GraphDestroy(ALGraph *pg);
+void AddEdge(ALGraph *pg, int fromV, int toV);
+void ShowGraphInfoEdgeInfo(ALGraph *pg);
+
+// startV 부터 정점 정보 출력 (DFS 기반)
+void DFSShowGraphVertex(ALGraph *pg, int startV);
+
+#endif //CHAP14_ALGRAPH_ALGRAPH_H
+</code></pre>
+<p data-ke-size="size16"><b>ALGraphDFS.c</b></p>
+<pre class="cpp"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+#include "DLinkedList.h"
+#include "ArrayBaseStack.h"
+#include "ALGraphDFS.h"
+
+int WhoIsPrecede(int data1, int data2);
+
+void GraphInit(ALGraph *pg, int nv)
+{
+    // 정점 갯수 nv개
+    pg-&gt;adjList = (List*)malloc(sizeof(List) * nv);
+    pg-&gt;numV = nv;
+    pg-&gt;numE = 0;
+    pg-&gt;visitInfo = (int*)malloc(sizeof(int) * pg-&gt;numV);
+    memset(pg-&gt;visitInfo, 0, sizeof(int)*pg-&gt;numV);
+
+    for(int i = 0; i &lt; nv; i++)
+    {
+        ListInit(&amp;(pg-&gt;adjList[i]));
+        SetSortRule(&amp;(pg-&gt;adjList[i]), WhoIsPrecede);
+    }
+}
+
+void GraphDestroy(ALGraph *pg)
+{
+    if(pg-&gt;adjList != NULL)
+        free(pg-&gt;adjList);
+
+    if(pg-&gt;visitInfo != NULL)
+        free(pg-&gt;visitInfo);
+}
+
+void AddEdge(ALGraph *pg, int fromV, int toV)
+{
+    LInsert(&amp;(pg-&gt;adjList[fromV]), toV);
+    LInsert(&amp;(pg-&gt;adjList[toV]), fromV);
+    pg-&gt;numE += 1;
+}
+
+void ShowGraphInfoEdgeInfo(ALGraph *pg)
+{
+    int i;
+    int vx;
+
+    for(i = 0; i &lt; pg-&gt;numV; i++)
+    {
+        printf("%c와 연결된 정점: ", i+65);
+
+        if(LFirst(&amp;(pg-&gt;adjList[i]), &amp;vx))
+        {
+            printf("%c ", vx+65);
+            while(LNext(&amp;(pg-&gt;adjList[i]), &amp;vx))
+                printf("%c ", vx+65);
+        } printf("\n");
+    }
+}
+
+int WhoIsPrecede(int data1, int data2)
+{
+    if(data1 &lt; data2)
+        return 0;
+    else
+        return 1;
+}
+
+int VisitVertex(ALGraph *pg, int visitV)
+{
+    if(pg-&gt;visitInfo[visitV] == 0) // visitsV 정점에 아직 방문하지 않았다면
+    {
+        pg-&gt;visitInfo[visitV] = 1; // 방문 체크
+        printf("%c ", visitV+65);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+void DFSShowGraphVertex(ALGraph *pg, int startV)
+{
+    Stack stack;
+    int visitV = startV;
+    int nextV;
+
+    StackInit(&amp;stack);
+    VisitVertex(pg, visitV); // 시작 정점 방문
+    SPush(&amp;stack, visitV); // 시작 정점 스택에 푸쉬
+
+    while(LFirst(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+    {
+        int visitFlag = FALSE;
+
+        // 현재 정점에서 방문할수 있는 다음 정점 찾음
+        if(VisitVertex(pg, nextV)) // 방문 성공
+        {
+            SPush(&amp;stack, visitV);
+            visitV = nextV;
+            visitFlag = TRUE;
+        }
+        else
+        {
+            while(LNext(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+            {
+                if(VisitVertex(pg, nextV)) // 방문 성공
+                {
+                    SPush(&amp;stack, visitV);
+                    visitV = nextV;
+                    visitFlag = TRUE;
+                    break;
+                }
+            }
+        }
+
+        // 방문 정점 없음
+        if(visitFlag == FALSE)
+        {
+            if(SIsEmpty(&amp;stack)) break;
+            else visitV = SPop(&amp;stack);
+        }
+    }
+    // 이후 탐색을 위해 방문기록 초기화
+    memset(pg-&gt;visitInfo, 0, sizeof(int) * pg-&gt;numV);
+}</code></pre>
+<p data-ke-size="size16"><b>DFSMain.c</b></p>
+<pre class="reasonml"><code>#include &lt;stdio.h&gt;
+#include "ALGraphDFS.h"
+
+int main()
+{
+    ALGraph graph;
+    GraphInit(&amp;graph, 7);
+
+    AddEdge(&amp;graph, A, B);
+    AddEdge(&amp;graph, A, D);
+    AddEdge(&amp;graph, B, C);
+    AddEdge(&amp;graph, D, C);
+    AddEdge(&amp;graph, D, E);
+    AddEdge(&amp;graph, E, F);
+    AddEdge(&amp;graph, E, G);
+
+    ShowGraphInfoEdgeInfo(&amp;graph);
+
+    DFSShowGraphVertex(&amp;graph, A); printf("\n");
+    DFSShowGraphVertex(&amp;graph, C); printf("\n");
+    DFSShowGraphVertex(&amp;graph, E); printf("\n");
+    DFSShowGraphVertex(&amp;graph, G); printf("\n");
+//
+    GraphDestroy(&amp;graph);
+}</code></pre>
+<p><figure class="imageblock alignLeft" width="288" height="302" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="288" height="302"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>BFS&nbsp;</b></h2>
+<p data-ke-size="size16">BFS는 큐로 구현된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ALGraphBFS.h</b></p>
+<pre class="cpp"><code>/*
+ * 인접 리스트 기반의 무방향 그래프 구현
+ */
+#ifndef CHAP14_ALGRAPH_ALGRAPH_H
+#define CHAP14_ALGRAPH_ALGRAPH_H
+
+#include "DLinkedList.h" // 연결 리스트 사용
+// 정점의 이름 상수화
+enum {A, B, C, D, E, F, G, H, I, J};
+
+typedef struct _val
+{
+    int numV;
+    int numE;
+    List *adjList;
+    int *visitInfo; // 정점 방문 여부 기록
+} ALGraph;
+
+// 정점갯수 nv개의 그래프 생성
+void GraphInit(ALGraph *pg, int nv);
+void GraphDestroy(ALGraph *pg);
+void AddEdge(ALGraph *pg, int fromV, int toV);
+void ShowGraphInfoEdgeInfo(ALGraph *pg);
+
+// startV 부터 정점 정보 출력 (BFS 기반)
+void BFSShowGraphVertex(ALGraph *pg, int startV);
+
+#endif //CHAP14_ALGRAPH_ALGRAPH_H
+</code></pre>
+<p data-ke-size="size16"><b>ALGraphBFS.c</b></p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+#include "DLinkedList.h"
+#include "CircularQueue.h"
+#include "ALGraphBFS.h"
+
+int WhoIsPrecede(int data1, int data2);
+
+void GraphInit(ALGraph *pg, int nv)
+{
+    // 정점 갯수 nv개
+    pg-&gt;adjList = (List*)malloc(sizeof(List) * nv);
+    pg-&gt;numV = nv;
+    pg-&gt;numE = 0;
+    pg-&gt;visitInfo = (int*)malloc(sizeof(int) * pg-&gt;numV);
+    memset(pg-&gt;visitInfo, 0, sizeof(int)*pg-&gt;numV);
+
+    for(int i = 0; i &lt; nv; i++)
+    {
+        ListInit(&amp;(pg-&gt;adjList[i]));
+        SetSortRule(&amp;(pg-&gt;adjList[i]), WhoIsPrecede);
+    }
+}
+
+void GraphDestroy(ALGraph *pg)
+{
+    if(pg-&gt;adjList != NULL)
+        free(pg-&gt;adjList);
+
+    if(pg-&gt;visitInfo != NULL)
+        free(pg-&gt;visitInfo);
+}
+
+void AddEdge(ALGraph *pg, int fromV, int toV)
+{
+    LInsert(&amp;(pg-&gt;adjList[fromV]), toV);
+    LInsert(&amp;(pg-&gt;adjList[toV]), fromV);
+    pg-&gt;numE += 1;
+}
+
+void ShowGraphInfoEdgeInfo(ALGraph *pg)
+{
+    int i;
+    int vx;
+
+    for(i = 0; i &lt; pg-&gt;numV; i++)
+    {
+        printf("%c와 연결된 정점: ", i+65);
+
+        if(LFirst(&amp;(pg-&gt;adjList[i]), &amp;vx))
+        {
+            printf("%c ", vx+65);
+            while(LNext(&amp;(pg-&gt;adjList[i]), &amp;vx))
+                printf("%c ", vx+65);
+        } printf("\n");
+    }
+}
+
+int WhoIsPrecede(int data1, int data2)
+{
+    if(data1 &lt; data2)
+        return 0;
+    else
+        return 1;
+}
+
+int VisitVertex(ALGraph *pg, int visitV)
+{
+    if(pg-&gt;visitInfo[visitV] == 0) // visitsV 정점에 아직 방문하지 않았다면
+    {
+        pg-&gt;visitInfo[visitV] = 1; // 방문 체크
+        printf("%c ", visitV+65);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+void BFSShowGraphVertex(ALGraph *pg, int startV)
+{
+    Queue queue;
+    int visitV = startV;
+    int nextV;
+
+    QueueInit(&amp;queue);
+    VisitVertex(pg, visitV);
+
+    while(LFirst(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+    {
+        int visitFlag = FALSE;
+
+        // 현재 정점에서 방문할수 있는 다음 정점 찾음
+        if(VisitVertex(pg, nextV)) // 방문 성공
+        {
+            Enqueue(&amp;queue, nextV);
+        }
+
+        while(LNext(&amp;(pg-&gt;adjList[visitV]), &amp;nextV))
+        {
+            if(VisitVertex(pg, nextV)) // 방문 성공
+            {
+                Enqueue(&amp;queue, nextV);
+            }
+        }
+
+
+        if(QIsEmpty(&amp;queue))
+            break;
+        else
+            visitV = Dequeue(&amp;queue);
+    }
+
+    memset(pg-&gt;visitInfo, 0, sizeof(int) * pg-&gt;numV);
+}</code></pre>
+<p data-ke-size="size16"><b>BFSMain.c</b></p>
+<pre class="reasonml"><code>#include &lt;stdio.h&gt;
+#include "ALGraphBFS.h"
+
+int main()
+{
+    ALGraph graph;
+    GraphInit(&amp;graph, 7);
+
+    AddEdge(&amp;graph, A, B);
+    AddEdge(&amp;graph, A, D);
+    AddEdge(&amp;graph, B, C);
+    AddEdge(&amp;graph, D, C);
+    AddEdge(&amp;graph, D, E);
+    AddEdge(&amp;graph, E, F);
+    AddEdge(&amp;graph, E, G);
+
+    ShowGraphInfoEdgeInfo(&amp;graph);
+
+    BFSShowGraphVertex(&amp;graph, A); printf("\n");
+    BFSShowGraphVertex(&amp;graph, C); printf("\n");
+    BFSShowGraphVertex(&amp;graph, E); printf("\n");
+    BFSShowGraphVertex(&amp;graph, G); printf("\n");
+
+    GraphDestroy(&amp;graph);
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="370" height="389" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="370" height="389"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C #graph #BFS #dfs 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -24,13 +24,17 @@ public class BlogController {
     @GetMapping("blog/{pageName}")
     public String blogPage(Model model, @PathVariable String pageName) {
         // fetchTistory.js fetchHTML() 에서 fetch 할 html 경로
-        String fetchURL = "/tistory/"+pageName;
+        String fetchURL = "/tistory/"+extractNumber(pageName)+"/"+pageName;
         // header 이름 렌더링
         String headerPageName = pageName.substring(0, pageName.length()-5);
 
         model.addAttribute("headerTextBoxText", headerPageName);
         model.addAttribute("fetchURL", fetchURL);
         return "blog/tistoryPage";
+    }
+
+    private static String extractNumber(String url) {
+        return url.substring(0, url.indexOf('-'));
     }
 
     @GetMapping("blogPortal/graph")

@@ -1,0 +1,60 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Camera가 GameObject 따라가도록 하기.</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Camera가 GameObject 따라가도록 하기.</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-01-20 20:38:30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <pre id="code_1611142672362" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// Player에 카메라가 따라가도록 함.
+public class CameraFollow : MonoBehaviour
+{
+    [SerializeField]
+    private Transform targetToFollow; // 따라갈 target. (Player)
+
+    private void Update()
+    {
+        transform.position = new Vector3(
+            transform.position.x, // 나의 x pos
+            targetToFollow.position.y, // Player의 y pos
+            transform.position.z);
+    }
+}
+</code></pre>
+<p>스크립트를 camera에 attach</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

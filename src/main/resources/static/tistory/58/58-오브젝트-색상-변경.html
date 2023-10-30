@@ -1,0 +1,69 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>오브젝트 색상 변경</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">오브젝트 색상 변경</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2020-12-31 18:07:51</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><span style="color: #333333;">Meshrenderer로 색상 컨트롤.</span></p>
+<p><b><span style="color: #333333;">코드를 이용해 색 변경:</span></b></p>
+<pre id="code_1609405658554" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>public class ColorControl : MonoBehaviour 
+{
+	public MeshRenderer _renderer;
+    
+    void Start()
+    {
+        if (isLocalPlayer) _renderer.material.color = Color.blue;
+        else _renderer.material.color = Color.red;
+    }
+}</code></pre>
+<p>&nbsp;</p>
+<p><b>Material을 이용:</b></p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20201231181810.png" data-origin-width="381" data-origin-height="594" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20201231181810.png" data-origin-width="381" data-origin-height="594" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption>Material</figcaption>
+</figure></p>
+<p>Create - Material로 Material 생성하고, Albedo 에서 색상 변경.</p>
+<p>그 후 색상변경 원하는 오브젝트의 Mesh Renderer의 Materials의 Element에 드래그.</p>
+<p><figure class="imageblock alignCenter" data-filename="20201231181913.png" data-origin-width="391" data-origin-height="172" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20201231181913.png" data-origin-width="391" data-origin-height="172" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

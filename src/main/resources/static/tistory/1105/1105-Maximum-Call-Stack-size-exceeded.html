@@ -1,0 +1,61 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Maximum Call Stack size exceeded</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Maximum Call Stack size exceeded</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2023-04-16 10:41:31</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4;">
+<div><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">byteArray</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">new</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">Uint8Array</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">event</span><span style="color: #d4d4d4;">.</span><span style="color: #4fc1ff;">target</span><span style="color: #d4d4d4;">.</span><span style="color: #4fc1ff;">result</span><span style="color: #d4d4d4;">); </span></div>
+<div><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">binaryString</span><span style="color: #d4d4d4;"> = </span><span style="color: #4ec9b0;">String</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">fromCharCode</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">apply</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">null</span><span style="color: #d4d4d4;">, </span><span style="color: #9cdcfe;">byteArray</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">base64String</span><span style="color: #d4d4d4;"> = </span><span style="color: #dcdcaa;">btoa</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">binaryString</span><span style="color: #d4d4d4;">);</span></div>
+</div>
+<p data-ke-size="size16">byte array 를 binary String 으로 변환하는 과정에서 Maximum Call Stack size exceeded 에러가 발생.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">원인:</p>
+<p data-ke-size="size16">웹 브라우저는 너무 많은 argument 를 처리할수 없기 때문에 발생.</p>
+<p data-ke-size="size16">apply() 를 쓰지 않고 일일히 fromCharCode로 변환후 binary 문자열에 추가해주면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<div style="background-color: #1e1e1e; color: #d4d4d4;"><br />
+<div><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">byteArrayToBase64String</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">bytes</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">let</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">binary</span><span style="color: #d4d4d4;"> = </span><span style="color: #ce9178;">''</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;"> </span><span style="color: #c586c0;">for</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">let</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;"> &lt; </span><span style="color: #9cdcfe;">bytes</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">length</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">++) {</span></div>
+<div><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">binary</span><span style="color: #d4d4d4;"> += </span><span style="color: #4ec9b0;">String</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">fromCharCode</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">bytes</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">]);</span></div>
+<div><span style="color: #d4d4d4;"> }</span></div>
+<div><span style="color: #d4d4d4;"> </span><span style="color: #c586c0;">return</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">btoa</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">binary</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;"> }</span></div>
+</div>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #JavaScript #web 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch12. MVC 2 : Validator의 범위</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch12. MVC 2 : Validator의 범위</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-22 16:56:55</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">스프링 MVC에는 모든 컨트롤러에 적용할 수 있는&nbsp;<b>글로벌 범위 Validator&nbsp;</b>와 <b>단일 컨트롤러에 적용할 수 있는 Validator</b>를 설정하는 방법이 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>글로벌 범위 Validator (@Valid)&nbsp;</b></h2>
+<p data-ke-size="size16">글로벌 범위 Validator는 모든 컨트롤러에 적용할수 있는 Validator 이다.</p>
+<p data-ke-size="size16">글로벌 범위 Validator를 적용하려면 다음 두 가지를 설정해야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1. 설정 클래스에서 WebMvcConfigurer의 getValidator() 메서드가 Validator 구현 객체를 리턴하도록 구현&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1658474545078" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package config;
+
+// .. 
+
+// Spring MVC 설정 
+@Configuration
+@EnableWebMvc
+public class MvcConfig implements WebMvcConfigurer
+{
+	// .. 생략 
+    
+	// 스프링은 getValidator()가 리턴한 객체를 글로벌 범위 Validator로 사용 
+	@Override 
+	public Validator getValidator() 
+	{
+		return new RegisterRequestValidator();
+	}
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 글로벌 범위 Validator가 검증할 커맨드 객체에 <b>@Valid 애노테이션 적용&nbsp;</b></p>
+<pre id="code_1658474621129" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package controller;
+
+// .. 
+
+@Controller
+public class RegisterController 
+{
+	// .. 
+
+	// 회원가입 form 데이터 받아서 처리하고 step3 (회원가입 완료 페이지) 이동 
+	@PostMapping("/register/step3")
+	public String handleStep3(@Valid RegisterRequest regReq, Errors errors)
+	{
+		// 에러 있다면 step2 로 되돌아감 
+		// @Valid에서 처리 
+//		new RegisterRequestValidator().validate(regReq, errors);
+		if(errors.hasErrors()) return "register/step2";
+		
+        // .. 
+	}	
+}</code></pre>
+<p data-ke-size="size16">커맨드 객체 ReigsterRequest 앞에 @Valid 애노테이션을 붙여 적용했다.</p>
+<p data-ke-size="size16">이렇게 되면 @Valid 애노테이션에 의해 <b>Validator가 해당 타입을 검증할수 있는지 확인</b>하고 (RegisterRequestValidator의 supports 메서드), <b>에러가 있는지 확인</b>한다 (validate 메서드) .</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 과정은 <b>요청 처리 메서드 (handleStep3) 실행 전에 수행</b>된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>컨트롤러 범위 Validator (@InitBinder)</b></h2>
+<p data-ke-size="size16">특정 컨트롤러를 검사할 Validator의 설정은 다음과 같이 할수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1658475546555" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package controller;
+// ... 
+
+@Controller
+public class RegisterController 
+{
+	// ... 
+
+	// 회원가입 form 데이터 받아서 처리하고 step3 (회원가입 완료 페이지) 이동 
+	@PostMapping("/register/step3")
+	public String handleStep3(@Valid RegisterRequest regReq, Errors errors)
+	{
+		// 에러 있다면 step2 로 되돌아감 
+		// @Valid에서 처리 
+//		new RegisterRequestValidator().validate(regReq, errors);
+		if(errors.hasErrors()) return "register/step2";
+		
+		try 
+		{
+			memberRegisterService.regist(regReq);
+			return "register/step3";
+		} catch(DuplicateMemberException ex) 
+		{
+			errors.rejectValue("email", "duplicate");
+			return "register/step2";
+		}
+			
+	}
+	
+	// @Valid 가 붙은 커맨드 객체 검사할 Validator 설정 
+	// 컨트롤러의 요청 처리 메서드 실행 전 매번 실행 
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) 
+	{
+		binder.setValidator(new RegisterRequestValidator());
+	} 
+	
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">handleStep3 메서드의 파라미터에<b> 커맨드 객체 RegisterRequest 앞에 @Valid</b> 애노테이션을 붙였다.</p>
+<p data-ke-size="size16">그리고 @InitBinder가 붙은<b> initBinder 메서드에서 WebDataBinder#setValidator()로 RegisterRequestValidator를 등록</b>하고 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이것은&nbsp;<b> RegisterReqeust 객체를 검사할 Validator를 RegisterRequestValidator로 지정</b>하겠다는 의미이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">@InitBinder가 붙은 메서드는 컨트롤러의 요청 처리 메서드 (handleStep1, handleStep3 등 @Mapping이 붙은 메서드들)들이 실행되기 전 매번 실행되어&nbsp;<b>initBinder&nbsp;</b>메서드를 호출해 WebDataBinder를 초기화 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>글로벌 범위, 컨트롤러 범위 Validator의 우선 순위&nbsp;</b></h3>
+<p data-ke-size="size16">만약 어떤 컨트롤러가 글로벌 범위와 컨트롤러 범위 두 개의 Validator가 검사하도록 되어 있고, WebDataBinder#setValidator()로 컨트롤러 범위 Validator를 지정했다면, <b>컨트롤러 범위 Validator로 검사하게 된다. </b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">WebDataBinder는 내부적으로 Validator 목록을 갖고 있고 여기에는 글로벌 Validator도 포함되는데,<span><span> WebDataBinder#setValidator()로 Validator를 추가할때 기존에 있던 Validator를 삭제하고 추가하기 때문이다.&nbsp;</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #MVC #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

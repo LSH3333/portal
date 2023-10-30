@@ -1,0 +1,331 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>01260. DFS와 BFS</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">01260. DFS와 BFS</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2020-08-04 17:01:58</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>&nbsp;</p>
+<p><a href="https://www.acmicpc.net/problem/1260">https://www.acmicpc.net/problem/1260</a></p>
+<figure id="og_1596523017061" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="1260번: DFS와 BFS" data-og-description="첫째 줄에 정점의 개수 N(1 &le; N &le; 1,000), 간선의 개수 M(1 &le; M &le; 10,000), 탐색을 시작할 정점의 번호 V가 주어진다. 다음 M개의 줄에는 간선이 연결하는 두 정점의 번호가 주어진다. 어떤 두 정점 사" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1260" data-og-url="https://www.acmicpc.net/problem/1260" data-og-image="https://scrap.kakaocdn.net/dn/9qtwn/hyGZYGJTXX/v6BpmtkI228zfKbGUlWQkk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/1260" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1260">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/9qtwn/hyGZYGJTXX/v6BpmtkI228zfKbGUlWQkk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">1260번: DFS와 BFS</p>
+<p class="og-desc">첫째 줄에 정점의 개수 N(1 &le; N &le; 1,000), 간선의 개수 M(1 &le; M &le; 10,000), 탐색을 시작할 정점의 번호 V가 주어진다. 다음 M개의 줄에는 간선이 연결하는 두 정점의 번호가 주어진다. 어떤 두 정점 사</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>제일 처음으로 풀어본 그래프 문제.&nbsp;</p>
+<p>이 문제로 DFS와 BFS의 차이점을 쉽게 알수 있었다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>이 문제를 풀면서 java를 처음 사용해봐서 처음에 시간이 좀 들었다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>정점의 개수 N, 간선의 개수 M, 탐색을 시작할 정점 V가 입력으로 들어오면 DFS와 BFS 탐색을 해서 수행결과를 나타내는 문제.</p>
+<p>&nbsp;</p>
+<p>간선들의 정보를 인접리스트로 저장할 ArrayList 선언.</p>
+<p>dfs던 bfs던지 정점들을 하나씩 방문할 것이므로 방문여부를 true or false로 체크할 boolean mark선언.&nbsp;</p>
+<p>입력되는 정점의 개수가 1보다 크거나 같고 1000보다 작거나 같으므로 둘다 크기 1001로 선언했다.</p>
+<pre id="code_1596524551091" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class Main {
+    static ArrayList&lt;Integer&gt; edge[] = new ArrayList[1001];
+    // 방문여부 저장할 mark
+    static boolean mark[] = new boolean[1001];</code></pre>
+<p>&nbsp;</p>
+<p>먼저 메인함수에서 인자들을 입력을 받고,</p>
+<pre id="code_1596523915700" class="java" data-ke-language="java" data-ke-type="codeblock"><code>// 간선정보 edge에 저장
+        for(int i = 0; i &lt; m; i++) {
+            int t, f;
+            t = s.nextInt();
+            f = s.nextInt();
+
+            edge[f].add(t);
+            edge[t].add(f);
+        }</code></pre>
+<p>먼저 bfs와 dfs탐색을 진행하려면 그래프의 간선들의 정보를 저장 해야 한다.</p>
+<p>&nbsp;</p>
+<p>입력받은 간선들의 정보를 ArrayList에 저장한다. (인접리스트)</p>
+<p>&nbsp;</p>
+<p>edge[f]에 t를 저장하고</p>
+<p>edge[t]에 f를 저장함으로서 방향없는 리스트로 저장된다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>간선이 연결하는 두 정점의 정보들이 다음과 같다면</p>
+<p>1&nbsp;2 <br />1&nbsp;5 <br />2&nbsp;3 <br />2&nbsp;5 <br />3&nbsp;4 <br />4&nbsp;5 <br />4&nbsp;6</p>
+<p>&nbsp;</p>
+<p>배열에는 다음과 같이 저장된다</p>
+<p>1: 2, 5</p>
+<p>2: 1, 3, 5</p>
+<p>3: 2, 4</p>
+<p>4: 3, 5, 6</p>
+<p>5: 1, 2, 4</p>
+<p>6: 4</p>
+<p>&nbsp;</p>
+<p>이 그래프를 그림으로 표현해보면</p>
+<p><figure class="imageblock alignCenter" data-filename="그래프 표현.png" data-origin-width="469" data-origin-height="279" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="그래프 표현.png" data-origin-width="469" data-origin-height="279" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>이렇게 표현된다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>여기까지는 dfs와 bfs와 관련없는 그냥 인접리스트 방식으로 간선의 정보를 저장하는 방법이다.&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>DFS(Depth First Search, 깊이 우선 탐색)</b></p>
+<pre id="code_1596524716740" class="java" data-ke-language="java" data-ke-type="codeblock"><code> // Dept First Search
+    static void dfs(int n) { // int n : 탐색시작 정점
+        Stack&lt;Integer&gt; s = new Stack&lt;Integer&gt;();
+        s.push(n); mark[n] = true;
+        System.out.print(n + " ");
+
+        while(!s.empty()) {
+            int f = s.peek();
+            boolean none = true;
+
+            for(int x : edge[f]) {
+                if(mark[x] == false) {
+                    s.push(x); mark[x] = true;
+                    System.out.print(x + " ");
+                    none = false;
+                    break;
+                }
+            }
+            if(none) s.pop();
+        }
+    }</code></pre>
+<p><figure class="imageblock alignLeft" data-filename="그래프 표현.png" data-origin-width="469" data-origin-height="279" width="292" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="그래프 표현.png" data-origin-width="469" data-origin-height="279" width="292" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>정점 1에서 시작된다고 생각하면 DFS탐색은&nbsp;</p>
+<p>1 - 2 - 3 - 4 - 5 - 4 - 6 순으로 탐색이 된다.&nbsp;</p>
+<p>이것을 코드로 구현하기 위해 Stack 자료구조를 사용한다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&lt;Stack&gt; // First In Last Out</p>
+<p>1</p>
+<p>1 2</p>
+<p>1 2 3</p>
+<p>1 2 3 4</p>
+<p>1 2 3 4 5 // 5에서 인접한 정점을 탐색했는데 true로 mark되 있다 = 이미 방문했다, 그럼 스택에서 뺸다.&nbsp;</p>
+<p>1 2 3 4</p>
+<p>1 2 3 4 6</p>
+<p>1 2 3 4</p>
+<p>1 2 3</p>
+<p>1 2</p>
+<p>1</p>
+<p>&nbsp;</p>
+<p>스택 자료구조는 First In Last Out이기 때문에 pop하면 마지막에 넣은 숫자가 나온다.</p>
+<p>다음 방문할 정점을 스택에 넣고 이동한후</p>
+<p>내가 지금 있는 정점에서 인접한 정점을 봤는데 이미 true로 방문한 상태면 pop해서 스택에서 뺀다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>코드를 보면</p>
+<p>while문안에 for문 진입전 boolean none을 true로 선언하고</p>
+<p>인접 정점을 방문하는 for문안에서 다음으로 방문할 아직 방문하지않은 (mark가 false)인 정점이 있으면 none이 false가되서 현재 정점이 pop되지 않지만,</p>
+<p>방문할수 있는 정점이 하나도 없으면 none이 그대로 true로 남아 for문에서 빠져나온후 현재 정점이 pop된다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><u>DFS 재귀 방법</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<p>DFS는 다음 정점으로 이동후 그정점에 인접한곳 으로 또 이동 하므로 재귀를 이용해서 함수를 구성할수도 있음.</p>
+<pre id="code_1596528757654" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public static void dfs(int x) {
+        if(c[x]) return;
+
+        c[x] = true;
+        System.out.print(x + " ");
+        for(Object y : a[x]) dfs((int)y);
+    }</code></pre>
+<p>&nbsp;for문에서 다음 정점으로 이동후 dfs함수를 재귀호출</p>
+</div>
+</div>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>BFS(Breadth First Search, 넓이 우선 탐색)</b></p>
+<pre id="code_1596526566440" class="java" data-ke-language="java" data-ke-type="codeblock"><code>// Breadth First Search
+    static void bfs(int n) {
+        Queue&lt;Integer&gt; q = new LinkedList&lt;Integer&gt;();
+        q.add(n);
+        mark[n] = true;
+
+        while(!q.isEmpty()) {
+            int x  = q.remove();
+            System.out.print(x + " ");
+
+            for(Object y : edge[x]) {
+                int v = (int)y;
+                if(!mark[v]) {
+                    mark[v] =true;
+                    q.add(v);
+                }
+            }
+        }
+    }</code></pre>
+<p><figure class="imageblock alignLeft" width="292" data-filename="그래프 표현.png" data-origin-width="469" data-origin-height="279" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="292" data-filename="그래프 표현.png" data-origin-width="469" data-origin-height="279" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>아까와 입력은 같이 1에서 시작한다고 하면 BFS는</p>
+<p>1(1) - 2(2) - 5(2) - 3(3) - 4(3) - 6(4)</p>
+<p>&nbsp;</p>
+<p>BFS는 Queue 컨테이너를 사용해서 탐색한다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&lt;Queue&gt; First In First Out</p>
+<p>1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// print : 1</p>
+<p>2 5 // 2가 remove 된다&nbsp; &nbsp; &nbsp; // print : 2</p>
+<p>5 3&nbsp; //&nbsp; 2의 인접 정점</p>
+<p>3 4&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // print : 5</p>
+<p>4&nbsp; // 3 remove&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// print : 3</p>
+<p>6 // 4 revmove&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// print : 4</p>
+<p>&nbsp; // 6 remove&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// print : 6</p>
+<p>&nbsp;</p>
+<p>코드 상으로 DFS와 다른점은 DFS에선 인접 정점을 탐색하는 for문 안에서 이동 가능한 다음 정점을 발견하면 break로 for문을 빠져나왔지만 BFS에서는 빠져나오지않고 이동가능한 모든 정점을 큐안에 담는다.&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>MAIN</b></p>
+<p>&nbsp;</p>
+<p>메인 함수에서 간선 정보 입력받고 그래프를 만든다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>문제에서 :</p>
+<p><span>단, 방문할 수 있는 정점이 여러 개인 경우에는 정점 번호가 작은 것을 먼저 방문하고, 더 이상 방문할 수 있는 점이 없는 경우 종료한다.</span></p>
+<p>&nbsp;</p>
+<p><span>라고 했으므로 dfs와 bfs함수를 실행 하기 전에 그래프를 만든 edge array를 먼저 sort해야 한다.</span></p>
+<pre id="code_1596527859607" class="java" data-ke-language="java" data-ke-type="codeblock"><code>// 방문 가능 정점 여러개일때 번호가 작은것부터 방문하므로 정렬
+        for(int i = 1; i &lt;= n; i++)
+            Collections.sort(edge[i]);</code></pre>
+<p>&nbsp;</p>
+<p>그후 dfs함수를 돌리고&nbsp;</p>
+<p>bfs를 돌리기전에 정점 방문 여부를 표시한 mark를 초기화! 해주고 bfs를 돌려야한다</p>
+<pre id="code_1596527904778" class="java" data-ke-language="java" data-ke-type="codeblock"><code>// mark 초기화
+        for(int i = 0; i &lt;= n; i++) {
+            mark[i] = false;
+        }
+        bfs(v);</code></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1596527994743" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.*;
+
+public class Main {
+    static ArrayList&lt;Integer&gt; edge[] = new ArrayList[1001];
+    // 방문여부 저장할 mark
+    static boolean mark[] = new boolean[1001];
+
+    // Dept First Search
+    static void dfs(int n) {
+        Stack&lt;Integer&gt; s = new Stack&lt;Integer&gt;();
+        s.push(n); mark[n] = true;
+        System.out.print(n + " ");
+
+        while(!s.empty()) {
+            int f = s.peek();
+            boolean none = true;
+
+            for(int x : edge[f]) {
+                if(mark[x] == false) {
+                    s.push(x); mark[x] = true;
+                    System.out.print(x + " ");
+                    none = false;
+                    break;
+                }
+            }
+            if(none) s.pop();
+        }
+    }
+
+    // Breadth First Search
+    static void bfs(int n) {
+        Queue&lt;Integer&gt; q = new LinkedList&lt;Integer&gt;();
+        q.add(n);
+        mark[n] = true;
+
+        while(!q.isEmpty()) {
+            int x  = q.remove();
+            System.out.print(x + " ");
+
+            for(Object y : edge[x]) {
+                int v = (int)y;
+                if(!mark[v]) {
+                    mark[v] =true;
+                    q.add(v);
+                }
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt(); // 정점의 개수
+        int m = s.nextInt(); // 간선의 개수
+        int v = s.nextInt(); // 탐색 시작할 정점의 번호
+
+        for(int i = 0; i &lt;= n; i++) {
+            edge[i] = new ArrayList&lt;Integer&gt;();
+        }
+
+        // 간선정보 edge에 저장
+        for(int i = 0; i &lt; m; i++) {
+            int t, f;
+            t = s.nextInt();
+            f = s.nextInt();
+
+            edge[f].add(t);
+            edge[t].add(f);
+        }
+
+        // 방문 가능 정점 여러개일때 번호가 작은것부터 방문하므로 정렬
+        for(int i = 1; i &lt;= n; i++)
+            Collections.sort(edge[i]);
+
+        dfs(v);
+        System.out.println();
+
+        // mark 초기화
+        for(int i = 0; i &lt;= n; i++) {
+            mark[i] = false;
+        }
+        bfs(v);
+
+
+    }
+
+}</code></pre>
+</div>
+</div>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #graph #dfs 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

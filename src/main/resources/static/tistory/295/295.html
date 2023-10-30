@@ -1,0 +1,112 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Git) Support for password authentication was removed (mac)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Git) Support for password authentication was removed (mac)</h2>
+                                <div class="box-info">
+                                    <p class="category">Git</p>
+                                    <p class="date">2021-08-14 15:34:54</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">어느날 평소처럼 커맨드라인에서 push를 했는데 다음과 같은 오류가 났다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1932" data-origin-height="320" data-filename="스크린샷 2021-08-14 오후 3.27.47.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1932" data-origin-height="320" data-filename="스크린샷 2021-08-14 오후 3.27.47.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">사실 한달전인가도 이런 일이 있었다.</p>
+<p data-ke-size="size16">그때 찾아봤을때 앞으로<b> Github.com에 터미널에서 접근할때 더이상 계정 비밀번호를 요구하자 않고 토큰을 요구할것이니 생성</b>하라고 했었다. 그리고 모든 개발자들이 토큰을 생성하도록 8월13일 이전에도 한달에 수차례씩 특정시간에 일부러 이런 메시지를 띄운다고 했었는데</p>
+<p data-ke-size="size16">그냥 귀찮아서 안만들었다..</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이제는 더이상 미룰수 없어서 Please see 라고 적혀있는 저 페이지로가서 그대로 따라했다</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/#what-you-need-to-do-today" target="_blank" rel="noopener">https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/#what-you-need-to-do-today</a></p>
+<figure id="og_1628922655665" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="Token authentication requirements for Git operations | The GitHub Blog" data-og-description="Beginning August 13th, 2021, we will no longer accept account passwords when authenticating Git operations on GitHub.com." data-og-host="github.blog" data-og-source-url="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/#what-you-need-to-do-today" data-og-url="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/" data-og-image="https://scrap.kakaocdn.net/dn/gz5VX/hyLezJhFoJ/bYdLsEOTB7fMOPXf2sYDcK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/bBgEnW/hyLeBAksel/kzQJx91pIRGozJAKMT2mW0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/#what-you-need-to-do-today" target="_blank" rel="noopener" data-source-url="https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/#what-you-need-to-do-today">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/gz5VX/hyLezJhFoJ/bYdLsEOTB7fMOPXf2sYDcK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/bBgEnW/hyLeBAksel/kzQJx91pIRGozJAKMT2mW0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Token authentication requirements for Git operations | The GitHub Blog</p>
+<p class="og-desc" data-ke-size="size16">Beginning August 13th, 2021, we will no longer accept account passwords when authenticating Git operations on GitHub.com.</p>
+<p class="og-host" data-ke-size="size16">github.blog</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="2068" data-origin-height="516" data-filename="스크린샷 2021-08-14 오후 3.31.06.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="2068" data-origin-height="516" data-filename="스크린샷 2021-08-14 오후 3.31.06.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">1. 먼저 <b>personal access token을 생성</b>하란다.</p>
+<p data-ke-size="size16">다음 링크로 가면 상세하게 이미지와 함께 나와있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noopener">https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token</a></p>
+<figure id="og_1628922724014" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Creating a personal access token - GitHub Docs" data-og-description="Personal access tokens (PATs) are an alternative to using passwords for authentication to GitHub when using the GitHub API or the command line. If you want to use a PAT to access resources owned by an organization that uses SAML SSO, you must authorize the" data-og-host="docs.github.com" data-og-source-url="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" data-og-url="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" data-og-image="https://scrap.kakaocdn.net/dn/bjXGG1/hyLeuOLiJT/wn8bcRphypm7HdFODix3d1/img.png?width=2010&amp;height=316&amp;face=0_0_2010_316,https://scrap.kakaocdn.net/dn/brcHEe/hyLerxIslj/LD9XfeN0ubg9Vd3oMTwLsK/img.png?width=1506&amp;height=351&amp;face=0_0_1506_351,https://scrap.kakaocdn.net/dn/bX9HA4/hyLeClI1hM/UfDHDM7WWR58Ps18pWyQm1/img.png?width=412&amp;height=922&amp;face=0_0_412_922"><a href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token" target="_blank" rel="noopener" data-source-url="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bjXGG1/hyLeuOLiJT/wn8bcRphypm7HdFODix3d1/img.png?width=2010&amp;height=316&amp;face=0_0_2010_316,https://scrap.kakaocdn.net/dn/brcHEe/hyLerxIslj/LD9XfeN0ubg9Vd3oMTwLsK/img.png?width=1506&amp;height=351&amp;face=0_0_1506_351,https://scrap.kakaocdn.net/dn/bX9HA4/hyLeClI1hM/UfDHDM7WWR58Ps18pWyQm1/img.png?width=412&amp;height=922&amp;face=0_0_412_922');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Creating a personal access token - GitHub Docs</p>
+<p class="og-desc" data-ke-size="size16">Personal access tokens (PATs) are an alternative to using passwords for authentication to GitHub when using the GitHub API or the command line. If you want to use a PAT to access resources owned by an organization that uses SAML SSO, you must authorize the</p>
+<p class="og-host" data-ke-size="size16">docs.github.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 이제 mac의 keychain access에서 적용해야한다</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain" target="_blank" rel="noopener">https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain</a></p>
+<figure id="og_1628922773786" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Updating credentials from the macOS Keychain - GitHub Docs" data-og-description="Note: Updating credentials from the macOS Keychain only applies to users who manually configured a PAT using the osxkeychain helper that is built-in to macOS. We recommend you either configure SSH or upgrade to the Git Credential Manager Core (GCM Core) in" data-og-host="docs.github.com" data-og-source-url="https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain" data-og-url="https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain" data-og-image="https://scrap.kakaocdn.net/dn/oWYQx/hyLeB1oUWR/ejFxZTOHDs0ptmKzGfhv31/img.png?width=1584&amp;height=1084&amp;face=0_0_1584_1084"><a href="https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain" target="_blank" rel="noopener" data-source-url="https://docs.github.com/en/get-started/getting-started-with-git/updating-credentials-from-the-macos-keychain">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/oWYQx/hyLeB1oUWR/ejFxZTOHDs0ptmKzGfhv31/img.png?width=1584&amp;height=1084&amp;face=0_0_1584_1084');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Updating credentials from the macOS Keychain - GitHub Docs</p>
+<p class="og-desc" data-ke-size="size16">Note: Updating credentials from the macOS Keychain only applies to users who manually configured a PAT using the osxkeychain helper that is built-in to macOS. We recommend you either configure SSH or upgrade to the Git Credential Manager Core (GCM Core) in</p>
+<p class="og-host" data-ke-size="size16">docs.github.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">mac spotlight에서 keychain access를 검색하고</p>
+<p data-ke-size="size16">keychain access에서 github.com을 검색.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1048" data-origin-height="666" data-filename="스크린샷 2021-08-14 오후 3.33.43.png" width="411" height="261" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1048" data-origin-height="666" data-filename="스크린샷 2021-08-14 오후 3.33.43.png" width="411" height="261" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">여기서 암호보기를 눌러서 토큰생성할때 받았던 토큰 비밀번호를 입력한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그 후 push 해보면 한번더 비밀번호를 요구하고 push가 잘된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #GIT 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

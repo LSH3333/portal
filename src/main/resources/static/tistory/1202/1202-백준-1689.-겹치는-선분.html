@@ -1,0 +1,63 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1689. 겹치는 선분</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1689. 겹치는 선분</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-09-15 13:20:21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1689" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1689</a></p>
+<figure id="og_1694751420443" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1689번: 겹치는 선분" data-og-description="첫째 줄에는 선분의 개수(1 &le; N &le; 1,000,000)가 입력으로 들어온다. 그 다음 N개의 줄에 선분의 시작 좌표 s와 끝나는 좌표 e (s &lt; e)가 입력으로 들어온다. 선분의 좌표는 절댓값이 10억보다 작거나 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1689" data-og-url="https://www.acmicpc.net/problem/1689" data-og-image=""><a href="https://www.acmicpc.net/problem/1689" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1689">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1689번: 겹치는 선분</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에는 선분의 개수(1 &le; N &le; 1,000,000)가 입력으로 들어온다. 그 다음 N개의 줄에 선분의 시작 좌표 s와 끝나는 좌표 e (s &lt; e)가 입력으로 들어온다. 선분의 좌표는 절댓값이 10억보다 작거나</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">e 기준 min-hape 인 priority queue 를 만든다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">모든 선분들을 s 기준 오름차순 정렬한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">오름차순 정렬한 선분들을 하나씩 순회하는데,</p>
+<p data-ke-size="size16">새로운 선분을 탐색할때 만약 pq.top 의 끝나는 좌표 e 보다, 새로운 선분의 s가 크거나 같다면 pq.top() 에 있는 선분은 더이상 겹쳐지지 않는다는 뜻이므로 pop 해준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 pq의 사이즈가 곧 겹쳐져 있는 선분의 갯수가 되기 때문에 pq.size() 의 가장 큰 값이 답이 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/923d1501da9b3a9fc4d57bef84e0c4d1.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #greedy #priority queue 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

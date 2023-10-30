@@ -1,0 +1,72 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>캡스톤  2021.11.17</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">캡스톤  2021.11.17</h2>
+                                <div class="box-info">
+                                    <p class="category">학교/캡스톤</p>
+                                    <p class="date">2021-11-16 13:33:07</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b>- 버튼 hovering, sound 추가&nbsp;</b></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/Nov-16-2021 13-25-39.gif"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<script src="https://gist.github.com/LSH3333/b76fbdbc2e50146ccbd508dadfd2c351.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>- UnityEditor 라이브러리 사용 문제&nbsp;</b></p>
+<p data-ke-size="size16"><b></b>유니티에서는 설계한 프로그램을 하나의 실행파일로 빌드 할수 있는데, 빌드 과정에서 오류가 났다.</p>
+<p data-ke-size="size16">찾아보니 원인은 UnityEditor 라이브러리를 사용해서 일어난 문제였다.</p>
+<p data-ke-size="size16">유저에게 이미지를 선택하게 하는 과정에서 explorer 창이 나타난후 이미지를 선택하도록 했는데, 여기서 UnityEditor 라이브러리를 사용했다.&nbsp;</p>
+<p data-ke-size="size16">그런데 UnityEditor 라이브러리는 말그대로 Editor 내에서만 사용가능 한 라이브러리였다.&nbsp;</p>
+<p data-ke-size="size16">즉 유니티 에디터에서 프로그램을 만들때 도움을 주는 용도로 설계된 라이브러리이고 실행파일로 빌드했을때는 이 라이브러리의 함수들을 사용할수 없다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 UnityEditor를 사용한 모든 코드들을 수정 할 필요가 생겼다.</p>
+<p data-ke-size="size16">UnityEditor.AssetDatabase.RenameFile 등 과 같이 파일을 이동시키거나 이름을 바꾸거나 하는 함수들은 C# 라이브러리인 System.IO에 비슷한 함수들이 있어서 쉽게 해결했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제는 explorer를 열때 사용한 함수인데, 이와 관련된 함수는 C# 라이브러리에서 찾을수 없었다.</p>
+<p data-ke-size="size16">직접 구현한다면 불가능할것 같진 않지만 디렉토리의 경로를 모두 불러와야하고, GUI도 따로 만들어야 되므로 꽤 큰 작업이 추가되는 것이다.</p>
+<p data-ke-size="size16">다행히 구글링을 통해 이런 문제에 맞딱뜨린 사람이 많다는 것을 알았고 관련된 클래스를 구현해 놓은 깃허브가 있어서 가져다 쓰는 것으로 UnityEditor 라이브러리의 함수들을 모두 대체할수 있었다.&nbsp;</p>
+<p data-ke-size="size16">(해당 깃허브 링크: <a href="https://github.com/quangdungtr/UnityStandaloneFileBrowser" target="_blank" rel="noopener">https://github.com/quangdungtr/UnityStandaloneFileBrowser</a>)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">UnityEditor 라이브러리를 사용하지 않고 다시 쓰인 코드:</p>
+<script src="https://gist.github.com/LSH3333/5beff9beee4b60b3b4ef0357cfd8617f.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/1a09587c848c7e9f83de265e6ba53ef9.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

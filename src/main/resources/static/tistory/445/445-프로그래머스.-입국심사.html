@@ -1,0 +1,83 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>프로그래머스. 입국심사</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">프로그래머스. 입국심사</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-12-22 16:13:05</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://programmers.co.kr/learn/courses/30/lessons/43238" target="_blank" rel="noopener">https://programmers.co.kr/learn/courses/30/lessons/43238</a></p>
+<figure id="og_1640156568153" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="코딩테스트 연습 - 입국심사" data-og-description="n명이 입국심사를 위해 줄을 서서 기다리고 있습니다. 각 입국심사대에 있는 심사관마다 심사하는데 걸리는 시간은 다릅니다. 처음에 모든 심사대는 비어있습니다. 한 심사대에서는 동시에 한 " data-og-host="programmers.co.kr" data-og-source-url="https://programmers.co.kr/learn/courses/30/lessons/43238" data-og-url="https://programmers.co.kr/learn/courses/30/lessons/43238" data-og-image="https://scrap.kakaocdn.net/dn/bC4aNc/hyMMXCxiP8/wLSWeElk07bxESJCbrE7wK/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/ceqoQg/hyMN9g3mxk/8L6QKaM1pgnDyOJSJr75bk/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626"><a href="https://programmers.co.kr/learn/courses/30/lessons/43238" target="_blank" rel="noopener" data-source-url="https://programmers.co.kr/learn/courses/30/lessons/43238">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bC4aNc/hyMMXCxiP8/wLSWeElk07bxESJCbrE7wK/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/ceqoQg/hyMN9g3mxk/8L6QKaM1pgnDyOJSJr75bk/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">코딩테스트 연습 - 입국심사</p>
+<p class="og-desc" data-ke-size="size16">n명이 입국심사를 위해 줄을 서서 기다리고 있습니다. 각 입국심사대에 있는 심사관마다 심사하는데 걸리는 시간은 다릅니다. 처음에 모든 심사대는 비어있습니다. 한 심사대에서는 동시에 한</p>
+<p class="og-host" data-ke-size="size16">programmers.co.kr</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">카테고리가 이분탐색으로 되있었는데 처음에는 그냥 n의 최댓값 상관안하고 마음대로 풀었더니 당연히 시간초과가 났다.</p>
+<p data-ke-size="size16">이분탐색이라길래 나는 c++의 upper_bound나 lower_bound를 활용하는 문제인줄 알고&nbsp;</p>
+<p data-ke-size="size16">시간을 일일히 구하는데 구할때 해당 함수를 써서 풀었더니 틀렸다고 나왔다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">코드를 계속 바꿔봤는데 결국 안풀려서 다른 분들 코드를 봤는데 다음과 같이 푸는 문제였다.</p>
+<p data-ke-size="size16">이분탐색에서&nbsp;</p>
+<p data-ke-size="size16">left = 심사걸리는 최소 시간, 즉 0</p>
+<p data-ke-size="size16">right = 최대 시간, 즉 주어진 times중 최댓값 *&nbsp; n&nbsp;</p>
+<p data-ke-size="size16">이 상태에서 mid를 구해서 이분탐색을 진행하는 문제였다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>n = 6, times[] = {7, 10} 라면&nbsp;</b></p>
+<p data-ke-size="size16"><b>left = 0, right = 60, mid = 30&nbsp;</b></p>
+<p data-ke-size="size16">30분일때는 30/7=4 + 30/10=3 = 7명 심사가능.</p>
+<p data-ke-size="size16">n=6이므로 right = mid - 1</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>left = 0, right = 29, mid = 14</b></p>
+<p data-ke-size="size16">14분일때는 14/7=2 + 14/10=1 = 3명 심사가능.</p>
+<p data-ke-size="size16">left = mid + 1&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>left = 15, right = 29, mid = 22&nbsp;</b></p>
+<p data-ke-size="size16">22분일때는 22/7=3 + 22/10=2 = 5명 심사가능&nbsp;</p>
+<p data-ke-size="size16">left = mid + 1</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>left = 23, right = 29, mid = 26</b></p>
+<p data-ke-size="size16">26분일때는 26/7=3 + 26/10=2 = 5명 심사가능&nbsp;</p>
+<p data-ke-size="size16">left = mid + 1</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>left = 27, right = 29, mid = 28</b></p>
+<p data-ke-size="size16">28분일때는 28/7=4 + 28/10=2 = 6명 심사가능&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">right = 27, left = 27 : left &lt;= right == false므로 탈출&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/7f208ce1f2d8b025e27d12bc3ebe2491.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #이분탐색 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

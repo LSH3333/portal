@@ -1,0 +1,108 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Rect Transform (Anchors, Pivot)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Rect Transform (Anchors, Pivot)</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2020-08-13 17:51:25</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>Canvas위에 어떤 이미지나 게임 오브젝트를 놓을때, 어떻게 놓을수 있을까?</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-filename="20200813172009.png" data-origin-width="530" data-origin-height="109" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20200813172009.png" data-origin-width="530" data-origin-height="109" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>Anchors, Pivot 로 좌표를 특정함.</p>
+<p>&nbsp;</p>
+<p><b>Anchors</b> : 내가 만약 종이에 이미지를 붙인다고 하면, 그 종이의 어느 부분에 이미지를 붙일 것인가.</p>
+<p>내 UGUI 컴포넌트가 올라가는 영역의 좌표 정보.</p>
+<p>&nbsp;</p>
+<p><b>Pivot</b> : 내가 붙일 이미지의 한 지점.&nbsp;</p>
+<p>&nbsp;</p>
+<p>즉 Anchors와 Pivot을 매칭시켜서 내 컴포넌트가 올라갈 좌표를 특정한다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200813172846.png" data-origin-width="1213" data-origin-height="408" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20200813172846.png" data-origin-width="1213" data-origin-height="408" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><span style="color: #333333;">Anchors가 (0.5, 0.5), Pivot가 (1, 0)이라면</span></p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200813173317.png" data-origin-width="1124" data-origin-height="371" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-filename="20200813173317.png" data-origin-width="1124" data-origin-height="371" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>이런식으로 Canvas의 Anchor좌표와 내 Image Component의 Pivot 좌표가 서로 매칭되는 것이다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Anchors는 그대로 (0.5, 0.5)이고 Pivot이 (0, 1)이라면?</p>
+<p><figure class="imageblock widthContent" data-filename="20200813173833.png" data-origin-width="1067" data-origin-height="382" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-filename="20200813173833.png" data-origin-width="1067" data-origin-height="382" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><figure class="imageblock alignLeft" data-filename="20200813174342.png" data-origin-width="554" data-origin-height="305" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-filename="20200813174342.png" data-origin-width="554" data-origin-height="305" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p><b>Rect Transform</b></p>
+<p>Pos x, Pos y, Pos z : 내가 놓을 컴포넌트의 Pivot이 놓일 자리를 정한다.</p>
+<p>Width, Height : 내가 놓을 컴포넌트의 크기 지정.</p>
+<p>&nbsp;</p>
+<p><b>Anchors</b></p>
+<p>Anchors는 범위가 지정 가능하다.&nbsp;</p>
+<p>위에서 처럼 x: 0.5 ~ 0.5, y: 0.5 ~ 0.5 이렇게 min 값과 max 값이 같으면 범위가 '점'이 된다.</p>
+<p>&nbsp;</p>
+<p>그런데 min, max값이 같지 않으면 점이아닌 범위가 된다.</p>
+<p><figure class="imageblock alignLeft" data-filename="20200813175001.png" data-origin-width="549" data-origin-height="223" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-filename="20200813175001.png" data-origin-width="549" data-origin-height="223" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>Anchors 값이 범위 영역이 되면 pos x, Width가 Left, Right가 된다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

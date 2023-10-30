@@ -1,0 +1,81 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>div 사이의 의도하지 않은 white space</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">div 사이의 의도하지 않은 white space</h2>
+                                <div class="box-info">
+                                    <p class="category">html & css</p>
+                                    <p class="date">2022-11-21 16:57:15</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements" target="_blank" rel="noopener">https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements</a></p>
+<figure id="og_1669017079391" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Why is there an unexplainable gap between these inline-block div elements?" data-og-description="I have two inline-block div elements, that are the same, positioned next to eachother. However there seems to be a mysterious space of 4 pixels between the two divs despite the margin being set to 0." data-og-host="stackoverflow.com" data-og-source-url="https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements" data-og-url="https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements" data-og-image="https://scrap.kakaocdn.net/dn/bOkwIB/hyQDDfFvDh/tGkKBPkBTUso4JPlYCZeK0/img.png?width=316&amp;height=316&amp;face=0_0_316_316,https://scrap.kakaocdn.net/dn/g9xD6/hyQE1FXKfq/GKyUXXKKHxHtXHcIo4s5U0/img.png?width=300&amp;height=200&amp;face=0_0_300_200,https://scrap.kakaocdn.net/dn/bCD0J0/hyQDvPo7os/i6yTKjEFZNph8B6ahl7o71/img.png?width=300&amp;height=200&amp;face=0_0_300_200"><a href="https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements" target="_blank" rel="noopener" data-source-url="https://stackoverflow.com/questions/19038799/why-is-there-an-unexplainable-gap-between-these-inline-block-div-elements">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bOkwIB/hyQDDfFvDh/tGkKBPkBTUso4JPlYCZeK0/img.png?width=316&amp;height=316&amp;face=0_0_316_316,https://scrap.kakaocdn.net/dn/g9xD6/hyQE1FXKfq/GKyUXXKKHxHtXHcIo4s5U0/img.png?width=300&amp;height=200&amp;face=0_0_300_200,https://scrap.kakaocdn.net/dn/bCD0J0/hyQDvPo7os/i6yTKjEFZNph8B6ahl7o71/img.png?width=300&amp;height=200&amp;face=0_0_300_200');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Why is there an unexplainable gap between these inline-block div elements?</p>
+<p class="og-desc" data-ke-size="size16">I have two inline-block div elements, that are the same, positioned next to eachother. However there seems to be a mysterious space of 4 pixels between the two divs despite the margin being set to 0.</p>
+<p class="og-host" data-ke-size="size16">stackoverflow.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">inline-block 의 두개의 div를 서로 horizontally 배열했을때 두 div 사이의 하얀 간격이 보인다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1669017204940" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;div class="top_left"&gt;
+&lt;/div&gt;
+&lt;div class="top_right"&gt;        
+&lt;/div&gt;</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption>결과</figcaption>
+</figure></p>
+<p data-ke-size="size16">왼쪽 파랑색이 top_left div, 오른쪽 초록색이 top_right div 이다.</p>
+<p data-ke-size="size16">두 div 모두 display 속성은<b> inline-block</b>이다.</p>
+<p data-ke-size="size16">둘 사이에 흰색 간격이 있다.</p>
+<p data-ke-size="size16">이유는&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p style="text-align: center;" data-ke-size="size16"><i><b><span style="background-color: #ffffff; color: #232629;">A typical characteristic of<span>&nbsp;</span></span>inline<span style="background-color: #ffffff; color: #232629;"><span>&nbsp;</span>elements is that they respect the whitespace in the markup.</span></b></i></p>
+<p style="text-align: center;" data-ke-size="size16">&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16">즉 inline-block은 markup 즉 html 코드 상에서 빈 공간을 존중한다.</p>
+<p style="text-align: left;" data-ke-size="size16">코드 상에서 첫번째 div에서 개행하고 두 번째 div이 있기 때문에 이렇게 두 div 사이에 gap이 표시된 것이다.&nbsp;</p>
+<p style="text-align: left;" data-ke-size="size16">&nbsp;</p>
+<pre id="code_1669017403155" class="html xml" data-ke-language="html" data-ke-type="codeblock"><code>&lt;div class="top_left"&gt;&lt;/div&gt;&lt;div class="top_right"&gt;&lt;/div&gt;</code></pre>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption>결과</figcaption>
+</figure></p>
+<p data-ke-size="size16">위와 같이 두 div를 붙여 주면 사이의 간격이 없어진것을 볼 수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

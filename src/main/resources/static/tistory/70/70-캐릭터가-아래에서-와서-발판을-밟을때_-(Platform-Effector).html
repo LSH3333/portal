@@ -1,0 +1,75 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>캐릭터가 아래에서 와서 발판을 밟을때? (Platform Effector)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">캐릭터가 아래에서 와서 발판을 밟을때? (Platform Effector)</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-02-04 21:35:01</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>DoodleJump같이 내 캐릭터가 아래에서 점프해서 발판을 밟으려면,</p>
+<p>발판의 아래에서 오는 내 캐릭터의 충돌은 무시되고, 위에서 아래로 낙하할때만 충돌이 감지되어야함</p>
+<p>&nbsp;</p>
+<p>방법은 Platform Effector를 쓰면된다.</p>
+<p><figure class="imageblock alignCenter" data-filename="20210204213040.png" data-origin-width="401" data-origin-height="441" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20210204213040.png" data-origin-width="401" data-origin-height="441" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>일단 발판에 충돌하려면 Box Collider가 필요하고,&nbsp;</p>
+<p>위에서 아래로 낙하할때만 충돌이 감지되게 하기위해 Platform Effector 2D 를 추가한다.</p>
+<p>&nbsp;</p>
+<p>발판 오브젝트에 Platform Effector를 추가하면&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20210204213149.png" data-origin-width="395" data-origin-height="237" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20210204213149.png" data-origin-width="395" data-origin-height="237" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>이렇게 반원모양의 막이 생기는데, 이 범위안에서의 충돌만 감지하기 때문에 아래에서 위로 통과하는 캐릭터의 충돌은 감지되지 않는다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>그런데 이런식으로 하게되면 캐릭터가 점프해서 발판의 양쪽 사이드로 오게되면 충돌한다.</p>
+<p>그것을 피하기 위해선, Platform Effector 2D의 Surface Arc를 조절해주면 된다.</p>
+<p>위 사진은 Surface Arc의 수치가 180 즉 180도이다.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20210204213357.png" data-origin-width="342" data-origin-height="190" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-filename="20210204213357.png" data-origin-width="342" data-origin-height="190" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>Surface Arc의 수치를 150도로 수정하면 이렇게 된다.&nbsp;</p>
+<p>이렇게 되면 발판의 양쪽 사이드도 아래쪽과같이 충돌을 무시한다.</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

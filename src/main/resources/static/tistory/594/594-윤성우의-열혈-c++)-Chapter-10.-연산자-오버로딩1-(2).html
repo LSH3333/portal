@@ -1,0 +1,199 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) Chapter 10. 연산자 오버로딩1 (2)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) Chapter 10. 연산자 오버로딩1 (2)</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-22 13:16:49</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>cin, cout, endl</b></h2>
+<p data-ke-size="size16">- 콘솔 입출력에 사용되는<b> cout, cin, endl</b>는 사실 연산자 오버로딩으로 구현되어 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- <b>cout, cin은 namespace std 내의 객체의 이름</b>이고, <b>endl은 함수의 이름</b>이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="c++ arduino" data-ke-language="c++"><code>#include &lt;iostream&gt;
+namespace mystd
+{
+    using namespace std;
+
+    class ostream
+    {
+    public:
+    	// ostream을 참조형으로 반환
+        ostream&amp; operator&lt;&lt; (char *str) // 문자열
+        {
+            printf("%s", str);
+            return *this;
+        }
+        ostream&amp; operator&lt;&lt; (char str) // 문자
+        {
+            printf("%c", str);
+            return *this;
+        }
+        ostream&amp; operator&lt;&lt; (int num) // 정수
+        {
+            printf("%d", num);
+            return *this;
+        }
+        ostream&amp; operator&lt;&lt; (double e) // 실수형
+        {
+            printf("%g", e);
+            return *this;
+        }
+        ostream&amp; operator&lt;&lt; (ostream&amp; (*fp)(ostream &amp;ostm))
+        {
+            return fp(*this);
+        }
+    };
+
+    ostream&amp; endl(ostream &amp;ostm)
+    {
+        ostm &lt;&lt; '\n';
+        fflush(stdout); // 버퍼 비움
+        return ostm;
+    }
+
+    ostream cout; // cout은 객체의 이름이다
+}
+
+int main()
+{
+    using mystd::cout;
+    using mystd::endl;
+
+    cout &lt;&lt; "Simple String";
+    cout &lt;&lt; endl; // cout.operator(endl)
+    // operator&lt;&lt; 연산자 오버로딩이 ostream&amp; 형을 반환하기 때문에 이 문장이 성립된다 
+    cout &lt;&lt; 3.14 &lt;&lt; endl &lt;&lt; 123 &lt;&lt; endl;
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>&lt;&lt; 연산자 오버로딩&nbsp;</b></h2>
+<pre class="c++ arduino" data-ke-language="c++"><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Point
+{
+private:
+    int xpos, ypos;
+public:
+    Point(int x = 0, int y = 0) : xpos(x), ypos(y) {}
+
+    friend ostream&amp; operator&lt;&lt; (ostream&amp; os, const Point &amp;pos);
+};
+
+//ostream&amp; operator&lt;&lt; (ostream&amp; cout, const Point &amp;pos)
+//{
+//    cout &lt;&lt; '[' &lt;&lt; pos.xpos &lt;&lt; ", " &lt;&lt; pos.ypos &lt;&lt; ']' &lt;&lt; endl;
+//    return cout;
+//}
+
+ostream&amp; operator&lt;&lt; (ostream&amp; os, const Point &amp;pos)
+{
+    os &lt;&lt; '[' &lt;&lt; pos.xpos &lt;&lt; ", " &lt;&lt; pos.ypos &lt;&lt; ']' &lt;&lt; endl;
+    return os;
+}
+
+int main()
+{
+    Point pos1(1, 3);
+    cout &lt;&lt; pos1;
+    Point pos2(3, 4);
+    cout &lt;&lt; pos2;
+}</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">ostream&amp; operator&lt;&lt; (ostream&amp; os, const Point &amp;pos)&nbsp;</p>
+<p data-ke-size="size16">위 함수는 &lt;&lt; 연산자를 오버로딩하고 있다.</p>
+<p data-ke-size="size16">파라미터로 ostream의 참조형을 받고있는데 위에서 봤다싶이 ostream은 namespace std에 정의된 클래스다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 함수 내부의 다음 문장은&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;os&nbsp;&lt;&lt;&nbsp;'['&nbsp;&lt;&lt;&nbsp;pos.xpos&nbsp;&lt;&lt;&nbsp;",&nbsp;"&nbsp;&lt;&lt;&nbsp;pos.ypos&nbsp;&lt;&lt;&nbsp;']'&nbsp;&lt;&lt;&nbsp;endl;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음과 같이 해석된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">namespace std 내부에는 &lt;&lt; 연산자 오버로딩이 되어있고,&nbsp;</p>
+<p data-ke-size="size16">해당 &lt;&lt; 연산자 오버로딩에 의해 먼저 '['이 출력되고 전달 받은 ostream&amp;형이 다시 반환된다.</p>
+<p data-ke-size="size16">stream&amp;형이 다시 반환되었기 때문에 또 다시 &lt;&lt; 연산이 진행될수 있어 다음에는 ", "이 출력된다 ...&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26">문제 10-3 [입력을 위한 &gt;&gt; 연산자의 오버로딩]&nbsp;</h2>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Point
+{
+private:
+    int xpos, ypos;
+public:
+    Point(int x = 0, int y = 0) : xpos(x), ypos(y) {}
+
+    friend ostream&amp; operator&lt;&lt; (ostream&amp; os, const Point &amp;pos);
+    friend istream&amp; operator&gt;&gt; (istream&amp; is, Point &amp;pos);
+};
+
+// output
+ostream&amp; operator&lt;&lt; (ostream&amp; os, const Point &amp;pos)
+{
+    os &lt;&lt; '[' &lt;&lt; pos.xpos &lt;&lt; ", " &lt;&lt; pos.ypos &lt;&lt; ']' &lt;&lt; endl;
+    return cout;
+}
+// input
+istream&amp; operator&gt;&gt; (istream&amp; is, Point &amp;pos)
+{
+    is &gt;&gt; pos.xpos &gt;&gt; pos.ypos;
+    return is;
+}
+
+int main()
+{
+    Point pos1;
+    cout &lt;&lt; "x,y 좌표 순으로 입력: ";
+    cin &gt;&gt; pos1;
+    cout &lt;&lt; pos1;
+}</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2828. 사과 담기 게임</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2828. 사과 담기 게임</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-15 12:03:10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2828" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2828</a></p>
+<figure id="og_1628996458535" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2828번: 사과 담기 게임" data-og-description="상근이는 오락실에서 바구니를 옮기는 오래된 게임을 한다. 스크린은 N칸으로 나누어져 있다. 스크린의 아래쪽에는 M칸을 차지하는 바구니가 있다. (M&lt;N) 플레이어는 게임을 하는 중에 바구니를 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2828" data-og-url="https://www.acmicpc.net/problem/2828" data-og-image="https://scrap.kakaocdn.net/dn/bsqJTK/hyLfnuh3R9/8gDvekIVKNckijav7cGkIK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2828" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2828">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bsqJTK/hyLfnuh3R9/8gDvekIVKNckijav7cGkIK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2828번: 사과 담기 게임</p>
+<p class="og-desc" data-ke-size="size16">상근이는 오락실에서 바구니를 옮기는 오래된 게임을 한다. 스크린은 N칸으로 나누어져 있다. 스크린의 아래쪽에는 M칸을 차지하는 바구니가 있다. (M&lt;n) 플레이어는="" 게임을="" 하는="" 중에="" 바구니를="" &lt;="" p=""&gt; &lt;/n)&gt;</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">현재 바구니의 위치를 사과가 떨어지는 순서대로의 위치로 옮기면된다.</p>
+<p data-ke-size="size16">이때 최소의 횟수로 이동해야하므로&nbsp;</p>
+<p data-ke-size="size16">사과의 위치가 현재 바구니의 오른쪽 끝지점보다 오른쪽에 있으면, <b>오른쪽 끝 지점이 사과의 위치에 오도록 이동.</b></p>
+<p data-ke-size="size16">사과의 위치가 현재 바구니의 왼쪽 끝지점보다 왼쪽에 있으면, <b>왼쪽 끝 지점이 사과의 위치에 오도록 이동.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1628996465797" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int n,m,j;
+int loc[30];
+
+int main()
+{
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; j;
+    for(int i = 1; i &lt;= j; i++)
+        cin &gt;&gt; loc[i];
+
+    int left = 1;
+    int right = m;
+    int cnt = 0;
+    for(int i = 1; i &lt;= j; i++)
+    {
+        // 바구니가 사과를 얻을수 있는 위치에 없다
+        if(!(loc[i] &gt;= left &amp;&amp; loc[i] &lt;= right))
+        {
+            // 바구니가 사과가 떨어지는 위치의 왼쪽에 있다
+            if(right &lt; loc[i])
+            {
+                int move = loc[i] - right;
+                cnt += move;
+                left += move;
+                right += move;
+            }
+            // 바구니가 사과가 떨어지는 위치의 오른쪽에 있다
+            else if(loc[i] &lt; left)
+            {
+                int move = left - loc[i];
+                cnt += move;
+                left -= move;
+                right -= move;
+            }
+        }
+
+    }
+    cout &lt;&lt; cnt;
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch11. MVC 1 : 컨트롤러 구현 없는 경로 매핑</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch11. MVC 1 : 컨트롤러 구현 없는 경로 매핑</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-15 17:20:01</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>WebMvcConfigurer 인터페이스의 addViewControllers 메서드&nbsp;</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음은 회원가입 완료 화면 뷰인 <b>step3.jsp</b> 파일이다.</p>
+<pre id="code_1657871893000" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;%@ page contentType="text/html; charset=utf-8" %&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;회원가입&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;&lt;strong&gt;${registerRequest.name}님 &lt;/strong&gt;
+	회원 가입을 완료했습니다.&lt;/p&gt; 
+	&lt;p&gt;&lt;a href="&lt;c:url value='/main'/&gt;"&gt;[첫 화면 이동]&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">첫 화면 이동 을 누르면 main 으로 이동하도록 되어 있는데, 이를 위한 컨트롤러는 단순히 해당 경로를 매핑하는 일만을 한다.&nbsp;</p>
+<p data-ke-size="size16">이럴경우 따로 컨트롤러를 만드는 것 보다 간단한 방법이 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>WebMvcConfigurer 인터페이스에 정의된 addViewControllers 메소드를 사용한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음은 <b>MvcConfigure.java</b> 설정 클래스다.&nbsp;</p>
+<pre id="code_1657872079368" class="java" data-ke-language="java" data-ke-type="codeblock"><code>// Spring MVC 설정 
+@Configuration
+@EnableWebMvc
+public class MvcConfig implements WebMvcConfigurer
+{
+	...
+    
+	// WebMvcConfigurer 인터페이스에 정의됨 
+	// 요청 경로 - 뷰 이름 연결 
+	@Override 
+	public void addViewControllers(ViewControllerRegistry registry) 
+	{
+		registry.addViewController("/main").setViewName("main");
+	}
+}</code></pre>
+<p data-ke-size="size16">메소드 내용은 <b>"/main" 요청 경로에 대해 뷰 이름으로 main 을 사용한다는 것을 뜻한다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">메인화면 뷰인 <b>main.jsp</b>&nbsp;</p>
+<pre id="code_1657872790891" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;%@ page contentType="text/html; charset=utf-8" %&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;메인&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;p&gt;환영합니다&lt;/p&gt;
+	&lt;p&gt;&lt;a href="&lt;c:url value="/register/step1" /&gt;"&gt;[회원 가입하기]&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p data-ke-size="size16">단순하게 텍스트 출력과, 회원 가입으로의 링크가 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="453" height="148" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="453" height="148"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #MVC #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Child와 Parent 분리하기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Child와 Parent 분리하기</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-02-15 21:48:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>오브젝트(Bomb)는 날린 일정 시간 후 파괴하고</p>
+<p>trail renderer는 남기고 싶어서 사용한 방법:</p>
+<p><figure class="imageblock alignCenter" data-filename="20210215214459.png" data-origin-width="171" data-origin-height="39" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20210215214459.png" data-origin-width="171" data-origin-height="39" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>Bomb의 child 오브젝트를 만들고 그곳에 trail renderer 컴포넌트를 생성한 후</p>
+<p>&nbsp;</p>
+<p>Bomb 오브젝트가 Destroy될때 Parent와 Child를 분리 시킴.</p>
+<p>&nbsp;</p>
+<pre id="code_1613393202019" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>void OnDestroy()
+    {
+        _trail.transform.parent = null;
+    }</code></pre>
+<p>&nbsp;</p>
+<p>이렇게 하면 Bomb이 destroy될때 Parent와 Child가 분리되면서 Child는 남게되므로</p>
+<p>trail renderer 도 유지됨.&nbsp;</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20210215214747.png" data-origin-width="657" data-origin-height="195" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20210215214747.png" data-origin-width="657" data-origin-height="195" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption>trail renderer remains</figcaption>
+</figure></p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

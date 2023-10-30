@@ -1,0 +1,74 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1091. 카드 섞기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1091. 카드 섞기</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-07-01 13:31:13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1091" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1091</a></p>
+<figure id="og_1656649535647" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1091번: 카드 섞기" data-og-description="지민이는 카지노의 딜러이고, 지금 3명의 플레이어(0, 1, 2)가 있다. 이 게임은 N개의 카드를 이용한다. (0 ~ N-1번) 일단 지민이는 카드를 몇 번 섞은 다음에, 그것을 플레이어들에게 나누어 준다. 0" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1091" data-og-url="https://www.acmicpc.net/problem/1091" data-og-image="https://scrap.kakaocdn.net/dn/cq1GWX/hyOW9GgUJH/CXrdcSMgB6xLtMpft8VRKK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/1091" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1091">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cq1GWX/hyOW9GgUJH/CXrdcSMgB6xLtMpft8VRKK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1091번: 카드 섞기</p>
+<p class="og-desc" data-ke-size="size16">지민이는 카지노의 딜러이고, 지금 3명의 플레이어(0, 1, 2)가 있다. 이 게임은 N개의 카드를 이용한다. (0 ~ N-1번) 일단 지민이는 카드를 몇 번 섞은 다음에, 그것을 플레이어들에게 나누어 준다. 0</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">구현하는데는 아무런 어려움이 없지만 처음에 문제 이해하는게 조금 힘들었던 문제.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">햇갈렸던 점은 <span style="background-color: #ffffff; color: #555555;">각 카드가 어떤 플레이어에게 가야 하는지에 대한 정보는 길이가 N인 수열<b> P</b>다.&nbsp;</span></p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #555555;">수열 P의 정의는 <b><span style="background-color: #ffffff; color: #555555;">맨 처음 i번째 위치에 있던 카드를 최종적으로 플레이어 P[i] 에게 보내야한다.</span></b></span></p>
+<p data-ke-size="size16">이 말은 만약 <b>N=12</b>이면 최초에 카드는 다음과 같이 있을 것이다</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>0 1 2 3 4 5 6 7 8 9 10 11&nbsp;&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">만약 P = {1, 1, 2, 0, 2, 0, 1, 0, 2, 2, 1, 0} 이라면 최종적으로 위의 카드들이 다음과 같이 배치되어야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">최초 0번째 카드가 P[0] = 1번 에게&nbsp;</p>
+<p data-ke-size="size16">최초 1번째 카드가 P[1] = 1번 에게</p>
+<p data-ke-size="size16">최초 2번째 카드가 P[2] = 2번 에게 ...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 최종적으로 세 명의 플레이어에게 다음과 같이 카드들이 가야한다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">0번 플레이어 : 3, 5, 7, 11</p>
+<p data-ke-size="size16">1번 플레이어 : 0, 1, 6, 10</p>
+<p data-ke-size="size16">2번 플레이어 : 2, 4, 8, 9&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제 이해가 좀 난해한데 이해만 하면 시간 복잡도도 신경 쓸 필요 없는 문제라 어렵지 않다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/dc60f8797095769758737af8f224a018.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Implementation 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

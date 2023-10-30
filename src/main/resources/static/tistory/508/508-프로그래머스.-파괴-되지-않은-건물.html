@@ -1,0 +1,142 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>프로그래머스. 파괴 되지 않은 건물</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">프로그래머스. 파괴 되지 않은 건물</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-02-01 16:39:37</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://programmers.co.kr/learn/courses/30/lessons/92344" target="_blank" rel="noopener">https://programmers.co.kr/learn/courses/30/lessons/92344</a></p>
+<figure id="og_1643700258550" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="코딩테스트 연습 - 파괴되지 않은 건물" data-og-description="[[5,5,5,5,5],[5,5,5,5,5],[5,5,5,5,5],[5,5,5,5,5]] [[1,0,0,3,4,4],[1,2,0,2,3,2],[2,1,0,3,1,2],[1,0,1,3,3,1]] 10 [[1,2,3],[4,5,6],[7,8,9]] [[1,1,1,2,2,4],[1,0,0,1,1,2],[2,2,0,2,0,100]] 6" data-og-host="programmers.co.kr" data-og-source-url="https://programmers.co.kr/learn/courses/30/lessons/92344" data-og-url="https://programmers.co.kr/learn/courses/30/lessons/92344" data-og-image="https://scrap.kakaocdn.net/dn/eD1KM/hyNhQgtEfV/jkskhoFWOnbL3yXbgtBKP0/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/KYkie/hyNhUDblMn/5nlKonZY8hJtwWXK3hzfY1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626"><a href="https://programmers.co.kr/learn/courses/30/lessons/92344" target="_blank" rel="noopener" data-source-url="https://programmers.co.kr/learn/courses/30/lessons/92344">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/eD1KM/hyNhQgtEfV/jkskhoFWOnbL3yXbgtBKP0/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/KYkie/hyNhUDblMn/5nlKonZY8hJtwWXK3hzfY1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">코딩테스트 연습 - 파괴되지 않은 건물</p>
+<p class="og-desc" data-ke-size="size16">[[5,5,5,5,5],[5,5,5,5,5],[5,5,5,5,5],[5,5,5,5,5]] [[1,0,0,3,4,4],[1,2,0,2,3,2],[2,1,0,3,1,2],[1,0,1,3,3,1]] 10 [[1,2,3],[4,5,6],[7,8,9]] [[1,1,1,2,2,4],[1,0,0,1,1,2],[2,2,0,2,0,100]] 6</p>
+<p class="og-host" data-ke-size="size16">programmers.co.kr</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">보드의 넓이가 최대 백만이고, skill 배열의 최대크기가 25만이므로 일일히 계산을 해볼수는 없다.</p>
+<p data-ke-size="size16">직접 계산하지 않고 값을 구하는 방법이 뭐가 있을까 계속 고민해봤지만 떠오르지 않아서</p>
+<p data-ke-size="size16">방법을 찾아봤는데 이 문제는 누적합을 구하는 문제였다.</p>
+<p data-ke-size="size16">아마 계속 고민했어도 떠올리지 못했을 것 같다 ..&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">누적합은 다음과 같이 구할수 있다.&nbsp;</p>
+<p data-ke-size="size16"><b>만약에 크기가 5인 배열이 있고 0 부터 3까지 -2씩 더하고 싶다고 해보자.</b></p>
+<p data-ke-size="size16"><b>[0, 0, 0, 0, 0]&nbsp; // 최초 배열&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그럼 다음과 같이 더해 주는 시작 인덱스에 -2를, 끝나는 인덱스의 다음 인덱스에 부호가 바뀐 +2를 기록한다</p>
+<p data-ke-size="size16"><b>[-2, 0, 0, 0, +2]</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이제 이전 인덱스의 값을 현재 인덱스에 더해나간다.</p>
+<p data-ke-size="size16">[1]에는 [0]의 값을 더한다: [1] = 0 + (-2) = -2</p>
+<p data-ke-size="size16">[2]에는 [1]의 값을 더한다: [2] = 0 + (-2) = -2&nbsp;</p>
+<p data-ke-size="size16">...&nbsp;</p>
+<p data-ke-size="size16"><b>[-2, -2, -2, -2, 0]</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">원래 목적처럼 인덱스 0부터 3까지 -2씩 더해졌다.&nbsp;</p>
+<p data-ke-size="size16">이런 방식으로 하면 특정 범위에 값을 더하거나 빼야하는 수행을 여러번 해야할때,</p>
+<p data-ke-size="size16">일일히 모든 인덱스를 방문하지 않아도 최종적으로 배열의 값을 구할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제의 경우 2차원 배열이기 때문에 조금 변형이 필요한데,</p>
+<p data-ke-size="size16">스킬의 범위를 각 행마다 구분하고, 범위의 끝이 마지막 열이라면 반대 부호를 더해줄때 다음 열이 아닌(마지막 열이므로)</p>
+<p data-ke-size="size16">다음 행의 첫번째 열에 더해줘야한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 보드가 다음과 같이 4 x 3이고,</p>
+<p data-ke-size="size16">(1,1) 부터 (3,2) 까지 -2의 피해를 주고싶다면&nbsp;</p>
+<table style="border-collapse: collapse; width: 20.5814%; height: 76px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr style="height: 22px;">
+<td style="width: 33.3333%; height: 22px; text-align: center;">&nbsp;</td>
+<td style="width: 33.3333%; height: 22px; text-align: center;">&nbsp;</td>
+<td style="width: 33.3333%; height: 22px; text-align: center;">&nbsp;</td>
+</tr>
+<tr style="height: 22px;">
+<td style="width: 33.3333%; height: 22px; text-align: center;">&nbsp;</td>
+<td style="width: 33.3333%; height: 22px; text-align: center;">-2</td>
+<td style="width: 33.3333%; height: 22px; text-align: center;">&nbsp;</td>
+</tr>
+<tr style="height: 22px;">
+<td style="width: 33.3333%; height: 22px; text-align: center;">2</td>
+<td style="width: 33.3333%; height: 22px; text-align: center;">-2</td>
+<td style="width: 33.3333%; height: 22px; text-align: center;">&nbsp;</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 33.3333%; height: 10px; text-align: center;">2</td>
+<td style="width: 33.3333%; height: 10px; text-align: center;">-2</td>
+<td style="width: 33.3333%; height: 10px; text-align: center;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">이런식으로 다음 행의 첫번째 열에 반대 부호를 기록한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/098395afa6905e5ce2d96bf1eb019198.js"></script>
+<p data-ke-size="size16">누적합 구하는 방법을 몰랐는데,</p>
+<p data-ke-size="size16">특정 범위에 값을 더하거나 빼야하는 수행을 여러번 해야할때 매우 유용할것 같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">카카오 테크 블로그의 해설을 보고 추가한다.</p>
+<p data-ke-size="size16">(<a href="https://tech.kakao.com/2022/01/14/2022-kakao-recruitment-round-1/" target="_blank" rel="noopener">https://tech.kakao.com/2022/01/14/2022-kakao-recruitment-round-1/</a>)&nbsp;</p>
+<p data-ke-size="size16">기본적으로 누적합은 위에 기록한것처럼 구하면되는데 더 빠른 시간복잡도로 구하는 방법이 있다.</p>
+<p data-ke-size="size16">이전에 내가 기록한 내용은 각 행별로 케이스를 나누고,&nbsp;</p>
+<p data-ke-size="size16">내가 a부터 b까지 c를 더하고 싶다면, a에 c를 기록하고 b+1에 -c를 기록해서 모든 행을 일일히 계산해 줬다.</p>
+<p data-ke-size="size16">그런데 생각해보면 열도 마찬가지 방법으로 기록해주면 모든 행을 일일히 계산할 필요가 없다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 (0,0)부터 (2,2)까지 n을 더하고 싶다고 하면, 행별로 나누면 다음과 같이 기록할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">n 0 0 -n</p>
+<p data-ke-size="size16">n 0 0 -n&nbsp;</p>
+<p data-ke-size="size16">n 0 0 -n</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이전에 내 방식은 여기서 행별로 일일히 계산을 해줬지만 열을 기준으로 보면 마찬가지로 누적합으로 나타낼수 있다.</p>
+<p data-ke-size="size16">첫번째 열을 보면 <b>첫번째열의 0행 부터 2행까지를 n까지 더하는 행위이므로&nbsp;</b>0행을 n으로 3행을 -n으로 나타낼수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;n 0 0 -n&nbsp;</p>
+<p data-ke-size="size16">&nbsp;0 0 0 -n</p>
+<p data-ke-size="size16">&nbsp;0 0 0 -n</p>
+<p data-ke-size="size16">-n 0 0 0</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3열도 마찬가지로 누적합으로 나타낼수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;n 0 0 -n</p>
+<p data-ke-size="size16">&nbsp;0 0 0 0</p>
+<p data-ke-size="size16">&nbsp;0 0 0 0</p>
+<p data-ke-size="size16">-n 0 0 n</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런식으로 열도 누적합으로 나타내면 행 마다 계산할필요가 없으므로 시간복잡도가 획기적으로 줄어드는 것을 볼 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/a36890f697c76c993c01d2e15aa72e7d.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #누적합 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

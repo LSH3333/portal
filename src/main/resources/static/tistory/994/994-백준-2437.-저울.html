@@ -1,0 +1,81 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2437. 저울</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2437. 저울</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-12-26 14:36:08</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2437" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2437</a></p>
+<figure id="og_1672031890301" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2437번: 저울" data-og-description="하나의 양팔 저울을 이용하여 물건의 무게를 측정하려고 한다. 이 저울의 양 팔의 끝에는 물건이나 추를 올려놓는 접시가 달려 있고, 양팔의 길이는 같다. 또한, 저울의 한쪽에는 저울추들만 놓" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2437" data-og-url="https://www.acmicpc.net/problem/2437" data-og-image="https://scrap.kakaocdn.net/dn/bpEaGk/hyQ1g5eWQC/vroIXY0EUyohyOCkDzsSuk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bTSsOH/hyQ1fecQCl/YtotbeOaLHY7p1XdSgAuXk/img.png?width=442&amp;height=282&amp;face=0_0_442_282"><a href="https://www.acmicpc.net/problem/2437" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2437">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bpEaGk/hyQ1g5eWQC/vroIXY0EUyohyOCkDzsSuk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bTSsOH/hyQ1fecQCl/YtotbeOaLHY7p1XdSgAuXk/img.png?width=442&amp;height=282&amp;face=0_0_442_282');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2437번: 저울</p>
+<p class="og-desc" data-ke-size="size16">하나의 양팔 저울을 이용하여 물건의 무게를 측정하려고 한다. 이 저울의 양 팔의 끝에는 물건이나 추를 올려놓는 접시가 달려 있고, 양팔의 길이는 같다. 또한, 저울의 한쪽에는 저울추들만 놓</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런 문제가 정말 어려운 문제인것 같다.</p>
+<p data-ke-size="size16">푸는 방법이 바로 떠오르면 정말 쉽게 풀리지만 떠오르지 않으면 정말 어려워진다.</p>
+<p data-ke-size="size16">그리디, dp 류의 문제들이 그런것 같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우리가 구하는건 추들을 사용해 측정할수 없는 최소 무게이다.</p>
+<p data-ke-size="size16">따라서 우선 주어진 추들을 오름차순하고 작은 추부터 올려보면서 측정 불가능한 무게를 찾아야한다.</p>
+<p data-ke-size="size16"><b>결론부터 말하면 다음에 올릴 저울추가 현재 까지 올린 저울의 누적합 + 1 보다 커지면, 누적합 + 1이 답이다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">왜 이렇게 되는지를 생각해보면, 우선 중요한것이 우리가 구하는게 측정 불가능한 최소 무게라는 것이다.&nbsp;</p>
+<p data-ke-size="size16">즉 만약에 1짜리 저울추가 주어지지 않으면 답은 1일 것이다.&nbsp;</p>
+<p data-ke-size="size16">우리는 무게를 1씩 늘리면서 탐색하기 때문에 누적합 S까지 구했다는 것은 무게 S까지는 만들수 있다는 것이다.&nbsp;</p>
+<p data-ke-size="size16">그런데 다음에 올릴 추가 현재까지 구한 누적합 S+1 보다 커지면, S+1을 구할 방법이 없어진다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 주어진 무게추가 다음과 같다</p>
+<pre id="sample-input-1" class="javascript" data-ke-language="javascript"><code>1 1 2 3 6 7 30</code></pre>
+<p data-ke-size="size16">여섯번째 추인 7까지 구했다고 치면 누적합 S = 20 이다.&nbsp;</p>
+<p data-ke-size="size16">따라서 무게 20까지는 우리는 만들수 있다.</p>
+<p data-ke-size="size16">다음 추를 보니까 30이다.</p>
+<p data-ke-size="size16">이러면 현재까지 구한 누적합 S에 1을 더한 21을 구할수가 없다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">만약 다음추가 30이 아닌 10이었다고 생각해보자.</p>
+<pre id="sample-input-1" class="javascript" data-ke-language="javascript"><code>1 1 2 3 6 7 10</code></pre>
+<p data-ke-size="size16">마찬가지로 여섯번째 추인 7까지 구했고 누적합은 S = 20이다.</p>
+<p data-ke-size="size16">다음 추까지 더하면 누적합은 S = 30이된다.</p>
+<p data-ke-size="size16"><b>그럼 21은? 당연히 만들수 있다.</b></p>
+<p data-ke-size="size16">왜냐하면 <b>우리는 무게 1부터 쌓아올렸기 때문에 1~S까지의 모든 무게를 만들수 있다.</b></p>
+<p data-ke-size="size16"><b>따라서 현재까지 구한 무게 30, 그리고 당연히 그 안에 9도 포함되어 있기 때문에 30-9=21이 된다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/d863a2abc0bfa8161bed0b9cd23387c1.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #greedy #prefix sum 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

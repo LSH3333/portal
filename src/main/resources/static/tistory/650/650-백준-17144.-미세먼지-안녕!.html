@@ -1,0 +1,58 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 17144. 미세먼지 안녕!</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 17144. 미세먼지 안녕!</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-04-15 13:52:15</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/17144" target="_blank" rel="noopener">https://www.acmicpc.net/problem/17144</a></p>
+<figure id="og_1649998113530" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="17144번: 미세먼지 안녕!" data-og-description="미세먼지를 제거하기 위해 구사과는 공기청정기를 설치하려고 한다. 공기청정기의 성능을 테스트하기 위해 구사과는 집을&nbsp;크기가&nbsp;R&times;C인 격자판으로 나타냈고, 1&times;1 크기의 칸으로 나눴다. 구사" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/17144" data-og-url="https://www.acmicpc.net/problem/17144" data-og-image="https://scrap.kakaocdn.net/dn/bWMdX1/hyN2J3oWRP/kOrJrZo7IpjB3PDWAwcQLk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/4VYLW/hyN2J3oWuq/kc8k4BL4QkBHdJDzCeOMLK/img.jpg?width=1250&amp;height=1128&amp;face=0_0_1250_1128"><a href="https://www.acmicpc.net/problem/17144" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/17144">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bWMdX1/hyN2J3oWRP/kOrJrZo7IpjB3PDWAwcQLk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/4VYLW/hyN2J3oWuq/kc8k4BL4QkBHdJDzCeOMLK/img.jpg?width=1250&amp;height=1128&amp;face=0_0_1250_1128');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">17144번: 미세먼지 안녕!</p>
+<p class="og-desc" data-ke-size="size16">미세먼지를 제거하기 위해 구사과는 공기청정기를 설치하려고 한다. 공기청정기의 성능을 테스트하기 위해 구사과는 집을&nbsp;크기가&nbsp;R&times;C인 격자판으로 나타냈고, 1&times;1 크기의 칸으로 나눴다. 구사</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">먼저<b> 미세먼지의 확산</b>은 모든 칸을 탐색하면서 미세먼지가 있는 칸에서 확산 가능한 칸으로 확산시키면 되는데 배열을 따로 하나 만들어서 확산되는 미세먼지 양을 저장해놓고, 확산된만큼 해당 칸의 미세먼지 양을 감소시킨다.&nbsp;</p>
+<p data-ke-size="size16">모든 칸의 확산되는 미세먼지 양을 계산 한 후에 감소된 미세먼지 양을 적용시켜야 하는데 이유는 모든 칸이 동시에 확산 되는것이기 때문에 배열 하나에다가 저장하게되면 다른 칸이 원래 갖고있던 미세먼지양이 변질되기 때문이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">확산을 시키고 난 후에는 공기청정기로 미세먼지를 한칸씩 밀면되는데 바람의 이동방향과 반대방향으로 한칸씩 땡겨 오면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/729341d2ed21dc5cc722bce61e5031d1.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

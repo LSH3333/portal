@@ -1,0 +1,165 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch13. MVC 3 : 세션 (로그인 유지)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch13. MVC 3 : 세션 (로그인 유지)</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-23 19:14:43</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">로그인 상태를 유지하는 방법은 크게 <b>HttpSession</b>을 이용하는 방법과 <b>쿠키</b>를 이용하는 방법이 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>컨트롤러에서 HttpSession 사용하기</b><b></b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>로그인&nbsp;</b></h3>
+<p data-ke-size="size16">요청 매핑 애노테이션 적용 메서드에 HttpSession 파라미터가 존재할 경우 스프링 MVC는 해당 메서드를 호출할때 HttpSession 객체를 파라미터로 전달한다.</p>
+<p data-ke-size="size16">HttpSession을 생성하기 전이면 새롭게 생성하고 그렇지 않으면 기존에 존재하는 HttpSession을 전달한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>LoginController 클래스의 submit() 메서드</b>를 로그인후 인증 정보를 세션에 담도록 수정.</p>
+<p data-ke-size="size16">submit 메서드는 로그인 페이지에서 로그인 버튼 눌렀을시 호출되는 메서드다.</p>
+<pre id="code_1658569282482" class="java" data-ke-language="java" data-ke-type="codeblock"><code>	// 로그인 버튼 눌렀을때 처리 
+	@PostMapping
+	public String submit(LoginCommand loginCommand, Errors errors,
+			HttpSession session) 
+	{
+		// 에러 있으면 errors에 담김 
+		new LoginCommandValidator().validate(loginCommand, errors);
+		
+		if(errors.hasErrors())
+		{
+			return "login/loginForm";
+		}
+		
+		// login 시도함 
+		try 
+		{
+			AuthInfo authInfo = authService.authenticate(
+					loginCommand.getEmail(), loginCommand.getPassword());
+			
+			// TODO 세션에 authInfo 저장해야 함 
+			session.setAttribute("authInfo", authInfo); 
+			
+			return "login/loginSuccess";
+		} catch(WrongIdPasswordException e) 
+		{
+			errors.reject("idPasswordNotMatching"); // global error 
+			return "login/loginForm";
+		}
+	}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">세번째 파라미터에 HttpSession이 추가됐다.</p>
+<p data-ke-size="size16">try문 내부에서 <b>로그인 시도한 정보가 AuthInfo에 담기고</b>, <b>HttpSession의 "authInfo" 속성에 인증 정보 객체 AuthInfo를 담았다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>로그아웃</b></h3>
+<p data-ke-size="size16">로그아웃 시에는 로그인 될때 만들었던&nbsp; HttpSession을 제거하면 된다.</p>
+<p data-ke-size="size16"><b>HttpSession.invalidate()</b> 메서드로 제거한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>LogoutController.java</b></p>
+<pre id="code_1658569621958" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class LogoutController 
+{
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) 
+	{
+		session.invalidate(); // 세션 제거 
+		return "redirect:/main"; // main으로 리다이렉트 
+	}
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ContollerConfig 설정 클래스</b>에 LogoutController 빈을 추가한다.</p>
+<p data-ke-size="size16">그리고 이제 메인 페이지 폼인 main.jsp를 수정한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>main.jsp</b></p>
+<pre id="code_1658570414608" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;%@ page contentType="text/html; charset=utf-8" %&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;메인&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+	&lt;%-- 로그인 성공했다면 HttpSession에 authInfo 객체 저장되어 있을것  --%&gt;
+	&lt;%-- login 정보없음  --%&gt;
+	&lt;c:if test="${empty authInfo }" &gt; 
+	&lt;p&gt;환영합니다&lt;/p&gt;
+	&lt;p&gt;
+		&lt;a href="&lt;c:url value="/register/step1" /&gt;"&gt;[회원 가입하기]&lt;/a&gt;
+		&lt;a href="&lt;c:url value="/login" /&gt;"&gt;[로그인]&lt;/a&gt;
+	&lt;/p&gt;
+	&lt;/c:if&gt;
+	
+	&lt;%-- login 정보있음  --%&gt; 
+	&lt;c:if test="${!empty authInfo }" &gt;
+	&lt;p&gt;${authInfo.name}님, 환영합니다. &lt;/p&gt;
+	&lt;p&gt;
+		&lt;a href="&lt;c:url value="/edit/changePassword"/&gt;"&gt;[비밀번호 변경]&lt;/a&gt;
+		&lt;a href="&lt;c:url value="/logout"/&gt;"&gt;[로그아웃]&lt;/a&gt;
+	&lt;/p&gt;
+	&lt;/c:if&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">main.jsp를 보면 jstl의 &lt;c:if&gt; 태그의 test 값으로 authInfo가 empty인지 확인하고 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 authInfo가 없으면<b> 로그인 하지 않은 상태이므로</b>&nbsp;[회원 가입하기]와 [로그인] 링크를 보여주고,</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">authInfo가 있으면 <b>로그인한 상태</b>이므로 {이름}님, 환영합니다 를 보여준다.</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

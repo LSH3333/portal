@@ -1,0 +1,140 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>c++) 함수 별 시간복잡도</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">c++) 함수 별 시간복잡도</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2022-01-04 21:31:04</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">각 함수마다 시간복잡도가 다른데, 항상 쓸때마다 레퍼런스에서 대충 찾아보고 지나가서 까먹는다.</p>
+<p data-ke-size="size16">앞으로 쓸때마다 여기에 기록해 나갈 예정.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Constant time - O(1)</p>
+<p data-ke-size="size16">Linear time - O(n)</p>
+<p data-ke-size="size16">Logarithmic time - O(logn)</p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #000000;">Linearithmic<span> time - O(nlogn)</span></span></p>
+<p data-ke-size="size16">Quadratic time - O(n^2)</p>
+<p data-ke-size="size16">Cubic time - O(n^3)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h2 data-ke-size="size26"><b>(시퀸스 컨테이너, Sequence Container) </b></h2>
+<h2 data-ke-size="size26"><b>- vector</b></h2>
+<p data-ke-size="size16">요소들이 메모리상 연속적으로 저장된다.</p>
+<p data-ke-size="size16">처음 vector가 생성될때 여유를 갖고 생성되고, 생성된 메모리 초과시 새로 만들어 재할당됨. (값들 복사)&nbsp;&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>접근: </b>O(1)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>검색:</b> O(n)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>뒤 삽입, 삭제:</b> amortized O(1)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>중간 추가, 삭제:</b> O(n)&nbsp;</p>
+<p data-ke-size="size16">벡터에서 삭제가 일어나면, 삭제지점 이후의 모든 원소들이 한칸씩 땡겨지기 때문. 추가도 마찬가지.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><b>-<span>&nbsp;</span></b>deque</b></h2>
+<p data-ke-size="size16">vector와 다르게 메모리상 연속적으로 저장되지 않음 -&gt; 일정 단위의 chunk로 쪼개어져 있고 재할당이 일어날때 chunk 단위로 늘어남.</p>
+<p data-ke-size="size16">= 이 말은 즉, 저장할 원소들이 많고 메모리 할당량이 큰 경우 vector 비용이 저렴하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">vector보다 확장이 용이하다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>접근:&nbsp;</b>O(1)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>검색</b>: O(n)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>앞,뒤 추가, 삭제:</b> amortized O(1)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>중간 추가, 삭제</b>: O(n)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>(연관 컨테이너, Associative Container)</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><b>-<span>&nbsp;</span></b>set</b></h2>
+<p data-ke-size="size16">연관컨테이너, 검색이 빠르다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>접근:</b> 불가&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>검색:</b> O(logn)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>삽입, 삭제:</b> O(logn)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><b>-<span>&nbsp;</span></b>map</b></h2>
+<p data-ke-size="size16"><b>접근:</b> 불가&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>검색 (find 함수) :</b> O(logn)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>삽입, 삭제:</b> O(logn)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>(컨테이너 어댑터, Container Adapter)</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><b>-<span>&nbsp;</span></b>stack</b></h2>
+<p data-ke-size="size16">디폴트 원형이 deque</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #000000;"><b>접근:</b></span> 불가&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>검색:</b> 불가&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>삽입, 삭제:</b> amortized O(1)</p>
+<p data-ke-size="size16">원형이 deque이고, 맨 뒤의 삽입, 삭제만 가능하기 때문에 O(1)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><b>-<span>&nbsp;</span></b>queue</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>접근:</b> 불가</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>검색:</b> 불가</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>삽입, 삭제:</b> amortized O(1)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b><b>-<span>&nbsp;</span></b>priority_queue</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>접근:</b> 불가&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>검색:</b> 불가&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>삽입, 삭제:</b> O(logn)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>sort: </b>평균적으로 O(nlogn)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>reverse: </b>O(n) in half the distance between first and last&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>next_permutation:</b> 최악 O(n)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>max_element</b>: O(N)&nbsp;</p>
+<p data-ke-size="size16">iterator를 이용해 모든 요소를 비교하기 때문에 O(N)이다.&nbsp;</p>
+<p data-ke-size="size16">sort는 컨테이너를 이용한 비교이기 때문에 더 적은 시간인 O(nlogn)의 시간이 걸릴수있지만, max_element는 iterator를 이용한 비교이기 때문에 더 긴시간인 O(N)이 걸린다.&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

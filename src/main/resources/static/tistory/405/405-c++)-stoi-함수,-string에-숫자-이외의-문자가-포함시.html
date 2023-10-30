@@ -1,0 +1,80 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>c++) stoi 함수, string에 숫자 이외의 문자가 포함시</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">c++) stoi 함수, string에 숫자 이외의 문자가 포함시</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2021-10-21 14:51:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">stoi() 함수는 string을 integer로 바꿔주는 함수다.</p>
+<p data-ke-size="size16">그런데 다음과 같이<b> string에 숫자가 없는 경우</b>는 어떻게 될까?</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1296" data-origin-height="496" data-filename="스크린샷 2021-10-21 오후 2.47.07.png" width="708" height="271" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1296" data-origin-height="496" data-filename="스크린샷 2021-10-21 오후 2.47.07.png" width="708" height="271" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">string s = "abc" 일 경우, stoi: no conversion 오류가 뜬다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그렇다면 숫자와 문자가 같이 있으면 어떻게 될까.</p>
+<p data-ke-size="size16">이때는 두가지 경우로 나뉜다.</p>
+<p data-ke-size="size16">1. 숫자가 문자열의 맨앞에 있는 경우</p>
+<p data-ke-size="size16">2. 그 이외의 경우</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1. 숫자가 문자열의 맨앞에 있는 경우</b></p>
+<p><figure class="imageblock alignCenter" data-origin-width="764" data-origin-height="478" data-filename="스크린샷 2021-10-21 오후 2.49.08.png" width="487" height="305" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="764" data-origin-height="478" data-filename="스크린샷 2021-10-21 오후 2.49.08.png" width="487" height="305" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">앞에 '숫자'에 해당하는 부분만 변환해서 리턴된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2. 그 이외의 경우</b></p>
+<p data-ke-size="size16"><b>이 경우는 숫자가 맨앞에 있지 않은 모든 경우이다.</b></p>
+<p data-ke-size="size16">중간에 있던, 맨 뒤에 있던.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1054" data-origin-height="532" data-filename="스크린샷 2021-10-21 오후 2.49.54.png" width="573" height="289" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1054" data-origin-height="532" data-filename="스크린샷 2021-10-21 오후 2.49.54.png" width="573" height="289" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1298" data-origin-height="532" data-filename="스크린샷 2021-10-21 오후 2.50.03.png" width="616" height="253" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="1298" data-origin-height="532" data-filename="스크린샷 2021-10-21 오후 2.50.03.png" width="616" height="253" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">두 경우 모두 오류.</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #stoi 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

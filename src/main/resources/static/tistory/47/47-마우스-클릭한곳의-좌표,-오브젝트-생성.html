@@ -1,0 +1,69 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>마우스 클릭한곳의 좌표, 오브젝트 생성</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">마우스 클릭한곳의 좌표, 오브젝트 생성</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2020-10-09 17:29:30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>오목을 만들때 마우스 클릭한곳에 돌을 놓으려면 어떻게 해야할까.</p>
+<p>사실 예전에 알았던건데 오랜만에 하니 까먹어서 다시 적어놓는다.</p>
+<p>&nbsp;</p>
+<p><b>input.mousePosition() ;</b></p>
+<p>내 마우스의 좌표를 알려준다.&nbsp;</p>
+<p>&nbsp;</p>
+<p><b>Vector2 pos = Input.mousePosition();</b></p>
+<p>이런식으로 하면 pos에 내 마우스 위치가 저장된다.</p>
+<p>&nbsp;</p>
+<p>그런데 그냥 이렇게 코드를 짜면 ui의 좌표가 나와서 그 좌표에 무슨 오브젝트를 놓으려고하면 엉뚱한곳에 놓아진다.</p>
+<p>&nbsp;</p>
+<p><b>Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousPosition());</b></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>마우스 클릭한 곳에 오브젝트(프리팹)놓고 싶다면</p>
+<pre id="code_1602232146400" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code> private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Vector2 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            
+            Instantiate(
+            b_stone, // 놓을 오브젝트
+            origin, // 위치
+            Quaternion.identity);
+            
+        }
+    }</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

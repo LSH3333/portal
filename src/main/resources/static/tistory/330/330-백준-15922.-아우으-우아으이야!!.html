@@ -1,0 +1,115 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 15922. 아우으 우아으이야!!</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 15922. 아우으 우아으이야!!</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-26 16:02:33</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/15922" target="_blank" rel="noopener">https://www.acmicpc.net/problem/15922</a></p>
+<figure id="og_1629960816775" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="15922번: 아우으 우아으이야!!" data-og-description="N개의 선분을 모두 그렸을 때, 수직선 위에 그어진 선분 길이의 총합을 출력한다아아어으잉에애야우아으아이아야아아아아아아이야!!!" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/15922" data-og-url="https://www.acmicpc.net/problem/15922" data-og-image="https://scrap.kakaocdn.net/dn/TFu5J/hyLnv1xcAU/D8S0hftkgo5OSckZn4ZKj1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/15922" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/15922">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/TFu5J/hyLnv1xcAU/D8S0hftkgo5OSckZn4ZKj1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">15922번: 아우으 우아으이야!!</p>
+<p class="og-desc" data-ke-size="size16">N개의 선분을 모두 그렸을 때, 수직선 위에 그어진 선분 길이의 총합을 출력한다아아어으잉에애야우아으아이아야아아아아아아이야!!!</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제와 상당히 상관없는 제목이다 ㅋㅋ</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">수직선 위에 여러개의 선분을 그려 (겹칠수 있다) 총 선분의 길이를 구하는 문제다.</p>
+<p data-ke-size="size16">선분은 <span style="color: #555555;">좌표는 x가 증가하는 순으로, x가 같다면 y가 증가하는 순으로 이미 정렬이 되어 주어진다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">총 <b>세가지 케이스</b>가 있다.</span></p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li><b>선분 두개의 일부분이 겹치는 경우&nbsp;</b></li>
+<li><b>다음 선분이 이전 선분에 완전히 포함되는 경우&nbsp;</b></li>
+<li><b>이전 선분과 다음 선분이 완전히 떨어져있는 경우&nbsp;</b></li>
+</ol>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1번)</b> 다음 선분을 입력받아서 다음 선분의 x값이 현재 그리고 있는 선분의 끝보다 작고 다음 선분의 y값이 현재 그리고 있는 선분의 끝보다 크다면 두선분의 일부분이 겹치므로 현재 그리고 있는 선분의 끝을 갱신한다. (현재 그리고 있는 선분의 시작은 그대로)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2번)</b> 다음 선분의 x값이 현재 그리고 잇는 선분의 끝보다 작고 y값도 현재 그리고 있는 선분의 끝보다 작다면 완전히 포함되므로 무시.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>3번)</b> 그 외의 경우는 이전 선분과 다음 선분이 완전히 떨어져 있는 경우이므로 지금까지 만들어진 선분의 길이를 선분길이의 총합에 더하고,</p>
+<p data-ke-size="size16">새로운 선분을 시작한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1629960862361" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int n;
+
+int main()
+{
+    cin &gt;&gt; n;
+
+    long long sum = 0;
+    long long begin, end;
+    cin &gt;&gt; begin &gt;&gt; end;
+    for(int i = 1; i &lt; n; i++)
+    {
+        long long a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+
+        // 선분 두개의 일부분이 겹치는 경우
+        if(a &lt; end &amp;&amp; b &gt; end)
+        {
+            end = b;
+        }
+        // 두번째 선분이 첫선분에 완전히 포함되는 경우
+        else if(a &lt; end &amp;&amp; b &lt;= end)
+        {
+            continue;
+        }
+        // 첫선분과 두번째 선분이 떨어져 있는 경우
+        else
+        {
+            long long length = abs(end - begin);
+            sum += length;
+            // 갱신
+            begin = a;
+            end = b;
+        }
+
+        //cout &lt;&lt; begin &lt;&lt; ' ' &lt;&lt; end &lt;&lt; endl;
+    }
+    // 반복문 내부에서 더하지 못한 마지막 선분까지 더한다
+    sum += abs(end-begin);
+
+    cout &lt;&lt; sum;
+
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

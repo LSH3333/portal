@@ -1,0 +1,45 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>spring project heroku에 배포시 경로 문제 (template might not exist or might not be accessible by any of the configured Template Resolvers)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">spring project heroku에 배포시 경로 문제 (template might not exist or might not be accessible by any of the configured Template Resolvers)</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2023-06-03 14:36:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">spring 기반 web 을 heroku 에 배포했는데 특정 경로에 접근했을때 다음 에러가 떴다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #343541; text-align: start;">template might not exist or might not be accessible by any of the configured Template Resolvers</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><span style="color: #343541;">알고보니 절대/상대 경로 문제였다.&nbsp;</span><span style="color: #343541;">리턴하는 뷰 이름이 <b>상대경로</b> 예를들어 <b>return "/members/register"</b> 이런식이면 경로 문제가 생긴다.<br /></span><span style="color: #343541;"><b>절대 경로</b>로 <b>return "members/register"</b> 로 고쳐주니 해결.</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #heroku 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

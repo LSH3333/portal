@@ -1,0 +1,287 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>15686. 치킨 배달</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">15686. 치킨 배달</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-12 19:03:08</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/15686" target="_blank" rel="noopener">https://www.acmicpc.net/problem/15686</a></p>
+<figure id="og_1626079461972" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="15686번: 치킨 배달" data-og-description="크기가 N&times;N인 도시가 있다. 도시는 1&times;1크기의 칸으로 나누어져 있다. 도시의 각 칸은 빈 칸, 치킨집, 집 중 하나이다. 도시의 칸은 (r, c)와 같은 형태로 나타내고, r행 c열 또는 위에서부터 r번째 칸" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/15686" data-og-url="https://www.acmicpc.net/problem/15686" data-og-image="https://scrap.kakaocdn.net/dn/Cmlol/hyKRFh3DFj/r5Ktba0Vf3RA8iaeKOklEk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/15686" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/15686">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/Cmlol/hyKRFh3DFj/r5Ktba0Vf3RA8iaeKOklEk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">15686번: 치킨 배달</p>
+<p class="og-desc" data-ke-size="size16">크기가 N&times;N인 도시가 있다. 도시는 1&times;1크기의 칸으로 나누어져 있다. 도시의 각 칸은 빈 칸, 치킨집, 집 중 하나이다. 도시의 칸은 (r, c)와 같은 형태로 나타내고, r행 c열 또는 위에서부터 r번째 칸</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">처음 냈을때 시간초과가 났는데 문제만 재대로 이해했어도 바로 풀렸을텐데.</p>
+<p data-ke-size="size16">문제를 잘못 이해해서 한참 걸렸다.</p>
+<p data-ke-size="size16"><b><span style="color: #555555;">폐업시키지 않을 치킨집을 최대 M개를 골랐을 때</span></b><span style="color: #555555;"> 라고 해서 폐업시키지 않을 치킨집을 0부터 M개까지 모든 경우를 따져야 하는줄 알았는데 그냥 M개만 따지면 되는거였다.</span></p>
+<p data-ke-size="size16"><span style="color: #555555;">이걸 햇갈려서 너무 많은 시간을 소비했다..</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">이 문제는 조합을 구하는 문제다.</span></p>
+<p data-ke-size="size16"><span style="color: #555555;">모든 치킨집을 벡터에 저장한 후에,&nbsp;</span></p>
+<p data-ke-size="size16"><span style="color: #555555;">1. 모든 치킨집중 M개의 치킨집의 조합을 구한다.</span></p>
+<p data-ke-size="size16"><span style="color: #555555;">2. 선택된 치킨집에 대하여 치킨 거리를 구한다.</span></p>
+<p data-ke-size="size16"><span style="color: #555555;">3. 모든 치킨집 조합 중 가장 작은 치킨거리가 답이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">지금 보니까 map의 정보는 문제푸는데 사용을 안하니까 입력받을때 굳이 안넣어 줘도 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1626083989624" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+#define MAX 50
+
+int N, M;
+int ans;
+int map[MAX][MAX];
+bool mark[13];
+vector&lt;pair&lt;int,int&gt;&gt; house, chicken;
+
+
+// 집과 치킨집사이의 거리 구함 (멘헤튼 거리)
+int CalculateDistance(pair&lt;int,int&gt; a, pair&lt;int,int&gt; b) {
+    return abs(a.first-b.first) + abs(a.second-b.second);
+}
+
+int Calculate() {
+    // 도시의 치킨거리
+    int chicken_distance = 0;
+    for(int i = 0; i &lt; house.size(); i++) {
+        int min_distance = 99999999;
+        for(int j = 0; j &lt; chicken.size(); j++) {
+            // 선택된 치킨집에 대해서만 계산
+            if(mark[j]) {
+                min_distance = min(min_distance, CalculateDistance(house[i], chicken[j]));
+            }
+        }
+        // 현재 기준 집의 치킨거리를 더한다
+        chicken_distance += min_distance;
+    }
+    return chicken_distance;
+}
+
+void dfs(int idx, int depth) {
+    if(depth == M) {
+        ans = min(ans, Calculate());
+        return;
+    }
+
+    for(int i = idx; i &lt; chicken.size(); i++) {
+        if(mark[i]) continue;
+        mark[i] = true;
+
+        dfs(i, depth+1);
+
+        mark[i] = false;
+    }
+}
+
+int main() {
+    // inputs
+    cin &gt;&gt; N &gt;&gt; M;
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; N; j++) {
+            int num;
+            cin &gt;&gt; num;
+
+            map[i][j] = num;
+
+            if(num == 1) house.push_back({i,j});
+            if(num == 2) chicken.push_back({i,j});
+        }
+    }
+
+    ans = 99999999;
+    dfs(0,0);
+
+    cout &lt;&lt; ans &lt;&lt; '\n';
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">dfs가 아닌 permutation으로 풀어봤다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1626094390783" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// boj 15686
+// permutation을 이용해 푼 버전
+
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int N,M;
+//int idx[13];
+vector&lt;int&gt; idx;
+int ans = 99999999;
+
+vector&lt;pair&lt;int,int&gt;&gt; chicken, house;
+
+int CalculateDistance(pair&lt;int,int&gt; a, pair&lt;int,int&gt; b) {
+    return abs(a.first-b.first) + abs(a.second-b.second);
+}
+
+int Calculate() {
+    int chicken_distance = 0;
+
+    for(int i = 0; i &lt; house.size(); i++) {
+        int dist = 99999999;
+        for(int j = 0; j &lt; chicken.size(); j++) {
+            // 선택된 치킨집에 대해서
+            if(idx[j] == 0) continue;
+            dist = min(dist, CalculateDistance(house[i], chicken[j]));
+        }
+        chicken_distance += dist;
+    }
+
+    return chicken_distance;
+}
+
+int main() {
+    cin &gt;&gt; N &gt;&gt; M;
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; N; j++) {
+            int num;
+            cin &gt;&gt; num;
+
+            if(num == 1) house.push_back({i,j});
+            if(num == 2) chicken.push_back({i,j});
+        }
+    }
+
+    // 치킨집이 총 5개고 M이 2라면
+    // 1 1 0 0 0
+    for(int i = 0; i &lt; chicken.size(); i++) {
+        if(i &lt; M)
+            idx.push_back(1);
+        else
+            idx.push_back(0);
+    }
+
+
+
+    // idx를 permutation 돌리면서 모든 조합 찾아냄
+    // 즉 치킨집을 m개 선택
+    do {
+        ans = min(ans, Calculate());
+
+    } while(prev_permutation(idx.begin(), idx.end()));
+
+    cout &lt;&lt; ans;
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 이상한 현상이 있었다.</p>
+<p data-ke-size="size16">permutation을 돌리는 idx를 처음에 벡터가 아닌 배열로 만들었었는데 시간초과가 났다.</p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1626094454869" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int N,M;
+//int idx[13];
+vector&lt;int&gt; idx;
+int ans = 99999999;
+
+vector&lt;pair&lt;int,int&gt;&gt; chicken, house;
+
+int CalculateDistance(pair&lt;int,int&gt; a, pair&lt;int,int&gt; b) {
+    return abs(a.first-b.first) + abs(a.second-b.second);
+}
+
+int Calculate() {
+    int chicken_distance = 0;
+
+    for(int i = 0; i &lt; house.size(); i++) {
+        int dist = 99999999;
+        for(int j = 0; j &lt; chicken.size(); j++) {
+            // 선택된 치킨집에 대해서
+            if(idx[j] == 0) continue;
+            dist = min(dist, CalculateDistance(house[i], chicken[j]));
+        }
+        chicken_distance += dist;
+    }
+
+    return chicken_distance;
+}
+
+int main() {
+    cin &gt;&gt; N &gt;&gt; M;
+    for(int i = 0; i &lt; N; i++) {
+        for(int j = 0; j &lt; N; j++) {
+            int num;
+            cin &gt;&gt; num;
+
+            if(num == 1) house.push_back({i,j});
+            if(num == 2) chicken.push_back({i,j});
+        }
+    }
+
+    // 치킨집이 총 5개고 M이 2라면
+    // 1 1 0 0 0
+    for(int i = 0; i &lt; chicken.size(); i++) {
+        if(i &lt; M)
+            idx.push_back(1);
+        else
+            idx.push_back(0);
+    }
+
+
+
+    // idx를 permutation 돌리면서 모든 조합 찾아냄
+    // 즉 치킨집을 m개 선택
+    do {
+        ans = min(ans, Calculate());
+
+    } while(prev_permutation(idx.begin(), idx.end()));
+
+    cout &lt;&lt; ans;
+
+}</code></pre>
+</div>
+</div>
+<p data-ke-size="size16">permutation을 돌릴때 벡터가 아닌 일반 배열로 돌리면 시간이 훨씬 오래 걸리는것 같다.</p>
+<p data-ke-size="size16">이것에 대해 좀 알아봐야 할것 같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">*추가</p>
+<p data-ke-size="size16">구글링해도 관련 정보가 없어서 코드를 다시 봤는데&nbsp;</p>
+<p data-ke-size="size16">do ~ while(prev_permutation(idx, idx+chicken.size()) 로 해야하는데</p>
+<p data-ke-size="size16">idx+house.size()로해서 그런거였다..</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force #조합 #dfs 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

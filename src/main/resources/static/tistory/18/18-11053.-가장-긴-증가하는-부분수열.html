@@ -1,0 +1,168 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>11053. 가장 긴 증가하는 부분수열</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">11053. 가장 긴 증가하는 부분수열</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2020-08-10 19:27:27</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>&nbsp;</p>
+<p><a href="https://www.acmicpc.net/problem/11053">https://www.acmicpc.net/problem/11053</a></p>
+<figure id="og_1597053363702" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="11053번: 가장 긴 증가하는 부분 수열" data-og-description="수열 A가 주어졌을 때, 가장 긴 증가하는&nbsp;부분&nbsp;수열을 구하는 프로그램을 작성하시오. 예를 들어, 수열 A = {10, 20, 10, 30, 20, 50} 인 경우에 가장 긴 증가하는 부분&nbsp;수열은&nbsp;A = {10, 20, 10, 30, 20, 50} 이" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/11053" data-og-url="https://www.acmicpc.net/problem/11053" data-og-image="https://scrap.kakaocdn.net/dn/1NOBD/hyG5y72nu9/RMQ1zK1FIkZzBbkgs5vhg1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/11053" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/11053">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/1NOBD/hyG5y72nu9/RMQ1zK1FIkZzBbkgs5vhg1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">11053번: 가장 긴 증가하는 부분 수열</p>
+<p class="og-desc">수열 A가 주어졌을 때, 가장 긴 증가하는&nbsp;부분&nbsp;수열을 구하는 프로그램을 작성하시오. 예를 들어, 수열 A = {10, 20, 10, 30, 20, 50} 인 경우에 가장 긴 증가하는 부분&nbsp;수열은&nbsp;A = {10, 20, 10, 30, 20, 50} 이</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>Longest Increasing Subsequence(LIS) 라는 유명한 문제라고 한다.</p>
+<p>&nbsp;</p>
+<p>A[n]에 수열을 넣고,</p>
+<p>d[n] : n까지의 가장 긴 증가하는 부분 수열의 길이. 여기서 d[n]은 A[n]을 포함해야 한다.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200810190829.png" data-origin-width="984" data-origin-height="184" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20200810190829.png" data-origin-width="984" data-origin-height="184" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>d[1]은 1까지의 가장 긴 증가하는 부분 수열의 길이이다.</p>
+<p>A[1]밖에 없으므로 D[1]은 그냥 1이다.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200810191015.png" data-origin-width="949" data-origin-height="164" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20200810191015.png" data-origin-width="949" data-origin-height="164" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>d[2]는 2까지의 가장 긴 증가하는 부분 수열의 길이.</p>
+<p>즉 수열은 {10, 20}.</p>
+<p>20보다 작은 값은 a[1]인 10 하나이고, d[1]은 1.&nbsp;</p>
+<p>d[1]에서 길이가 1증가 하므로 +1 해주면 d[2] = 2.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200810191251.png" data-origin-width="940" data-origin-height="139" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-filename="20200810191251.png" data-origin-width="940" data-origin-height="139" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>d[3]은 3까지의 까지의 가장 긴 증가하는 부분 수열의 길이. (d[3]은 A[3]을 포함해야함!)</p>
+<p>수열은 {10, 20, 10}.</p>
+<p>A[3] = 10 보다 작은 값은 없다.&nbsp;</p>
+<p>그래서 A[3]만을 갖기 때문에 d[3] = 1.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200810191448.png" data-origin-width="940" data-origin-height="148" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-filename="20200810191448.png" data-origin-width="940" data-origin-height="148" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>d[4]는 4까지의 가장 긴 증가하는 부분수열의 길이.</p>
+<p>수열은 {10, 20, 10, 30}.</p>
+<p>A[4] = 30보다 작은 값은 A[1], A[2], A[3]. 이것들의 d값중 가장 큰 값은 d[2] = 2.</p>
+<p>+1 해주면 3.&nbsp;</p>
+<p>d[4] = 3.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200810191838.png" data-origin-width="956" data-origin-height="145" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-filename="20200810191838.png" data-origin-width="956" data-origin-height="145" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>d[5]는 5까지의 가장 긴 증가하는 부분 수열의 길이.</p>
+<p>수열은 {10, 20, 10, 30, 20}.</p>
+<p>A[5] = 20보다 작은 값은 A[1], A[3]. 둘다 d값은 1이므로 +1 해주면</p>
+<p>d[5] = 2.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200810192009.png" data-origin-width="938" data-origin-height="138" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-filename="20200810192009.png" data-origin-width="938" data-origin-height="138" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>d[6]은 6까지의 가장 긴 증가하는 부분수열의 길이.</p>
+<p>수열은 {10, 20, 10, 30, 20, 50}.</p>
+<p>A[1] ~ A[5] 모두 A[6]보다 작기때문에 어떤 값이든 올 수 있다.</p>
+<p>가장 큰 d값은 3이므로 1더하면&nbsp;</p>
+<p>d[6] = 4.</p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<pre id="code_1597061160822" class="python" data-ke-language="python" data-ke-type="codeblock"><code>n = int(input())
+
+d = [1] * n  # 기록할 배열
+a = [0] * n  # 수열 저장할 배열
+a = input().split()
+
+for i in range(n):  # str로 입력한 배열들 int로 변경
+    a[i] = int(a[i])
+
+# d[j]가 i까지 돌면서 i보다 작은지 비교.
+# 작으면 length 갱신하고 j 루프 빠져 나가면 d[i]에 length+1 저장.
+# i 루프 진행하면서 max_length와 d[i] 계속 비교하면서 max_length도 최대값으로 갱신
+max_length = 0
+for i in range(n):
+    length = 0
+    for j in range(i):
+        if a[j] &lt; a[i]:
+            length = max(d[j], length)
+
+    d[i] = length + 1
+    max_length = max(max_length, d[i])
+
+print(max_length)</code></pre>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p><b>Solution</b></p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1597055191431" class="python" style="display: block; overflow: auto; padding: 15px; color: #383a42; background: #f6f7f8; font-size: 14px; border-radius: 3px; font-family: Menlo, Consolas, Monaco, monospace; border: 1px solid #dddddd; margin: 20px auto 0px; cursor: default; z-index: 1; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;" data-ke-language="python" data-ke-type="codeblock"><code>d = [0] * 1001
+
+n = int(input())
+a = input().split()
+for i in range(n): a[i] = int(a[i])
+
+res = 1
+for i in range(n):
+    d[i] = 1
+    for j in range(i):
+        if a[j] &lt; a[i]: d[i] = max(d[i], d[j] + 1)
+        res = max(res, d[i])
+
+print(res)
+</code></pre>
+</div>
+</div>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Python #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

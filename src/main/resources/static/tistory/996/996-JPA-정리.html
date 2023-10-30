@@ -1,0 +1,239 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>JPA 정리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">JPA 정리</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2022-12-26 21:35:17</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard" target="_blank" rel="noopener">https://www.inflearn.com/course/ORM-JPA-Basic/dashboard</a></p>
+<figure id="og_1672053567800" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="자바 ORM 표준 JPA 프로그래밍 - 기본편 - 인프런 | 강의" data-og-description="JPA를 처음 접하거나, 실무에서 JPA를 사용하지만 기본 이론이 부족하신 분들이 JPA의 기본 이론을 탄탄하게 학습해서 초보자도 실무에서 자신있게 JPA를 사용할 수 있습니다., - 강의 소개 | 인프런" data-og-host="www.inflearn.com" data-og-source-url="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard" data-og-url="https://www.inflearn.com/course/ORM-JPA-Basic" data-og-image="https://scrap.kakaocdn.net/dn/do9Bt3/hyQ1nXLnCT/eVqlktBDDBBM6VpBwr4lBk/img.png?width=768&amp;height=500&amp;face=0_0_768_500,https://scrap.kakaocdn.net/dn/bizSun/hyQ3VFjTLz/NDjdj6SWSgDJs6JHOHAbkk/img.png?width=768&amp;height=500&amp;face=0_0_768_500,https://scrap.kakaocdn.net/dn/bhNpq5/hyQ1r6Woo7/4PaCoX6xzgZjG9G89hzHg1/img.png?width=1200&amp;height=628&amp;face=731_255_826_360"><a href="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard" target="_blank" rel="noopener" data-source-url="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/do9Bt3/hyQ1nXLnCT/eVqlktBDDBBM6VpBwr4lBk/img.png?width=768&amp;height=500&amp;face=0_0_768_500,https://scrap.kakaocdn.net/dn/bizSun/hyQ3VFjTLz/NDjdj6SWSgDJs6JHOHAbkk/img.png?width=768&amp;height=500&amp;face=0_0_768_500,https://scrap.kakaocdn.net/dn/bhNpq5/hyQ1r6Woo7/4PaCoX6xzgZjG9G89hzHg1/img.png?width=1200&amp;height=628&amp;face=731_255_826_360');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">자바 ORM 표준 JPA 프로그래밍 - 기본편 - 인프런 | 강의</p>
+<p class="og-desc" data-ke-size="size16">JPA를 처음 접하거나, 실무에서 JPA를 사용하지만 기본 이론이 부족하신 분들이 JPA의 기본 이론을 탄탄하게 학습해서 초보자도 실무에서 자신있게 JPA를 사용할 수 있습니다., - 강의 소개 | 인프런</p>
+<p class="og-host" data-ke-size="size16">www.inflearn.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 JPA 강의를 듣는 중간에 한번 정리.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">지금까지 공부한것에 의하면 JPA는 결국 어플리케이션을 만드는 객체지향적 환경과 데이타베이스의 관계형 DB의 환경을 연결해 주는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">어플리케이션의 객체를 다룰때 처럼 데이터베이스의 데이터도 다루고 싶지만 이것이 불가능하다.</p>
+<p data-ke-size="size16">따라서 데이터를 갖고 뭔가를 하기 전에 객체와 데이터베이스의 테이블을 미리 일일히 매핑을 해놓으면, 내가 객체만 신경쓰면 이미 모두 데이터베이스 테이블에 매핑되어 있으므로 JPA가 이에 걸맞는 sql 문을 만들어서 DB에 명령을 내린다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<h2 data-ke-size="size26">&nbsp;</h2>
+<h2 data-ke-size="size26"><b>Member - Order (1:N, N:1)&nbsp;</b></h2>
+<p><figure class="imageblock alignCenter" width="242" height="402" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="242" height="402"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">Member 와 Order의 관계는 Member 기준 OneToMany 이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">class Member</p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre class="scala"><code>package jpabook.jpashop.domain;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+public class Member extends BaseEntity {
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MEMBER_ID")
+    private Long id;
+
+    private String name;
+
+    @Embedded
+    private Address address;
+
+    @OneToMany(mappedBy = "member")
+    private List&lt;Order&gt; orders = new ArrayList&lt;&gt;();
+}
+</code></pre>
+</div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">class Order</p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre class="bash" data-ke-language="bash"><code>package jpabook.jpashop.domain;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name="ORDERS")
+public class Order extends BaseEntity {
+    @Id @GeneratedValue
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List&lt;OrderItem&gt; orderItems = new ArrayList&lt;&gt;();
+
+    private LocalDateTime orderDate;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this );
+    }
+    
+}</code></pre>
+</div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><u>@OneToMany</u></h4>
+<p data-ke-size="size16">Order 객체를 담는 리스트를 @OneToMany로 매핑.</p>
+<p data-ke-size="size16">일대다 관계에서 연관관계의 주인이 아닌쪽이 mappedBy로 매핑 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>일대다 관계에서 항상 다(Many) 쪽이 연관관계의 주인이다.&nbsp;</b></p>
+<p data-ke-size="size16">연관관계의 주인이라는 것은 실제로 객체에 변경이 필요할때 변경하는 쪽이다.&nbsp;</p>
+<p data-ke-size="size16">즉 외래키를 관리하는 쪽이다.</p>
+<p data-ke-size="size16">즉 주인이 아닌 쪽은 그냥 조회를 위해 존재하는 것이고 실제 변경이 필요할때는 주인쪽에 있는 객체를 변경해야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>왜 Many 쪽이 주인인가?</b></p>
+<p data-ke-size="size16">이건 생각해보면 합당하다.</p>
+<p data-ke-size="size16">지금 위에서는 One 쪽이 Member다.&nbsp;</p>
+<p data-ke-size="size16">Member는 Order를 List에 담아 갖고 있으므로 실제로 Order에 뭔가 변화를 주고 싶다면 Member.orders를 통해 변경하는 것보다는 실제 Order를 변경하는 것이 합당하다.</p>
+<p data-ke-size="size16"><b>DB 관점</b>에서 보면 1:N 관계에서 항상 N 쪽에 외래키가 있다. (당연히 N쪽에서 특정 1 을 찾으려면 N쪽에 외래키가 있어야 한다).</p>
+<p data-ke-size="size16">따라서 N쪽 (외래키가 있는쪽)에서 바꾸는게 합당하다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><u>@Embedded</u></h4>
+<p data-ke-size="size16">@Embedded는 그냥 해당 객체가 Embedded 타입임을 나타낸다.</p>
+<p data-ke-size="size16">Embedded 타입은 int, String과 같은 값 타입이고 코드 재사용을 위해 사용된다.</p>
+<p data-ke-size="size16">Address 클래스는 String city, String street, String zipcode 필드를 갖는다.</p>
+<p data-ke-size="size16">임베디드 타입을 사용할때는 값 비교를 위한 equals 를 재정의 해야 한다. (자세한 내용은 사용시 검색)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><u>@ManyToOne(fetch = FetchType.LAZY)</u></h4>
+<p data-ke-size="size16">Order 클래스의 Member member 필드에 @ManyToOne 으로 Member와의 관계를 나타내는데 FetchType이 Lazy로 되어있다.</p>
+<p data-ke-size="size16">이 반대이자 디폴트 값은 FetchType.EAGER이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">FetchType이<b> Eeager 일때는 해당 테이블을 조회할때 관계있는 모든 테이블들을 불러온다.</b></p>
+<p data-ke-size="size16">예를들어 위와 같은 경우에서 N쪽인 Order의 어떤 값을 조회할때 Order와 Member가 연관관계 매핑이 되어있기 때문에 무조건 Member 테이블도 가져오게 된다. (즉 sql 문으로 db에서 join 해서 갖고 온다는 것이다)&nbsp;</p>
+<p data-ke-size="size16">여기까지는 괜찮더라도 만약 Member도 어떤 다른 테이블들과 연관관계가 있다면, 나는 Order의 어떤 값만 불러오려고 했는데 Order와 관계있는 Member, Meber와 관련있는 다른 테이블... 이렇게 줄줄이 모든 테이블들을 가져오게 된다.&nbsp;</p>
+<p data-ke-size="size16"><b>따라서 FetchType은 항상 LAZY 로 해준다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">FetchType.LAZY는 위의 문제를 방지해주는데 <b>프록시</b>를 이용해 방지한다.</p>
+<p data-ke-size="size16">프록시 객체는 일종의 껍대기 객체로서 JPA가 만든다.</p>
+<p data-ke-size="size16">예를들어 위와 같은 경우에서는 Order를 조회하면 Member와의 관계에서 FetchType이 LAZY로 되어있으므로, Member 대신 프록시 객체를 만드는데 이 프록시 객체는 Member를 상속 받은 내용이 없는 객체이다.</p>
+<p data-ke-size="size16">이렇게 하는 이유는 Order를 조회할때 Member 테이블이 필요없기 때문이다.</p>
+<p data-ke-size="size16">만약 내가 Member의 값도 조회한다면 그때서야 JPA는 DB에서 Member 테이블을 불러온다.</p>
+<p data-ke-size="size16">(더 자세한 내용은 프록시 객체, 지연로딩, FetchType.LAZY로 검색)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>Order - Delivery (1:1)</b></h2>
+<p><figure class="imageblock alignCenter" width="249" height="377" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="249" height="377"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">Delivery class</p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre class="scala"><code>package jpabook.jpashop.domain;
+
+import javax.persistence.*;
+
+@Entity
+public class Delivery extends BaseEntity {
+    @Id @GeneratedValue
+    private Long id;
+
+    @Embedded
+    private Address address;
+
+    private DeliveryStatus status;
+
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
+    private Order order;
+
+}
+</code></pre>
+</div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Order와 Delivery는 1:1 관계이므로 어디에 외래키를 넣어도 상관없는데 여기서는 <b>Order에 외래키</b>가 들어가 있다.</p>
+<p data-ke-size="size16">따라서<b> Order가 연관관계의 주인</b>이되어 Delivery 클래스에서 Order에 @OneToOne(mappedBy=) 를 해줘야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>Order - OrderItem - Item (N:N을 1:N, N:1 로)&nbsp;</b></h2>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">Order와 Item은 다대다 관계인데,<b> 다대다 관계는 지양해야 하므로 1:N, N:1로 푼다.</b></p>
+<p data-ke-size="size16">그 가운데를 담당하는 테이블이 <b>OrderItem</b> 이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">테이블들을 보면 Order는 orderItems를 갖고 있어서 OrderItem으로 이동 가능하고,&nbsp;</p>
+<p data-ke-size="size16">OrderItem은 order, item이 있어 Order와 Item으로 이동 가능하다.</p>
+<p data-ke-size="size16">그런데 <b>Item은 OrderItem으로 이동이 불가능한데, 이렇게 되는 이유는 그냥 이렇게 만들어서이다..</b></p>
+<p data-ke-size="size16">Item에도 OrderItem을 갖도록해 이동하도록 할수 있지만 비지니스 로직상 필요없다고 판단해 뺀것일뿐.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

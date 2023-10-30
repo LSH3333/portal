@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 13144. List of Unique Numbers</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 13144. List of Unique Numbers</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-09-29 13:26:06</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/13144" target="_blank" rel="noopener">https://www.acmicpc.net/problem/13144</a></p>
+<figure id="og_1695961276159" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="13144번: List of Unique Numbers" data-og-description="길이가 N인 수열이 주어질 때, 수열에서 연속한 1개 이상의 수를 뽑았을 때 같은 수가 여러 번 등장하지 않는 경우의 수를 구하는 프로그램을 작성하여라." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/13144" data-og-url="https://www.acmicpc.net/problem/13144" data-og-image="https://scrap.kakaocdn.net/dn/viS2Q/hyT2DCUxl7/oBlRFwT5ahKBcLMrrxqWM0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/13144" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/13144">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/viS2Q/hyT2DCUxl7/oBlRFwT5ahKBcLMrrxqWM0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">13144번: List of Unique Numbers</p>
+<p class="og-desc" data-ke-size="size16">길이가 N인 수열이 주어질 때, 수열에서 연속한 1개 이상의 수를 뽑았을 때 같은 수가 여러 번 등장하지 않는 경우의 수를 구하는 프로그램을 작성하여라.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">투 포인터.</p>
+<p data-ke-size="size16">이 문제는 현재 뽑은 연속되는 수를 기록하면서 r을 증가시키고, 중복되는 숫자와 만나면 멈추고 l 을 증가시켜야 한다.</p>
+<p data-ke-size="size16">중요한건 l 을 증가시키면서 지나온 숫자들은 제외된다는 것이고, 그러면 이후로 r을 증가시키면서 만들어지는 선택한 수의 집합은 이전에 없던 새로운 집합이라는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">l = 0, r = 0 부터 시작해서 중복되는 값이 나올때까지 r 을 증가시킨다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">중복되는 값이 나오면 answer += (r-l) 이다.</p>
+<p data-ke-size="size16">l 값을 증가시킨다.</p>
+<p data-ke-size="size16">여기서 l 값을 증가시키기 전에 visited[l] = false 로 해줘야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/9087b9d7e9ca2018763456736984ac07.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Two Pointers 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

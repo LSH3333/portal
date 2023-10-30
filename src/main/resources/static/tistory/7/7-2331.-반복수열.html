@@ -1,0 +1,212 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>2331. 반복수열</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">2331. 반복수열</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2020-08-04 20:40:05</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/2331">https://www.acmicpc.net/problem/2331</a></p>
+<figure id="og_1596539237512" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="2331번: 반복수열" data-og-description="첫째 줄에&nbsp;반복되는 부분을 제외했을 때, 수열에 남게 되는 수들의 개수를 출력한다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2331" data-og-url="https://www.acmicpc.net/problem/2331" data-og-image="https://scrap.kakaocdn.net/dn/pmxfy/hyG2ndUpTM/EO2LE8mzkt2N8cA1g82ek0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2331" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2331">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/pmxfy/hyG2ndUpTM/EO2LE8mzkt2N8cA1g82ek0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">2331번: 반복수열</p>
+<p class="og-desc">첫째 줄에&nbsp;반복되는 부분을 제외했을 때, 수열에 남게 되는 수들의 개수를 출력한다.</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>일단 풀긴 했는데 그래프? 스럽게 풀진 않은 것 같다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>문제에서 나온 수열 생성 방식에 따라 수열을 만들다 보면 반복되는 구간이 생기는데 이 반복되는 부분을 제외했을 때 남는 수들의 개수를 구하는 문제이다.</p>
+<p>&nbsp;</p>
+<p><b>nextnum</b></p>
+<p>그렇다면 일단 제공된 수열 생성 방식에 따라 수열을 만들어야 한다.</p>
+<pre id="code_1596539622856" class="java" data-ke-language="java" data-ke-type="codeblock"><code>static int nextnum(int num, int p) {
+        int sum = 0;
+        int temp = num;
+
+        while(temp != 0) {
+            sum += Math.pow(temp % 10, p);
+            temp /= 10;
+        }
+
+        return sum;
+    }</code></pre>
+<p>수열 생성 방식은&nbsp;</p>
+<p><span>57, 74, 65, 61, 37, 58, 89, 145, 42, 20, 4, 16, 37, &hellip;</span></p>
+<p>즉 각 자릿수를 P만큼 곱하고 모두 더하면 다음 수가 된다.</p>
+<p>여기서 p = 2이고</p>
+<p>57에서 (5^2 + 7^2 = 74) 이다.</p>
+<p>&nbsp;</p>
+<p>nextnum함수에서는 현재 수 int num, 몇 번 곱하는지 p를 인자로 받는다.</p>
+<p>계산된 다음 수열의 수를 리턴한다.</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p>&nbsp;</p>
+<pre id="code_1596540178501" class="java" data-ke-language="java" data-ke-type="codeblock"><code>// 스택에 다음 숫자 넣고 그 숫자가 스택 처음에서부터 있는지 체크
+        while(true) {
+            int nn = nextnum(st.get(idx), p); // 계산한 다음 숫자
+            st.push(nn); // 스택에 넣음
+
+            boolean none = true;
+            // 스택 처음에서 부터 있나 확인
+            for(int i = 0; i &lt; idx; i++) {
+                if(nn == st.get(i)) {
+                    re_idx = i;
+                    none = false;
+                    break;
+                }
+            }
+            if(!none) break; // !none이면 중복된 숫자
+
+            idx++;
+        }</code></pre>
+<p>그래프로 어찌 풀것인가..고민하다가.. 그냥 스택에 수열을 순서대로 넣으면서 그때마다 스택의 처음부터 중복됐는지 찾아보는 방식으로 만들었다.&nbsp;</p>
+<p>뭔가 그래프로 더 좋게 풀 수 있을 것 같긴 한데..</p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1596540436926" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.*;
+import java.lang.Math;
+
+public class Main {
+
+    static int nextnum(int num, int p) {
+        int sum = 0;
+        int temp = num;
+
+        while(temp != 0) {
+            sum += Math.pow(temp % 10, p);
+            temp /= 10;
+        }
+
+        return sum;
+    }
+
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+
+        int a = s.nextInt();
+        int p = s.nextInt();
+
+        Stack&lt;Integer&gt; st = new Stack&lt;Integer&gt;();
+
+        st.push(a);
+        int re_idx = 0;
+        int idx = 0;
+        // 스택에 다음 숫자 넣고 그 숫자가 스택 처음에서부터 있는지 체크
+        while(true) {
+            int nn = nextnum(st.get(idx), p); // 계산한 다음 숫자
+            st.push(nn); // 스택에 넣음
+
+            boolean none = true;
+            // 스택 처음에서 부터 있나 확인
+            for(int i = 0; i &lt; idx; i++) {
+                if(nn == st.get(i)) {
+                    re_idx = i;
+                    none = false;
+                    break;
+                }
+            }
+            if(!none) break; // !none이면 중복된 숫자
+
+            idx++;
+        }
+
+        System.out.println(re_idx);
+    }
+}
+</code></pre>
+</div>
+</div>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p><b>Solution</b></p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1596540903651" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.Scanner;
+
+public class Main {
+    // 순번을 기록할 배열 변수를 만들어 둔다.
+    // 배열의 인덱스로 생산되는 수열값을 사용할 것이기 떄문에
+    // 만들어질 수열값도 큰 값이어야 한다.
+    // 메모리가 허용되는 범위에서 대략 넉넉히 잡아둔다.
+
+    static int[] order = new int[10000000];
+
+    static int next(int v, int p) {
+        int res = 0;
+        while(v &gt; 0) {
+            int n = v % 10;
+            int t = p;
+            int add = 1;
+            while(t-- &gt; 0) add *= n;
+            res += add;
+            v /= 10;
+        }
+        return res;
+    }
+
+    static int length(int a, int p, int cnt) {
+        // 이미 나온 수열이 생상된 상황이다
+        // 자신의 순번에서 '1'을 뺀 값을 반환한다.
+        if(order[a] != 0) return order[a] - 1;
+
+        order[a] = cnt; // 순번을 매긴다
+        int n = next(a, p); // 다음 수열값을 구한다
+
+        return length(n, p, cnt + 1); // 재귀로 탐색 &amp; 순번을 매겨 나간다
+    }
+
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int p = s.nextInt();
+
+        int res = length(n, p, 1); // 정답을 찾는다.
+        System.out.print(res);
+    }
+}</code></pre>
+</div>
+</div>
+<p>내 풀이와 다른 점은 스택을 쓰지 않고 배열을 아예 크게 만들었고 그 배열의 idx 자체를 이용했다.</p>
+<p>수열의 다음 수를 구하는 next함수는 유사.</p>
+<p>&nbsp;</p>
+<p>그리고 length 함수 안에서 next함수로 다음 수 구하고 재귀로 탐색을 이어나간다.&nbsp;</p>
+<p>계속 다음 수열을 구하고 order 배열에 추가하다가 order[a]가 0이 아닌 상황 즉 중복된 수랑 맞닥트리면&nbsp;</p>
+<p>자신 순번에서 1을 뺀 값을 반환.</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #graph 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

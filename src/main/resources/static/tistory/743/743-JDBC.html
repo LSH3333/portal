@@ -1,0 +1,87 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>JDBC</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">JDBC</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2022-06-28 22:01:55</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>Java Database Connectivity</b></h2>
+<p data-ke-size="size16"><b>JDBC</b><span style="background-color: #ffffff; color: #202124;">(Java Database Connectivity)는 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 API이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">내가 어떤 프로그램을 만들었고 데이터베이스를 사용하는 상황이다.&nbsp;</p>
+<p data-ke-size="size16">데이터베이스에도 여러 종류가있다 오라클 디비, MSSQL 등등 엄청 많다.</p>
+<p data-ke-size="size16">디비 <b>회사들은 디비 API를 제공</b>하고 개발자들은 제공되는 디비 API를 갖고 내 프로그램과 디비를 연동할것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 오라클에서 제공하는 디비 API를 이용해 코드를 완성했다.</p>
+<p data-ke-size="size16">그런데 만약 오라클 디비에서 갑자기 MSSQL으로 넘어갈일이 생겼다면 (일반적으로 거의 없는 일일테지만) 내가 작성한 코드중 엄청 많은 부분들이 바뀌어야 할것이다.</p>
+<p data-ke-size="size16">회사들이 제공 하는 디비 API가 다 다르기 때문이다. (함수들의 이름, 사용법 등)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">JDBC는 이런 문제를 해결한다.</p>
+<p data-ke-size="size16">JDBC는 디비의 API와 프로그램의 <b>중간다리 역활</b>을 한다.&nbsp;</p>
+<p data-ke-size="size16"><b>디비 API들의 다른점들을 단일화시켜 개발자들이 JDBC만 사용해도 되도록 하는 것</b>이다.</p>
+<p data-ke-size="size16">JDBC에서 다른 디비들의 API를 단일화하기 때문에 개발자들은 <b>각 디비들의 API의 내용은 알필요가 없다.&nbsp;</b>&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">물론 디비 회사들이 제공하는 각 디비의 <b>JDBC 드라이버</b>는 필요하다.</p>
+<p data-ke-size="size16">예를들어 오라클 디비를 사용한다면 오라클에서 제공하는 JDBC 드라이버가 필요하다.</p>
+<p data-ke-size="size16">사실상 JDBC는 비어있고, 실제 디비 구동 코드는 JDBC 드라이버에 있는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 style="text-align: center;" data-ke-size="size20"><b>프로그램 -- JDBC -- DB회사에서 제공하는 JDBC 드라이버 -- DB&nbsp;</b></h4>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">우선 크게 어떤식으로 동작하는지 살펴보자.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 일단 JDBC 드라이버에 모든 코드들이 있기 때문에 <b>드라이버를 로드</b>해야 할 것이다.&nbsp;</p>
+<pre class="css"><code>Class.forName("oracle.jdbc.driver.OracleDriver"); </code></pre>
+<p data-ke-size="size16">이렇게 하면 메모리에 JDBC 드라이버가 로드된 상태일 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. <b>연결</b>하고 연결 객체 얻음.&nbsp;</p>
+<pre class="reasonml"><code>Connection con = DriverManager.getConnection();</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. <b>실행 도구&nbsp;</b>객체&nbsp;</p>
+<pre class="ebnf"><code>Statement st = con.createStatement();</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">4. 쿼리 실행하고,<b> 결과 객체</b> 얻음&nbsp;</p>
+<pre class="ebnf"><code>ResultSet rs = st.executeQuery(sql);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">대충 이런식으로 진행된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">보면 <b>객체를 만들때 new 연산자를 사용하지 않는다.&nbsp;</b></p>
+<p data-ke-size="size16">이유는 드라이버를 로드해야 연결할수 있으므로 Connection 객체는 DriverManager가 생성된 이후에야 얻을수 있다.</p>
+<p data-ke-size="size16">Statement 객체 또한 연결 (Connection)이 이루어진 이후에야 얻을수 있을 것이다.&nbsp;</p>
+<p data-ke-size="size16">마지막으로 실행 객체 (ResultSet) 또한 실행 (Statement) 이후에야 얻을수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 <b>new로 마음대로 객체들을 만드는 것에 의미가 없기 때문에 이렇게 순차적으로 객체들이 만들어질수 있도록</b> 되어 있는 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #JDBC 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

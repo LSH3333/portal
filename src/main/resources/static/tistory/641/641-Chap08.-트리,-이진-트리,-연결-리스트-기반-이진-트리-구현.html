@@ -1,0 +1,190 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap08. 트리, 이진 트리, 연결 리스트 기반 이진 트리 구현</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap08. 트리, 이진 트리, 연결 리스트 기반 이진 트리 구현</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-11 21:51:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h3 data-ke-size="size23"><b>트리</b></h3>
+<p data-ke-size="size16">- 자료구조는 데이터를 저장하기도 하지만, 근본적으로 무엇인 가를&nbsp;<b>표현</b>하는 도구이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 트리는 여러개의 <b>서브 트리</b>로 나눌수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>이진 트리의 조건</b></h3>
+<p data-ke-size="size16">- 루트 노드를 중심으로<b> 두 개의 서브 트리로 나뉘어</b>진다</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 나뉘어진 두 서브 트리도 모두 이진 트리어야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 노드가 위치할수 있는 곳에 노드가 존재하지 않는다면 <b>공집합 노드</b>가 존재하는 것으로 간주하고, 공집합 노드도 이진 트리의 판단에 있어서 노드로 인정한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>포화 이진 트리 (Full binary tree)&nbsp;</b></h3>
+<p data-ke-size="size16">모든 레벨이 꽉 찬 이진 트리를 포화 이진 트리 라고 한다.</p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption>https://www.programiz.com/dsa/complete-binary-tree</figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>완전 이진트리 (Complete binary tree)</b></h3>
+<p data-ke-size="size16">포화 이진 트리처럼 모든 레벨이 꽉 찬 상태는 아니지만, 노드가 위에서 아래로 그리고 왼쪽에서 오른쪽의 순서대로 빈틈없이 채워진 트리를&nbsp;<b>완전 이진 트리</b>라고 한다.</p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>이진 트리의 ADT</b></h2>
+<p data-ke-size="size16"><b>BTreeNode&nbsp;*MakeBTreeNode();</b></p>
+<p data-ke-size="size16"><b></b>- 이진 트리 노드를 생성해 그 주소 값을 반환&nbsp;</p>
+<p data-ke-size="size16"><br /><b>BTData&nbsp;GetData(BTreeNode&nbsp;*bt);</b></p>
+<p data-ke-size="size16"><b></b>- 노드에 저장된 데이터를 반환&nbsp;</p>
+<p data-ke-size="size16"><br /><b>void&nbsp;SetData(BTreeNode&nbsp;*bt,&nbsp;BTData&nbsp;data);</b></p>
+<p data-ke-size="size16"><b></b>- data로 전잘된 값을 노드에 저장<br /><br /><b>BTreeNode&nbsp;*GetLeftSubTree(BTreeNode&nbsp;*bt);</b></p>
+<p data-ke-size="size16"><b></b>- 왼쪽 서브 트리의 루트 노드의 주소 값 반환&nbsp;</p>
+<p data-ke-size="size16"><br /><b>BTreeNode&nbsp;*GetRightSubTree(BTreeNode&nbsp;*bt);</b></p>
+<p data-ke-size="size16"><b></b>- 오른쪽 서브 트리의 루트 노드의 주소 값 반환&nbsp;<br /><br /><b>void&nbsp;MakeLeftSubTree(BTreeNode&nbsp;*main,&nbsp;BTreeNode&nbsp;*sub);</b></p>
+<p data-ke-size="size16"><b></b>- 왼쪽 서브 트리를 연결&nbsp;</p>
+<p data-ke-size="size16"><br /><b>void&nbsp;MakeRightSubTree(BTreeNode&nbsp;*main,&nbsp;BTreeNode&nbsp;*sub);</b></p>
+<p data-ke-size="size16">- 오른쪽 서브 트리를 연결</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>연결 리스트 기반의 이진 트리 구현</b></h2>
+<p data-ke-size="size16">이진 트리는 연결 리스트로 표현하는것이 더 유연하기 때문에 대부분 연결 리스트로 구현된다.</p>
+<p data-ke-size="size16">(힙과 같이 배열 기반인 트리도 있다)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>BinaryTree.h</b></p>
+<pre class="armasm"><code>/*
+ * 연결 리스트 기반의 이진 트리 구현
+ */
+
+#ifndef CHAP08_BINARYTREE_BINARYTREE_H
+#define CHAP08_BINARYTREE_BINARYTREE_H
+
+typedef int BTData;
+
+typedef struct _bTreeNode
+{
+    BTData data;
+    struct _bTreeNode *left;
+    struct _bTreeNode *right;
+} BTreeNode;
+
+BTreeNode *MakeBTreeNode();
+BTData GetData(BTreeNode *bt);
+void SetData(BTreeNode *bt, BTData data);
+
+BTreeNode *GetLeftSubTree(BTreeNode *bt);
+BTreeNode *GetRightSubTree(BTreeNode *bt);
+
+void MakeLeftSubTree(BTreeNode *main, BTreeNode *sub);
+void MakeRightSubTree(BTreeNode *main, BTreeNode *sub);
+
+
+#endif //CHAP08_BINARYTREE_BINARYTREE_H
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 헤더파일에는 구조체가 노드를 나타낸 BTreeNode 구조체 하나 뿐이다.</p>
+<p data-ke-size="size16">지금까지 스택, 큐, 리스트 등의 헤더파일에는 노드 구조체는 물론 해당 자료구조의 구조체도 정의했다.</p>
+<p data-ke-size="size16">그런데 트리에는 노드 구조체만 정의된 이유는 <b>노드 자체가 트리</b>라고 볼 수 있기 때문이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">트리의 조건중 노드가 위치 할 수 있는 곳에 노드가 없으면 공집합 노드가 존재하는 것으로 간주한다고 했기 때문에, <b>노드 하나는 left child와 right child를 공집합 노드로 갖는 트리라고 볼 수 있다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>BinaryTree.c</b></p>
+<pre class="cpp"><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "BinaryTree.h"
+
+BTreeNode * MakeBTreeNode()
+{
+    BTreeNode *nd = (BTreeNode*)malloc(sizeof(BTreeNode));
+    nd-&gt;left = NULL;
+    nd-&gt;right = NULL;
+    return nd;
+}
+
+BTData GetData(BTreeNode *bt)
+{
+    return bt-&gt;data;
+}
+
+void SetData(BTreeNode *bt, BTData data)
+{
+    bt-&gt;data = data;
+}
+
+BTreeNode *GetLeftSubTree(BTreeNode *bt)
+{
+    return bt-&gt;left;
+}
+
+BTreeNode *GetRightSubTree(BTreeNode *bt)
+{
+    return bt-&gt;right;
+}
+
+void MakeLeftSubTree(BTreeNode *main, BTreeNode *sub)
+{
+    // main 트리의 left child가 이미 존재한다면 삭제하고 연결
+    // 이 경우, 삭제되는 트리가 여러개의 노드로 이뤄져 있다면 메모리 누수가 발생한다
+    if(main-&gt;left != NULL)
+        free(main-&gt;left);
+
+    main-&gt;left = sub;
+}
+
+void MakeRightSubTree(BTreeNode *main, BTreeNode *sub)
+{
+    if(main-&gt;right != NULL)
+        free(main-&gt;right);
+
+    main-&gt;right = sub;
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">하위 서브트리를 삭제하는 MakeLeftSubTree(), MakeRightSubTree() 함수의 경우에, 만약 해당 방향의 서브트리가 이미 존재한다면 존재하는 서브트리를 제거한다. 그런데 이때 존재하던 서브트리의 루트노드만 지우기 때문에 만약 서브트리가 여러개의 노드로 이루어져 있다면 루트 노드를 제외한 나머지 노드들은 여전히 존재하기 때문에 메모리 누수가 발생한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">때문에&nbsp;<b>이진 트리를 순회</b>하는 방법이 필요하다.&nbsp;</p>
+<p data-ke-size="size16">루트 노드를 지우고 -&gt; 해당 노드의 자식들로 이동해서 -&gt; 또 지우고 ...&nbsp;</p>
+<p data-ke-size="size16">이런 이진 트리의 순회 과정은 재귀적으로 이뤄질 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23">&nbsp;</h3>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

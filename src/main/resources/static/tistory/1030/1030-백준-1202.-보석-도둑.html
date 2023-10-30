@@ -1,0 +1,68 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1202. 보석 도둑</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1202. 보석 도둑</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-01-21 15:54:44</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1202" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1202</a></p>
+<figure id="og_1674283761701" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1202번: 보석 도둑" data-og-description="첫째 줄에 N과 K가 주어진다. (1 &le; N, K &le; 300,000) 다음 N개 줄에는 각 보석의 정보 Mi와 Vi가 주어진다. (0&nbsp;&le; Mi, Vi &le; 1,000,000) 다음 K개 줄에는 가방에 담을 수 있는 최대 무게 Ci가 주어진다. (1 &le; Ci " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1202" data-og-url="https://www.acmicpc.net/problem/1202" data-og-image="https://scrap.kakaocdn.net/dn/bQKOoY/hyRndFuRRQ/SaKhl0JY0RN9nW7FaR0ZaK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/1202" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1202">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bQKOoY/hyRndFuRRQ/SaKhl0JY0RN9nW7FaR0ZaK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1202번: 보석 도둑</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 N과 K가 주어진다. (1 &le; N, K &le; 300,000) 다음 N개 줄에는 각 보석의 정보 Mi와 Vi가 주어진다. (0&nbsp;&le; Mi, Vi &le; 1,000,000) 다음 K개 줄에는 가방에 담을 수 있는 최대 무게 Ci가 주어진다. (1 &le; Ci</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">방법을 알면 정말 쉽고 모르면 정말 모르겠는 그리디 &amp; 우선순위큐 문제 ..&nbsp;</p>
+<p data-ke-size="size16">방법을 알면 정말 단순하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>보석</b>은 {무게, 가격} 으로 저장해 무게 기준 오름차순 정렬한다.</p>
+<p data-ke-size="size16"><b>가방</b>도 무게기준 오름차순 정렬한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런 문제는 어떤걸 기준으로 탐색하는지가 정말 중요한데 여기서는 <b>가방을 기준으로 탐색을 한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 현재 가방에 넣을수 있는 보석들을 모두 우선순위큐 (max heap) 에 넣는다.&nbsp;</p>
+<p data-ke-size="size16">2. 우선순위큐가 기본 max heap이므로 top에 가장 가격이 높은 보석이 있을 것이다.&nbsp;</p>
+<p data-ke-size="size16">3. 해당 보석을 선택하고 pop 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위를 모든 가방에 대하여 수행한다.&nbsp;</p>
+<p data-ke-size="size16">물론 우선순위큐가 비었을때 같은 경우도 처리해줘야 한다. (보석보다 가방이 많을때 같은 경우)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/3cc554886331355000f50dbc9a91e169.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #greedy #priority queue 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

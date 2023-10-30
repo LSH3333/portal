@@ -1,0 +1,62 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 10775. 공항</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 10775. 공항</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-01-03 14:09:50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/10775" target="_blank" rel="noopener">https://www.acmicpc.net/problem/10775</a></p>
+<figure id="og_1672722014364" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="10775번: 공항" data-og-description="예제 1 : [2][?][?][1] 형태로 도킹시킬 수 있다. 3번째 비행기는 도킹시킬 수 없다. 예제 2 : [1][2][3][?] 형태로 도킹 시킬 수 있고, 4번째 비행기는 절대 도킹 시킬 수 없어서 이후 추가적인 도킹은 불" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/10775" data-og-url="https://www.acmicpc.net/problem/10775" data-og-image="https://scrap.kakaocdn.net/dn/bLBE8B/hyQ8ZBvngs/qbFy4qMvfkIlx60KHKsQj1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/10775" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/10775">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bLBE8B/hyQ8ZBvngs/qbFy4qMvfkIlx60KHKsQj1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">10775번: 공항</p>
+<p class="og-desc" data-ke-size="size16">예제 1 : [2][?][?][1] 형태로 도킹시킬 수 있다. 3번째 비행기는 도킹시킬 수 없다. 예제 2 : [1][2][3][?] 형태로 도킹 시킬 수 있고, 4번째 비행기는 절대 도킹 시킬 수 없어서 이후 추가적인 도킹은 불</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">비행기는 1~g까지의 게이트 중 하나에 도킹할수 있으므로 최대한 큰 숫자의 게이트에 도킹하는게 이득이란건 쉽게 알 수 있다.</p>
+<p data-ke-size="size16">그러면 1~g까지의 게이트에 도킹할수 있는 비행기가 오면, g부터 1씩 줄여 나가면서 아직 도킹이 안된 게이트에 도킹시키면 된다.</p>
+<p data-ke-size="size16">그럼 이제 문제가 보이는데 이렇게 할 경우 시간복잡도가 O(N*N)으로 시간초과가 난 다는 것을 알수 있다.</p>
+<p data-ke-size="size16"><b>결국 이 문제의 핵심은 1~g까지의 게이트에 도킹 가능한 비행기가 도킹할 위치를 어떻게 g~1까지 탐색하지 않고 알아내냐 이다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리고 그 방법이 바로 Union-Find 알고리즘이다.</p>
+<p data-ke-size="size16">Union Find 알고리즘을 이용할때 Union 되는 두 노드는 각각 g와 g의 부모-1 이다.&nbsp;</p>
+<p data-ke-size="size16"><b>g의 부모-1</b> 인 이유는 j번이 도킹되 있으면 그리디하게 생각해서 j-1에 도킹해야하기 때문이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/3bf832647ca76458025fc6056b1226aa.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #union find 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

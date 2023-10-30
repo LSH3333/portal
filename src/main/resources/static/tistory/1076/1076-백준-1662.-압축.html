@@ -1,0 +1,71 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1662. 압축</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1662. 압축</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-02-25 14:28:44</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1662" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1662</a></p>
+<figure id="og_1677302587543" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1662번: 압축" data-og-description="압축되지 않은 문자열 S가 주어졌을 때, 이 문자열중 어떤 부분 문자열은 K(Q)와 같이 압축 할 수 있다. K는 한자리 정수이고, Q는 0자리 이상의 문자열이다. 이 Q라는 문자열이 K번 반복된다는 뜻이" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1662" data-og-url="https://www.acmicpc.net/problem/1662" data-og-image="https://scrap.kakaocdn.net/dn/mrha1/hyRJVM6zAj/g8t9ZIPMoCHeCR0dRx0tx0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/1662" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1662">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/mrha1/hyRJVM6zAj/g8t9ZIPMoCHeCR0dRx0tx0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1662번: 압축</p>
+<p class="og-desc" data-ke-size="size16">압축되지 않은 문자열 S가 주어졌을 때, 이 문자열중 어떤 부분 문자열은 K(Q)와 같이 압축 할 수 있다. K는 한자리 정수이고, Q는 0자리 이상의 문자열이다. 이 Q라는 문자열이 K번 반복된다는 뜻이</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런 괄호가 나오는 문제는 거의 스택으로 풀린다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">스택에 그냥 문자를 넣지 않고 다음과 같은 구조체를 만들어서 넣어줬다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="cpp"><code>struct Data {
+    char c; // 문자 
+    int num; // 숫자 
+    bool isNum; // true 시 최초 문자가 아닌 계산된 숫자라는 의미 
+};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. ')'이 나올때 까지 스택에 문자를 푸쉬한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. ')' 이 나오면 '('가 나올때까지 스택에서 pop 하면서 카운트 해준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. 이때 isNum==true 라면 이미 계산된 숫자라는 의미이므로 카운트를 1 올리는게 아닌 num 만큼 올린다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp; &nbsp; isNum==false 라면 카운트를 1 올린다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">4. '(' 까지 pop 하고 난 이후에 K를 의미하는 문자하나도 pop 하고 K * 카운트 해서 스택에 넣어준다.</p>
+<p data-ke-size="size16">&nbsp; &nbsp; 이때 계산된 숫자라는 의미로 isNum=true 로 넣어준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/dd45415304e25e94387cfa1787e71ecb.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Stack #string 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

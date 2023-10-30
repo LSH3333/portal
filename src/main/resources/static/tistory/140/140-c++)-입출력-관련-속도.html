@@ -1,0 +1,75 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>c++) 입출력 관련 속도</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">c++) 입출력 관련 속도</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2021-04-14 18:40:13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>1. endl은 '\n'보다 훨씬 처리속도가 느리다.</p>
+<p>&nbsp;</p>
+<p>2. <b><span>ios::sync_with_stdio는 </span></b><span>c++의 iosteram을 c의 stdio와 동기화 시킨다.&nbsp;</span></p>
+<p><span>즉 c++ 입출력 연산들이 이에 대응되는 c 스트림 버퍼를 직접 사용한다.&nbsp;</span></p>
+<p><span>따라서 <b><span>ios::sync_with_stdio(1)&nbsp;</span></b><span>즉 true로 주면, c++입출력 연산(std::cin, std::cout 등)과 c 입출력 연산을 혼합해 사용할 수 있다.&nbsp;&nbsp;</span></span></p>
+<p>&nbsp;</p>
+<p><b><span>ios::sync_with_stdio(0)&nbsp;</span></b><span style="color: #333333;">즉 false 라면 동기화가 끊기고 사용하는 버퍼의 수가 줄어들기 때문에 실행속도가 향상된다.</span></p>
+<p><span style="color: #333333;">이때 c++입출력 연산과 c 입출력 연산들을 같이 사용하면 그 입출력 순서들이 보장 되지 않는다.</span></p>
+<p>예를들어&nbsp;</p>
+<pre id="code_1618392701643" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>cout &lt;&lt; "HI";
+printf("BYE");
+cout &lt;&lt; "hi";</code></pre>
+<p>이것이 순서대로 출력되지만, false라면 그 순서가 보장되지 않는다.</p>
+<p>따라서 true일때는 c++ 입출력 연산(iostream)인 cin,cout을</p>
+<p>c입출력 연산(stdio) 함수인 getchar() 등과 같이 쓰면 안된다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span>참고(<a href="https://modoocode.com/281" target="_blank" rel="noopener">modoocode.com/281</a>, <a href="https://www.acmicpc.net/board/view/8074" target="_blank" rel="noopener">www.acmicpc.net/board/view/8074</a>, </span></p>
+<p><span><a href="https://eine.tistory.com/entry/CC-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EB%B0%A9%EB%B2%95%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%86%8D%EB%8F%84-%EC%A0%95%EB%A6%AC" target="_blank" rel="noopener">eine.tistory.com/entry/CC-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EB%B0%A9%EB%B2%95%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%86%8D%EB%8F%84-%EC%A0%95%EB%A6%AC</a>)</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span>3. <b>cin.tie(NULL), cout.tie(NULL)</b></span></p>
+<p><span>cin을 cout으로부터 untie 한다. </span></p>
+<p>stream을 tie하면 다른 stream에서 입출력요청이 오기전에 stream을 flush 시킨다.</p>
+<p>실행속도가 상승한다.&nbsp;</p>
+<p>(참고: <a href="https://su-m.tistory.com/7" target="_blank" rel="noopener">su-m.tistory.com/7</a>, <a href="https://leeeegun.tistory.com/4" target="_blank" rel="noopener">leeeegun.tistory.com/4</a>)</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>정리하자면,&nbsp;</p>
+<p>1. c함수인 printf, scanf를 사용하고</p>
+<p>2. <span style="color: #333333;">&nbsp;c++ 함수인 cin,cout 등 사용해야 하고, 속도를 더 빠르게 하고 싶다면,</span></p>
+<p><span style="color: #333333;"><b><span>ios::sync_with_stdio(0)</span></b></span></p>
+<p><span style="color: #333333;"><b><span><b>cin.tie(NULL), cout.tie(NULL)</b></span></b></span></p>
+<p>을 사용하되, c함수와 c++함수를 같이 사용하면 안된다.&nbsp;</p>
+<p><span style="color: #333333;">3. endl 보다는 '\n'을 사용하자 </span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

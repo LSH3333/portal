@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1327. 소트 게임</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1327. 소트 게임</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-09-09 20:17:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1327" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1327</a></p>
+<figure id="og_1694258093521" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1327번: 소트 게임" data-og-description="홍준이는 소트 게임을 하려고 한다. 소트 게임은 1부터 N까지 정수로 이루어진 N자리의 순열을 이용한다. 이 게임에선 K가 주어진다. 어떤 수를 뒤집으면, 그 수부터 오른쪽으로&nbsp;K개의 수를 뒤집" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1327" data-og-url="https://www.acmicpc.net/problem/1327" data-og-image="https://scrap.kakaocdn.net/dn/0C1DA/hyTSxoTzl4/YNflJa9fKQxdWfeueCg1u1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/1327" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1327">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/0C1DA/hyTSxoTzl4/YNflJa9fKQxdWfeueCg1u1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1327번: 소트 게임</p>
+<p class="og-desc" data-ke-size="size16">홍준이는 소트 게임을 하려고 한다. 소트 게임은 1부터 N까지 정수로 이루어진 N자리의 순열을 이용한다. 이 게임에선 K가 주어진다. 어떤 수를 뒤집으면, 그 수부터 오른쪽으로&nbsp;K개의 수를 뒤집</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">bfs() 로 모든 경우 탐색해보면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">k=4</p>
+<p data-ke-size="size16">7 2 1 6 8 4 3 5 라면&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">7 선택시 -&gt; 6 1 2 7 8 4 3 5</p>
+<p data-ke-size="size16">2 선택시 -&gt; 7 8 6 1 2 4 3 5</p>
+<p data-ke-size="size16">...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런 식으로 모든 경우를 탐색해보면 되는데, 방문한 숫자를 다시 방문하지 않도록 하기 위해서 나는 수열을 string 형으로 바꾸고 map&lt;string,bool&gt; 로 해당 숫자를 이미 탐색했는지 확인했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/bed44ac6935325cd1e4a9fb3d7565e49.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #map #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

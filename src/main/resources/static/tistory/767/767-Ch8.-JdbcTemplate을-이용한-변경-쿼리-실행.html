@@ -1,0 +1,215 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch8. JdbcTemplate을 이용한 변경 쿼리 실행</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch8. JdbcTemplate을 이용한 변경 쿼리 실행</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-08 21:40:47</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>JdbcTemplate의 update 메소드</b></h2>
+<p data-ke-size="size16"><b>INSERT, UPDATE, DELETE 쿼리는 update() 메소드를 이용한다.</b></p>
+<p data-ke-size="size16">update 메소드는 쿼리 실행 결과 변경된 행의 갯수를 리턴한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="fsharp"><code>public void update(Member member)
+{
+    // update(String sql, Object...args)
+    jdbcTemplate.update("update MEMBER set NAME = ?, PASSWORD = ? wher EMAIL = ?",
+            member.getName(), member.getPassword(), member.getEmail());
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>PreParedStatementCreator로 직접 인덱스 파라미터 값 설정</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">직접 인덱스 파라미터의 값을 설정하고 싶을때는 update문에 String의 쿼리문 대신, <b>PreparedStatementCreator</b>를 전달한다.</p>
+<p data-ke-size="size16">PreparedStatementCreator 인터페이스에는 createPreparedStatement 메소드가 있고, 이를 적절히 구현하면 된다.</p>
+<pre class="aspectj"><code>jdbcTemplate.update(
+        // update에 PreparedStatementCreator 객체 전달 (임시 클래스) 
+        new PreparedStatementCreator() 
+        {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException
+            {
+                PreparedStatement pstmt = connection.prepareStatement(
+                        "insert into MEMBER(EMAIL, PASSWORD, NAME, REGDATE) values (?,?,?,?)");
+                
+                        // 인덱스 파라미터의 값 설정
+                        pstmt.setString(1, member.getEmail());
+                        pstmt.setString(2, member.getPassword());
+                        pstmt.setTimestamp(4, Timestamp.valueOf(member.getRegisterDateTime()));
+                        // 생성한 PreparedStatement 객체 리턴
+                        return pstmt;
+            }
+        }
+);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><br /><br /></p>
+<h2 data-ke-size="size26"><b>KeyHolder를 이용해 자동 생성된 키 값 구하기</b></h2>
+<p data-ke-size="size16">테이블에서 auto_increment 칼럼은 행이 추가되면 자동으로 값이 할당된다.&nbsp;</p>
+<p data-ke-size="size16">update문 만으로는 이 추가된 값을 얻어올 수 없고 <b>KeyHolder&nbsp;</b>클래스를 사용해야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>KeyHolder 객체를 update문에 전달하면 update에서 쿼리 실행 후 자동생성된 키 값을 KeyHolder 객체에 저장한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="fsharp"><code>// Member Insert 
+// update 메소드에 PreparedStatementCreator 전달 
+public void insert(final Member member)
+{
+    KeyHolder keyHolder = new GeneratedKeyHolder(); // update 메소드에 KeyHolder 객체 전달 
+    jdbcTemplate.update(new PreparedStatementCreator() 
+    {
+        @Override
+        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException 
+        {
+            PreparedStatement pstmt = connection.prepareStatement(
+                    "insert into MEMBER (EMAIL, PASSWORD, NAME, REGDATE) " + "values(?,?,?,?)",
+                    new String[]{"ID"} // 자동증가 칼럼 ID
+            );
+            pstmt.setString(1, member.getEmail());
+            pstmt.setString(2, member.getPassword());
+            pstmt.setString(3, member.getName());
+            pstmt.setTimestamp(4, Timestamp.valueOf(member.getRegisterDateTime()));
+            return pstmt;
+        }
+    }, keyHolder); // end of update method 
+    
+    Number keyValue = keyHolder.getKey(); // 자동생성된 키 값을 KeyHolder에 저장 
+    member.setId(keyValue.longValue());
+}</code></pre>
+<p data-ke-size="size16">위 코드에서는 insert 메소드에서 Member 객체를 DB에 update문으로 추가하고 있는데, 그 과정에서 자동생성된 키값은 update에 두번째 파라미터로 전달된 keyHolder에 담기게 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>MainForMemberDao</b></h2>
+<p data-ke-size="size16">이제 구현된 MemberDao를 테스트해볼 MainForMemberDao 클래스를 만들고 실행해보자.&nbsp;</p>
+<pre class="arduino"><code>package main;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import config.AppCtx;
+import spring.Member;
+import spring.MemberDao;
+
+public class MainForMemberDao {
+    private static MemberDao memberDao;
+
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext ctx =
+                new AnnotationConfigApplicationContext(AppCtx.class);
+
+        memberDao = ctx.getBean(MemberDao.class);
+
+        selectAll();
+        updateMember();
+        insertMember();
+
+        ctx.close();
+    }
+
+    private static void selectAll() {
+        System.out.println("----- selectAll");
+        int total = memberDao.count();
+        System.out.println("전체 데이터: " + total);
+        List&lt;Member&gt; members = memberDao.selectAll();
+        for (Member m : members) {
+            System.out.println(m.getId() + ":" + m.getEmail() + ":" + m.getName());
+        }
+    }
+
+    private static void updateMember() {
+        System.out.println("----- updateMember");
+        Member member = memberDao.selectByEmail("madvirus@madvirus.net");
+        String oldPw = member.getPassword();
+        String newPw = Double.toHexString(Math.random());
+        member.ChangePassword(oldPw, newPw);
+
+        memberDao.update(member);
+        System.out.println("암호 변경: " + oldPw + " &gt; " + newPw);
+    }
+
+    private static DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("MMddHHmmss");
+
+    private static void insertMember() {
+        System.out.println("----- insertMember");
+
+        String prefix = formatter.format(LocalDateTime.now());
+        Member member = new Member(prefix + "@test.com",
+                prefix, prefix, LocalDateTime.now());
+        memberDao.insert(member);
+        System.out.println(member.getId() + " 데이터 추가");
+    }
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">흐름을 보면&nbsp; <span>selectAll()에서<span>&nbsp;</span></span>DB에 저장된 모든 내역들을 출력하고, updateMember()에서 임의의 값으로 암호를 변경하고, insertMember() 에서 임의의 새로운 유저를 추가하고 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>DB 연동 과정에서 발생한 문제들:&nbsp;</b></p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/768" target="_blank" rel="noopener">https://tose33.tistory.com/768</a></p>
+<figure id="og_1657346108307" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="mysql 연동 에러들" data-og-description="1. mysql&nbsp;server&nbsp;time&nbsp;zone&nbsp;value&nbsp;is&nbsp;unrecognized&nbsp;에러 https://ubiq.co/database-blog/how-to-change-mysql-server-time-zone/ How To Change MySQL Server Time Zone - Ubiq BI Sometimes you may need.." data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/768" data-og-url="https://tose33.tistory.com/768" data-og-image="https://scrap.kakaocdn.net/dn/bRJ64z/hyO12UTtxo/OkgQMNkKkaxQfAT0p1OUZK/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/b3wAle/hyO19sXjEq/RkA7d98tcZmHkQ0RDepGLk/img.png?width=800&amp;height=800&amp;face=0_0_800_800"><a href="https://tose33.tistory.com/768" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/768">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bRJ64z/hyO12UTtxo/OkgQMNkKkaxQfAT0p1OUZK/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/b3wAle/hyO19sXjEq/RkA7d98tcZmHkQ0RDepGLk/img.png?width=800&amp;height=800&amp;face=0_0_800_800');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">mysql 연동 에러들</p>
+<p class="og-desc" data-ke-size="size16">1. mysql&nbsp;server&nbsp;time&nbsp;zone&nbsp;value&nbsp;is&nbsp;unrecognized&nbsp;에러 https://ubiq.co/database-blog/how-to-change-mysql-server-time-zone/ How To Change MySQL Server Time Zone - Ubiq BI Sometimes you may need..</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>실행결과:</b><b></b></p>
+<p><figure class="imageblock alignLeft" width="641" height="255" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="641" height="255"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이 결과는 이미 실행을 한번하고 난뒤 두번째 실행한 결과이다.</p>
+<p data-ke-size="size16">따라서 selectAll에서 전체 데이터가 이미 2개인것을 볼수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">DB를 연동하는데 정말 너무 많은 에러들이 있었다 ...&nbsp;</p>
+<p data-ke-size="size16">일단 책이 나온지 좀 된 책이라 버전이 안맞아서 생기는 에러들이 엄청 많았다.&nbsp;</p>
+<p data-ke-size="size16">하나의 프로그램은 엄청나게 많은 수의 다른 프로그램(api등)들에 의존하고 있는데 뭔가 버전이 하나라도 안맞거나 어딘가 하나라도 삐끗하면 와르르 무너져 내릴것 같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">어쨌든 모든 문제들을 해결하고 연동은 성공했다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

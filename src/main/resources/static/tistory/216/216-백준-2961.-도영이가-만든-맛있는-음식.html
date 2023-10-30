@@ -1,0 +1,124 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2961. 도영이가 만든 맛있는 음식</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2961. 도영이가 만든 맛있는 음식</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-21 15:36:03</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2961" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2961</a></p>
+<figure id="og_1626849177970" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2961번: 도영이가 만든 맛있는 음식" data-og-description="첫째 줄에 재료의 개수 N(1 &le; N &le; 10)이 주어진다. 다음 N개 줄에는 그 재료의 신맛과 쓴맛이 공백으로 구분되어 주어진다. 모든 재료를 사용해서 요리를 만들었을 때, 그 요리의 신맛과 쓴맛은 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2961" data-og-url="https://www.acmicpc.net/problem/2961" data-og-image="https://scrap.kakaocdn.net/dn/UtSZb/hyKXUTIBey/Neh2xhBDcR1qkXqTbL3FZ0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2961" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2961">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/UtSZb/hyKXUTIBey/Neh2xhBDcR1qkXqTbL3FZ0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2961번: 도영이가 만든 맛있는 음식</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 재료의 개수 N(1 &le; N &le; 10)이 주어진다. 다음 N개 줄에는 그 재료의 신맛과 쓴맛이 공백으로 구분되어 주어진다. 모든 재료를 사용해서 요리를 만들었을 때, 그 요리의 신맛과 쓴맛은</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 신맛,쓴맛의 정보를 vector&lt;pair&lt;int,int&gt;&gt; 형태로 저장한다</p>
+<p data-ke-size="size16">2. 재료를 1개부터 n개 까지 뽑는 조합을 만든다 (1,2번 재료, 1,3번 재료, 1,4,번재료 ... )</p>
+<p data-ke-size="size16">3. 만들어진 재료의 조합에 대하여 신맛과 쓴맛의 차이를 구한다</p>
+<p data-ke-size="size16">4. 가장 작은 차이를 계속 갱신한다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1626849346658" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int n;
+int res = 1000000001;
+// 재료. {신맛, 쓴맛}
+vector&lt;pair&lt;int,int&gt;&gt; v;
+bool mark[11];
+vector&lt;pair&lt;int,int&gt;&gt; ans;
+
+// 만들어진 조합에 대하여 신맛과 쓴맛의 차이를 구해 리턴한다
+int Calculate()
+{
+    int s = 1; // 신맛은 곱하기므로 1로 초기화
+    int b = 0;
+    // 만들어진 조합에 대하여 총 신맛과 쓴맛을 구한다
+    for(auto x : ans)
+    {
+        s *= x.first;
+        b += x.second;
+    }
+
+    // 신맛과 쓴맛의 차이
+    return abs(s-b);
+}
+
+// 조합 k개를 뽑는다
+void dfs(int idx, int depth, int k)
+{
+    // k개를 뽑는 조합 만들어짐
+    if(depth == k)
+    {
+        res = min(res, Calculate());
+
+        return;
+    }
+
+    for(int i = idx; i &lt; n; i++)
+    {
+        if(mark[i]) continue;
+        mark[i] = true;
+        ans.push_back(v[i]);
+
+        dfs(i, depth+1, k);
+
+        mark[i] = false;
+        ans.pop_back();
+    }
+}
+
+int main()
+{
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i++)
+    {
+        int s,b;
+        cin &gt;&gt; s &gt;&gt; b;
+        v.push_back({s,b});
+    }
+
+    for(int i = 0; i &lt; n; i++)
+    {
+        dfs(0, 0, i+1);
+    }
+
+    cout &lt;&lt; res;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #조합 #dfs #brute_force 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

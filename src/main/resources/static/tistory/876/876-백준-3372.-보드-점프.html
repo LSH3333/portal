@@ -1,0 +1,80 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 3372. 보드 점프</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 3372. 보드 점프</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-09-10 13:29:15</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/3372" target="_blank" rel="noopener">https://www.acmicpc.net/problem/3372</a></p>
+<figure id="og_1662783868337" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="3372번: 보드 점프" data-og-description="N &times; N 게임 보드에 양의 숫자들이 적혀있다. 목적은 왼쪽 위에서 오른쪽 아래까지 규칙에 맞게 점프를 해서 가는 것이다. 숫자들은 현재 점에서 갈 수 있는 거리를 의미한다. 반드시 오른쪽이나 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/3372" data-og-url="https://www.acmicpc.net/problem/3372" data-og-image="https://scrap.kakaocdn.net/dn/cNGEuh/hyPJZiJWOj/sRBDXN2sknlaZrdJ827Qo1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/3372" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/3372">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cNGEuh/hyPJZiJWOj/sRBDXN2sknlaZrdJ827Qo1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">3372번: 보드 점프</p>
+<p class="og-desc" data-ke-size="size16">N &times; N 게임 보드에 양의 숫자들이 적혀있다. 목적은 왼쪽 위에서 오른쪽 아래까지 규칙에 맞게 점프를 해서 가는 것이다. 숫자들은 현재 점에서 갈 수 있는 거리를 의미한다. 반드시 오른쪽이나</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">dp 문제긴 한데, 다이나믹 프로그래밍보다는 BigInteger 에 대한 내용이었다.</p>
+<p data-ke-size="size16">문제의 로직은 그냥 단순한 dp 문제다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>d[i][j] : [i][j]에 도달가능한 경로의 수 로 두고,&nbsp;</b></p>
+<p data-ke-size="size16">[i][j]에서 이동 가능한 두 좌표에 d[i][j] 값을 더해 주면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>그런데 문제를 보면 경로의 수는 2^63-1 보다 클수 있으며, 100 자리가 넘는다고 나와있다.</b></p>
+<p data-ke-size="size16">즉 일반적인 자료형으로는 풀수 없다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">검색을 해보니 파이썬은 BigInteger 클래스가 기본 제공되고, 자바도 기본 라이브러리에 있는 것 같다.</p>
+<p data-ke-size="size16">하지만 c++은 기본적으로는 없어서 구글링해서 찾아왔다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://github.com/faheel/BigInt" target="_blank" rel="noopener">https://github.com/faheel/BigInt</a></p>
+<figure id="og_1662784084322" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="object" data-og-title="GitHub - faheel/BigInt: Arbitrary-sized integer class for C++" data-og-description="Arbitrary-sized integer class for C++. Contribute to faheel/BigInt development by creating an account on GitHub." data-og-host="github.com" data-og-source-url="https://github.com/faheel/BigInt" data-og-url="https://github.com/faheel/BigInt" data-og-image="https://scrap.kakaocdn.net/dn/dlq4qe/hyPJSRrFx0/cWvES8SCMNkKc8cL8uwGoK/img.png?width=1200&amp;height=600&amp;face=0_0_1200_600"><a href="https://github.com/faheel/BigInt" target="_blank" rel="noopener" data-source-url="https://github.com/faheel/BigInt">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/dlq4qe/hyPJSRrFx0/cWvES8SCMNkKc8cL8uwGoK/img.png?width=1200&amp;height=600&amp;face=0_0_1200_600');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">GitHub - faheel/BigInt: Arbitrary-sized integer class for C++</p>
+<p class="og-desc" data-ke-size="size16">Arbitrary-sized integer class for C++. Contribute to faheel/BigInt development by creating an account on GitHub.</p>
+<p class="og-host" data-ke-size="size16">github.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/c27bcf1b521635946158aac5d1745abf.js"></script>
+<p>&nbsp;</p>
+</div>
+</div>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #DP #Big integer 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 11068. 회문인 수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 11068. 회문인 수</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-03 16:14:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/11068" target="_blank" rel="noopener">https://www.acmicpc.net/problem/11068</a></p>
+<figure id="og_1627974699076" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="11068번: 회문인 수" data-og-description="어떤 수를 왼쪽부터 읽어도, 오른쪽부터 읽어도 같을 때 이 수를 회문인 수라고 한다. 예를 들어, 747은 회문인 수이다. 255도 회문인 수인데, 16진수로 표현하면 FF이기 때문이다. 양의 정수를 입력" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/11068" data-og-url="https://www.acmicpc.net/problem/11068" data-og-image="https://scrap.kakaocdn.net/dn/bdoVwB/hyK6lLdYZB/K5jKzy2OZmx4MhizIkeBn1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/11068" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/11068">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bdoVwB/hyK6lLdYZB/K5jKzy2OZmx4MhizIkeBn1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">11068번: 회문인 수</p>
+<p class="og-desc" data-ke-size="size16">어떤 수를 왼쪽부터 읽어도, 오른쪽부터 읽어도 같을 때 이 수를 회문인 수라고 한다. 예를 들어, 747은 회문인 수이다. 255도 회문인 수인데, 16진수로 표현하면 FF이기 때문이다. 양의 정수를 입력</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">주어진 수를 n진법으로 만들고 팰린드롬인지 판단하는 문제.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. n진법을 만드는 방법은 숫자를 n으로 나눈 나머지를 string 형태로 이어붙였다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 팰린드롬인지 판단은 그냥 string의 str[i]와 str[str.size()-1-i] 가 같은지 i값을 증가시키면서 판단했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1627974840581" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// num을 n진법으로 표현
+string MakeNotation(int n, int num)
+{
+    string temp = "";
+    while(num &gt; 0)
+    {
+        int left = num % n;
+        num /= n;
+        temp += left+'0';
+    }
+    return temp;
+}
+
+// num이 회문인지 판별
+bool IsItPalindrome(string num)
+{
+    int midIdx = num.size()/2;
+
+    for(int i = 0; i &lt; midIdx; i++)
+    {
+        if(num[i] != num[num.size()-1-i])
+            return false;
+    }
+    return true;
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+
+    int tc;
+    cin &gt;&gt; tc;
+
+    while(tc--)
+    {
+        int num;
+        cin &gt;&gt; num;
+
+        bool flag = false;
+        for(int i = 2; i &lt;= 64; i++)
+        {
+            // 회문인 경우가 하나라도 있으면 flag=true
+            if(IsItPalindrome(MakeNotation(i, num)))
+            {
+                flag = true;
+                break;
+            }
+        }
+
+        if(flag)
+            cout &lt;&lt; 1 &lt;&lt; endl;
+        else
+            cout &lt;&lt; 0 &lt;&lt; endl;
+    }
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

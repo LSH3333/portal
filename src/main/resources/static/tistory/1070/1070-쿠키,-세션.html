@@ -1,0 +1,123 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>쿠키, 세션</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">쿠키, 세션</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2023-02-17 21:36:39</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>쿠키</b></h2>
+<p data-ke-size="size16"><b>쿠키</b>는 안에 작은 종이가 들어있는 포츈 쿠키에서 따왔다고 한다.</p>
+<p data-ke-size="size16">포츈 쿠키와 같이 쿠키 내에는 적은 양의 정보들이 담겨서 클라이언트와 서버 사이를 오간다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" width="676" height="326" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="676" height="326"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">쿠키를 이용해서 사용자의 로그인 여부를 체크 할 수 있다.</p>
+<p data-ke-size="size16">서버에서 로그인에 성공하면 http request에 쿠키를 담아 보낸다.&nbsp;</p>
+<p data-ke-size="size16">그러면 브라우저는 앞으로 해당 쿠키를 지속적으로 보내게 된다.</p>
+<p data-ke-size="size16">서버는 받은 쿠키의 로그인 정보를 확인하면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">쿠키의 보안 문제</h2>
+<p data-ke-size="size16">하지만 쿠키글 그냥 사용하게 되면 여러가지 보안 문제가 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>쿠키 값은 서버가 아니어도 임의로 변경할수 있다</li>
+<li>쿠키에 보관된 값은 볼 수 있다&nbsp;</li>
+</ul>
+<p data-ke-size="size16">따라서 쿠키를 그냥 사용할수는 없다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>세션</b></h2>
+<p data-ke-size="size16">쿠키의 보안 문제를 해결하는 방법은 중요한 정보는 서버에 저장하고, <b>클라이언트에는 해당 정보와 key-value 로 매칭되는 랜덤한 key 값만 보내는 방법이다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">클라이언트는 랜덤하게 생성된 key값만을 갖고 이 key 값이 서버에 보내지면, 서버에서 해당 key에 매핑되는 value 값을 확인하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>이렇게 서버에 중요한 정보를 보관하고 연결을 유지하는 방법을 세션</b>이라고 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>서블릿이 제공하는 HttpSession</b></h2>
+<p data-ke-size="size16">세션을 직접 구현할수도 있지만 <b>서블릿이 HttpSession</b> 기능(인터페이스)를 제공한다.&nbsp;</p>
+<p data-ke-size="size16">HttpSession이 만드는 쿠키 이름이 JSESSIONID 이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="reasonml"><code>// 로그인 성공 처리
+// 세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성하고 로그인 맴버 정보 전달
+HttpSession session = request.getSession();
+session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런 식으로 HttpServletRequest.<b>getSession()</b> 으로 request 에 세션이 있는지 확인할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">getSession의<b> create 속성</b>에 true or false 를 줄수 있는데,&nbsp;</p>
+<p data-ke-size="size16"><b>true시</b> 세션이 있으면 기존 세션 반환, 없으면 새로운 세션 반환.</p>
+<p data-ke-size="size16"><b>false시</b> 세션이 있으면 기존 세션 반환, 없으면 null 반환.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Session #Spring #cookie 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

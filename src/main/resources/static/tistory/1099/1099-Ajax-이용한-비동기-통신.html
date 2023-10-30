@@ -1,0 +1,95 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ajax 이용한 비동기 통신</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ajax 이용한 비동기 통신</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2023-04-07 16:25:58</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://kim-oriental.tistory.com/12" target="_blank" rel="noopener">https://kim-oriental.tistory.com/12</a></p>
+<figure id="og_1680852344515" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="순수 (바닐라) JavaScript로 AJAX Get/Post 구현 (JSON 응답/요청)" data-og-description="안녕하세요, 오늘은 순수 자바스크립트(Javascript)만으로 ajax를 구현하는 법을 작성하도록 하겠습니다. jQuery 같은 다른 라이브러리를 사용하지 않고, 오직 Javascript만 사용하여 구현하는 것을 바닐" data-og-host="kim-oriental.tistory.com" data-og-source-url="https://kim-oriental.tistory.com/12" data-og-url="https://kim-oriental.tistory.com/12" data-og-image="https://scrap.kakaocdn.net/dn/GRz22/hyScFoxgV2/Lcuo0os8nJUovaAPK0qCLK/img.gif?width=459&amp;height=292&amp;face=0_0_459_292,https://scrap.kakaocdn.net/dn/ggTPJ/hyScFoxgR1/LkYNugZA3v7AXM6yxnVOl0/img.gif?width=459&amp;height=292&amp;face=0_0_459_292"><a href="https://kim-oriental.tistory.com/12" target="_blank" rel="noopener" data-source-url="https://kim-oriental.tistory.com/12">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/GRz22/hyScFoxgV2/Lcuo0os8nJUovaAPK0qCLK/img.gif?width=459&amp;height=292&amp;face=0_0_459_292,https://scrap.kakaocdn.net/dn/ggTPJ/hyScFoxgR1/LkYNugZA3v7AXM6yxnVOl0/img.gif?width=459&amp;height=292&amp;face=0_0_459_292');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">순수 (바닐라) JavaScript로 AJAX Get/Post 구현 (JSON 응답/요청)</p>
+<p class="og-desc" data-ke-size="size16">안녕하세요, 오늘은 순수 자바스크립트(Javascript)만으로 ajax를 구현하는 법을 작성하도록 하겠습니다. jQuery 같은 다른 라이브러리를 사용하지 않고, 오직 Javascript만 사용하여 구현하는 것을 바닐</p>
+<p class="og-host" data-ke-size="size16">kim-oriental.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16"><a href="https://www.youtube.com/watch?v=9WQBaQs1hC8&amp;t=223s">https://www.youtube.com/watch?v=9WQBaQs1hC8&amp;t=223s</a>&nbsp;</p>
+<figure data-ke-type="video" data-ke-style="alignCenter" data-video-host="youtube" data-video-url="https://www.youtube.com/watch?v=9WQBaQs1hC8" data-video-thumbnail="https://scrap.kakaocdn.net/dn/sBmUB/hyScvfvBtV/B1KjJZ4Y2KkgREOmlCNy40/img.jpg?width=1280&amp;height=720&amp;face=0_0_1280_720" data-video-width="860" data-video-height="484" data-video-origin-width="860" data-video-origin-height="484" data-ke-mobilestyle="widthContent" data-video-title="바닐라 자바스크립트 무한 스크롤 구현하기!" data-original-url=""><iframe src="https://www.youtube.com/embed/9WQBaQs1hC8" width="860" height="484" frameborder="0" allowfullscreen="true"></iframe>
+<figcaption style="display: none;"></figcaption>
+</figure>
+<div style="background-color: #1e1e1e; color: #d4d4d4;">
+<div><span style="color: #808080;">&lt;!</span><span style="color: #569cd6;">DOCTYPE</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">html</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">html</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">lang</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"en"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">head</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">meta</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">charset</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"UTF-8"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">meta</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">name</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"viewport"</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">content</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"width=device-width, initial-scale=1.0"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">title</span><span style="color: #808080;">&gt;</span><span style="color: #d4d4d4;">Document</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">title</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">style</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #d7ba7d;">html</span><span style="color: #d4d4d4;">, </span><span style="color: #d7ba7d;">body</span><span style="color: #d4d4d4;"> {</span><span style="color: #9cdcfe;">margin</span><span style="color: #d4d4d4;">:</span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">;}</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #d7ba7d;">section</span><span style="color: #d4d4d4;"> </span><span style="color: #d7ba7d;">.box</span><span style="color: #d4d4d4;"> {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">height</span><span style="color: #d4d4d4;">:</span><span style="color: #b5cea8;">500px</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">background</span><span style="color: #d4d4d4;">:</span><span style="color: #ce9178;">tomato</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">color</span><span style="color: #d4d4d4;">:</span><span style="color: #ce9178;">white</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">box-sizing</span><span style="color: #d4d4d4;">: </span><span style="color: #ce9178;">border-box</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">padding</span><span style="color: #d4d4d4;">: </span><span style="color: #b5cea8;">30px</span><span style="color: #d4d4d4;"> </span><span style="color: #b5cea8;">10px</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #d7ba7d;">section</span><span style="color: #d4d4d4;"> </span><span style="color: #d7ba7d;">.box:nth-child</span><span style="color: #d4d4d4;">(</span><span style="color: #b5cea8;">2n</span><span style="color: #d4d4d4;">) {</span><span style="color: #9cdcfe;">background</span><span style="color: #d4d4d4;">:</span><span style="color: #ce9178;">teal</span><span style="color: #d4d4d4;">;}</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">style</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">head</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">body</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">section</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">div</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">class</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"box"</span><span style="color: #808080;">&gt;</span><span style="color: #d4d4d4;">1번째 블록</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">div</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">div</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">class</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"box"</span><span style="color: #808080;">&gt;</span><span style="color: #d4d4d4;">2번째 블록</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">div</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">section</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">script</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">count</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">2</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">onscroll</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;">() {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">((</span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">innerHeight</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">scrollY</span><span style="color: #d4d4d4;">+</span><span style="color: #b5cea8;">5</span><span style="color: #d4d4d4;">) &gt;= </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">body</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">offsetHeight</span><span style="color: #d4d4d4;">) { &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">toAdd</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">createElement</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"div"</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">toAdd</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">classList</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">add</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"box"</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">toAdd</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">textContent</span><span style="color: #d4d4d4;"> = </span><span style="color: #ce9178;">`</span><span style="color: #569cd6;">${</span><span style="color: #d4d4d4;">++</span><span style="color: #9cdcfe;">count</span><span style="color: #569cd6;">}</span><span style="color: #ce9178;">번째 블록`</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">querySelector</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'section'</span><span style="color: #d4d4d4;">).</span><span style="color: #dcdcaa;">appendChild</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">toAdd</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">script</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">body</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">html</span><span style="color: #808080;">&gt;</span></div>
+</div>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Ajax 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

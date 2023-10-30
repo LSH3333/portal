@@ -1,0 +1,226 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) OOP 단계별 프로젝트 08단계</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) OOP 단계별 프로젝트 08단계</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-24 14:54:30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">기존에 AccountHandler 클래스에서 Account * 형으로 계정 정보를 저장하는 방식에서&nbsp;</p>
+<p data-ke-size="size16">Account** 형을 저장해서 bound check까지 수행하는 방식으로 변경.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">AccountArray.h&nbsp;&nbsp;</p>
+<pre class="http"><code>
+
+#ifndef __ACCOUNTARRAY__
+#define __ACCOUNTARRAY__
+
+#include "Account.h"
+typedef Account* ACCOUNT_PTR;
+
+class BoundCheckAccountPtrArray
+{
+private:
+    ACCOUNT_PTR * arr;
+    int arrlen;
+    // 복사 생성자, 대입 연산자 오버라이딩 호출 금지
+    BoundCheckAccountPtrArray(const BoundCheckAccountPtrArray &amp;arr);
+    BoundCheckAccountPtrArray&amp; operator= (const BoundCheckAccountPtrArray &amp;arr);
+
+public:
+    BoundCheckAccountPtrArray(int len=100); // default size 100
+    ACCOUNT_PTR&amp; operator[] (int idx);
+    ACCOUNT_PTR  operator[] (int idx) const;
+    int GetArrLen() const;
+    ~BoundCheckAccountPtrArray();
+};
+
+#endif</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">AccountArray.cpp</p>
+<pre class="cpp"><code>#include "BankingCommon.h"
+#include "AccountArray.h"
+
+BoundCheckAccountPtrArray::BoundCheckAccountPtrArray(int len)
+: arrlen(len)
+{ arr = new ACCOUNT_PTR[len]; }
+
+ACCOUNT_PTR&amp; BoundCheckAccountPtrArray::operator[] (int idx)
+{
+    if(idx &lt; 0 || idx &gt;= arrlen)
+    {
+        cout &lt;&lt; "Array idx out of bound exception" &lt;&lt;endl;
+        exit(1);
+    }
+    return arr[idx];
+}
+
+ACCOUNT_PTR BoundCheckAccountPtrArray::operator[] (int idx) const
+{
+    if(idx &lt; 0 || idx &gt;= arrlen)
+    {
+        cout &lt;&lt; "Array idx out of bound exception" &lt;&lt;endl;
+        exit(1);
+    }
+    return arr[idx];
+}
+
+int BoundCheckAccountPtrArray::GetArrLen() const { return arrlen; }
+
+BoundCheckAccountPtrArray::~BoundCheckAccountPtrArray() { delete []arr; }</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Account.h</p>
+<pre class="cpp"><code>// Account 클래스 깊은 복사 진행하는 대입 연산자 오버로딩 추가
+
+#ifndef __ACCOUNT__H__
+#define __ACCOUNT__H__
+
+class Account
+{
+private:
+    int accID;
+    int balance;
+    char * cusName;
+
+public:
+    Account(int _accID, int _balance, char * _cusName);
+    Account(const Account &amp;copy);
+    Account&amp; operator= (const Account&amp; ref);
+
+    int Get_accID() const;
+    void ShowAccInfo() const;
+    virtual void DepositMoney(int amount);
+    int WithDrawMoney(int amount);
+    ~Account();
+};
+
+
+#endif // __ACCOUNT__H__
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Account.cpp</p>
+<pre class="cpp"><code>// Account 클래스 깊은 복사 진행하는 대입 연산자 오버로딩 추가
+
+#include "BankingCommon.h"
+#include "Account.h"
+
+Account::Account(int _accID, int _balance, char * _cusName)
+        : accID(_accID), balance(_balance)
+{
+    cusName = new char[strlen(_cusName)+1];
+    strcpy(cusName, _cusName);
+}
+
+// 깊은 복사 진행하는 복사 생성자
+Account::Account(const Account &amp;copy) : accID(copy.accID), balance(copy.balance)
+{
+    // 새롭게 동적 할당해서 깊은 복사 진행
+    cusName = new char[strlen(copy.cusName) + 1];
+    strcpy(cusName, copy.cusName);
+}
+
+// 깊은 복사 진행하는 대입 연산자 오버로딩
+Account&amp; Account::operator= (const Account&amp; ref)
+{
+    accID = ref.accID;
+    balance = ref.balance;
+    delete []cusName;
+    cusName = new char[strlen(ref.cusName) + 1];
+    strcpy(cusName, ref.cusName);
+    return *this;
+}
+
+int Account::Get_accID() const { return accID; }
+
+void Account::ShowAccInfo() const
+{
+    cout &lt;&lt; "계좌ID: " &lt;&lt; accID &lt;&lt; endl;
+    cout &lt;&lt; "이 름: " &lt;&lt; cusName &lt;&lt; endl;
+    cout &lt;&lt; "잔 액: " &lt;&lt; balance &lt;&lt; endl &lt;&lt; endl;
+}
+
+void Account::DepositMoney(int amount) // virtual
+{
+    balance += amount;
+}
+
+int Account::WithDrawMoney(int amount)
+{
+    if(balance &lt; amount)
+    {
+        return -1;
+    }
+    balance -= amount;
+    return balance;
+}
+
+Account::~Account()
+{
+    delete cusName;
+}
+
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">AccountHandler.h</p>
+<pre class="cpp"><code>/*
+ * BoundCheckAccountPtrArray 적용
+ */
+
+#ifndef __ACCOUNT_HANDLER__
+#define __ACCOUNT_HANDLER__
+
+#include "Account.h"
+#include "AccountArray.h"
+
+class AccountHandler
+{
+private:
+    // 기존의 Account* 형에서 변경
+    BoundCheckAccountPtrArray accounts;
+    int accNum;
+
+public:
+    AccountHandler();
+    int PrintMenu();
+    void MakeAccount();
+    void MakeNormalAccount();
+    void MakeHighCreditAccount();
+    void Deposit();
+    void WithDraw();
+    void PrintAllAccountsInfo();
+    ~AccountHandler();
+};
+
+#endif // __ACCOUNT_HANDLER__</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

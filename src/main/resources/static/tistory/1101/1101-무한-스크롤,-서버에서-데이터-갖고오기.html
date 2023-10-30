@@ -1,0 +1,249 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>무한 스크롤, 서버에서 데이터 갖고오기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">무한 스크롤, 서버에서 데이터 갖고오기</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2023-04-10 16:41:37</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">목표:</p>
+<p data-ke-size="size16">무한 스크롤로 스크롤이 웹페이지의 끝까지 도달하면 서버에서 데이터를 10개씩 추가로 가져와서 프론트에서 디스플레이</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>html</b></h3>
+<div style="background-color: #1e1e1e; color: #d4d4d4;"><br />
+<div><span style="color: #808080;">&lt;!</span><span style="color: #569cd6;">DOCTYPE</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">html</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">html</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">lang</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"en"</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">xmlns:th</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"<a href="http://www.thymeleaf.org">http://www.thymeleaf.org</a>"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">head</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">meta</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">charset</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"UTF-8"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">meta</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">http-equiv</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"X-UA-Compatible"</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">content</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"IE=edge"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">meta</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">name</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"viewport"</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">content</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"width=device-width, initial-scale=1.0"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">title</span><span style="color: #808080;">&gt;</span><span style="color: #d4d4d4;">Document</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">title</span><span style="color: #808080;">&gt;</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">style</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #d7ba7d;">html</span><span style="color: #d4d4d4;">, </span><span style="color: #d7ba7d;">body</span><span style="color: #d4d4d4;"> {</span><span style="color: #9cdcfe;">margin</span><span style="color: #d4d4d4;">:</span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">;}</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">style</span><span style="color: #808080;">&gt;</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">script</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">type</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"text/javascript"</span><span style="color: #808080;">&gt;</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// ajax request</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">new</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">XMLHttpRequest</span><span style="color: #d4d4d4;">();</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">let</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">, </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">10</span><span style="color: #d4d4d4;">;</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">onreadystatechange</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;">() {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">readyState</span><span style="color: #d4d4d4;"> == </span><span style="color: #4ec9b0;">XMLHttpRequest</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">DONE</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">status</span><span style="color: #d4d4d4;"> == </span><span style="color: #b5cea8;">200</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">contentContainer</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">getElementById</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'contentContainer'</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">JSON</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">parse</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">responseText</span><span style="color: #d4d4d4;">);</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// response로 받은 page와 image들로 html 객체 만듦</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">for</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">let</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;"> &lt; </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">length</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">++) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">div</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">createElement</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'div'</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">div</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">innerHTML</span><span style="color: #d4d4d4;"> = </span><span style="color: #ce9178;">'&lt;img src="data:image/jpeg;charset=utf-8;base64,'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">images</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">] + </span><span style="color: #ce9178;">'"&gt;'</span><span style="color: #d4d4d4;"> +</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #ce9178;">'&lt;h2&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;a href="pages/'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">].</span><span style="color: #9cdcfe;">id</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'/view"&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">].</span><span style="color: #9cdcfe;">title</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;/a&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;/h2&gt;'</span><span style="color: #d4d4d4;"> +</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #ce9178;">'&lt;p&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">].</span><span style="color: #9cdcfe;">content</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;/p&gt;'</span><span style="color: #d4d4d4;">;</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">contentContainer</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">appendChild</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">div</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } </span><span style="color: #c586c0;">else</span><span style="color: #d4d4d4;"> {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">console</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">error</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"error"</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// infinite scroll</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">addEventListener</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'scroll'</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;">() {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">innerHeight</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">scrollY</span><span style="color: #d4d4d4;"> + </span><span style="color: #b5cea8;">5</span><span style="color: #d4d4d4;"> &gt;= </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">body</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">offsetHeight</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// 이전 request 에 대한 게시글들 로딩 완료된 이후에만 또 다른 request 보냄</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">readyState</span><span style="color: #d4d4d4;"> == </span><span style="color: #4ec9b0;">XMLHttpRequest</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">DONE</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">status</span><span style="color: #d4d4d4;"> == </span><span style="color: #b5cea8;">200</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">open</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'GET'</span><span style="color: #d4d4d4;">, </span><span style="color: #ce9178;">'/pages/ajaxReq?beginIdx='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">() + </span><span style="color: #ce9178;">'&amp;cnt='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">(), </span><span style="color: #569cd6;">true</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;"> += </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">send</span><span style="color: #d4d4d4;">();</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; })</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// 최초 페이지 로드 완료시 idx=0 부터 cnt=10 개 로드</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">onload</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;">() {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">open</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'GET'</span><span style="color: #d4d4d4;">, </span><span style="color: #ce9178;">'/pages/ajaxReq?beginIdx='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">() + </span><span style="color: #ce9178;">'&amp;cnt='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">(), </span><span style="color: #569cd6;">true</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;"> += </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">send</span><span style="color: #d4d4d4;">();</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; };</span></div>
+<br /><br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">script</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">head</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">body</span><span style="color: #808080;">&gt;</span></div>
+<br />
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">a</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">href</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"/pages/new"</span><span style="color: #808080;">&gt;</span><span style="color: #d4d4d4;">글쓰기</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">a</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">p</span><span style="color: #808080;">&gt;</span></div>
+<br /><br />
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">div</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">id</span><span style="color: #d4d4d4;">=</span><span style="color: #ce9178;">"contentContainer"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">div</span><span style="color: #808080;">&gt;</span></div>
+<br /><br />
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">body</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">html</span><span style="color: #808080;">&gt;</span></div>
+<br /><br /><br /><br /></div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">코드를 하나씩 보면&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>최초 페이지 로딩</b></p>
+<div style="background-color: #1e1e1e; color: #d4d4d4;">
+<div><span style="color: #6a9955;">// 최초 페이지 로드 완료시 idx=0 부터 cnt=10 개 로드</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">onload</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;">() {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">open</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'GET'</span><span style="color: #d4d4d4;">, </span><span style="color: #ce9178;">'/pages/ajaxReq?beginIdx='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">() + </span><span style="color: #ce9178;">'&amp;cnt='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">(), </span><span style="color: #569cd6;">true</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;"> += </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">send</span><span style="color: #d4d4d4;">();</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; };</span><span style="color: #d4d4d4;"></span></div>
+</div>
+<p data-ke-size="size16">최초로 페이지가 로딩됐을때, 컨트롤러에 10개의 데이터를 보내달라는 요청을 보낸다.</p>
+<p data-ke-size="size16">요청을 보낼때 '/pages/ajaxReq?beginIdx=0&amp;cnt=10' 이런 식으로 쿼리 파라미터의 형태로 파라미터를 컨트롤러에 보낼수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>요청에 대한 응답 받은후 처리&nbsp;</b></p>
+<div style="background-color: #1e1e1e; color: #d4d4d4;">
+<div><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">onreadystatechange</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;">() {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">readyState</span><span style="color: #d4d4d4;"> == </span><span style="color: #4ec9b0;">XMLHttpRequest</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">DONE</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">status</span><span style="color: #d4d4d4;"> == </span><span style="color: #b5cea8;">200</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">contentContainer</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">getElementById</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'contentContainer'</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// Map&lt;String, List&lt;&gt;&gt; 의 형태로 리턴받음 </span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">JSON</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">parse</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">responseText</span><span style="color: #d4d4d4;">);</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// response로 받은 page와 image들로 html 객체 만듦</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">for</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">let</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;"> &lt; </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">length</span><span style="color: #d4d4d4;">; </span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">++) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">div</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">createElement</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'div'</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">div</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">innerHTML</span><span style="color: #d4d4d4;"> = </span><span style="color: #ce9178;">'&lt;img src="data:image/jpeg;charset=utf-8;base64,'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">images</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">] + </span><span style="color: #ce9178;">'"&gt;'</span><span style="color: #d4d4d4;"> +</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #ce9178;">'&lt;h2&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;a href="pages/'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">].</span><span style="color: #9cdcfe;">id</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'/view"&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">].</span><span style="color: #9cdcfe;">title</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;/a&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;/h2&gt;'</span><span style="color: #d4d4d4;"> +</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #ce9178;">'&lt;p&gt;'</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">pages</span><span style="color: #d4d4d4;">[</span><span style="color: #9cdcfe;">i</span><span style="color: #d4d4d4;">].</span><span style="color: #9cdcfe;">content</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">'&lt;/p&gt;'</span><span style="color: #d4d4d4;">;</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">contentContainer</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">appendChild</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">div</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<br />
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } </span><span style="color: #c586c0;">else</span><span style="color: #d4d4d4;"> {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">console</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">error</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"error"</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+</div>
+<p data-ke-size="size16">요청에 대해 응답이 오면 응답의 상태를 확인하고 데이터를 처리한다.</p>
+<p data-ke-size="size16">컨트롤러에서 데이터를 map 데이터형으로 리턴할수 있다.&nbsp;</p>
+<p data-ke-size="size16">받은 데이터를 기반으로 html에 &lt;div&gt; 을 추가한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>무한 스크롤&nbsp;</b></p>
+<div style="background-color: #1e1e1e; color: #d4d4d4;">
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// infinite scroll</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">addEventListener</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'scroll'</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">function</span><span style="color: #d4d4d4;">() {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">innerHeight</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">window</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">scrollY</span><span style="color: #d4d4d4;"> + </span><span style="color: #b5cea8;">5</span><span style="color: #d4d4d4;"> &gt;= </span><span style="color: #9cdcfe;">document</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">body</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">offsetHeight</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #6a9955;">// 이전 request 에 대한 게시글들 로딩 완료된 이후에만 또 다른 request 보냄</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">readyState</span><span style="color: #d4d4d4;"> == </span><span style="color: #4ec9b0;">XMLHttpRequest</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">DONE</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #c586c0;">if</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">status</span><span style="color: #d4d4d4;"> == </span><span style="color: #b5cea8;">200</span><span style="color: #d4d4d4;">) {</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">open</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">'GET'</span><span style="color: #d4d4d4;">, </span><span style="color: #ce9178;">'/pages/ajaxReq?beginIdx='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">() + </span><span style="color: #ce9178;">'&amp;cnt='</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">toString</span><span style="color: #d4d4d4;">(), </span><span style="color: #569cd6;">true</span><span style="color: #d4d4d4;">);</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">beginIdx</span><span style="color: #d4d4d4;"> += </span><span style="color: #9cdcfe;">cnt</span><span style="color: #d4d4d4;">;</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">send</span><span style="color: #d4d4d4;">();</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</span></div>
+<div><span style="color: #d4d4d4;">&nbsp; &nbsp; &nbsp; &nbsp; })</span></div>
+</div>
+<p data-ke-size="size16">스크롤이 웹페이지의 끝에 도달하면 또 다시 요청을 보낸다.&nbsp;</p>
+<p data-ke-size="size16">이때 이전 요청에 대한 응답이 끝났는지 확인하지 않으면 요청을 한번에 여러개 보내는 문제 발생 확인.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h3 data-ke-size="size23"><b>Controller&nbsp;</b></h3>
+<pre class="dart" style="background-color: #2b2b2b; color: #a9b7c6;"><code>/**
+ *
+ * ajax
+ * request 받으면 모든 페이지와 base64 string 으로 인코딩된 이미지를 리턴한다
+ * @param beginIdx : 가져올 페이지 시작 인덱스
+ * @param cnt : beginIdx 부터 몇개 가져올지
+ * @return : beginIdx 부터 cnt 개의 페이지 레포지토리에서 리턴
+ */
+@ResponseBody
+@GetMapping("/pages/ajaxReq")
+public Map&lt;String, ?&gt; loadPagesAndImages(@RequestParam int beginIdx, @RequestParam int cnt) {
+    Map&lt;String, List&lt;?&gt;&gt; ret = new HashMap&lt;&gt;();
+    
+    // page
+    List&lt;Page&gt; pages = pageService.findRange(beginIdx, cnt);
+    List&lt;Object&gt; pageListForms = new ArrayList&lt;&gt;();
+    for (Page page : pages) {
+        PageListForm pageListForm = new PageListForm();
+        pageListForm.setId(page.getId());
+        pageListForm.setTitle(page.getTitle());
+        pageListForm.setContent(page.getContent());
+        pageListForms.add(pageListForm);
+    }
+
+
+    // images
+    // 각 페이지의 첫번째 이미지(존재한다면)를 base64 로 인코딩 후 리스트에 저장
+    List&lt;String&gt; images = new ArrayList&lt;&gt;();
+    for (Page page : pages) {
+        List&lt;Image&gt; pageImages = page.getImages();
+        if (!pageImages.isEmpty()) {
+            String base64Image = pageImages.get(0).generateBase64Image();
+            images.add(base64Image);
+        }
+    }
+    
+    ret.put("pages", pageListForms);
+    ret.put("images", images);
+
+    return ret;
+}</code></pre>
+<p data-ke-size="size16">프론트에서 <span style="color: #333333; text-align: start;"><span>&nbsp;</span>'/pages/ajaxReq?beginIdx=0&amp;cnt=10' 이런식으로 문자열 형태로 요청을 보냈을때 @RequestParam 으로<b> 파라미터를 꺼낼수 있다.</b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #333333; text-align: start;">보낸건 문자열이지만 @RequestParam int beginIdx 이런식으로 자료형을 명시하면 스프링이 알아서 변환해준다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #333333; text-align: start;">리턴하는 형을 보면 Map&lt;String,?&gt; 형을 리턴하는데, 이런식으로 map 을 리턴할수 있다.</span></p>
+<p data-ke-size="size16">이렇게 되면 프론트에서는 다음과 같이 받아서&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #569cd6;">var</span><span style="color: #d4d4d4;"><span>&nbsp;</span></span><span style="color: #9cdcfe;">data</span><span style="color: #d4d4d4;"><span>&nbsp;</span>=<span>&nbsp;</span></span><span style="color: #9cdcfe;">JSON</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">parse</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">xhr</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">responseText</span><span style="color: #d4d4d4;">);</span></p>
+<p data-ke-size="size16">data.key값 으로 접근할수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><figure class="imageblock alignCenter" width="370" height="469" >
+    <span data-lightbox="lightbox">
+        <img src="./img/Animation.gif" width="370" height="469"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Ajax #JavaScript #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

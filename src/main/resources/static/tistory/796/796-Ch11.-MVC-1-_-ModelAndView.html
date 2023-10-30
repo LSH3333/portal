@@ -1,0 +1,77 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch11. MVC 1 : ModelAndView</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch11. MVC 1 : ModelAndView</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-18 21:33:50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b>SurveyController.java</b></p>
+<pre id="code_1658147393286" class="java" data-ke-language="java" data-ke-type="codeblock"><code>@Controller
+@RequestMapping("/survey") // 이 클래스는 "/survey" 경로 처리  
+public class SurveyController 
+{
+	// GET 방식의 "/survey" 경로 요청 처리 (주소창 직접 입력은 GET 방식) 
+	@GetMapping
+	public String form(Model model) 
+	{
+		List&lt;Question&gt; questions = createQuestions();
+		model.addAttribute("questions", questions);		
+		return "survey/surveyForm";			
+	}
+    
+    // ... 
+}</code></pre>
+<p data-ke-size="size16">지금까지 컨트롤러는 위의 form() 메서드처럼 Model에 전달할 데이터를 추가하고, 뷰 이름을 String으로 리턴했다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ModelAndView를 사용하면 두 가지를 한번에 할 수 있다.&nbsp;</b></p>
+<pre id="code_1658147560897" class="java" data-ke-language="java" data-ke-type="codeblock"><code>	@GetMapping
+	public ModelAndView form()
+	{
+		List&lt;Question&gt; questions = createQuestions();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(questions); // 뷰에 전달할 모델 데이터 추가 
+		mav.setViewName("survey/surveyForm"); // 뷰 이름 설정 
+		return mav;
+	}</code></pre>
+<p data-ke-size="size16">ModelAndView 객체를 만들고,</p>
+<p data-ke-size="size16"><b>addObject()로 뷰에 전달할 모델 데이터 추가&nbsp;</b></p>
+<p data-ke-size="size16"><b>setViewName()으로 뷰 이름 설정&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #MVC #Spring #ModelAndView 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

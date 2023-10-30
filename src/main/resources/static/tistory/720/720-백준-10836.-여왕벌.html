@@ -1,0 +1,66 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 10836. 여왕벌</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 10836. 여왕벌</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-06-22 16:07:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/10836" target="_blank" rel="noopener">https://www.acmicpc.net/problem/10836</a></p>
+<figure id="og_1655880924389" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="10836번: 여왕벌" data-og-description="입력의 첫 줄에는 격자칸의 가로와 세로 크기 M(2 &le; M &le; 700)과 날짜&nbsp;수 N(1 &le; N &le; 1,000,000)이 자연수로 주어진다. 첫날 아침의 애벌레 크기는 모두 1이므로 입력에 주어지지 않는다. 다음 N개의 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/10836" data-og-url="https://www.acmicpc.net/problem/10836" data-og-image="https://scrap.kakaocdn.net/dn/b21NHb/hyORE6Cpgu/WrTqIvopcnhbOb4EYfLKV0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/10836" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/10836">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/b21NHb/hyORE6Cpgu/WrTqIvopcnhbOb4EYfLKV0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">10836번: 여왕벌</p>
+<p class="og-desc" data-ke-size="size16">입력의 첫 줄에는 격자칸의 가로와 세로 크기 M(2 &le; M &le; 700)과 날짜&nbsp;수 N(1 &le; N &le; 1,000,000)이 자연수로 주어진다. 첫날 아침의 애벌레 크기는 모두 1이므로 입력에 주어지지 않는다. 다음 N개의</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제 ... 결국 4번 서브태스크의 시간초과를 해결할 방법이 생각나지 않아 다른 분들 코드를 봤다.</p>
+<p data-ke-size="size16">그런데 다른 분들 코드를 봐도 이게 왜 시간초과가 아닌지 아직도 이해할수가 없다 ..</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제를 시간초과 없이 통과하는 방법은 일단 <b>첫행, 첫열을 제외한 곳은 첫 행의 값과 같다</b>는 것을 이해해야 한다.&nbsp;</p>
+<p data-ke-size="size16">문제의 입력 조건을 보면 다음과 같은 말이 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><i><span style="background-color: #ffffff; color: #555555;">자라는 크기를 제일 왼쪽 아래 칸에서 시작해서 위쪽으로 올라가서 제일 위쪽에 도착하면 오른쪽으로 이동하며 읽었다고 하자. 이 값들은 감소하지 않는다</span></i></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>이말은 즉 0열과 0행의 값들이 순차적으로 커지는 것이기 때문에,</b></p>
+<p data-ke-size="size16"><b>0열의 값이 0행의 값보다 클 가능성은 없고,&nbsp;</b></p>
+<p data-ke-size="size16"><b>따라서 0열을 제외한 값들은 0행의 값과 같을수 밖에 없다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 내가 막힌 부분은 이것이 아니다 ..</p>
+<p data-ke-size="size16">이렇게 한다고 치더라도 내가 생각했을때 <b>시간복잡도는 O(일의 최대 수 * 3 * 2M) = O(1000000 * 3 * 1400) = O(42억)</b>이 나오는데 통과된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p><script src="https://gist.github.com/LSH3333/78bc53df0a69646f9c3a44fb680d72d5.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

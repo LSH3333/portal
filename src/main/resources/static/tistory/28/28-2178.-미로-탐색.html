@@ -1,0 +1,236 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>2178. 미로 탐색</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">2178. 미로 탐색</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2020-08-21 21:13:23</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/2178">https://www.acmicpc.net/problem/2178</a></p>
+<figure id="og_1598009500420" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="2178번: 미로 탐색" data-og-description="첫째 줄에 두 정수 N, M(2 &le; N, M &le; 100)이 주어진다. 다음 N개의 줄에는 M개의 정수로 미로가 주어진다. 각각의 수들은 붙어서 입력으로 주어진다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2178" data-og-url="https://www.acmicpc.net/problem/2178" data-og-image="https://scrap.kakaocdn.net/dn/w4Dwl/hyHdoFmOed/1DzL4DXgR3Wfa3K2gqXet0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2178" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2178">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/w4Dwl/hyHdoFmOed/1DzL4DXgR3Wfa3K2gqXet0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">2178번: 미로 탐색</p>
+<p class="og-desc">첫째 줄에 두 정수 N, M(2 &le; N, M &le; 100)이 주어진다. 다음 N개의 줄에는 M개의 정수로 미로가 주어진다. 각각의 수들은 붙어서 입력으로 주어진다.</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>미로의 처음에서 끝까지 도달할수 있는 최소 칸 수를 구하는 문제.</p>
+<p>옛날부터 잘은 몰라도 미로문제는 bfs로 푼다고 어디서 주워는 들어서 bfs로 푸는 것은 처음 부터 알았다.</p>
+<p>&nbsp;</p>
+<p>미로가 만약 이렇게 주어지면</p>
+<p><figure class="imageblock alignLeft" data-filename="20200821203629.png" data-origin-width="208" data-origin-height="156" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20200821203629.png" data-origin-width="208" data-origin-height="156" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>일단 (0,0)에서 시작하니 큐에 (0,0)을 넣는다</p>
+<p>큐 : (0,0)</p>
+<p>&nbsp;</p>
+<p>(0,0)에서 이동할수 있는 곳은 (1,0) 뿐이다.</p>
+<p>큐 : (1,0)&nbsp; &nbsp; &nbsp;// (0,0)은 제거됨</p>
+<p>&nbsp;</p>
+<p>(1,0)에서 이동할수 있는 곳은 (2,0)</p>
+<p>큐 : (2,0)</p>
+<p>&nbsp;</p>
+<p>... 이렇게 쭉 가다가 (0,4)에 오면&nbsp;</p>
+<p>큐 : (0,4)</p>
+<p>에서 갈 수 있는 곳이 두곳 (0,5), (1,4)이다.</p>
+<p>&nbsp;</p>
+<p>큐: (0,5), (1,4)</p>
+<p>그런데 각 칸으로 갈때 그 칸까지 가는데 몇칸이 걸렸는지 기록해야하는데&nbsp;</p>
+<p>이렇게 한 칸에서 갈 수있는곳이 두칸 이상일때 칸 수가 2이상 더해지지 않도록 해야한다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>이전 문제 비슷하게 잘풀다가 문제를 맞닥트렸다.</p>
+<p>나는 큐에 좌표 하나를 넣을때마다 1을 더하고 좌표에서 갈곳이 없으면 1을 빼고.. 이런식으로하면 최종적으로&nbsp;</p>
+<p>최소 이동 칸 수를 구할수 있을줄 알았는데 잘 안됐다.</p>
+<p>&nbsp;</p>
+<p>고민하다가 배열을 하나더 만들어서 이동할때마다 그 칸 까지 도달하는 칸수를 기록해보기로 했다.</p>
+<p><figure class="imageblock alignLeft" data-filename="20200821211107.png" data-origin-width="120" data-origin-height="205" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20200821211107.png" data-origin-width="120" data-origin-height="205" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>이렇게 기록하면 마지막 도착칸의 수에 1을 더하면 답이 된다.</p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1598011982979" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.*;
+
+public class Main {
+    static int[][] arr; // 미로 저장
+    static int[][] visit; // 방문 여부
+    static int[][] arr_n;
+    static int n, m;
+    static int num = 0;
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+
+        arr = new int[n][m];
+        visit = new int[n][m];
+        arr_n = new int[n][m];
+
+        // 미로 저장
+        for(int i = 0; i &lt; n; i++) {
+            String temp = sc.next();
+
+            for(int j = 0; j &lt; m; j++) {
+                arr[i][j] = temp.charAt(j)-'0'; // string to int
+            }
+        }
+
+        bfs();
+
+        for(int i = 0; i &lt; n; i++) {
+            for(int j = 0; j &lt; m; j++) {
+                System.out.format("%d ", arr_n[i][j]);
+            }
+            System.out.println();
+        }
+
+        System.out.println(arr_n[n-1][m-1] + 1);
+
+
+    }
+
+    static void bfs() { // a:n, b:m
+        int a = 0, b = 0;
+        Queue&lt;Integer&gt; q = new LinkedList&lt;Integer&gt;();
+        visit[a][b] = 1;
+        q.add(0); q.add(0);
+
+        int trigger_n = 1; // 큐에 두개 이상 들어갔을때 다음에 모두 큐에서 빼야함
+        while(!q.isEmpty()) {
+            int trigger = 0;
+            num++;
+            for(int i = 0; i &lt; trigger_n; i++) {
+
+                a = q.remove();
+                b = q.remove();
+
+
+                if (b + 1 &lt; m &amp;&amp; arr[a][b + 1] == 1 &amp;&amp; visit[a][b + 1] == 0) { // 우
+                    q.add(a);
+                    q.add(b + 1);
+                    visit[a][b + 1] = 1;
+                    trigger++; // 큐에 좌표 하나 넣을때마다 trigger값도 하나 증가
+                    arr_n[a][b + 1] = num;
+                    if (a == n - 1 &amp;&amp; b + 1 == m - 1) break;
+                }
+                if (b - 1 &gt;= 0 &amp;&amp; arr[a][b - 1] == 1 &amp;&amp; visit[a][b - 1] == 0) { // 좌
+                    q.add(a);
+                    q.add(b - 1);
+                    visit[a][b - 1] = 1;
+                    trigger++;
+                    arr_n[a][b - 1] = num;
+                    if (a == n - 1 &amp;&amp; b - 1 == m - 1) break;
+                }
+                if (a - 1 &gt;= 0 &amp;&amp; arr[a - 1][b] == 1 &amp;&amp; visit[a - 1][b] == 0) { // 상
+                    q.add(a - 1);
+                    q.add(b);
+                    visit[a - 1][b] = 1;
+                    trigger++;
+                    arr_n[a - 1][b] = num;
+                    if (a - 1 == n - 1 &amp;&amp; b == m - 1) break;
+                }
+                if (a + 1 &lt; n &amp;&amp; arr[a + 1][b] == 1 &amp;&amp; visit[a + 1][b] == 0) { // 하
+                    q.add(a + 1);
+                    q.add(b);
+                    visit[a + 1][b] = 1;
+                    trigger++;
+                    arr_n[a + 1][b] = num;
+                    if (a + 1 == n - 1 &amp;&amp; b == m - 1) break;
+                }
+
+            }
+            if(trigger == 0) trigger++; // 큐에 하나도 안넣었어도 for문 동작위해 trigger를 1로만들어줌
+            trigger_n = trigger;
+
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p><u>solution</u></p>
+<p>&nbsp;</p>
+<p>내가 푼 것과 알고리즘 자체는 거의 같지만 방문단계를 갱신하는 방법이나, Pair을 이용한것, 배열을 이용한 방향탐색</p>
+<p>같이 .. 그냥 훨씬 깔끔하다.</p>
+<p>&nbsp;</p>
+<pre id="code_1598352970901" class="java" data-ke-language="java" data-ke-type="codeblock"><code>static void bfs(int r, int c) {
+        Queue&lt;Pair&gt; q = new LinkedList&lt;Pair&gt;();
+
+        int index = 1; // 첫 단계 부터 시작
+        q.add(new Pair(r, c));
+        d[r][c] = index; // 단계값 마킹
+
+        while(!q.isEmpty()) {
+            Pair _p = q.remove();
+            // 방금 제거한 위치에서의 단계값이 현재값보다 높으면..
+            // 현재 단계의 정점은 모두 없어졌다고 볼 수 있기 때문에 단계를 높인다.
+            if(d[_p.r][_p.c] &gt; index) index++;
+
+            // 4방향을 모두 탐색한다
+            for(int k = 0; k &lt; 4; k++) {
+                int nr = _p.r + dr[k];
+                int nc = _p.c + dc[k];
+                if(0 &lt;= nc &amp;&amp; nc &lt; w &amp;&amp; 0 &lt;= nr &amp;&amp; nr &lt; h) {
+                    // 갈 수 있는 정점이고, 마킹이 안된 상태라면.
+                    if(a[nr][nc] == 1 &amp;&amp; d[nr][nc] == 0) {
+                        q.add(new Pair(nr, nc));
+                        d[nr][nc] = index + 1; // 한 단계 높여서 마킹.
+                    }
+                }
+            }
+        }
+    }</code></pre>
+<p>Pair와 방향 탐색을 배열을 이용해서 내 코드보다 훨씬 짧고 깔끔하다.</p>
+<p>그리고 큐에서 Pair를 뺄때 그 위치에서의 단계값이 현재값보다 높으면 단계를 높임으로서</p>
+<p>방문단계를 갱신하고 있다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>그리고 애초에 나는 방문단계를 위한 배열을 따로, 방문 여부를위한 배열을 따로 만들었는데</p>
+<p>생각해보면 그냥 하나만 필요하다.</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #graph 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

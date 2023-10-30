@@ -1,0 +1,61 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>프로그래머스. 더 맵게</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">프로그래머스. 더 맵게</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-09-27 16:58:55</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://programmers.co.kr/learn/courses/30/lessons/42626" target="_blank" rel="noopener">https://programmers.co.kr/learn/courses/30/lessons/42626</a></p>
+<figure id="og_1632729258149" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="코딩테스트 연습 - 더 맵게" data-og-description="매운 것을 좋아하는 Leo는 모든 음식의 스코빌 지수를 K 이상으로 만들고 싶습니다. 모든 음식의 스코빌 지수를 K 이상으로 만들기 위해 Leo는 스코빌 지수가 가장 낮은 두 개의 음식을 아래와 같" data-og-host="programmers.co.kr" data-og-source-url="https://programmers.co.kr/learn/courses/30/lessons/42626" data-og-url="https://programmers.co.kr/learn/courses/30/lessons/42626" data-og-image="https://scrap.kakaocdn.net/dn/bdkqU5/hyLKd0kKV1/TYsRY14RF7S1aZek6uVvKK/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/cZFLHY/hyLLBFiwCJ/1RzdIs3oCZzHU3cFSBcXB1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626"><a href="https://programmers.co.kr/learn/courses/30/lessons/42626" target="_blank" rel="noopener" data-source-url="https://programmers.co.kr/learn/courses/30/lessons/42626">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bdkqU5/hyLKd0kKV1/TYsRY14RF7S1aZek6uVvKK/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626,https://scrap.kakaocdn.net/dn/cZFLHY/hyLLBFiwCJ/1RzdIs3oCZzHU3cFSBcXB1/img.jpg?width=626&amp;height=626&amp;face=0_0_626_626');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">코딩테스트 연습 - 더 맵게</p>
+<p class="og-desc" data-ke-size="size16">매운 것을 좋아하는 Leo는 모든 음식의 스코빌 지수를 K 이상으로 만들고 싶습니다. 모든 음식의 스코빌 지수를 K 이상으로 만들기 위해 Leo는 스코빌 지수가 가장 낮은 두 개의 음식을 아래와 같</p>
+<p class="og-host" data-ke-size="size16">programmers.co.kr</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">priority_queue를 사용.</p>
+<p data-ke-size="size16">스코빌지수를 우선순위큐에 넣어서 top()의 원소와 pop 한후 그다음 top()의 원소 두개를 섞는다.</p>
+<p data-ke-size="size16">우선순위큐의 top이 k이상이 되면 그만 섞으면 된다.</p>
+<p data-ke-size="size16">우선순위큐의 크기가 1이 됐는데 top()의 원소가 k이상이 아니라면 모든 음식을 k이상으로 만들수 없으므로 -1을 리턴한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/3c4bbdbdf7cafc108b59296b65ab959f.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선순위큐의 작은값이 top에 오도록 하려면 아래와 같이 선언한다.</p>
+<pre id="code_1632729511931" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>// min heap
+priority_queue&lt;int, vector&lt;int&gt; ,greater&lt;int&gt;&gt; pq(scoville.begin(), scoville.end());</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #priority_queue 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

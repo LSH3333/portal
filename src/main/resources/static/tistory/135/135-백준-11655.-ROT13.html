@@ -1,0 +1,81 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 11655. ROT13</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 11655. ROT13</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-04-08 18:20:36</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/11655" target="_blank" rel="noopener">www.acmicpc.net/problem/11655</a></p>
+<figure id="og_1617873527275" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="11655번: ROT13" data-og-description="첫째&nbsp;줄에 알파벳 대문자, 소문자, 공백, 숫자로만 이루어진 문자열 S가 주어진다. S의 길이는 100을 넘지 않는다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/11655" data-og-url="https://www.acmicpc.net/problem/11655" data-og-image="https://scrap.kakaocdn.net/dn/QlXHo/hyJPlSbNLq/wK9uuKhBGaKIiJppSPbNyK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/11655" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/11655">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/QlXHo/hyJPlSbNLq/wK9uuKhBGaKIiJppSPbNyK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">11655번: ROT13</p>
+<p class="og-desc">첫째&nbsp;줄에 알파벳 대문자, 소문자, 공백, 숫자로만 이루어진 문자열 S가 주어진다. S의 길이는 100을 넘지 않는다.</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>시도했지만 맞히지 못한 문제에 있길래 풀어봤다.</p>
+<p>옛날에 처음 문제를 풀때 못풀고 지나간 문제인가보다.</p>
+<p>&nbsp;</p>
+<p>소문자일때, 대문자일때로 케이스를 나누고,</p>
+<p>또 13을 더했을때 'z', 'Z'를 넘으면 넘은만큼 'a', 'A'에서 더해준다.</p>
+<p>&nbsp;</p>
+<pre id="code_1617873632779" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+#include &lt;string&gt;
+
+int main() {
+    string s;
+    getline(cin, s);
+
+    for(int i = 0; i &lt; s.length(); i++) {
+        if(s[i] &gt;= 'a' &amp;&amp; s[i] &lt;= 'z') { // small letter
+            int res = s[i] + 13;
+            if(res &gt; 'z') s[i] = 'a' + res - 'z'-1;
+            else s[i] = res;
+        }
+        else if(s[i] &gt;= 'A' &amp;&amp; s[i] &lt;= 'Z') { // big letter
+            int res = s[i] + 13;
+            if(res &gt; 'Z') s[i] = 'A' + res - 'Z'-1;
+            else s[i] = res;
+        }
+
+    }
+
+    for(auto x : s) cout &lt;&lt; x;
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

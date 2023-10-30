@@ -1,0 +1,143 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1914. 하노이 탑</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1914. 하노이 탑</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-04 18:12:20</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1914" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1914</a></p>
+<figure id="og_1628067683278" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1914번: 하노이 탑" data-og-description="세 개의 장대가 있고 첫 번째 장대에는 반경이 서로 다른 n개의 원판이 쌓여 있다. 각 원판은 반경이 큰 순서대로&nbsp;쌓여있다. 이제 수도승들이 다음 규칙에 따라 첫 번째 장대에서 세 번째 장대로" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1914" data-og-url="https://www.acmicpc.net/problem/1914" data-og-image="https://scrap.kakaocdn.net/dn/FtGFk/hyK7nBF66A/0d5AY7GI39tcoB4DP8KzfK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/mUSct/hyK7oUSeel/jZjsuwLmulTqs8RABQfST1/img.png?width=3570&amp;height=680&amp;face=0_0_3570_680"><a href="https://www.acmicpc.net/problem/1914" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1914">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/FtGFk/hyK7nBF66A/0d5AY7GI39tcoB4DP8KzfK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/mUSct/hyK7oUSeel/jZjsuwLmulTqs8RABQfST1/img.png?width=3570&amp;height=680&amp;face=0_0_3570_680');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1914번: 하노이 탑</p>
+<p class="og-desc" data-ke-size="size16">세 개의 장대가 있고 첫 번째 장대에는 반경이 서로 다른 n개의 원판이 쌓여 있다. 각 원판은 반경이 큰 순서대로&nbsp;쌓여있다. 이제 수도승들이 다음 규칙에 따라 첫 번째 장대에서 세 번째 장대로</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><u>하노이탑</u></h3>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우리의 목적은 n개의 원반을 1번 장대에서 3번 장대로 옮기는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">먼저 <b>원반이 3개</b>라고 생각해보자.</p>
+<p data-ke-size="size16">1 3, 제일 작은 원반을 1에서 3으로 옮긴다&nbsp;&nbsp;</p>
+<p data-ke-size="size16">1 2, 두번째 원반을 1에서 2로 옮긴다&nbsp;</p>
+<p data-ke-size="size16">3 2, 3에 있는 제일 작은 원반을 2로 옮긴다&nbsp;</p>
+<p data-ke-size="size16">1 3, 가장 큰 원반을 3에 옮긴다&nbsp;</p>
+<p data-ke-size="size16">2 1, 가장 작은 원반을 1로 옮긴다</p>
+<p data-ke-size="size16">2 3, 중간원반을 3으로 옮긴다&nbsp;</p>
+<p data-ke-size="size16">1 3, 가장 작은 원반을 3으로 옮기고 끝낸다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>여기서의 규칙은 다음과 같다</b></p>
+<p data-ke-size="size16">가장큰 원반이 n이라면&nbsp;</p>
+<p data-ke-size="size16">1.&nbsp; 가장 큰 원반 n을 제외한 n-1개의 원반을 1번장대 -&gt; 2번장대</p>
+<p data-ke-size="size16">2. 가장 큰 원반 n번을 1번장대-&gt;3번장대</p>
+<p data-ke-size="size16">3. n-1개의 원반을 2번장대-&gt;3번장대&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">처음에 3개의 원반을 예로들면</p>
+<p data-ke-size="size16"><b>1번과정</b></p>
+<p data-ke-size="size16">1 3, 제일 작은 원반을 1에서 3으로 옮긴다&nbsp;</p>
+<p data-ke-size="size16">1 2, 두번째 원반을 1에서 2로 옮긴다&nbsp;</p>
+<p data-ke-size="size16">3 2, 3에 있는 제일 작은 원반을 2로 옮긴다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2번과정</b></p>
+<p data-ke-size="size16">1 3, 가장 큰 원반을 3에 옮긴다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>3번과정</b></p>
+<p data-ke-size="size16">2 1, 가장 작은 원반을 1로 옮긴다</p>
+<p data-ke-size="size16">2 3, 중간원반을 3으로 옮긴다&nbsp;</p>
+<p data-ke-size="size16">1 3, 가장 작은 원반을 3으로 옮기고 끝낸다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 a장대에서 c장대로 옮길때 b장대를 중간이동으로 쓰는것.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><u>큰 수 출력</u></h3>
+<p data-ke-size="size16">하노이탑의 이동횟수는 2^n-1 번이다.</p>
+<p data-ke-size="size16">그런데 n은 100까지 이므로 string형태로 출력해야한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">-1 을 뺄때를 어떻게 해야할지 햇갈렸는데 찾아보고 알았다.</p>
+<p data-ke-size="size16">2의 n승은 마지막 자리가 0이 될수 없으므로 그냥 빼주면된다고 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1628068212465" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+using namespace std;
+#define endl '\n'
+
+
+// a장대, b장대, c장대
+void Hanoi(int n, int a, int b, int c)
+{
+    if(n == 1)
+    {
+        cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; c &lt;&lt; endl;
+        return;
+    }
+
+    // 가장 큰 원반 n을 제외한 n-1개의 원반을 a에서 b로 옮기는데 경유지로 c를 사용한다
+    Hanoi(n-1, a, c, b);
+
+    cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; c &lt;&lt; endl;
+
+    // 가장 큰 원반 n을 제외한 n-1개의 원반을 b에서 c로 옮기는데 경유지로 a를 사용한다
+    Hanoi(n-1, b, a, c);
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+
+    int n;
+    cin &gt;&gt; n;
+
+    // 하노이탑 이동횟수는 2^n-1
+    string ans = to_string(pow(2,n));
+    // 소수점 자리 인덱스 찾고
+    int idx = ans.find('.');
+    // 소수점 이하 제거
+    ans = ans.substr(0, idx);
+    // 2의 n승은 0으로 끝날수 없으므로 마지막자리는 그냥 1을 뺴주면됨 (이전 자리 건들여야할일 없음)
+    ans[ans.length()-1] -= 1;
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    if(n &lt;= 20)
+        Hanoi(n, 1,2,3);
+
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #재귀 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2629. 양팔저울</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2629. 양팔저울</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-10-14 16:27:04</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">ㅇ<a href="https://www.acmicpc.net/problem/2629" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2629</a></p>
+<figure id="og_1665732057616" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2629번: 양팔저울" data-og-description="첫째 줄에는 추의 개수가 자연수로 주어진다. 추의 개수는 30 이하이다. 둘째 줄에는 추의 무게들이 자연수로 가벼운 것부터 차례로 주어진다. 같은 무게의 추가 여러 개 있을 수도 있다. 추의 무" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2629" data-og-url="https://www.acmicpc.net/problem/2629" data-og-image="https://scrap.kakaocdn.net/dn/nu9AY/hyP9nKyjxw/eF0Icnmr56SvoUmkrsbXl0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/zoJAT/hyP9yL6E8k/Lz6Cnh0Px4Uw5kAZVEBkhk/img.png?width=510&amp;height=326&amp;face=0_0_510_326,https://scrap.kakaocdn.net/dn/sklXF/hyP9nX5rWb/22s7qCM8K9tpWKzsroyQGk/img.png?width=510&amp;height=326&amp;face=0_0_510_326"><a href="https://www.acmicpc.net/problem/2629" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2629">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/nu9AY/hyP9nKyjxw/eF0Icnmr56SvoUmkrsbXl0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/zoJAT/hyP9yL6E8k/Lz6Cnh0Px4Uw5kAZVEBkhk/img.png?width=510&amp;height=326&amp;face=0_0_510_326,https://scrap.kakaocdn.net/dn/sklXF/hyP9nX5rWb/22s7qCM8K9tpWKzsroyQGk/img.png?width=510&amp;height=326&amp;face=0_0_510_326');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2629번: 양팔저울</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에는 추의 개수가 자연수로 주어진다. 추의 개수는 30 이하이다. 둘째 줄에는 추의 무게들이 자연수로 가벼운 것부터 차례로 주어진다. 같은 무게의 추가 여러 개 있을 수도 있다. 추의 무</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>d[i][j] = i번째 추 까지 사용했을때, j의 무게를 만들수 있다면 true&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">양팔 저울의 왼쪽에 구슬을 놓는다고 하면, 우리는 세가지 행동 중 하나를 할 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 오른쪽에 추를 놓는다.</p>
+<p data-ke-size="size16">2. 왼쪽, 즉 구슬 쪽에 추를 놓는다.</p>
+<p data-ke-size="size16">3. 추를 놓지 않는다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">dfs로 탐색해주면 되는데 구슬 쪽에 추를 놓을때를 조심해야 한다.</p>
+<p data-ke-size="size16">구슬쪽에 추를 놓을때 현재 무게 w에서 단순히 추 무게를 빼는게 아니라 절댓값을 씌어 줘야 한다.</p>
+<p data-ke-size="size16">예를들어 현재까지 무게가 3인데 무게 5의 추를 왼쪽 즉 구슬 쪽에 놓는다면 abs(3-5) = 2가 되어야 한다.</p>
+<p data-ke-size="size16">이 상태에서 반대 쪽에 2짜리 구슬을 놓으면 평행이되기 때문에 무게 2 짜리 구슬도 탐색 가능하기 때문이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/799df3296f1bf99c829670bad7c37521.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

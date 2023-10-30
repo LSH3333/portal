@@ -1,0 +1,140 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>리모트 트래킹 브랜치</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">리모트 트래킹 브랜치</h2>
+                                <div class="box-info">
+                                    <p class="category">Git</p>
+                                    <p class="date">2021-07-10 15:30:49</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">아래 깃 다큐멘테이션을 공부하면서 정리한 글.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98" target="_blank" rel="noopener">https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98</a></p>
+<figure id="og_1625895611468" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Git - 리모트 브랜치" data-og-description="&#96;&#96;origin'' 의 의미 브랜치 이름으로 많이 사용하는 master'' 라는 이름이 괜히 특별한 의미를 가지는 게 아닌 것처럼 origin'' 도 특별한 의미가 있는 것은 아니다. git init 명령이 자동으로 만들기 때문" data-og-host="git-scm.com" data-og-source-url="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98" data-og-url="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98" data-og-image="https://scrap.kakaocdn.net/dn/x4T0D/hyKQo1N2EZ/3MvBEIKgTd61wm0QuENdh0/img.png?width=800&amp;height=588&amp;face=0_0_800_588,https://scrap.kakaocdn.net/dn/bQM2xN/hyKQzI2jr5/n7aPEPJipuCKSznFvskQ4K/img.png?width=800&amp;height=577&amp;face=0_0_800_577,https://scrap.kakaocdn.net/dn/cpy3cA/hyKQvfzoIK/pOhkaSHKJpk6Na3fdfLvK1/img.png?width=800&amp;height=577&amp;face=0_0_800_577"><a href="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98" target="_blank" rel="noopener" data-source-url="https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/x4T0D/hyKQo1N2EZ/3MvBEIKgTd61wm0QuENdh0/img.png?width=800&amp;height=588&amp;face=0_0_800_588,https://scrap.kakaocdn.net/dn/bQM2xN/hyKQzI2jr5/n7aPEPJipuCKSznFvskQ4K/img.png?width=800&amp;height=577&amp;face=0_0_800_577,https://scrap.kakaocdn.net/dn/cpy3cA/hyKQvfzoIK/pOhkaSHKJpk6Na3fdfLvK1/img.png?width=800&amp;height=577&amp;face=0_0_800_577');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Git - 리모트 브랜치</p>
+<p class="og-desc" data-ke-size="size16">``origin'' 의 의미 브랜치 이름으로 많이 사용하는 master'' 라는 이름이 괜히 특별한 의미를 가지는 게 아닌 것처럼 origin'' 도 특별한 의미가 있는 것은 아니다. git init 명령이 자동으로 만들기 때문</p>
+<p class="og-host" data-ke-size="size16">git-scm.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>리모트 트래킹 브랜치란?</b></h4>
+<p data-ke-size="size16">- 리모트 트래킹 브랜치는 리모트 브랜치를 추적하는 레퍼런스이며 브랜치이다.</p>
+<p data-ke-size="size16">- 리모트 트래킹 브랜치는 로컬에 있지만 임의로 움직일 수 없다.</p>
+<p data-ke-size="size16">- 일종의 북마크처럼 리모트 저장소에 마지막으로 연결했던 순간에 브랜치가 무슨 커밋을 가르키고 있었는지 나타낸다.</p>
+<p data-ke-size="size16">&nbsp; 즉 리모트 서버에 연결할 때마다 자동으로 갱신된다.</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p><figure class="imageblock alignCenter" data-origin-width="956" data-origin-height="683" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="956" data-origin-height="683" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16"><b>git.ourcompany.com&nbsp;</b>이라는 git 서버가 있다고 하자.</p>
+<p data-ke-size="size16">이 서버를 clone해오면 git은 자동으로 이 remote 저장소에 origin 이라는 이름을 붙인다.</p>
+<p data-ke-size="size16">또한 로컬에서는 자동으로 master 브랜치를 가르키는 <b>origin/master</b> 라는 포인터를 만든다. (리모트 브랜치)</p>
+<p data-ke-size="size16">즉 최초에는 local branch와 remote branch모두 f4265라는 같은 커밋을 가르키고 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="975" data-origin-height="594" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="975" data-origin-height="594" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">최초의 clone 해온 상황 이후, 내가 로컬에서 어떤 작업을 진행하고 커밋을 진행했다.&nbsp;</p>
+<p data-ke-size="size16">그럼 <b>로컬에서 내 master 브랜치</b>는 원래 f4265에서 커밋을 진행한 후 이제 893cf 를 가르키고 있다.</p>
+<p data-ke-size="size16">하지만 서버 저장소로부터 어떤 데이터도 주고받지 않아서 r<b>emote 브랜치인 origin/master</b>는 그대로다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>깃 저장소인 git.our.company</b>에서는 나 이외의 누군가가 서버에 push를 해서 master 브랜치를 업데이터 했기때문에 master 브랜치는 원래의 f4265에서 이제 190a3을 가르키고 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 로컬과 서버의 커밋 히스토리는 <b>독립적</b>이라는 것을 볼 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">자 이제 나 이외의 누군가가 깃 저장소인 git.our.company에 push를 했기 때문에 리모트 서버(깃 저장소)와 내 로컬의 데이터 상황이 다르다.</p>
+<p data-ke-size="size16">리모트 서버와 내 컴퓨터의 로컬의 상황을 동기화하려면 <b><i>git fetch origin</i></b> 명령을 사용한다.</p>
+<p data-ke-size="size16">이 명령을 실행하면 우선 origin 서버 (여기선 git.our.company)를 찾아서, 현재 로컬의 저장소가 갖고 있지 않은 새로운 정보를 모두 내려받고, 받은 데이터를 로컬 저장소에 업데이트하고 나서,</p>
+<p data-ke-size="size16">리모트 브랜치인 origin/master 포인터의 위치를 최신 커밋으로 이동시킨다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="958" data-origin-height="703" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="958" data-origin-height="703" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption>origin/master 포인터가 최신 커밋으로 이동됨</figcaption>
+</figure></p>
+<p data-ke-size="size16">위 사진을 보면 origin/master 포인터가 깃 저장소와 같이 최신 커밋인 190a3으로 이동됐다.</p>
+<p data-ke-size="size16">f4265 커밋 시점으로 부터 내가 로컬에서 수행한 작업들은 따로 a38de, 893cf로 나와있고 현재 내 로컬 브랜치는 893cf를 가르킨다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">이제<b> git.team1.ourcompany.com</b> 이라는 새로운 깃 저장소를 추가한다.</p>
+<p data-ke-size="size16">콘솔에서 <i><b>git remote add</b> </i>명령으로 새로 만든 리모트 저장소를 추가한다.&nbsp; 별명은 <b>teamone</b> 으로 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="958" data-origin-height="706" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="958" data-origin-height="706" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">위 사진을 보면 새로운 teamone이라는 리모트 저장소가 추가됐다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 상태에서 git fetch teamone 명령으로 teamone 서버의 데이터를 내려받는다.</p>
+<p data-ke-size="size16">그런데 현재 teamone 서버의 데이터는 모두 origin 서버에도 있는 것들이라 아무것도 받지 않는다.</p>
+<p data-ke-size="size16">그대신 이 명령은<b> 리모트 트래킹 브랜치 teamone/master&nbsp;</b>가 teamone 서버의 master 브랜치가 가르키고있는 커밋을 가르키도록 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="945" data-origin-height="695" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="945" data-origin-height="695" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">위 사진을 보면 <b>리모트 트래킹 브랜치 teamone/master</b>가 git.team1.ourcompany.com 깃 서버가 가르키고 있는 31b8e</p>
+<p data-ke-size="size16">커밋을 가르키게 됐다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h4 data-ke-size="size20"><b>브랜치 추적</b></h4>
+<p data-ke-size="size16">리모트 트래킹 브랜치를 로컬 브랜치로 Checkout 하면 자동으로 <b>트래킹 브랜치</b>가 만들어진다.</p>
+<p data-ke-size="size16">트래킹 하는 대상 브랜치를 <b>Upstream 브랜치</b>라고 한다.</p>
+<p data-ke-size="size16">트래킹 브랜치는 리모트 브랜치와 직접적인 연결고리가 있는 로컬 브랜치다.&nbsp;</p>
+<p data-ke-size="size16">트래킹 브랜치에서<i><b> git pull</b></i> 명령을 사용하면 리모트 저장소로부터 데이터를 내려받아 연결된 리모트 브랜치와 자동으로 merge 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">서버로부터 저장소를 Clone해 오면 git은 자동으로 로컬의 master 브랜치를 리모트 브랜치인 origin/master 브랜치의 트래킹 브랜치로 만든다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">즉 (1) 로컬의 master 브랜치가 있고</p>
+<p data-ke-size="size16">(2) origin 저장소의 master 브랜치가 가르키는 커밋을 가르키는 브랜치인 origin/master 리모트 브랜치가 있고</p>
+<p data-ke-size="size16">(3) origin/master 리모트 브랜치가 로컬의 master 브랜치를 가르키는 트래킹 브랜치가 되는것.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #GIT 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

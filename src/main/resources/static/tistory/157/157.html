@@ -1,0 +1,58 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>오브젝트의 position, rotation 고정시키기 (Rigidbody Freeze)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">오브젝트의 position, rotation 고정시키기 (Rigidbody Freeze)</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-05-13 16:57:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size18">Rigidbody가 부착된 오브젝트의 position이나 rotation을 고정시킬때&nbsp;</p>
+<p data-ke-size="size18">Rigidbody의 Constraints의 Freeze Position, Freeze Rotation을 사용할수 있다.</p>
+<p data-ke-size="size18">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="420" data-origin-height="234" data-filename="20210513165406.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="420" data-origin-height="234" data-filename="20210513165406.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">그런데 이 오브젝트에게 child collider가 있으면 rigidbody가 계산을 다시해서 적용이 안된다.</p>
+<p data-ke-size="size18">이럴때는 스크립트에서 LateUpdate같은곳에서 명시해주면된다.</p>
+<pre id="code_1620892611562" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>private void LateUpdate()
+    {
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, transform.localEulerAngles.z);
+    }</code></pre>
+<p data-ke-size="size18">&nbsp;</p>
+<p data-ke-size="size18">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

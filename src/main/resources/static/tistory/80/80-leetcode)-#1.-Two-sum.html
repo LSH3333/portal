@@ -1,0 +1,96 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>leetcode) #1. Two sum</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">leetcode) #1. Two sum</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-02-18 17:28:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>처음에 내가 제출한 코드.</p>
+<pre id="code_1613636735360" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+class Solution {
+    
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+       vector&lt;int&gt; ans;
+    for(int i = 0; i &lt; nums.size(); i++) {
+        for(int j = i + 1; j &lt; nums.size(); j++) {
+            if (nums[i] + nums[j] == target) {
+                ans.push_back(i);
+                ans.push_back(j);
+                break;
+            }
+        }
+    }
+    return ans;
+    }
+};</code></pre>
+<p><figure class="imageblock alignCenter" data-filename="스크린샷 2021-02-18 오후 5.26.03.png" data-origin-width="2358" data-origin-height="806" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="스크린샷 2021-02-18 오후 5.26.03.png" data-origin-width="2358" data-origin-height="806" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>....느리다</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>빠른거 참고해서 다시 제출한 코드</p>
+<pre id="code_1613636813314" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+class Solution {
+    
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+       vector&lt;int&gt; ans;
+        int len = nums.size();
+    for(int i = 0; i &lt; len; i++) {
+        for(int j = i + 1; j &lt; len; j++) {
+            if (nums[i] + nums[j] == target) {
+                ans = {i, j};
+                return ans;
+            }
+        }
+    }
+    return ans;
+    }
+};</code></pre>
+<p>다른점은 루프돌면서 push_back 하지 않고, 그냥 바로 값을 리턴.</p>
+<p>백준에서 풀때는 이런걸 신경안썼는데, 리트코드는 그래프로 런타임을 쫙 보여주니 신경쓰게 된다.</p>
+<p>앞으로는 runtime 도 신경써가면서 연습하는 버릇을 들여야겠다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

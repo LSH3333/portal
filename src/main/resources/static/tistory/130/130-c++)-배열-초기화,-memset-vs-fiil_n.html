@@ -1,0 +1,65 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>c++) 배열 초기화, memset vs fiil_n</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">c++) 배열 초기화, memset vs fiil_n</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2021-04-02 19:28:21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b>memset(시작위치, 변경값, 크기):&nbsp;</b></p>
+<p data-ke-size="size16">헤더 &lt;cmemory&gt;</p>
+<p data-ke-size="size16">1바이트 단위로 초기화, bool 이나 char 에 적합.</p>
+<p data-ke-size="size16">int형은 1바이트 넘어 부적합.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">ex)</p>
+<p data-ke-size="size16">bool arr[10];</p>
+<p data-ke-size="size16">memset(arr, false, sizeof(arr));</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>fill_n(초기화할 배열, 자리수, 초기화할 값):</b></p>
+<p data-ke-size="size16">#include &lt;algorithm&gt;</p>
+<p data-ke-size="size16">직접 루프를 돌리면서 초기화 하는 방식.</p>
+<p data-ke-size="size16">자료형관계없이 사용가능.</p>
+<p data-ke-size="size16">ex) fill_n(arr, sizeof(arr)/sizeof(int), 3)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>fill(초기화할 원소의 시작주소, 초기화할 원소의 종료주소, 초기화할 값):</b></p>
+<p data-ke-size="size16">ex)</p>
+<p data-ke-size="size16">fill(arr, arr+10, 1);</p>
+<p data-ke-size="size16">fill(&amp;arr[0], &amp;arr[10], 1);</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2d array도 초기화 가능:</p>
+<p data-ke-size="size16">int arr[10][10];</p>
+<p data-ke-size="size16">fill(&amp;arr[0][0], &amp;arr[9][9], 0);&nbsp; // 두번째 인자는 끝나는 위치 +1 이다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또, 찾아보니 fill_n은 내부적으로 memset이 가능하면 memset으로 수행되고 안되면 iteration으로 초기화 작업을 한다고 한다. 따라서 알고리즘 문제를 풀때는 그냥 fill_n을 쓰면 될꺼 같다.</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 9655. 돌 게임</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 9655. 돌 게임</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-06-21 15:24:05</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/9655" target="_blank" rel="noopener">https://www.acmicpc.net/problem/9655</a></p>
+<figure id="og_1655792262633" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="9655번: 돌 게임" data-og-description="상근이가 게임을 이기면 SK를, 창영이가 게임을 이기면 CY을 출력한다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/9655" data-og-url="https://www.acmicpc.net/problem/9655" data-og-image="https://scrap.kakaocdn.net/dn/biX4Z9/hyOOzsP3va/kJzqJc0PKTlniFRgwpHEBk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/9655" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/9655">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/biX4Z9/hyOOzsP3va/kJzqJc0PKTlniFRgwpHEBk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">9655번: 돌 게임</p>
+<p class="og-desc" data-ke-size="size16">상근이가 게임을 이기면 SK를, 창영이가 게임을 이기면 CY을 출력한다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">DP 문제를 안 푼지 좀 된것 같아서 (사실 풀기 싫어서 안풀었다...) 이제부터는 dp 문제들을 좀 다시 풀어보려고 한다.</p>
+<p data-ke-size="size16">좀 쉬운 문제들 부터 ...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">게임은 N개의 돌이 있을때 1개 또는 3개의 돌을 가져갈수 있고, 마지막 돌을 가져가는 사람이 이기는 게임이다.</p>
+<p data-ke-size="size16">즉 <b>마지막에 돌이 3개 또는 1개 남았을때 순서가 오는 사람이 이기는 게임</b>이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">한 사람에 대하여 우선 3개의 돌을 가져갈수 있는지 확인한다.</p>
+<p data-ke-size="size16">가져갈수 있다는 것은 내가 3개의 돌을 가져가도 상대가 게임을 이기지 않는지 확인하는 것이다.&nbsp;</p>
+<p data-ke-size="size16"><b>현재 돌에서 3개를 뺐을때 남은 돌이 4개 이상이면 괜찮으므로 3개를 가져가고 턴을 넘긴다.&nbsp;</b></p>
+<p data-ke-size="size16"><b>그렇지 않다면 3개는 가져갈수 없으므로 나머지 선택지인 1개를 가져갈수 밖에 없다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 순서를 주고 받다가 남은 돌의 수가 3개 이하가되면 게임이 끝나고, 게임이 끝날때 순서인 사람이 이기게 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">주의할 점:&nbsp;</p>
+<p data-ke-size="size16">- 최초에 주어지는 돌이 2개라면 무조건 두번째 차례인 창영이가 이기게 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/162704b4a39149bfc713f9a139dc41ce.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">dp 문제를 풀려고 푼 문젠데 처음에 풀었을때 사실 dp가 아닌 방법으로 풀어서 다시 풀어봤다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">dp[N] = M 은 돌이 N개 일때 최소 M번의 턴 진행함.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">점화식은&nbsp;</p>
+<p data-ke-size="size16"><b>dp[i] = (min(dp[i-1]+1, dp[i-3]+1)&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 N=1 일때는 M=1 일 것이다.</p>
+<p data-ke-size="size16">N=2 일떄는 상근이가 1개를 가져가고 창명이가 1개를 가져가므로 M=2.&nbsp;</p>
+<p data-ke-size="size16">N=3 일때는 상근이가 처음에 3개를 가져가면 끝나기 때문에 M=1.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>N=4</b> 부터는 케이스가 나뉜다.&nbsp;</p>
+<p data-ke-size="size16">돌은 1개 또는 3개만 가져갈수 있으므로&nbsp;</p>
+<p data-ke-size="size16">이전에 누군가 1개의 돌을 가져갔다면 이전 돌의 갯수는 3개일 것이다.&nbsp;</p>
+<p data-ke-size="size16">아니면 누군가 3개의 돌을 가져갔다면 이전 돌의 갯수는 1개일 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 N=4 일때 진행한 최소 턴 수는</p>
+<p data-ke-size="size16">N=3일때 진행한 최소 턴 수에서 한 번더 한 횟수,&nbsp;</p>
+<p data-ke-size="size16">N=1일때 진행한 최소 턴 수에서 한 번더 한 횟수 중 <b>작은값</b>이다.</p>
+<p data-ke-size="size16">작은 값인 이유는 둘 모두 완벽하게 게임을 진행한다고 했기 때문이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">마지막으로&nbsp;</p>
+<p data-ke-size="size16">턴 1번 진행시 상근이가 먼저 시작하기 때문에 상근이의 승리.</p>
+<p data-ke-size="size16">턴 2번 진행시 상근-창영, 창영에서 끝나기 때문에 창영이 승리.</p>
+<p data-ke-size="size16">턴 3번 진행시 상근-창영-상근, 상근에서 끝나기 때문에 상근이 승리.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 d[N] 값이 홀수면 상근이, 짝수면 창영이의 승리다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p><script src="https://gist.github.com/LSH3333/edb8a652db637a243b74ae1c3e933fe4.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

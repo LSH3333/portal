@@ -1,0 +1,231 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) OOP 단계별 프로젝트 11단계</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) OOP 단계별 프로젝트 11단계</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-28 16:51:41</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">- 입출금 시 0 미만의 값 입력시 예외 발생, 처리&nbsp;</p>
+<p data-ke-size="size16">- 출금 시 잔액보다 큰 금액 출금 요구 시 예외 발생, 처리&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ExceptionClass.h&nbsp;</b></p>
+<pre class="cpp"><code>#ifndef __EXCEPTION_CLASS_H__
+#define __EXCEPTION_CLASS_H__
+
+// 입출금 진행 시 사용자로 부터 0보다 작은 값이 입력되는 예외 상황
+class NotAllowedInputException
+{
+private:
+    int money;
+public:
+    NotAllowedInputException(int _money) : money(_money) {}
+    void ShowExceptionInfo()
+    {
+        cout &lt;&lt; "입출금 금액 " &lt;&lt; money &lt;&lt; "는 유효하지 않습니다" &lt;&lt; endl;
+    }
+};
+
+// 출금 시 예금된 금액보다 더 많은 금액의 출금을 요구하는 예외 상황
+class NotEnoughBalanceException
+{
+private:
+    int balance;
+    int money;
+public:
+    NotEnoughBalanceException(int _balance, int _money) : balance(_balance), money(_money) {}
+    void ShowExceptionInfo()
+    {
+        cout &lt;&lt; "현재 잔액은 " &lt;&lt; balance &lt;&lt; "입니다" &lt;&lt; endl;
+        cout &lt;&lt; "요청하신 출금 금액은 " &lt;&lt; money &lt;&lt; "입니다" &lt;&lt; endl;
+    }
+};
+
+
+#endif // __EXCEPTION_CLASS_H__</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Account.cpp</b></p>
+<pre class="c++ arduino" data-ke-language="c++"><code>/*
+ * 예외 발생
+ */
+
+#include "BankingCommon.h"
+#include "Account.h"
+#include "ExceptionClass.h"
+
+Account::Account(int _accID, int _balance, String _cusName)
+        : accID(_accID), balance(_balance)
+{
+    cusName = _cusName;
+}
+
+int Account::Get_accID() const { return accID; }
+
+void Account::ShowAccInfo() const
+{
+    cout &lt;&lt; "계좌ID: " &lt;&lt; accID &lt;&lt; endl;
+    cout &lt;&lt; "이 름: " &lt;&lt; cusName &lt;&lt; endl;
+    cout &lt;&lt; "잔 액: " &lt;&lt; balance &lt;&lt; endl &lt;&lt; endl;
+}
+
+void Account::DepositMoney(int amount) // virtual
+{
+    // 0 미만 값 입력시 예외 발생
+    if(amount &lt; 0) throw NotAllowedInputException(amount);
+    balance += amount;
+}
+
+int Account::WithDrawMoney(int amount)
+{
+    if(amount &lt; 0) throw NotAllowedInputException(amount);
+    // 입금 금액보다 큰 금액 출금 시도 시 예외 발생
+    if(balance &lt; amount) throw NotEnoughBalanceException(balance, amount);
+
+    balance -= amount;
+    return balance;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>NormalAccount.h&nbsp;</b></p>
+<pre class="arduino"><code>/*
+ * 예외 발생
+ */
+
+#ifndef __NORMAL_ACCOUNT_H__
+#define  __NORMAL_ACCOUNT_H__
+
+#include "Account.h"
+
+class NormalAccount : public Account
+{
+private:
+    int interest;
+public:
+    NormalAccount(int _accID, int _balance, String _cusName, int _interest)
+            : Account(_accID, _balance, _cusName), interest(_interest) {}
+
+    virtual void DepositMoney(int amount)
+    {
+        if(amount &lt; 0) throw NotAllowedInputException(amount);
+        Account::DepositMoney(amount + (int)(amount * (interest/100.0)));
+    }
+};
+
+
+#endif //  __NORMAL_ACCOUNT_H__
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>HighCreditAccount.h&nbsp;</b></p>
+<pre class="arduino"><code>/*
+ * 예외 추가
+ */
+#ifndef __HIGH_CREDIT_ACCOUNT_H__
+#define __HIGH_CREDIT_ACCOUNT_H__
+
+#include "NormalAccount.h"
+
+class HighCreditAccount : public NormalAccount
+{
+private:
+    int rating; // 신용등급
+public:
+    HighCreditAccount(int _accID, int _balance, String _cusName, int _interest, int _rating)
+            : NormalAccount(_accID, _balance, _cusName, _interest), rating(_rating) {}
+
+    virtual void DepositMoney(int amount)
+    {
+        if(amount &lt; 0) throw NotAllowedInputException(amount); //
+        int additional_interest;
+        switch(this-&gt;rating)
+        {
+            case A_RATING:
+                additional_interest = (int)(amount * (7/100.0)); break;
+            case B_RATING:
+                additional_interest = (int)(amount * (4/100.0)); break;
+            case C_RATING:
+                additional_interest = (int)(amount * (2/100.0)); break;
+        }
+        NormalAccount::DepositMoney(amount); // 원금 + 이자
+        Account::DepositMoney(additional_interest);
+    }
+};
+
+
+#endif // __HIGH_CREDIT_ACCOUNT_H__
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>AccountHandler.cpp</b></p>
+<pre class="arduino"><code>/*
+ * 예외 발생
+ */
+
+#include "BankingCommon.h"
+#include "Account.h"
+#include "ExceptionClass.h"
+
+Account::Account(int _accID, int _balance, String _cusName)
+        : accID(_accID), balance(_balance)
+{
+    cusName = _cusName;
+}
+
+int Account::Get_accID() const { return accID; }
+
+void Account::ShowAccInfo() const
+{
+    cout &lt;&lt; "계좌ID: " &lt;&lt; accID &lt;&lt; endl;
+    cout &lt;&lt; "이 름: " &lt;&lt; cusName &lt;&lt; endl;
+    cout &lt;&lt; "잔 액: " &lt;&lt; balance &lt;&lt; endl &lt;&lt; endl;
+}
+
+void Account::DepositMoney(int amount) // virtual
+{
+    // 0 미만 값 입력시 예외 발생
+    if(amount &lt; 0) throw NotAllowedInputException(amount);
+    balance += amount;
+}
+
+int Account::WithDrawMoney(int amount)
+{
+    if(amount &lt; 0) throw NotAllowedInputException(amount);
+    // 입금 금액보다 큰 금액 출금 시도 시 예외 발생
+    if(balance &lt; amount) throw NotEnoughBalanceException(balance, amount);
+
+    balance -= amount;
+    return balance;
+}
+
+
+
+</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

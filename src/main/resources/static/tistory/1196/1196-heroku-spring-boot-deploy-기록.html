@@ -1,0 +1,81 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>heroku spring-boot deploy 기록</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">heroku spring-boot deploy 기록</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2023-09-14 14:40:30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli" target="_blank" rel="noopener">https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli</a></p>
+<figure id="og_1694669827512" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Deploying with Git | Heroku Dev Center" data-og-description="Last updated May 04, 2023 Heroku manages app deployments with Git, the popular version control system. You don&rsquo;t need to be a Git expert to deploy code to Heroku, but it&rsquo;s helpful to learn the basics. This article describes how to deploy code using Git" data-og-host="devcenter.heroku.com" data-og-source-url="https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli" data-og-url="https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli" data-og-image="https://scrap.kakaocdn.net/dn/cF2faG/hyTStH4CIM/2KdVvr8Cyt1yKL5TNiBjwK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli" target="_blank" rel="noopener" data-source-url="https://devcenter.heroku.com/articles/git#prerequisites-install-git-and-the-heroku-cli">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cF2faG/hyTStH4CIM/2KdVvr8Cyt1yKL5TNiBjwK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Deploying with Git | Heroku Dev Center</p>
+<p class="og-desc" data-ke-size="size16">Last updated May 04, 2023 Heroku manages app deployments with Git, the popular version control system. You don&rsquo;t need to be a Git expert to deploy code to Heroku, but it&rsquo;s helpful to learn the basics. This article describes how to deploy code using Git</p>
+<p class="og-host" data-ke-size="size16">devcenter.heroku.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku" target="_blank" rel="noopener">https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku</a></p>
+<figure id="og_1694669957708" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Deploying Spring Boot Applications to Heroku | Heroku Dev Center" data-og-description="Last updated April 04, 2023 The Spring Boot model of deploying standalone applications is a great fit for Heroku. You can use either Maven or Gradle to deploy a Spring application on Heroku, but for this guide we&rsquo;ll assume that you&rsquo;re using Maven and h" data-og-host="devcenter.heroku.com" data-og-source-url="https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku" data-og-url="https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku" data-og-image="https://scrap.kakaocdn.net/dn/bdfguW/hyTSyiiWea/FnCrB8r141X2Ab59AU3bpk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku" target="_blank" rel="noopener" data-source-url="https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bdfguW/hyTSyiiWea/FnCrB8r141X2Ab59AU3bpk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Deploying Spring Boot Applications to Heroku | Heroku Dev Center</p>
+<p class="og-desc" data-ke-size="size16">Last updated April 04, 2023 The Spring Boot model of deploying standalone applications is a great fit for Heroku. You can use either Maven or Gradle to deploy a Spring application on Heroku, but for this guide we&rsquo;ll assume that you&rsquo;re using Maven and h</p>
+<p class="og-host" data-ke-size="size16">devcenter.heroku.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">기본적으로 위 링크대로 하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Procfile 추가 잊지말자.&nbsp;</p>
+<p data-ke-size="size16">root 에 Procfile 만들고 아래와 같이&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">web:&nbsp;java&nbsp;-jar&nbsp;build/libs/portal-0.0.1-SNAPSHOT.jar</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">jar 의 경로를 지정해줘야 한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://devcenter.heroku.com/articles/procfile" target="_blank" rel="noopener">https://devcenter.heroku.com/articles/procfile</a></p>
+<figure id="og_1694669840311" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="The Procfile | Heroku Dev Center" data-og-description="Last updated April 04, 2023 Heroku apps include a Procfile that specifies the commands that are executed by the app on startup. You can use a Procfile to declare a variety of process types, including: Each dyno in your app belongs to one of the declared pr" data-og-host="devcenter.heroku.com" data-og-source-url="https://devcenter.heroku.com/articles/procfile" data-og-url="https://devcenter.heroku.com/articles/procfile" data-og-image="https://scrap.kakaocdn.net/dn/csvzbv/hyTVR8k5pd/9J4VmLyqVfQNAu6ASs10YK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/bor4s2/hyTV1b2JOy/F962kq7A0QpciJtLK8ahlK/img.jpg?width=657&amp;height=502&amp;face=0_0_657_502"><a href="https://devcenter.heroku.com/articles/procfile" target="_blank" rel="noopener" data-source-url="https://devcenter.heroku.com/articles/procfile">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/csvzbv/hyTVR8k5pd/9J4VmLyqVfQNAu6ASs10YK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/bor4s2/hyTV1b2JOy/F962kq7A0QpciJtLK8ahlK/img.jpg?width=657&amp;height=502&amp;face=0_0_657_502');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">The Procfile | Heroku Dev Center</p>
+<p class="og-desc" data-ke-size="size16">Last updated April 04, 2023 Heroku apps include a Procfile that specifies the commands that are executed by the app on startup. You can use a Procfile to declare a variety of process types, including: Each dyno in your app belongs to one of the declared pr</p>
+<p class="og-host" data-ke-size="size16">devcenter.heroku.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #heroku 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

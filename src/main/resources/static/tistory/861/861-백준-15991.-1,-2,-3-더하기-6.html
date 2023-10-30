@@ -1,0 +1,63 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 15991. 1, 2, 3 더하기 6</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 15991. 1, 2, 3 더하기 6</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-08-29 14:41:08</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/15991" target="_blank" rel="noopener">https://www.acmicpc.net/problem/15991</a></p>
+<figure id="og_1661751399275" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="15991번: 1, 2, 3 더하기 6" data-og-description="각 테스트 케이스마다, n을 1, 2, 3의 합으로 나타내는 방법의 수를 1,000,000,009로 나눈 나머지를 출력한다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/15991" data-og-url="https://www.acmicpc.net/problem/15991" data-og-image="https://scrap.kakaocdn.net/dn/jplCY/hyPBO29kw2/xkJTfHURagD5tk8xg032n1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/15991" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/15991">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/jplCY/hyPBO29kw2/xkJTfHURagD5tk8xg032n1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">15991번: 1, 2, 3 더하기 6</p>
+<p class="og-desc" data-ke-size="size16">각 테스트 케이스마다, n을 1, 2, 3의 합으로 나타내는 방법의 수를 1,000,000,009로 나눈 나머지를 출력한다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1,2,3 을 양쪽에 하나씩 총 두개 붙여 주면 되기 때문에 점화식은&nbsp;</p>
+<p data-ke-size="size16">d[i] = d[i-2] + d[i-4] + d[i-6] 이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">바로 이전 값에 하나를 붙여주는 경우도 있지 않을까라고 생각할수 있는데 그 경우는 어처피 위의 경우에 포함되게 된다.</p>
+<p data-ke-size="size16">예를들어 i = 6일때를 생각해보면 i=4일때 2+2에서 2를 하나 붙여주면 2+2+2 이므로 대칭이다.</p>
+<p data-ke-size="size16">하지만 어처피 2+2+2는 i=2인 경우의 2에서 양쪽에 2를 두개 붙여주는 경우에 포함된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제의 경우 int형으로 선언할 경우 오버플로우가 날수 있는데 long long으로 선언하거나&nbsp;</p>
+<p data-ke-size="size16">아니면 d[i] = (d[i-2] + d[i-4]) % mod 를 먼저 저장해주고,&nbsp;</p>
+<p data-ke-size="size16">그 후에 d[i-6]과 더해서 모듈러 연산을 해주면 오버플로우가 나지 않는다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/76fdace3e60687d186c74eb92b9e038f.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

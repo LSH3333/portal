@@ -1,0 +1,80 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 17070. 파이프 옮기기 1</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 17070. 파이프 옮기기 1</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-07-16 13:24:50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/17070" target="_blank" rel="noopener">https://www.acmicpc.net/problem/17070</a></p>
+<figure id="og_1657945277122" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="17070번: 파이프 옮기기 1" data-og-description="유현이가 새 집으로 이사했다. 새 집의 크기는 N&times;N의 격자판으로 나타낼 수 있고, 1&times;1크기의 정사각형 칸으로 나누어져 있다. 각각의 칸은 (r, c)로 나타낼 수 있다. 여기서 r은 행의 번호, c는 열의" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/17070" data-og-url="https://www.acmicpc.net/problem/17070" data-og-image="https://scrap.kakaocdn.net/dn/bltQx2/hyO5DBq6W7/2WtOzE7zmWKuAxMUQkycV1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bdhAuA/hyO7zRG1PS/9ne30dgDnCmqueD0laaJeK/img.png?width=1772&amp;height=406&amp;face=0_0_1772_406,https://scrap.kakaocdn.net/dn/vRtIn/hyO7u3UIVs/2wYLashQdHzxdzlQwE3ey1/img.png?width=1158&amp;height=406&amp;face=0_0_1158_406"><a href="https://www.acmicpc.net/problem/17070" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/17070">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bltQx2/hyO5DBq6W7/2WtOzE7zmWKuAxMUQkycV1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bdhAuA/hyO7zRG1PS/9ne30dgDnCmqueD0laaJeK/img.png?width=1772&amp;height=406&amp;face=0_0_1772_406,https://scrap.kakaocdn.net/dn/vRtIn/hyO7u3UIVs/2wYLashQdHzxdzlQwE3ey1/img.png?width=1158&amp;height=406&amp;face=0_0_1158_406');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">17070번: 파이프 옮기기 1</p>
+<p class="og-desc" data-ke-size="size16">유현이가 새 집으로 이사했다. 새 집의 크기는 N&times;N의 격자판으로 나타낼 수 있고, 1&times;1크기의 정사각형 칸으로 나누어져 있다. 각각의 칸은 (r, c)로 나타낼 수 있다. 여기서 r은 행의 번호, c는 열의</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">순열을 구하듯이 dfs로 모든 경우를 탐색하는 문제였다.&nbsp;</p>
+<p data-ke-size="size16">모든 경우 탐색을 위해 파이프의 현재 방향에 따라 다음 방향으로 이동할수 있는지 확인하고, 이동할수 있으면 이동시키면 된다.</p>
+<p data-ke-size="size16">모든 dfs로 모든 경우를 구하는 문제들이 그렇듯 다음 과정을 거쳐야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 이동 전 상태를 저장해놓는다.</p>
+<p data-ke-size="size16">2. 이동한지 확인하고 가능하면 이동한다.</p>
+<p data-ke-size="size16">3. 이동하고 다시 현 상태로 되돌아온 후 (현재 재귀로) 에는 이전 저장한 상태로 되돌아간다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/5ccf7b1ae7683906c03a762f7668912b.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<h4 data-ke-size="size20"><b>dp 풀이</b></h4>
+<p data-ke-size="size16">푼 후에 다른 분들 풀이를 보니 dp 로 푸는 방법도 있었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>d[dir][r][c] : [r][c]에 dir 방향으로 도착할수 있는 경우의 수&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 풀이에서도 그랬지만 파이프는 오른쪽, 아래 방향으로만 움직일수 있기 때문에 최초에 [1][1]에 존재하는 파이프의 왼쪽 부분은 사실 신경쓸 필요가 없다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">d[가로][r][c] : 가로 방향으로 [r][c]에 도착한다는 것은 이전에 파이프의 방향은 <b>가로 혹은 대각선</b> 방향이었음을 의미한다.&nbsp;</p>
+<p data-ke-size="size16">d[세로][r][c] : 세로 방향으로 [r][c]에 도착한다는 것은 이전에 파이프의 방향은 <b>세로 혹은 대각선</b> 방향이었음을 의미한다.</p>
+<p data-ke-size="size16">d[대각선][r][c] : 대각선 <span>방향으로 [r][c]에 도착한다는 것은 이전에 파이프의 방향은<span>&nbsp;<b>가로 혹은</b>&nbsp;</span></span><b>세로 혹은 대각선</b><span><span>&nbsp;</span>방향이었음을 의미한다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">가로, 세로 방향은 현재 칸 r,c만 벽이 아니면 되지만,</p>
+<p data-ke-size="size16">대각선 방향으로 [r][c]에 도달하는 경우를 계산할때는 [r-1][c], [r][c], [r][c-1] 모두 벽이 아닌지 확인을 해줘야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/43396a1dbf1646b7f432e6178a72fd0f.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Implementation #dfs #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

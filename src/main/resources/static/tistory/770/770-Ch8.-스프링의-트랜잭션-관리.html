@@ -1,0 +1,214 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch8. 스프링의 트랜잭션 관리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch8. 스프링의 트랜잭션 관리</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-09 15:46:15</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>JDBC의 트랜잭션 관리의 문제점</b></h2>
+<p data-ke-size="size16">아래가 JDBC에서 트랜잭션을 관리하는 방식이다.&nbsp;</p>
+<p data-ke-size="size16"><b>setAutoCommit(false)</b>를 이용해 이제부터 트랜잭션 범위 시작임을 알로기 쿼리 실행후 익셉션 발생을 체크하고 롤백이 필요하면 롤백한다.</p>
+<pre class="java" data-ke-language="java"><code>Connection conn = null;
+try
+{
+    conn = DriverManager.getConnection(jdbcUrl, user, pw);
+    conn.setAutoCommit(false); // 트랜잭션 범위 시작 
+    // 쿼리 실행 ~ 
+    conn.commit();
+} catch(SQLException ex)
+{
+    if(conn != null) 
+        try{conn.rollback();} catch(SQLException ex) {}
+}</code></pre>
+<p data-ke-size="size16">이렇게 개발자가 직접 트랜잭션의 범위를 관리해야 하기 때문에 위험하고, DB 연결할때와 마찬가지로 구조적으로 코드가 반복된다.</p>
+<p data-ke-size="size16">스프링이 이를 해결한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>스프링의 트랜잭션 관리</b></h2>
+<p data-ke-size="size16">스프링은<b> @Transactional</b> 애노테이션이 붙은 메소드 내부의 쿼리를 <b>동일한 트랜잭션 범위에서 실행한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">스프링이 트랜잭션을 관리하기 위해 다음이 필요하다.</p>
+<p data-ke-size="size16">1. 우선 <b>설정 클래스에 @EnableTransactionManagement 애노테이션을 붙여 스프링이 트랜잭션을 관리하도록 하고&nbsp;</b></p>
+<p data-ke-size="size16">2. <b>PlatformTransactionManager 빈 객체</b>를 만든다.&nbsp;</p>
+<p data-ke-size="size16">PlatformTransactionManager는 스프링이 제공하는 트랜잭션 매니저 인터페이스이고, DB 연동 정보가 담겨있는 DataSource를 받아서 생성된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span>- 스프링은 구현 기술에 상관없이 동일 방식으로 트랜잭션을 처리하기 위해 PlatformTransactionManager 인터페이스를 사용한다,<b><span> JDBC는 DataSourceTransactionManager 클래스가 해당된다.</span></b></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="java" data-ke-language="java"><code>@Configuration
+@EnableTransactionManagement // 트랜잭션 관리 활성화ㅌ
+public class AppCtx
+{
+    @Bean(destroyMethod = "close") // close 메소드는 커넥션 풀에 보관된 Connection을 닫는다
+    public DataSource dataSource()
+ 	{//생략} 
+    
+    // ... 
+    
+    @Bean
+    public PlatformTransactionManager transactionManager()
+    {
+        DataSourceTransactionManager tm = new DataSourceTransactionManager();
+        tm.setDataSource(dataSource()); // DataSource를 이용해 트랜잭션 연동에 사용할 DataSource를 지정함.
+        return tm;
+    }
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이제 다음과 같이 메소드에 <b>@Transactional 애노테이션을 붙이면, 해당 메소드의 쿼리는 모두 같은 트랜잭션에서 수행된다.</b></p>
+<pre class="haxe"><code>// 이 메소드 내 쿼리는 모두 같은 트랜잭션에서 수행된다
+@Transactional
+public void changePassword(String email, String oldPwd, String newPwd)
+{
+    Member member = memberDao.selectByEmail(email);
+    if(member == null)
+        throw new MemberNotFoundException();
+
+    member.ChangePassword(oldPwd, newPwd);
+
+    memberDao.update(member);
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>MainForCps 에서 테스트</b></h2>
+<pre class="arduino"><code>package main;
+
+import config.AppCtx;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import spring.ChangePasswordService;
+import spring.MemberNotFoundException;
+import spring.WrongIdPasswordException;
+
+public class MainForCPS
+{
+    public static void main(String[] args)
+    {
+        AnnotationConfigApplicationContext ctx =
+                new AnnotationConfigApplicationContext(AppCtx.class);
+
+        ChangePasswordService cps = ctx.getBean("changePwdSvc", ChangePasswordService.class);
+
+        try
+        {
+            cps.changePassword("madvirus@madvirus.net", "1234", "1111");
+            System.out.println("암호를 변경했습니다");
+        }
+        catch (MemberNotFoundException e)
+        {
+            System.out.println("회원 데이터가 존재하지 않습니다");
+        }
+        catch (WrongIdPasswordException e)
+        {
+            System.out.println("암호가 올바르지 않습니다");
+        }
+
+        ctx.close();
+    }
+}
+</code></pre>
+<p data-ke-size="size16"><b>실행결과:&nbsp;</b></p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">실행결과를 보면&nbsp;<b>Creating new transaction with name ...&nbsp;</b>등 트랜잭션 관련 처리들이 보이고, 성공적으로 암호가 변경됐다고 출력된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">로그에서 보다시피 스프링의 PlatformTransactionManager 가 알아서 트랜잭션을 관리해준다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>스프링의 트랜잭션&nbsp; 및 롤백 처리 방법 : 프록시 사용&nbsp;</b></h2>
+<p data-ke-size="size16">스프링이 트랜잭션을 처리하는 방법은 챕터7에서 나온<b> AOP를 이용</b>한다.</p>
+<p data-ke-size="size16">즉 <b>트랜잭션을 공통 기능으로 보고 @Transactional 애노테이션이 적용된 빈 객체를 찾아 프록시 객체를 생성한다.</b>&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">ChangePasswordService 예제에서는 메인에서 ctx.getBean("changePwdSvc")로 ChangePasswordService 빈 객체를 받는데, 여기서 받는 객체는 ChangePasswordService 객체가 아닌 프록시 객체다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">스프링은 설정 파일에 @EnableTransactionManagement 애노테이션이 있는 것을 확인하고, 빈 객체인 ChangePasswordService의 메소드 중 changePassword 메소드에 @Transactional 애노테이션이 있는 것을 확인한다.&nbsp;</p>
+<p data-ke-size="size16">따라서 스프링은 트랜잭션 기능을 공통 기능으로하는 프록시 객체를 만들어 생성한다.&nbsp;</p>
+<p data-ke-size="size16">그리고 메인에서 getBean으로 ChangePasswordService 빈 객체를 요구 했을때 해당 객체 대신 만들어 놓은 프록시 객체를 리턴하는 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리고 이 프록시 객체는 @Transactional 이 붙은 메소드가 실행되면 PlatformTransactionManager를 사용해 트랜잭션을 시작한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>롤백</b>도 마찬가지다.&nbsp;</p>
+<p data-ke-size="size16">위에서 @Transactional을 처리하기 위해 만들어진 프록시 객체는 원본 객체 (여기서는 ChangePasswordService 객체)에서&nbsp;<b>RuntimeException</b>이 발생하면 트랜잭션을 롤백한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">대부분의 익셉션들은 RuntimeException을 상속받고 있으므로 자동으로 롤백될것 이지만, 그렇지 않은 경우에는<b> @Transactional의 </b></p>
+<p data-ke-size="size16"><b>rollbackFor 속성을 사용해야 한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="coffeescript"><code>@Transactional(rollbackFor = SQLException.class)</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">반대인 <b>noRollbackFor</b> 속성도 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>트랜잭션의 범위</b></h2>
+<p data-ke-size="size16">ChangePasswordService 예제의<b> changePassword 메소드에는 @Transactional 애노테이션이 있고</b>, 이 메소드는 MemberDao의 update 메소드를 호출하는데, <b>MemberDao의 update 메소드에는 @Transactional 애노테이션이 없다.</b>&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ChangePasswordService의 changePassword 메소드</b></p>
+<pre class="haxe"><code>@Transactional
+public void changePassword(String email, String oldPwd, String newPwd)
+{
+    // memberDao.selectByEmail(), memberDao.ChangePassword() 는 같은 트랜잭션에서 처리됨
+    Member member = memberDao.selectByEmail(email);
+    if(member == null)
+        throw new MemberNotFoundException();
+
+    member.ChangePassword(oldPwd, newPwd);
+
+    memberDao.update(member);
+}</code></pre>
+<p data-ke-size="size16"><b>MemberDao의 update 메소드</b></p>
+<pre class="fsharp"><code>public void update(Member member)
+{
+    // update(String sql, Object...args)
+    jdbcTemplate.update("update MEMBER set NAME = ?, PASSWORD = ? where EMAIL = ?",
+            member.getName(), member.getPassword(), member.getEmail());
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 경우에는 비록 update 메소드에는 @Transactional 이 없지만 changePasswordService 메소드의 쿼리와 update 메소드의 쿼리는 같은 트랜잭션에서 처리된다.</p>
+<p data-ke-size="size16">이렇게 될수 있는 이유는 <b>JdbcTemplate 덕분이다.&nbsp;</b></p>
+<p data-ke-size="size16">JdbcTemplate은 진행 중인 트랜잭션이 존재하면 해당 트랜잭션 범위에서 쿼리를 실행한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 예제에서는 changePassword 메소드에서 실행되는 MemberDao.selectByEmail(), MemberDao.update() 메소드는 <b>JdbcTemplate</b>을 이용해 쿼리를 실행하기 때문에 이 JdbcTemplate가 트랜잭션을 확인하고 같은 범위에서 쿼리를 실행한다고 볼수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이것 외에도 @Transactional 이 붙은 메서드 내부에 또다른 @Transactional 메소드가 실행될때, 같은 트랜잭션에서 실행할수도 있고, 다른 트랜잭션에서 실행하게 할 수 도 있는데 이는 @Transactional 애노테이션의 속성 중 <b>propagation&nbsp;</b>에 따라 달라진다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #db #Spring #Transaction 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

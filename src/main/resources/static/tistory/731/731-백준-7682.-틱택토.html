@@ -1,0 +1,74 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 7682. 틱택토</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 7682. 틱택토</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-06-25 14:27:34</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/7682" target="_blank" rel="noopener">https://www.acmicpc.net/problem/7682</a></p>
+<figure id="og_1656134470867" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="7682번: 틱택토" data-og-description="입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 줄은 9개의 문자를 포함하며, 'X', 'O', '.' 중 하나이다. '.'은 빈칸을 의미하며, 9개의 문자는 게임판에서 제일 윗 줄 왼쪽부터의 순서이다. 입" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/7682" data-og-url="https://www.acmicpc.net/problem/7682" data-og-image=""><a href="https://www.acmicpc.net/problem/7682" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/7682">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">7682번: 틱택토</p>
+<p class="og-desc" data-ke-size="size16">입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 줄은 9개의 문자를 포함하며, 'X', 'O', '.' 중 하나이다. '.'은 빈칸을 의미하며, 9개의 문자는 게임판에서 제일 윗 줄 왼쪽부터의 순서이다. 입</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">처음에 백트래킹 문제인가 싶었는데, 게임의 완성 조건을 판별하는 문제였다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. X가 먼저 시작하기 때문에 <b>X의 돌의 갯수는 O의 돌의 갯수와 같거나 딱 1개 많아야 한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. X또는 O가 1줄 빙고 일때, 다른 한쪽이 빙고여선 안된다.</p>
+<p data-ke-size="size16">예를들어 다음과 같은 경우는 invalid다.</p>
+<p data-ke-size="size16">. O X</p>
+<p data-ke-size="size16">X O X</p>
+<p data-ke-size="size16">. O X</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. 판이 꽉찼을때는 X의 갯수가 5개 &amp;&amp; O의 갯수가 4개 인경우 &amp;&amp; X 1줄 빙고인 경우 밖에 없다.</p>
+<p data-ke-size="size16">예를들어 다음과 같은 경우는 invalid 다.&nbsp;</p>
+<p data-ke-size="size16">OXX</p>
+<p data-ke-size="size16">XOO</p>
+<p data-ke-size="size16">XOO</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">OXX</p>
+<p data-ke-size="size16">XOX</p>
+<p data-ke-size="size16">XXO&nbsp;</p>
+<p data-ke-size="size16">=&gt; 이 경우는 X가 먼저 시작하기 때문에, O 빙고가 만들어졌을때 게임이 끝났어야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p><script src="https://gist.github.com/LSH3333/8044024e2fc8c2d77ff12138d163e6ce.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

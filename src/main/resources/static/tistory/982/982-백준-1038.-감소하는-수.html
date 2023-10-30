@@ -1,0 +1,59 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1038. 감소하는 수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1038. 감소하는 수</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-12-15 13:22:02</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/1038" target="_blank" rel="noopener">https://www.acmicpc.net/problem/1038</a></p>
+<figure id="og_1671077881240" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="1038번: 감소하는 수" data-og-description="음이 아닌 정수 X의 자릿수가 가장 큰 자릿수부터 작은 자릿수까지 감소한다면, 그 수를 감소하는 수라고 한다. 예를 들어, 321과 950은 감소하는 수지만, 322와 958은 아니다. N번째 감소하는 수를 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1038" data-og-url="https://www.acmicpc.net/problem/1038" data-og-image=""><a href="https://www.acmicpc.net/problem/1038" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1038">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">1038번: 감소하는 수</p>
+<p class="og-desc" data-ke-size="size16">음이 아닌 정수 X의 자릿수가 가장 큰 자릿수부터 작은 자릿수까지 감소한다면, 그 수를 감소하는 수라고 한다. 예를 들어, 321과 950은 감소하는 수지만, 322와 958은 아니다. N번째 감소하는 수를</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">처음엔 그리디나 스택같은 문제일까 싶었는데 브루트포스, dfs, 백트래킹 문제였다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 한자리수 즉 0~9까지는 그냥 출력해주면 되고, 두자리수 부터 세자리수 네자리수 .. 이런식으로 자릿수를 증가시키면서 탐색하면 되는데, <b>감소하는 수의 최댓값은 생각해보면 9876543210</b> 이다.&nbsp; 따라서 자릿수는 10자리수까지 탐색해주면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">각 자릿수를 탐색할때는 백트래킹으로 이전 자릿수보다 작은 경우에만 탐색해주고, 이전 자릿수와 같거나 같으면 리턴해서 이전 재귀로 되돌아간다.</p>
+<p data-ke-size="size16">이문제에서 백트래킹할때는 첫번째 자리는 0이 될수 없으므로 이점만 주의하면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/b4ca661274776fd407041e6a9c8cf4bc.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Brute Force #dfs 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

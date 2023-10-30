@@ -1,0 +1,139 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2503. 숫자 야구</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2503. 숫자 야구</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-05 15:47:16</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2503" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2503</a></p>
+<figure id="og_1625467386558" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2503번: 숫자 야구" data-og-description="첫째 줄에는 민혁이가 영수에게 몇 번이나 질문을 했는지를 나타내는 1 이상 100 이하의 자연수 N이 주어진다. 이어지는 N개의 줄에는 각 줄마다 민혁이가 질문한 세 자리 수와 영수가 답한 스트" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2503" data-og-url="https://www.acmicpc.net/problem/2503" data-og-image="https://scrap.kakaocdn.net/dn/1tEle/hyKMFQMqS8/ONOVx0t06Zq3SF8heJfIJ1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2503" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2503">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/1tEle/hyKMFQMqS8/ONOVx0t06Zq3SF8heJfIJ1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2503번: 숫자 야구</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에는 민혁이가 영수에게 몇 번이나 질문을 했는지를 나타내는 1 이상 100 이하의 자연수 N이 주어진다. 이어지는 N개의 줄에는 각 줄마다 민혁이가 질문한 세 자리 수와 영수가 답한 스트</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제는&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 1~9까지의 숫자중 3개의 조합을 뽑는다.</p>
+<p data-ke-size="size16">ex) 123, 124, 125 ...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 뽑은 3개의 조합수의 모든 순열을 구한다.</p>
+<p data-ke-size="size16">ex) 뽑은 조합수가 123이라면 123, 132, 213 ...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. 순열을 영수가 물어본 모든 숫자들을 비교해서 스트라이크와 볼의 숫자가 일치하는지 판별한다.</p>
+<p data-ke-size="size16">영수가 물어본 모든 숫자들에 대해 스트라이크와 볼수가 일치한다면 그 순열이 영수가 생각하고 있을 가능성이 있는 숫자이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1625467597553" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int n;
+int res = 0;
+int nums[9] = {1,2,3,4,5,6,7,8,9};
+int nums_idx[9] = {1,1,1,0,};
+vector&lt;int&gt; comb;
+
+vector&lt;string&gt; asked;
+vector&lt;pair&lt;int,int&gt;&gt; sb;
+
+// _v는 영수가 물어본 숫자들에대해 대입해볼 조합수
+bool Calculate(vector&lt;int&gt; _v) {
+    for(int i = 0; i &lt; n; i++) {
+        int strike = 0, ball = 0;
+
+        // strike, ball 판별
+        for(int j = 0; j &lt; 3; j++) {
+            for(int k = 0; k &lt; 3; k++) {
+                // 영호가 물어본 숫자의 각자리와 조합수의 자리를 비교해서 strike,ball 판별
+                if(_v[j] == asked[i][k]-'0') {
+                    // 같은 자리라면 스트라이크
+                    if(j == k)
+                        strike++;
+                    else
+                        ball++;
+                    break; // 모든 숫자들은 서로 다르므로 strike나 ball을 찾았다면 더이상 탐색 안해도됨
+                }
+            }
+        }
+
+        // 영수가 물어본 숫자들중 하나라도 현재 대입해본 조합수와 strike,ball수가 맞지않으면
+        // 그 수는 영수가 생각하고있을 가능성이 있는 수가 될수 없음
+        if((sb[i].first != strike) || (sb[i].second != ball)) {
+            return false;
+        }
+    }
+    // 모든 조건을 통과했다면 _v는 영수가 생각할고 있을 가능성이 있는 숫자임
+    return true;
+}
+
+
+int main() {
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i++) {
+        string number;
+        cin &gt;&gt; number;
+        asked.push_back(number);
+
+        int s, b;
+        cin &gt;&gt; s &gt;&gt; b;
+        sb.push_back({s,b});
+    }
+
+    do {
+        // 숫자 조합 만들기
+        for(int i = 0; i &lt; 9; i++) {
+            if(nums_idx[i] == 1) {
+                comb.push_back(nums[i]);
+            }
+        }
+
+        // 만들어진 조합수에 대하여 모든 순열을 구해서
+        // 그 숫자가 영수가 생각하고있을 가능성이 있는 숫자인지 판별함
+        do {
+            if(Calculate(comb))
+                res++;
+        } while(next_permutation(comb.begin(), comb.end()));
+
+        comb.clear();
+    } while(prev_permutation(nums_idx, nums_idx+9));
+
+    cout &lt;&lt; res;
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force #조합 #순열 #permutation 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

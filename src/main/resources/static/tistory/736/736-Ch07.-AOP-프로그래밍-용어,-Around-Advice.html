@@ -1,0 +1,82 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch07. AOP 프로그래밍 용어, Around Advice</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch07. AOP 프로그래밍 용어, Around Advice</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-06-27 16:40:42</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">AOP는 핵심 기능에 공통 기능을 삽입하는 것이고, 방법에는 여러가지가 있는데<b> 스프링은 런타임에 프록시 객체를 생성해 공통 기능을 삽입하는 방법만을 지원한다.&nbsp;</b></p>
+<p data-ke-size="size16">(다른 방법으로는 컴파일 시점에 코드에 공통 기능 삽입, 클래스 로딩 시점에 바이트 코드에 삽입이 있는데 이건 AspectJ 같은 AOP 전용 도구를 사용해야 한다고 한다)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>AOP 용어</b></h2>
+<p data-ke-size="size16"><u><b>Aspect&nbsp;</b></u></p>
+<p data-ke-size="size16">여러 객체에 공통으로 적용되는 기능.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><u><b>Advice</b></u></p>
+<p data-ke-size="size16">Aspect을 <b>언제</b> 적용할 지를 정의한다.&nbsp;</p>
+<p data-ke-size="size16">예를들어 공통 기능 (Aspect)이 시간계산 이라면, <b>매소드 호출 전</b> 시간계산을 적용한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><u><b>JoinPoint</b></u></p>
+<p data-ke-size="size16"><b>Advice를 적용 가능한 지점들의 집합. </b></p>
+<p data-ke-size="size16">메소드 호출, 필드 값 변경 등이 해당하는데, Spring은 프록시를 이용해 AOP를 구현하기 때문에 Spring에서 JoinPoint란 메소드 호출만을 의미한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><u><b>PointCut</b></u></p>
+<p data-ke-size="size16">JoinPoint의 부분집합.</p>
+<p data-ke-size="size16">즉 JoinPoint 중 <b>실제로 Advice를 적용할 지점</b>들의 집합.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><u><b>Weaving</b></u></p>
+<p data-ke-size="size16">Advice를 적용하는 행위.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>Advice의 종류</b></h2>
+<p data-ke-size="size16">Aspect을 언제 적용할지를 정의하는 <b>Advice에는 종류</b>가 있다.</p>
+<p data-ke-size="size16">Before Advice, After Returnning Advice 등이 있는데 이름대로를 의미한다.</p>
+<p data-ke-size="size16">예를들어 <b>Before Advice는 메소드를 실행하기 전에 Adivce를 적용하는 것을 의미</b>한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">구분 기준이 메소드인 이유는 <b>스프링은 프록시를 이용해 메소드 호출 시점에 Aspect를 적용</b>하기 때문이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">스프링에서 가장 널리 사용되는 것은 <b>Around Advice이다.</b></p>
+<p data-ke-size="size16"><b>Around</b> <b>Advice는 대상 객체의 메소드 실행 전, 후 또는 익셉션 발생 시점에 Advice를 적용한다.<br /><br /></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

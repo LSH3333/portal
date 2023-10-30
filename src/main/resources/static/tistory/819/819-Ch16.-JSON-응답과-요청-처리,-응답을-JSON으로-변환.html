@@ -1,0 +1,212 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch16. JSON 응답과 요청 처리, 응답을 JSON으로 변환</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch16. JSON 응답과 요청 처리, 응답을 JSON으로 변환</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-26 21:41:04</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><b>JSON</b></p>
+<p data-ke-size="size16"><a href="https://www.json.org/json-ko.html" target="_blank" rel="noopener">https://www.json.org/json-ko.html</a></p>
+<figure id="og_1658836812433" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="JSON" data-og-description="JSON (JavaScript Object Notation)은 경량의 DATA-교환 형식이다. 이 형식은 사람이 읽고 쓰기에 용이하며, 기계가 분석하고 생성함에도 용이하다. JavaScript Programming Language, Standard ECMA-262 3rd Edition - December 1" data-og-host="www.json.org" data-og-source-url="https://www.json.org/json-ko.html" data-og-url="https://www.json.org/json-ko.html" data-og-image="https://scrap.kakaocdn.net/dn/O08kI/hyPeGXjXFY/AJy7RdSvW8djkKibxN3qS0/img.png?width=1836&amp;height=1293&amp;face=0_0_1836_1293"><a href="https://www.json.org/json-ko.html" target="_blank" rel="noopener" data-source-url="https://www.json.org/json-ko.html">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/O08kI/hyPeGXjXFY/AJy7RdSvW8djkKibxN3qS0/img.png?width=1836&amp;height=1293&amp;face=0_0_1836_1293');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">JSON</p>
+<p class="og-desc" data-ke-size="size16">JSON (JavaScript Object Notation)은 경량의 DATA-교환 형식이다. 이 형식은 사람이 읽고 쓰기에 용이하며, 기계가 분석하고 생성함에도 용이하다. JavaScript Programming Language, Standard ECMA-262 3rd Edition - December 1</p>
+<p class="og-host" data-ke-size="size16">www.json.org</p>
+</div>
+</a></figure>
+<p data-ke-size="size16"><a href="https://www.oracle.com/kr/database/what-is-json/" target="_blank" rel="noopener">https://www.oracle.com/kr/database/what-is-json/</a></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">JSON은 간단한 형식을 갖는 문자열로 데이터 교환에 사용된다.</p>
+<p data-ke-size="size16">규칙은 간단한다.</p>
+<p data-ke-size="size16">- 중괄호 {} 를 사용해서 객체를 표현한다.&nbsp;</p>
+<p data-ke-size="size16">- 객체은 (이름, 값) 쌍을 갖는다.&nbsp;</p>
+<p data-ke-size="size16">- 이름과 값은 : 으로 구분한다.&nbsp;</p>
+<p data-ke-size="size16">- 값에는 <b>문자열,숫자,불리언,null,배열,객체</b> 가 올수 있다.</p>
+<p data-ke-size="size16">- 배열은 대괄호 [] 로 표현한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>JAKSON&nbsp;</b></h2>
+<p data-ke-size="size16">JAKSON은 자바 객체와 JSON 문자열 사이의 <b>변환을 처리하는 라이브러리</b>다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">JAKSON 사용위한 의존 추가&nbsp;</p>
+<p data-ke-size="size16"><b>pom.xml</b></p>
+<pre id="code_1658836997946" class="java" data-ke-language="java" data-ke-type="codeblock"><code>		&lt;!-- java8 date/time --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.fasterxml.jackson.datatype&lt;/groupId&gt;
+			&lt;artifactId&gt;jackson-datatype-jsr310&lt;/artifactId&gt;
+			&lt;version&gt;2.9.4&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;!-- java8 Optional, etc --&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.fasterxml.jackson.datatype&lt;/groupId&gt;
+			&lt;artifactId&gt;jackson-datatype-jdk8&lt;/artifactId&gt;
+			&lt;version&gt;2.9.4&lt;/version&gt;
+		&lt;/dependency&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>응답을&nbsp;JSON으로&nbsp;변환&nbsp;</b></h2>
+<h2 data-ke-size="size26"><b>스프링 MVC에서 JSON 형식으로 데이터를 응답하는 방법, @RestController&nbsp;</b></h2>
+<p data-ke-size="size16">스프링 MVC에서 JSON 형식으로 데이터를 응답하는 방법은 @Controller 애노테이션 대신 <b>@RestController</b> 를 사용하는 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>RestMemberController.java</b></p>
+<pre id="code_1658837227406" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import spring.Member;
+import spring.MemberDao;
+import spring.MemberRegisterService;
+
+@RestController
+public class RestMemberController 
+{
+	private MemberDao memberDao;
+	private MemberRegisterService registerService;
+	
+	@GetMapping("/api/members")
+	public List&lt;Member&gt; members() 
+	{
+		return memberDao.selectAll();
+	}
+	
+	@GetMapping("/api/members/{id}")
+	public Member member(@PathVariable Long id, HttpServletResponse response) throws IOException
+	{
+		Member member = memberDao.selectById(id);
+		if(member == null) 
+		{
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return null;
+		}
+		return member;
+	}
+
+	public void setMemberRegisterService(MemberRegisterService memberRegisterService)
+	{
+		this.registerService = memberRegisterService;
+	}
+	
+	public void setMemberDao(MemberDao memberDao) {
+		this.memberDao = memberDao;
+	}
+
+}</code></pre>
+<p data-ke-size="size16">위 클래스가 기존의 컨트롤러 클래스와 <b>다른점</b>은&nbsp;</p>
+<p data-ke-size="size16">1. @Controller 애노테이션 대신 <b>@RestController</b> 애노테이션을 사용했다.</p>
+<p data-ke-size="size16">2. 요청 매핑 메서드들이 String 값을 리턴하지 않고<b> 객체를 리턴</b>하고 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">@RestController 애노테이션을 붙이면 스프링 MVC는 요청 매핑 메서드가 리턴한 객체를 알맞은 형식으로 변환해서 응답 데이터로 전송한다.&nbsp;</p>
+<p data-ke-size="size16">이때 클래스 패스에 Jakson이 존재하면 JSON 형식의 문자열로 변환해 응답한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">여기서는 members() 메서드는 List&lt;Member&gt;를 리턴하는데, 이 경우 List 객체를 JSON 형식의 배열로 변환한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">ControllerConfig.java에 RestMemberController를 빈 객체로 추가하고 서버를 실행해 "http://localhost:8080/sp5-chap16/api/members" 주소를 입력하면</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="476" height="653" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="476" height="653"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 JSON 응답결과를 볼 수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>JSON 결과 제외, @JsonIgnore</b></h2>
+<p data-ke-size="size16">위 결과를 보면 password 가 포함되어 있는데 이렇게 JSON 결과에서 제외하고 싶은 프로퍼티는 <b>@JsonIgnore</b>를 붙여주기만 하면 된다.</p>
+<pre id="code_1658838019077" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class Member
+{
+    private Long id;
+    private String email;
+    @JsonIgnore
+    private String password;
+    private String name;
+    private LocalDateTime registerDateTime;
+    // ...
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>날짜 형식 변환 처리, @JsonFormat</b></h2>
+<p data-ke-size="size16">위의 JSON 응답 결과를 다시 보자</p>
+<p><figure class="imageblock alignLeft" width="476" height="653" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="476" height="653"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">registerDateTime의 값이 [2022,7,5,21,46,31] 이렇게 배열형태로 변환됐다.&nbsp;</p>
+<p data-ke-size="size16">원래 registerDateTime은 LocalDateTime 타입인데 JSON 값은 배열로 바뀌었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">원하는 형식으로 변환해서 출력하고 싶다면 <b>@JsonFormat 애노테이션을 이용하고, 애노테이션의 pattern 속성</b>을 이용한다.</p>
+<pre id="code_1658838639153" class="java" data-ke-language="java" data-ke-type="codeblock"><code>public class Member
+{
+    private Long id;
+    private String email;
+    @JsonIgnore
+    private String password;
+    private String name;
+    @JsonFormat(pattern="yyyyMMddHHmmss")
+    private LocalDateTime registerDateTime;
+    
+    // ...
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">결과:</p>
+<p><figure class="imageblock alignLeft" width="450" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="450"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

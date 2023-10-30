@@ -1,0 +1,73 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 12782. 비트 우정지수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 12782. 비트 우정지수</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-09-02 16:17:01</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/12782" target="_blank" rel="noopener">https://www.acmicpc.net/problem/12782</a></p>
+<figure id="og_1630566750749" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="12782번: 비트 우정지수" data-og-description="진홍이는 숫자를 좋아한다. 오늘도 숫자를 가지고 놀던 진홍이는 두 숫자의 비트 우정지수를 구해보았다. 비트 우정지수란, 10진법으로 나타낸 두 정수를 이진수로 나타내었을 때, 두 숫자를 같" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/12782" data-og-url="https://www.acmicpc.net/problem/12782" data-og-image="https://scrap.kakaocdn.net/dn/cCXm5W/hyLsrSnVFk/ghFQRy64BTwwo9l0TjJl3k/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/12782" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/12782">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cCXm5W/hyLsrSnVFk/ghFQRy64BTwwo9l0TjJl3k/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">12782번: 비트 우정지수</p>
+<p class="og-desc" data-ke-size="size16">진홍이는 숫자를 좋아한다. 오늘도 숫자를 가지고 놀던 진홍이는 두 숫자의 비트 우정지수를 구해보았다. 비트 우정지수란, 10진법으로 나타낸 두 정수를 이진수로 나타내었을 때, 두 숫자를 같</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이거랑 거의 똑같은 문제를 풀었었던것 같은데 이름이 기억이 안난다.</p>
+<p data-ke-size="size16">두가지 연산이 있다.</p>
+<ol style="list-style-type: disc;" data-ke-list-type="disc">
+<li>하나의 이진수에서 임의의 자리의 숫자를 0 또는 1로 바꾼다.</li>
+<li>하나의 이진수에서 서로 다른 자리에 있는 두 숫자의 위치를 바꾼다.</li>
+</ol>
+<p data-ke-size="size16">2번 연산은 두자리를 한번의 연산으로 같게 하므로, 2번 연산을 진행할수 있으면 진행하고,</p>
+<p data-ke-size="size16">진행할수 없다면 1번 연산을 진행한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/603580f6254f1f9bc3b4d2a373375996.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">풀고나서 다른 분들 풀이를 봤다.</p>
+<p data-ke-size="size16">이렇게 일일히 자리를 바꿔주지 않고, 그냥 서로 다른 자리가 몇개인지 찾고 갯수만 샌다.</p>
+<p data-ke-size="size16">예를들어 입력이 다음과 같다면</p>
+<p data-ke-size="size16"><b>00110100 </b></p>
+<p data-ke-size="size16"><b>10010111</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">서로 다른 수만 모아보면 1,0,1,1 이므로 (1,0)은 서로 바꾸기 연산, 1,1은 짝이 없으므로 1번연산을 하면&nbsp;</p>
+<p data-ke-size="size16">1+2 = 3번 만에 같게 할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/6e08bf985fc43568b6c61ca792a6ee42.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

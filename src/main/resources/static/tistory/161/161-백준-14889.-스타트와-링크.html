@@ -1,0 +1,158 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 14889. 스타트와 링크</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 14889. 스타트와 링크</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-05-17 18:54:22</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/14889" target="_blank" rel="noopener">https://www.acmicpc.net/problem/14889</a></p>
+<figure id="og_1621244663329" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="14889번: 스타트와 링크" data-og-description="예제 2의 경우에 (1, 3, 6), (2, 4, 5)로 팀을 나누면 되고, 예제 3의 경우에는 (1, 2, 4, 5), (3, 6, 7, 8)로 팀을 나누면 된다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/14889" data-og-url="https://www.acmicpc.net/problem/14889" data-og-image="https://scrap.kakaocdn.net/dn/bLU2EG/hyKe4JvOS1/YSGPGkqZ5rWdUoGIfEC5Fk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/14889" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/14889">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bLU2EG/hyKe4JvOS1/YSGPGkqZ5rWdUoGIfEC5Fk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">14889번: 스타트와 링크</p>
+<p class="og-desc" data-ke-size="size16">예제 2의 경우에 (1, 3, 6), (2, 4, 5)로 팀을 나누면 되고, 예제 3의 경우에는 (1, 2, 4, 5), (3, 6, 7, 8)로 팀을 나누면 된다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, 돋움, sans-serif;">1. permutation을 돌리기 위해 인덱스로 사용할 벡터를 만든다</span></p>
+<p data-ke-size="size16"><span style="font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, 돋움, sans-serif;"><span style="color: #808080;">&nbsp;n = 4</span><span style="color: #808080;">라면</span><span style="color: #808080;"> v = {1,1,0,0} : 1,2번이 같은팀<br /></span><span style="color: #808080;">&nbsp;n = 6</span><span style="color: #808080;">라면</span><span style="color: #808080;"> v = {1,1,1,0,0,0} : 1,2,3이 같은팀</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #808080; font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, 돋움, sans-serif;">2. 위 벡터를 이용해 두개의 벡터 startTeam, linkTeam에 각각의 팀원의 번호를 넣는다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #808080; font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, 돋움, sans-serif;">3. 루프를 돌면서 같은팀 팀원들간의 짝을 맞춰서 점수를 더한다.&nbsp;</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #808080; font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, 돋움, sans-serif;">4. prev_permutation으로 v의 원소의 순서를 바꿔서 팀구성을 변경하고 2,3을 반복해서 점수차 중 최소인값을 찾는다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1621245027196" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int n;
+int team[21][21];
+int ans = 0;
+
+int main() {
+    // input
+    cin &gt;&gt; n;
+    for(int i = 1; i &lt;= n; i++) {
+        for(int j = 1; j &lt;= n; j++) {
+            cin &gt;&gt; team[i][j];
+        }
+    }
+
+    // indexing..
+    // permutation을 돌리기위해서 인덱스로 사용할 벡터를 만든다
+    // n = 4라면 v = {1,1,0,0}
+    // n = 6라면 v = {1,1,1,0,0,0}
+    vector&lt;int&gt; v;
+    v.push_back(-1);
+    for(int i = 1; i &lt;= n/2; i++) {
+        v.push_back(1);
+    }
+    for(int i = 1; i &lt;= n/2; i++) {
+        v.push_back(0);
+    }
+
+    // 최솟값 구하기 위해 루프 중 최초한번 ans값 설정위한 부울
+    bool once = false;
+    do {
+        //for(int i = 1; i &lt;= n; i++) cout &lt;&lt; v[i] &lt;&lt; ' ';
+        //cout &lt;&lt; endl;
+
+        // 같은 팀인 인원들을 각자팀의 벡터에 넣는다
+        // v = {1,1,0,0}이라면 첫두명이 한팀팀
+        // v = {1,1,0,1,0,0} 이라면 1,2,4번째 인원이 한팀
+        vector&lt;int&gt; startTeam; startTeam.push_back(-1);
+        vector&lt;int&gt; linkTeam; linkTeam.push_back(-1);
+        for(int i = 1; i &lt;= n; i++) {
+            if(v[i] == 1) {
+                startTeam.push_back(i);
+            }
+            else {
+                linkTeam.push_back(i);
+            }
+        }
+        /*
+        cout &lt;&lt; "Teams... " &lt;&lt; endl;
+        for(int i = 1; i &lt;= n/2; i++) cout &lt;&lt; linkTeam[i] &lt;&lt; ' ';
+        cout &lt;&lt; endl;
+        for(int i = 1; i &lt;= n/2; i++) cout &lt;&lt; startTeam[i] &lt;&lt; ' ';
+        cout &lt;&lt; "Size = " &lt;&lt; startTeam.size() &lt;&lt; '\n';
+        */
+
+        // sameTeam vector에는 같은 팀인 인원들이 있음
+        int startTeamSum = 0;
+        int linkTeamSum = 0;
+        // (1,2) (1,3) (1,4) (2,3) (3,4) ... 이런식으로 두명씩 짝지음
+        for(int i = 1; i &lt;= startTeam.size()-1; i++) { // startTeam[0] = -1이므로 size-1만큼 루프
+            for(int j = i+1; j &lt;= startTeam.size()-1; j++) {
+                startTeamSum += team[startTeam[i]][startTeam[j]];
+                startTeamSum += team[startTeam[j]][startTeam[i]];
+
+                linkTeamSum += team[linkTeam[i]][linkTeam[j]];
+                linkTeamSum += team[linkTeam[j]][linkTeam[i]];
+            }
+        }
+        /*
+        cout &lt;&lt; "startTeam = " &lt;&lt; startTeamSum &lt;&lt; '\n';
+        cout &lt;&lt; "linkTeam = " &lt;&lt; linkTeamSum &lt;&lt; '\n';
+        cout &lt;&lt; "sub is : " &lt;&lt; startTeamSum - linkTeamSum &lt;&lt; "\n\n";
+         */
+        // 두 팀의 점수의 차이
+        int sub = startTeamSum - linkTeamSum;
+        // 점수 차가 음수라면 양수로 바꿔줌
+        if(sub &lt; 0) sub *= -1;
+        if(!once) { // 루프중 최초 한번 ans값 설정 
+            ans = sub;
+            once = true;
+        }
+        ans = min(ans, sub);
+    } while(prev_permutation(v.begin()+1, v.end())); // permutation으로 v의 순서 변경 
+
+
+    cout &lt;&lt; ans;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style2" />
+<p data-ke-size="size16">백트래킹</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">
+<script src="https://gist.github.com/LSH3333/49545f250215873352b4e9aa9e5b481c.js"></script>
+</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

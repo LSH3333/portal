@@ -1,0 +1,251 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch13. MVC 4 : 날짜 값 변환</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch13. MVC 4 : 날짜 값 변환</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-25 21:55:59</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>날짜를 이용한 회원 검색 기능, <b>@DateTimeFormat</b></b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">목표는 두 개의 날짜를 입력하면 그 사이에 가입한 회원들의 목록을 출력하는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 MemberDao 클래스에 <b>selectByRegdate()</b> 메서드를 추가한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>memberDao.java</b></p>
+<pre id="code_1658753061132" class="java" data-ke-language="java" data-ke-type="codeblock"><code>	// 날짜를 이용한 회원 검색 
+    // REGDATE가 from과 to 사이인 member 목록 리턴 
+    public List&lt;Member&gt; selectByRegdate(
+    		LocalDateTime from, LocalDateTime to)
+    {
+    	List&lt;Member&gt; results = jdbcTemplate.query(
+    			"select * from MEMBER where REGDATE between ? and ? " +
+    			"order by REGDATE desc", 
+    			new RowMapper&lt;Member&gt;() 
+    			{
+    				@Override 
+    				public Member mapRow(ResultSet rs, int rowNum) throws SQLException 
+    				{
+    					Member member = new Member(
+    							rs.getString("EMAIL"),
+    							rs.getString("PASSWORD"),
+    							rs.getString("NAME"), 
+    							rs.getTimestamp("REGDATE").toLocalDateTime()
+    							);
+    					member.setId(rs.getLong("ID"));
+    					return member;
+    				}
+    			}, from, to);
+    	return results;
+    }</code></pre>
+<p data-ke-size="size16">selectByRegdate() 메서드는 LocalDateTime형의 두 개의 날짜 데이터를 받고 쿼리를 이용해 DB에서 두 날짜 사이의 member의 목록을 리턴한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음은 <b>커맨드 객체</b>다.</p>
+<p data-ke-size="size16"><b>ListCommand.java</b></p>
+<pre id="code_1658753167418" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package controller;
+
+import java.time.LocalDateTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class ListCommand 
+{
+	@DateTimeFormat(pattern="yyyyMMddHH")
+	private LocalDateTime from;
+	@DateTimeFormat(pattern="yyyyMMddHH")
+	private LocalDateTime to;
+	
+	public LocalDateTime getFrom() {
+		return from;
+	}
+	public void setFrom(LocalDateTime from) {
+		this.from = from;
+	}
+	public LocalDateTime getTo() {
+		return to;
+	}
+	public void setTo(LocalDateTime to) {
+		this.to = to;
+	}
+}</code></pre>
+<p data-ke-size="size16">두 개의 필드 from,to에 <b>@DateTimeFormat 애노테이션</b>이 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">목표는 두 개의 날짜를 입력하면 그 사이에 가입한 회원들의 목록을 출력하는 것이라고 했는데 입력을 받을때 jsp 파일에서 &lt;input&gt; 태그를 이용해 날짜를 입력받을 것이다. 그러면 <b>입력 받은 문자열을 LocalDateTime 형으로 변환 해야 하는데, 이때 사용하는 것이 @DateTimeFormat 애노테이션</b>이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 커맨드 클래스의 LocalDateTime형 필드에 @DateTimeFormat 을 적용했다면, 컨트롤러에서는 그냥 해당 커맨드 객체를 사용하기만 하면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>컨트롤러 클래스</b></p>
+<p data-ke-size="size16"><b>MemberListController.java</b></p>
+<pre id="code_1658753351737" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import spring.Member;
+import spring.MemberDao;
+
+@Controller
+public class MemberListController 
+{
+	private MemberDao memberDao;
+	
+	public void setMemberDao(MemberDao memberDao) 
+	{
+		this.memberDao = memberDao;
+	}
+	
+	@RequestMapping("/members")
+	public String list(@ModelAttribute("cmd") ListCommand listCommand, Model model) 
+	{
+		if(listCommand.getFrom() != null &amp;&amp; listCommand.getTo() != null) 
+		{
+			List&lt;Member&gt; members = memberDao.selectByRegdate(listCommand.getFrom(), listCommand.getTo());
+			model.addAttribute("members", members);
+		}
+		return "member/memberList";
+	}
+	
+
+}</code></pre>
+<p data-ke-size="size16">list() 메서드에서 커맨드 객체로 ListCommand를 사용하고 있다.&nbsp;</p>
+<p data-ke-size="size16">memberDao.selectByRegdate() 메서드의 파라미터로 커맨드 객체 listCommand에서 날짜 데이터를 갖고와서 전달한다.</p>
+<p data-ke-size="size16">이미 커맨드 객체의 @DateTimeFormat 에 의해 LocalDateTime으로 변환이 된 상태이므로 그냥 전달해도 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ControllerConfig 설정 클래스</b>에 관련 빈들을 추가한다.</p>
+<p data-ke-size="size16"><b>ControllerConfig.java</b></p>
+<pre id="code_1658753529006" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package config;
+
+// ... 
+
+@Configuration 
+public class ControllerConfig 
+{
+	// MemberConfig.java에서 빈 객체로 추가됨   
+    	// ... 
+	@Autowired
+	private MemberDao memberDao;
+	
+   	 // ...
+    
+	@Bean 
+	public MemberListController memberListController() 
+	{
+		MemberListController controller = new MemberListController();
+		controller.setMemberDao(memberDao);
+		return controller;
+	}
+	
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">LocalDateTime 값을 원하는 형식으로 출력해주는 커스텀 <b>태그 파일.</b></p>
+<p data-ke-size="size16"><b>formatDateTime.tag</b></p>
+<pre id="code_1658753589707" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;%@ tag body-content="empty" pageEncoding="utf-8" %&gt;
+&lt;%@ tag import="java.time.format.DateTimeFormatter" %&gt;
+&lt;%@ tag trimDirectiveWhitespaces="true" %&gt;
+&lt;%@ attribute name="value" required="true" 
+              type="java.time.temporal.TemporalAccessor" %&gt;
+&lt;%@ attribute name="pattern" type="java.lang.String" %&gt;
+&lt;%
+	if (pattern == null) pattern = "yyyy-MM-dd";
+%&gt;
+&lt;%= DateTimeFormatter.ofPattern(pattern).format(value) %&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">뷰&nbsp;</p>
+<p data-ke-size="size16"><b>memberList.jsp</b></p>
+<pre id="code_1658753627999" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;%@ page contentType="text/html; charset=utf-8" %&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;
+&lt;%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %&gt;
+&lt;%@ taglib prefix="tf" tagdir="/WEB-INF/tags" %&gt;
+    
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;회원 조회&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+	&lt;form:form modelAttribute="cmd"&gt;
+	&lt;p&gt;
+		&lt;label&gt;from:&lt;form:input path="from" /&gt;&lt;/label&gt;
+		~
+		&lt;label&gt;to:&lt;form:input path="to" /&gt;&lt;/label&gt;
+		&lt;input type="submit" value="조회"&gt;
+	&lt;/p&gt;		
+	&lt;/form:form&gt;
+	
+	&lt;%-- from,to 입력 하지 않았을때는 members 존재하지 않음  --%&gt;
+	&lt;c:if test="${!empty members }"&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;th&gt;아이디&lt;/th&gt;&lt;th&gt;이메일&lt;/th&gt;
+			&lt;th&gt;이름&lt;/th&gt;&lt;th&gt;가입일&lt;/th&gt;
+		&lt;/tr&gt;
+		&lt;c:forEach var="mem" items="${members }"&gt;
+		&lt;tr&gt;
+			&lt;td&gt;${mem.id }&lt;/td&gt;			
+			&lt;td&gt;&lt;a href="&lt;c:url value="/members/${mem.id }"/&gt;"&gt; ${mem.email} &lt;/a&gt;&lt;/td&gt;
+			&lt;td&gt;${mem.name } &lt;/td&gt;
+			&lt;td&gt; &lt;tf:formatDateTime value="${mem.registerDateTime }" pattern="yyyy-MM-dd" /&gt; &lt;/td&gt;
+		&lt;/tr&gt; 
+		&lt;/c:forEach&gt;		
+	&lt;/table&gt;
+	&lt;/c:if&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p data-ke-size="size16">우선 &lt;form:form&gt;, &lt;form:imput&gt; 를 이용해 사용자에게서 날짜 두개를 입력받는다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">입력 전에는 "member"이 존재하지 않기 때문에 테이블을 보여주지 않다가, 입력이 존재할때 테이블을 보여준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #MVC #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

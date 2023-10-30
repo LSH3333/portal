@@ -1,0 +1,322 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap07. 덱 (Deque)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap07. 덱 (Deque)</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-11 17:44:31</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">Deque = Double ended queue&nbsp;</p>
+<p data-ke-size="size16">앞으로도 뒤로도 데이터를 넣고 뺄수 있는 자료구조&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>덱의 ADT</b></h2>
+<p data-ke-size="size16"><b>void DequeInit(Deque *pdeq);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>int DQIsEmpty(Deque *pdeq);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>void DQAddFirst(Deque *pdeq, Data data);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>void DQAddLast(Deque *pdeq, Data data);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Data DQRemoveFirst(Deque *pdeq);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Data DQRemoveLast(Deque *pdeq);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Data DQGetFirst(Deque *pdeq);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Data DQGetLast(Deque *pdeq);</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>양방향 연결 리스트 기반 덱의 구현</b></h2>
+<p data-ke-size="size16">덱은 배열로도 연결 리스트로도 구현이 가능하지만, 가장 많이 사용하는 것은 <b>양방향 연결 리스트</b>를 이용한 구현이다.</p>
+<p data-ke-size="size16">이는 덱에서 <b>마지막 요소를 지우는 연산</b>을 구현할때 노드가 양방향으로 연결되어 있어야 구현이 쉽기 때문이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Deque.h</b></p>
+<pre class="cpp"><code>/*
+ * 양방향 연결 리스트 기반 덱 (deque)
+ */
+
+#ifndef DEQUE_DEQUE_H
+#define DEQUE_DEQUE_H
+
+#define TRUE 1
+#define FALSE 0
+
+typedef int Data;
+
+typedef struct _node
+{
+    Data data;
+    struct _node *next;
+    struct _node *prev;
+} Node;
+
+typedef struct _dlDeque
+{
+    Node *head;
+    Node *tail;
+} DLDeque;
+typedef DLDeque Deque;
+
+void DequeInit(Deque *pdeq);
+int DQIsEmpty(Deque *pdeq);
+
+void DQAddFirst(Deque *pdeq, Data data);
+void DQAddLast(Deque *pdeq, Data data);
+
+Data DQRemoveFirst(Deque *pdeq);
+Data DQRemoveLast(Deque *pdeq);
+
+Data DQGetFirst(Deque *pdeq);
+Data DQGetLast(Deque *pdeq);
+
+
+#endif //DEQUE_DEQUE_H
+</code></pre>
+<p data-ke-size="size16"><b>Deque.c</b></p>
+<pre class="xl"><code>#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include "Deque.h"
+
+void DequeInit(Deque *pdeq)
+{
+    pdeq-&gt;head = NULL;
+    pdeq-&gt;tail = NULL;
+}
+
+int DQIsEmpty(Deque *pdeq)
+{
+    if(pdeq-&gt;head == NULL) return TRUE;
+    else return FALSE;
+}
+
+void DQAddFirst(Deque *pdeq, Data data)
+{
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    newNode-&gt;data = data;
+
+    // newNode가 기존 첫 노드 가르키도록함
+    newNode-&gt;next = pdeq-&gt;head;
+
+    // 첫 노드 삽입시, tail이 삽입하는 노드 가리키도록
+    if(DQIsEmpty(pdeq))
+        pdeq-&gt;tail = newNode;
+    // 두 번째 이후 노드 삽입시, 기존 첫 노드의 prev가 새 노드 가르키도록
+    else
+        pdeq-&gt;head-&gt;prev = newNode;
+
+    newNode-&gt;prev = NULL;
+    pdeq-&gt;head = newNode;
+}
+
+void DQAddLast(Deque *pdeq, Data data)
+{
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    newNode-&gt;data = data;
+    newNode-&gt;prev = pdeq-&gt;tail;
+
+    if(DQIsEmpty(pdeq))
+        pdeq-&gt;head = newNode;
+    else
+        pdeq-&gt;tail-&gt;next = newNode;
+
+    newNode-&gt;next = NULL;
+    pdeq-&gt;tail = newNode;
+}
+
+Data DQRemoveFirst(Deque *pdeq)
+{
+    Node *rnode = pdeq-&gt;head;
+    Data rdata;
+    if(DQIsEmpty(pdeq))
+    {
+        printf("Deque Memory Error");
+        exit(-1);
+    }
+    rdata = pdeq-&gt;head-&gt;data;
+
+    // head 한 칸 옮기고 메모리 해제
+    pdeq-&gt;head = pdeq-&gt;head-&gt;next;
+    free(rnode);
+
+    if(pdeq-&gt;head == NULL)
+        pdeq-&gt;tail = NULL;
+    else
+        pdeq-&gt;head-&gt;prev = NULL;
+
+    return rdata;
+}
+
+Data DQRemoveLast(Deque *pdeq)
+{
+    Node *rnode = pdeq-&gt;tail;
+    Data rdata;
+    if(DQIsEmpty(pdeq))
+    {
+        printf("Deque Memory Error");
+        exit(-1);
+    }
+    rdata = pdeq-&gt;tail-&gt;data;
+
+    pdeq-&gt;tail = pdeq-&gt;tail-&gt;prev;
+    free(rnode);
+
+    // remove 결과 덱이 비었다
+    if(pdeq-&gt;tail == NULL)
+        pdeq-&gt;head = NULL;
+    else
+        pdeq-&gt;tail-&gt;next = NULL;
+
+    return rdata;
+}
+
+Data DQGetFirst(Deque *pdeq)
+{
+    if(DQIsEmpty(pdeq))
+    {
+        printf("Deque Memory Error");
+        exit(-1);
+    }
+    return pdeq-&gt;head-&gt;data;
+}
+
+Data DQGetLast(Deque *pdeq)
+{
+    if(DQIsEmpty(pdeq))
+    {
+        printf("Deque Memory Error");
+        exit(-1);
+    }
+    return pdeq-&gt;tail-&gt;data;
+}
+
+
+</code></pre>
+<p data-ke-size="size16"><b>DequeMain.c</b></p>
+<pre class="reasonml"><code>#include &lt;stdio.h&gt;
+#include "Deque.h"
+
+
+int main()
+{
+    Deque deq;
+    DequeInit(&amp;deq);
+
+    // data input
+    DQAddFirst(&amp;deq, 3);
+    DQAddFirst(&amp;deq, 2);
+    DQAddFirst(&amp;deq, 1);
+
+    DQAddLast(&amp;deq, 4);
+    DQAddLast(&amp;deq, 5);
+    DQAddLast(&amp;deq, 6);
+
+    // data dequeue
+    while(!DQIsEmpty(&amp;deq))
+        printf("%d ", DQRemoveFirst(&amp;deq));
+
+    printf("\n");
+
+    // data input
+    DQAddFirst(&amp;deq, 3);
+    DQAddFirst(&amp;deq, 2);
+    DQAddFirst(&amp;deq, 1);
+
+    DQAddLast(&amp;deq, 4);
+    DQAddLast(&amp;deq, 5);
+    DQAddLast(&amp;deq, 6);
+
+    // data dequeue
+    while(!DQIsEmpty(&amp;deq))
+        printf("%d ", DQRemoveLast(&amp;deq));
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>문제 07-1 [덱을 기반으로 큐를 구현하기] </b></h2>
+<p data-ke-size="size16">덱은 큐가 갖고있는 기능을 모두 포함하고 있기 때문에 큐의 기능에 맞는 덱의 함수를 콜해주기만 하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>DequeBaseQueue.h</b></p>
+<pre class="cpp"><code>/*
+ * Deque 기반 Queue 구현 (Deque.h 헤더 사용)
+ */
+
+#ifndef CHAP07_DEQUEBASEQUEUE_DEQUEBASEQUEUE_H
+#define CHAP07_DEQUEBASEQUEUE_DEQUEBASEQUEUE_H
+
+#include "Deque.h"
+
+typedef Deque Queue;
+
+void QueueInit(Queue *pq);
+int QIsEmpty(Queue *pq);
+void Enqueue(Queue *pq, Data data);
+Data Dequeue(Queue *pq);
+Data QPeek(Queue *pq);
+
+
+#endif //CHAP07_DEQUEBASEQUEUE_DEQUEBASEQUEUE_H
+</code></pre>
+<p data-ke-size="size16"><b>DequeBaseQueue.c</b></p>
+<pre class="c++ arduino" data-ke-language="c++"><code>#include "DequeBaseQueue.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h
+
+void QueueInit(Queue *pq)
+{
+    DequeInit(pq);
+}
+
+int QIsEmpty(Queue *pq)
+{
+    return DQIsEmpty(pq);
+}
+
+void Enqueue(Queue *pq, Data data)
+{
+    DQAddLast(pq, data);
+}
+
+Data Dequeue(Queue *pq)
+{
+    return DQRemoveFirst(pq);
+}
+
+Data QPeek(Queue *pq)
+{
+    return DQGetFirst(pq);
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자료구조 #C #deque 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

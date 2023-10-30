@@ -1,0 +1,186 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) Chapter 13. 템플릿 (Template) 1 (2)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) Chapter 13. 템플릿 (Template) 1 (2)</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-26 15:16:48</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>클래스 템플릿</b></h2>
+<p data-ke-size="size16">함수 템플릿과 마찬가지로 클래스에도 템플릿 적용가능.</p>
+<p data-ke-size="size16">문법은 동일한데, 함수 템플릿은 템플릿 함수를 호출할 때 &lt;int&gt;, &lt;double&gt;과 같은 자료형 정보를 생략할수 있었지만, 클래스 템플릿은 무조건 명시해줘야한다.</p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+template &lt;typename T&gt;
+class Point
+{
+private:
+    T xpos, ypos;
+public:
+    Point(T x = 0, T y = 0) : xpos(x), ypos(y) {}
+    void ShowPosition()
+    {
+        cout &lt;&lt; '[' &lt;&lt; xpos &lt;&lt; ", " &lt;&lt; ypos &lt;&lt; ']' &lt;&lt; endl;
+    }
+};
+
+int main()
+{
+//    Point pos1(3, 4); // 클래스 템플릿은 자료형 생략 불가
+    Point&lt;int&gt; pos1(3, 4); // 자료형 명시
+    pos1.ShowPosition();
+
+    Point&lt;char&gt; pos2('P', 'F');
+    pos2.ShowPosition();
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>클래스 템플릿의 선언과 정의의 분리&nbsp;</b></h2>
+<p data-ke-size="size16">클래스 템플릿도 선언과 정의를 헤더파일과 소스파일로 분리할수 있는데 이때 일반적인 클래스와는 조금 다르게 해줘야한다.</p>
+<p data-ke-size="size16">일반적인 클래스는 선언을 헤더파일에, 정의를 소스파일에 해주고 메인 함수가 있는 파일에서 헤더파일을 include 해주면 됐다.</p>
+<p data-ke-size="size16">하지만<b> 클래스 템플릿은 메인함수 파일에서 헤더파일과 소스파일 모드 include 해줘야 한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이유는 <b><span>컴파일러가 템플릿이 호출될 때마다 새롭게 해당 자료형에 대하여 클래스를 만들기 때문이다.&nbsp;</span></b></p>
+<p data-ke-size="size16"><span><b>즉 템플릿이 호출될때마다 정의를 확인해야 하기 때문</b>이다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">기존의 BoundCheckIntArray, BoundCheckPointArray, BoundCheckPointPtrArray 클래스들은 모두 기능은 같은데 대상 자료형이 달라서 모두 따로따로 클래스를 선언했다. 템플릿을 이용하면 하나의 클래스만으로 이를 대체할수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ArrayTemplate.h&nbsp;</b></p>
+<pre class="cpp"><code>/*
+ * 클래스 템플릿은 헤더파일에 정의까지 포함해야한다
+ * 아니면 메인 함수가 있는 파일에 헤더파일과 정의가 담긴 소스파일 둘다 include 해야한다
+ */
+
+#ifndef __ARRAY_TEMPLATE_H__
+#define __ARRAY_TEMPLATE_H__
+
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+using namespace std;
+
+template &lt;typename T&gt;
+class BoundCheckArray
+{
+private:
+    T * arr;
+    int arrlen;
+
+    BoundCheckArray(const BoundCheckArray &amp;arr) {}
+    BoundCheckArray&amp; operator= (const BoundCheckArray &amp;arr) {}
+public:
+    BoundCheckArray(int len);
+    T&amp; operator[] (int idx);
+    T operator[] (int idx) const;
+    int GetArrLen() const;
+    ~BoundCheckArray();
+};
+
+template &lt;typename T&gt;
+BoundCheckArray&lt;T&gt;::BoundCheckArray(int len) : arrlen(len)
+{
+    arr = new T[len];
+}
+
+template &lt;typename T&gt;
+T&amp; BoundCheckArray&lt;T&gt;::operator[] (int idx)
+{
+    if(idx &lt; 0 || idx &gt;= arrlen)
+    {
+        cout &lt;&lt; "Array idx out of bound exception" &lt;&lt; endl;
+        exit(1);
+    }
+    return arr[idx];
+}
+
+template &lt;typename T&gt;
+T BoundCheckArray&lt;T&gt;::operator[] (int idx) const
+{
+    if(idx &lt; 0 || idx &gt;= arrlen)
+    {
+        cout &lt;&lt; "Array idx out of bound exception" &lt;&lt; endl;
+        exit(1);
+    }
+    return arr[idx];
+}
+
+template &lt;typename T&gt;
+int BoundCheckArray&lt;T&gt;::GetArrLen() const { return arrlen; }
+
+template &lt;typename T&gt;
+BoundCheckArray&lt;T&gt;::~BoundCheckArray() { delete []arr; }
+
+#endif // __ARRAY_TEMPLATE_H__</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>BoundArrayMain.cpp&nbsp;</b></p>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include "ArrayTemplate.h"
+#include "Point.h"
+using namespace std;
+
+int main()
+{
+    // int
+    BoundCheckArray&lt;int&gt; iarr(5);
+    for(int i = 0; i &lt; 5; i++)
+        iarr[i] = (i+1) * 11;
+    for(int i = 0; i &lt; 5; i++)
+        cout &lt;&lt; iarr[i] &lt;&lt; endl;
+    cout &lt;&lt; endl;
+
+    // Point 객체
+    BoundCheckArray&lt;Point&gt; oarr(3);
+    oarr[0] = Point(3, 4);
+    oarr[1] = Point(2,2);
+    oarr[2] = Point(5, 7);
+    for(int i = 0; i &lt; 3; i++)
+        cout &lt;&lt; oarr[i];
+    cout &lt;&lt; endl;
+
+    // Point 객체의 주소값
+    BoundCheckArray&lt;Point*&gt; parr(3);
+    parr[0] = new Point(3, 4);
+    parr[1] = new Point(2, 2);
+    parr[2] = new Point(1, 2);
+    for(int i = 0; i &lt; 3; i++)
+        cout &lt;&lt; *(parr[i]);
+
+    delete parr[0];
+    delete parr[1];
+    delete parr[2];
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

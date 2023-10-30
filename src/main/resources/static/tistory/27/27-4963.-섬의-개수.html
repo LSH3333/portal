@@ -1,0 +1,120 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>4963. 섬의 개수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">4963. 섬의 개수</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2020-08-19 18:13:08</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/4963">https://www.acmicpc.net/problem/4963</a></p>
+<figure id="og_1597828221732" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="4963번: 섬의 개수" data-og-description="문제 정사각형으로 이루어져 있는 섬과 바다 지도가 주어진다. 섬의 개수를 세는 프로그램을 작성하시오. 한 정사각형과 가로, 세로 또는 대각선으로 연결되어 있는 사각형은 걸어갈 수 있는 사" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/4963" data-og-url="https://www.acmicpc.net/problem/4963" data-og-image="https://scrap.kakaocdn.net/dn/P2FED/hyHduxf2Fn/B0GTY8Ewvpg5LVVuXi59G0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/4963" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/4963">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/P2FED/hyHduxf2Fn/B0GTY8Ewvpg5LVVuXi59G0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">4963번: 섬의 개수</p>
+<p class="og-desc">문제 정사각형으로 이루어져 있는 섬과 바다 지도가 주어진다. 섬의 개수를 세는 프로그램을 작성하시오. 한 정사각형과 가로, 세로 또는 대각선으로 연결되어 있는 사각형은 걸어갈 수 있는 사</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>바로 전에 푼 2667. 단지번호붙이기(<a href="https://www.acmicpc.net/problem/2667">https://www.acmicpc.net/problem/2667</a>)와 거의 똑같아서 금방 풀 수 있었다.</p>
+<p>단지번호붙이기 에서는 상,하,좌,우로 붙어있는 집들이 단지 하나였다면,</p>
+<p>섬의 개수 에서는 동,서,남,북,북동,북서,남동,남서로 붙어있는 섬들이 하나의 섬이다.&nbsp;</p>
+<p>따라서 단지번호붙이기 dfs 에서 상,하,좌,우에다가 북동,북서,남동,남서 만 추가해주면 된다.</p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<pre id="code_1597828375025" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.*;
+
+public class Main {
+    static int[][] arr; // 지도 저장
+    static int[][] visit; // 방문여부
+    static int w=1, h=1;
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+
+        while(true) {
+            w = sc.nextInt(); // 너비 w
+            h = sc.nextInt(); // 높이 h
+            if(w == 0 &amp;&amp; h == 0) break;
+
+            int island = 0;
+
+            arr = new int[h][w];
+            visit = new int[h][w];
+
+            // 지도 저장
+            for (int i = 0; i &lt; h; i++) {
+                for (int j = 0; j &lt; w; j++) {
+                    arr[i][j] = sc.nextInt();
+                }
+            }
+
+            for (int i = 0; i &lt; h; i++) {
+                for (int j = 0; j &lt; w; j++) {
+                    // 방문 하지 않았고 땅이 존재
+                    if (visit[i][j] == 0 &amp;&amp; arr[i][j] == 1) {
+                        island++;
+                        dfs(i, j);
+                    }
+                }
+            }
+
+            System.out.println(island);
+        }
+
+    }
+
+    static void dfs(int a, int b) { // a:h, b:w
+        visit[a][b] = 1; // 방문 체크
+
+        // 동,서,남,북,대각선 이동
+        if(b+1 &lt; w &amp;&amp; arr[a][b+1] == 1 &amp;&amp; visit[a][b+1] == 0) // 동
+            dfs(a, b+1);
+        if(b-1 &gt;= 0 &amp;&amp; arr[a][b-1] == 1 &amp;&amp; visit[a][b-1] == 0) // 서
+            dfs(a, b-1);
+        if(a-1 &gt;= 0 &amp;&amp; arr[a-1][b] == 1 &amp;&amp; visit[a-1][b] == 0) // 북
+            dfs(a-1, b);
+        if(a+1 &lt; h &amp;&amp; arr[a+1][b] == 1 &amp;&amp; visit[a+1][b] == 0) // 남
+            dfs(a+1, b);
+        if(b-1 &gt;= 0 &amp;&amp; a-1 &gt;= 0 &amp;&amp; arr[a-1][b-1] == 1 &amp;&amp; visit[a-1][b-1] == 0) // 북서
+            dfs(a-1, b-1);
+        if(b+1 &lt; w &amp;&amp; a-1 &gt;= 0 &amp;&amp; arr[a-1][b+1] == 1 &amp;&amp; visit[a-1][b+1] == 0) // 북동
+            dfs(a-1, b+1);
+        if(a+1 &lt; h &amp;&amp; b-1 &gt;= 0 &amp;&amp; arr[a+1][b-1] == 1 &amp;&amp; visit[a+1][b-1] == 0) // 남서
+            dfs(a+1, b-1);
+        if(a+1 &lt; h &amp;&amp; b+1 &lt; w &amp;&amp; arr[a+1][b+1] == 1 &amp;&amp; visit[a+1][b+1] == 0) // 남동
+            dfs(a+1, b+1);
+
+    }
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Java #graph #dfs 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

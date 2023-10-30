@@ -1,4 +1,3 @@
-// Assuming you have a div with id="container" where you want to insert the HTML
 var container = document.getElementById('ContentBlock');
 
 function fetchHTML(htmlSrc) {
@@ -8,26 +7,49 @@ function fetchHTML(htmlSrc) {
         .then(html => {
             // container 에 html 넣음 
             container.innerHTML = html;
+            modifyImgElement(container);
             // 이후 동적으로 gist 추가 (gist <script> 내부의 document.write 가 있어서 page load 이후에 실행안됨 )
             dynamicallyAddGist()
         })
         .catch(error => console.error('Error:', error));
 }
-// console.log(fetchURL)
 fetchHTML(fetchURL);
 
+function modifyImgElement(container) {    
+    // fetchURL = "/tistory/1070/1070-쿠키,-세션.html"
+    // fetchURL 을 통해 폴더 번호 찾음 
+    let secondSlashIndex = fetchURL.indexOf('/', fetchURL.indexOf('/') + 1);    
+    let thirdSlashIndex = fetchURL.indexOf('/', secondSlashIndex + 1);    
+    let folderNumber = fetchURL.substring(secondSlashIndex + 1, thirdSlashIndex);
+    
 
+    let images = container.querySelectorAll('img');
+    for (let i = 0; i < images.length; i++) {
+        let img = images[i];
+        // img.src = "http://localhost:8080/blog/img/img_5.png"
+        let lastSlashIndex = img.src.lastIndexOf('/');
+        // result = "img_5.png"
+        let result = img.src.substring(lastSlashIndex + 1);
+        // newSrc = "/tistory/1070/img/img.png"
+        let newSrc = '/tistory/' + folderNumber + '/img/' + result;
+        img.src = newSrc;
+    }
+
+
+    // img.src = http://localhost:8080/blog/img/img_5.png
+    // /tistory/1070/img/img.png
+}
 
 function dynamicallyAddGist() {
-    // Find all gist scripts inside the ajax container
+    // ajax 컨테이너 내부 모든 <script> gist 찾음 
     var ajaxContainer = document.getElementById('ContentBlock');
     var gists = ajaxContainer.querySelectorAll('script[src^="https://gist.github.com/"]');
 
-    // if gist embeds are found
+    // gist 존재한다면 
     if (gists.length > 0) {
-        // update each gist
+        // 각 gist 업데이트 
         gists.forEach(function (gist) {
-            // load gist as json instead with a jsonp request
+            // jsonp 로 gist 를 json 으로 가져옴 
             var scriptSrc = gist.getAttribute('src');
             var gistId = scriptSrc.split('/').pop().split('.')[0];
             var jsonpUrl = `https://gist.github.com/${gistId}.json`;
@@ -44,7 +66,7 @@ function dynamicallyAddGist() {
                 div.innerHTML = data.div;
                 gist.parentNode.replaceChild(div.firstChild, gist);
 
-                // load the stylesheet, but only once…
+                // style 필요하면 갖고오는데, 여기서는 필요없음 
                 // addStylesheetOnce('https://gist.github.com/' + data.stylesheet);
             };
         });

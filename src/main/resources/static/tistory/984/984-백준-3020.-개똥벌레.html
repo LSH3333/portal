@@ -1,0 +1,201 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 3020. 개똥벌레</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 3020. 개똥벌레</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-12-16 14:02:20</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/3020" target="_blank" rel="noopener">https://www.acmicpc.net/problem/3020</a></p>
+<figure id="og_1671165723141" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="3020번: 개똥벌레" data-og-description="개똥벌레 한 마리가 장애물(석순과 종유석)로 가득찬 동굴에 들어갔다. 동굴의 길이는 N미터이고, 높이는 H미터이다. (N은 짝수) 첫 번째 장애물은 항상 석순이고, 그 다음에는 종유석과 석순이 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/3020" data-og-url="https://www.acmicpc.net/problem/3020" data-og-image="https://scrap.kakaocdn.net/dn/bTvdGk/hyQUWkxQAO/oZjGx8xDltxguiujSGcdu0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/nT5IS/hyQU6OeMsY/jxvD63g2XFfwQ1vr7UjDwk/img.png?width=584&amp;height=216&amp;face=0_0_584_216,https://scrap.kakaocdn.net/dn/cYxl9U/hyQTIuCOC6/GdaSNzvqZW45zXKc2wkeBk/img.png?width=542&amp;height=216&amp;face=0_0_542_216"><a href="https://www.acmicpc.net/problem/3020" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/3020">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bTvdGk/hyQUWkxQAO/oZjGx8xDltxguiujSGcdu0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/nT5IS/hyQU6OeMsY/jxvD63g2XFfwQ1vr7UjDwk/img.png?width=584&amp;height=216&amp;face=0_0_584_216,https://scrap.kakaocdn.net/dn/cYxl9U/hyQTIuCOC6/GdaSNzvqZW45zXKc2wkeBk/img.png?width=542&amp;height=216&amp;face=0_0_542_216');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">3020번: 개똥벌레</p>
+<p class="og-desc" data-ke-size="size16">개똥벌레 한 마리가 장애물(석순과 종유석)로 가득찬 동굴에 들어갔다. 동굴의 길이는 N미터이고, 높이는 H미터이다. (N은 짝수) 첫 번째 장애물은 항상 석순이고, 그 다음에는 종유석과 석순이</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아이디어를 떠올리는게 쉽지 않은 문제였다.</p>
+<p data-ke-size="size16">우선 석순과 종유석을 따로 계산해야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제를 푸는데 핵심은 각 길이의 석순,종유석이 몇개인지 카운트해서 누적합을 계산하는 것이다.&nbsp;</p>
+<p data-ke-size="size16">예를들어 문제에서 나온 예제의 <b>석순</b>의 길이는 {1,4,2,3,3,3,3} 이다.&nbsp;</p>
+<p data-ke-size="size16">각 길이의 갯수를 카운팅하면 다음과 같다.</p>
+<table style="border-collapse: collapse; width: 45.4651%; height: 64px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr>
+<td style="width: 16.6667%;">높이</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">2</td>
+<td style="width: 16.6667%;">3</td>
+<td style="width: 16.6667%;">4</td>
+<td style="width: 16.6667%;">5</td>
+</tr>
+<tr>
+<td style="width: 16.6667%;">갯수</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">4</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">0</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">큰 높이에서 작은 높이로 <b>누적합을</b> 구하면 다음과 같다.</p>
+<table style="border-collapse: collapse; width: 45.4651%; height: 38px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr style="height: 19px;">
+<td style="width: 16.6667%; height: 19px;">높이</td>
+<td style="width: 16.6667%; height: 19px;">1</td>
+<td style="width: 16.6667%; height: 19px;">2</td>
+<td style="width: 16.6667%; height: 19px;">3</td>
+<td style="width: 16.6667%; height: 19px;">4</td>
+<td style="width: 16.6667%; height: 19px;">5</td>
+</tr>
+<tr style="height: 19px;">
+<td style="width: 16.6667%; height: 19px;">갯수</td>
+<td style="width: 16.6667%; height: 19px;">7</td>
+<td style="width: 16.6667%; height: 19px;">6</td>
+<td style="width: 16.6667%; height: 19px;">5</td>
+<td style="width: 16.6667%; height: 19px;">1</td>
+<td style="width: 16.6667%; height: 19px;">0</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">높이1 을 지나가면 7개의 벽을 뚫어야 하고,</p>
+<p data-ke-size="size16">높이2를 지나가면 6개의 벽을 뚫어야 한다.</p>
+<p data-ke-size="size16">..&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>종유석</b>은 거꾸로 매달려있기 때문에&nbsp;반대로 계산해야 한다.&nbsp;</p>
+<p data-ke-size="size16">석순이 높이 2라면, 이는 아래(땅)에서 부터 위로 2칸 있다는 것이고, 즉 아래(땅)에서 부터 위로 두칸은 벽으로 막혀있다는 의미다.</p>
+<p data-ke-size="size16">종유석이 높이 2라면, 이는 위(천장)에서 부터 아래로 2칸 있다는 것이고, 즉 위(천장)에서 부터 아래로 두칸은 벽으로 막혀있다는 의미다.</p>
+<p data-ke-size="size16"><b>종유석의 높이는 h로 주어지면 H - h + 1 로 계산</b>하게 되면 아래(땅)에서 부터 몇칸 떨어진 지점까지가 종유석인지 알수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예제에서 주어지는 종유석의 길이는 {3,2,4,4,3,2,3} 이고 위 식으로 계산하면<b> {3, 4, 2, 2, 3, 4, 3}</b> 가 된다.&nbsp;</p>
+<p data-ke-size="size16">첫번째 3은 아래(땅)에서 부터 위로 3칸 떨어진 지점까지 종유석이 내려와 있다는 것을 의미한다.&nbsp;</p>
+<table style="border-collapse: collapse; width: 45.4651%; height: 38px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr style="height: 19px;">
+<td style="height: 19px;">높이</td>
+<td style="height: 19px;">1</td>
+<td style="height: 19px;">2</td>
+<td style="height: 19px;">3</td>
+<td style="height: 19px;">4</td>
+<td style="height: 19px;">5</td>
+</tr>
+<tr style="height: 19px;">
+<td style="height: 19px;">갯수</td>
+<td style="height: 19px;">0</td>
+<td style="height: 19px;">2</td>
+<td style="height: 19px;">3</td>
+<td style="height: 19px;">2</td>
+<td style="height: 19px;">0</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">종유석은 반대로 작은 높이에서 큰 높이로 <b>누적합을</b> 구하면 다음과 같다.&nbsp;</p>
+<table style="border-collapse: collapse; width: 45.4651%; height: 38px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr>
+<td>높이</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>갯수</td>
+<td>0</td>
+<td>2</td>
+<td>5</td>
+<td>7</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">높이 2를 지나면 2개의 종유석에 의해 가로막히고,&nbsp;</p>
+<p data-ke-size="size16">높이 3을 지나면 5개의 종유석에 의해 가로 막힌다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>이제 석순과 종유석의 누적합을 더해준다.</b></p>
+<table style="border-collapse: collapse; width: 45.4651%; height: 38px;" border="1" data-ke-align="alignLeft">
+<tbody>
+<tr>
+<td>높이</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>갯수</td>
+<td>7</td>
+<td>8</td>
+<td>10</td>
+<td>8</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>가장 작은 갯수는 7로서 개똥벌레가 파괴해야 하는 장애물의 최소 갯수이다.</b></p>
+<p data-ke-size="size16"><b>7을 갖는 높이는 1과 5 두개이므로 그러한 구간은 총 두개 있다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/8e5597f06c5d614a83453e49aa86cbce.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16"><b>이분탐색</b>으로 푸는 방법도 있었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1부터 H 높이까지를 탐색한다.</p>
+<p data-ke-size="size16">탐색하는 높이로 지나갔을때 몇개의 장애물 (석순 + 종유석)을 뚫어야 하는지 계산한다.</p>
+<p data-ke-size="size16">단순히 모든 석순,종유석을 탐색하면 높이 하나의 탐색에 O(N)이 걸리기 때문에 총 O(N*H)가 걸린다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">하지만 석순과 종유석을 각각 <b>오름차순 정렬하고 이분탐색으로, </b></p>
+<p data-ke-size="size16">석순은 높이 h보다 크거나 같은 값(lower_bound)의 첫 출현 인덱스를 구하면 높이 h 보다 크거나 같은 석순의 갯수를 구할수 있다.</p>
+<p data-ke-size="size16">마찬가지로 종유석은 높이 h-i+1 보다 크거나 같은 값의 첫 출현 인덱스를 구하면 높이 h-i+1 보다 크거나 같은 종유석의 갯수를 구할수 있다.</p>
+<p data-ke-size="size16">두 값을 더하면 뚫어야 하는 장애물의 갯수를 알 수 있다.&nbsp;</p>
+<p data-ke-size="size16">이렇게 하면 O(N*logN)에 끝낼수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/2608a9d83058d9843cba41cd27f78cbb.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #누적합 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

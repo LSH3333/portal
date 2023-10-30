@@ -1,0 +1,68 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>프로그래머스. 튜플</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">프로그래머스. 튜플</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-09-23 15:48:59</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://programmers.co.kr/learn/courses/30/lessons/64065#" target="_blank" rel="noopener">https://programmers.co.kr/learn/courses/30/lessons/64065#</a></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #6a8759;">"{{4,2,3},{3},{2,3,4,1},{2,3}}"</span></p>
+<p data-ke-size="size16">위의 input의 tuple은 <b>{3,2,4,1}</b>이고, 원소의 갯수대로 나열해보면</p>
+<p data-ke-size="size16">{3}</p>
+<p data-ke-size="size16">{2,3}</p>
+<p data-ke-size="size16">{4,2,3}</p>
+<p data-ke-size="size16">{2,3,4,1}</p>
+<p data-ke-size="size16">보면 터플의 가장 앞에 오는 숫자인 3은 모든 집합에 존재한다.</p>
+<p data-ke-size="size16">그다음으로 오는 숫자인 2는 크기1 집합을 제외하고 존재한다...</p>
+<p data-ke-size="size16">즉 출현횟수가 높을수록 터플의 앞쪽에 온다는것을 알수있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">map&lt;string,int&gt; 자료구조에 각각의 숫자가 몇개있는지 저장한다.</p>
+<p data-ke-size="size16">많이 나온 숫자일수록 우선순위를 갖으므로 맵을 value 기준으로 내림차순 정렬한다.</p>
+<p data-ke-size="size16">map의 key를 차례로 answer 벡터에 저장한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/7e932f00356506eb3cdad4ea597a0c59.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<p data-ke-size="size16">2022.02.21</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아직 출연하지 않은 숫자를 answer 벡터에 추가하고 출연 처리&nbsp;</p>
+<p data-ke-size="size16">이미 출연한 숫자는 무시하는 형태로 구현.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/37ba31396bc46f2a29bebc3a554d612b.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

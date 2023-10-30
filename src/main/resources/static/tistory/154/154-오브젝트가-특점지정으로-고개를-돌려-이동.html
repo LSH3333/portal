@@ -1,0 +1,51 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>오브젝트가 특점지정으로 고개를 돌려 이동</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">오브젝트가 특점지정으로 고개를 돌려 이동</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-05-06 18:21:32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>특점 지정으로 이동</p>
+<pre id="code_1620292799277" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>// 현재 오브젝트가 moveSpot으로 서서히 이동한다
+transform.position = Vector3.MoveTowards(transform.position, moveSpot.position, speed * Time.deltaTime);</code></pre>
+<p>&nbsp;</p>
+<p>이동할때 오브잭트의 고개가 돌아가도록 하려면?</p>
+<p>예를들어 오브젝트가 사람이라면 특점 지정으로 이동할때 그 지점으로 고개가 돌아가야 자연스럽다</p>
+<pre id="code_1620292850900" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>// 이동하는 지점으로 고개를 돌림
+transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveSpot.position), 0.15f);</code></pre>
+<p>Quaternion.Slerp와 Quaternion.LookRotation을 이용.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

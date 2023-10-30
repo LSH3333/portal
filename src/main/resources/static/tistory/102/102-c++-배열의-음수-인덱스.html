@@ -1,0 +1,70 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>c++ 배열의 음수 인덱스</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">c++ 배열의 음수 인덱스</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2021-03-09 20:13:18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>이 문제(<a href="https://tose33.tistory.com/101" target="_blank" rel="noopener">tose33.tistory.com/101</a>) 를 풀면서 배열의 음수 인덱스에 대해 찾아봤다.</p>
+<p>&nbsp;</p>
+<p><a href="https://stackoverflow.com/questions/47170740/c-negative-array-index">stackoverflow.com/questions/47170740/c-negative-array-index</a></p>
+<figure id="og_1615288371075" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="C++ negative array index" data-og-description="I alloced an int array of 3 elements, and thought of this code below: int a[3]; for(int i = -2; i &lt; 3; ++i){ a[i] = i; cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;; } Here's its output: -2 -1 0 1 2 ..." data-og-host="stackoverflow.com" data-og-source-url="https://stackoverflow.com/questions/47170740/c-negative-array-index" data-og-url="https://stackoverflow.com/questions/47170740/c-negative-array-index" data-og-image="https://scrap.kakaocdn.net/dn/yQMXT/hyJvFwPufH/ao3Nk46pyXgEPzlzFT1JA0/img.png?width=316&amp;height=316&amp;face=0_0_316_316"><a href="https://stackoverflow.com/questions/47170740/c-negative-array-index" data-source-url="https://stackoverflow.com/questions/47170740/c-negative-array-index">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/yQMXT/hyJvFwPufH/ao3Nk46pyXgEPzlzFT1JA0/img.png?width=316&amp;height=316&amp;face=0_0_316_316');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">C++ negative array index</p>
+<p class="og-desc">I alloced an int array of 3 elements, and thought of this code below: int a[3]; for(int i = -2; i &lt; 3; ++i){ a[i] = i; cout&lt;&lt;a[i]&lt;&lt;" ";="" }="" here's="" its="" output:="" -2="" -1="" 0="" 1="" 2="" ...&lt;="" p=""&gt; &lt;/a[i]&lt;&lt;"&gt;</p>
+<p class="og-host">stackoverflow.com</p>
+</div>
+</a></figure>
+<p>이 글을 보면 c++ has no array bound check라고 한다.</p>
+<p>array bound check란건 배열의 인덱스 범위를 확인하는것이다. 예를들어</p>
+<pre id="code_1615288371076" class="c++ arduino" style="overflow: auto; margin: 0px; padding: 0px; word-break: break-all; white-space: pre-wrap; overflow-wrap: break-word; color: #555555; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;" data-ke-language="c++" data-ke-type="codeblock"><code>string arr[] = {"a", "b", "c", "d"};
+
+cout &lt;&lt; arr[17];</code></pre>
+<p>이런 코드가 있다면 배열에 17번째는 out of bound이기 때문에 에러를 출력하는것이다.</p>
+<p>&nbsp;</p>
+<p>그런데 c++에는 이런 에러를 체크하는 기능이 없기 때문에</p>
+<pre id="code_1615288371076" class="c++ arduino" style="overflow: auto; margin: 0px; padding: 0px; word-break: break-all; white-space: pre-wrap; overflow-wrap: break-word; color: #555555; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;" data-ke-language="c++" data-ke-type="codeblock"><code>int a[3];
+for(int i = -2; i &lt; 3; ++i){
+    a[i] = i; 
+    cout&lt;&lt;a[i]&lt;&lt;" ";
+}</code></pre>
+<p>이 코드는 원래라면 에러가 나야하지만</p>
+<p>-2 -1 0 1 2&nbsp;</p>
+<p>를 출력하게 되고, 이런 코드를 사용한다면 undefined behaviour로 이어진다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>따라서 배열의 음수 인덱스를 사용할수는 있겠지만, 그게 올바른 사용법은 아니라는 뜻인것 같다.&nbsp;</p>
+<p>사용한다면 배열 a[i]는 *(a + i) 를 나타냄으로, 포인터를 이용해서 적절히 배열과 포인터를 생성해서 사용해야 할 것 같다.</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

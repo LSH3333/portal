@@ -1,0 +1,71 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1011. Fly me to the Alpha Centauri</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1011. Fly me to the Alpha Centauri</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-07-11 14:39:21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://tose33.tistory.com/536" target="_blank" rel="noopener">https://tose33.tistory.com/536</a></p>
+<figure id="og_1689053698641" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="백준 1011. Fly me to the Alpha Centauri" data-og-description="https://www.acmicpc.net/problem/1011 1011번: Fly me to the Alpha Centauri 우현이는 어린 시절, 지구 외의 다른 행성에서도 인류들이 살아갈 수 있는 미래가 오리라 믿었다. 그리고 그가 지구라는 세상에 발을 내" data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/536" data-og-url="https://tose33.tistory.com/536" data-og-image="https://scrap.kakaocdn.net/dn/6Qk9X/hyTitfsPp1/yQeDTx4FXKi9kkkDMH8gQk/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/btl9GA/hyTgPj7U5s/dazpwkmsKYJf68zI06XzVK/img.png?width=800&amp;height=800&amp;face=0_0_800_800"><a href="https://tose33.tistory.com/536" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/536">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/6Qk9X/hyTitfsPp1/yQeDTx4FXKi9kkkDMH8gQk/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/btl9GA/hyTgPj7U5s/dazpwkmsKYJf68zI06XzVK/img.png?width=800&amp;height=800&amp;face=0_0_800_800');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">백준 1011. Fly me to the Alpha Centauri</p>
+<p class="og-desc" data-ke-size="size16">https://www.acmicpc.net/problem/1011 1011번: Fly me to the Alpha Centauri 우현이는 어린 시절, 지구 외의 다른 행성에서도 인류들이 살아갈 수 있는 미래가 오리라 믿었다. 그리고 그가 지구라는 세상에 발을 내</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이전에 풀었던 문제를 다시 풀어봤는데 좀 이상해서 다시 기록.</p>
+<p data-ke-size="size16">이전에 푼 방식 백트래킹 방식은 지금보니 내 생각에 시간초과가 나야 정상인데 정답을 받았다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1+2+3+...+n = (n *(N+1)) / 2 를 이용.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 최대 거리 만큼 이동해 본다.</p>
+<p data-ke-size="size16">예를들어 목적지가 13이라면</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1 + 2 + 3 + 2 + 1 = 9&nbsp;</p>
+<p data-ke-size="size16">1 + 2 + 3 + 4 + 3 + 2 + 1 = 18&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이므로 9만큼 우선 이동한다.</p>
+<p data-ke-size="size16">남은 거리는 4인데, 4를 중간에 이동할수는 없다. 그렇게 되면 규칙에 위반된다.</p>
+<p data-ke-size="size16">따라서 4를 여러개로 쪼개면 된다.&nbsp;</p>
+<p data-ke-size="size16">예를들어 4를 2+2 로 쪼개서</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1+<b>2</b>+2+3+<b>2</b>+2+1 = 13&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런 식으로 만들면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/34cd70d1a0ac1e3001cdf242b47bfdd8.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #math 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>10451. 순열 사이클</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">10451. 순열 사이클</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2020-08-04 19:50:01</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/10451">https://www.acmicpc.net/problem/10451</a></p>
+<figure id="og_1596536988082" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="10451번: 순열 사이클" data-og-description="문제 1부터 N까지 정수 N개로 이루어진 순열을 나타내는 방법은 여러 가지가 있다. 예를 들어, 8개의 수로 이루어진 순열 (3, 2, 7, 8, 1, 4, 5, 6)을 배열을 이용해 표현하면 \(\begin{pmatrix} 1 &amp; 2 &amp;3&amp;4&amp;5&amp;6&amp;7&amp;8" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/10451" data-og-url="https://www.acmicpc.net/problem/10451" data-og-image="https://scrap.kakaocdn.net/dn/bbe5Dz/hyG2wu83l3/eVFkW9r0pdZ5pVDREcRbfK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/10451" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/10451">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bbe5Dz/hyG2wu83l3/eVFkW9r0pdZ5pVDREcRbfK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">10451번: 순열 사이클</p>
+<p class="og-desc">문제 1부터 N까지 정수 N개로 이루어진 순열을 나타내는 방법은 여러 가지가 있다. 예를 들어, 8개의 수로 이루어진 순열 (3, 2, 7, 8, 1, 4, 5, 6)을 배열을 이용해 표현하면 \(\begin{pmatrix} 1 &amp; 2 &amp;3&amp;4&amp;5&amp;6&amp;7&amp;8</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>문제 그림만 봐도 11724. 연결 요소의 개수 문제와 상당히 비슷할 것처럼 보였다.&nbsp;</p>
+<p>다른 점은 간선에 방향이 있다는 것?</p>
+<p>그래서 그래프를 입력할 때&nbsp;</p>
+<p>a [u]. add(v)</p>
+<p>a [v]. add(u)</p>
+<p>이런 식으로 양방향을 입력할 필요 없다.&nbsp;</p>
+<p>&nbsp;</p>
+<pre id="code_1596537323802" class="java" data-ke-language="java" data-ke-type="codeblock"><code>int[] arr = new int[n + 1];
+            // arr에 삽입
+            for (int i = 1; i &lt; n + 1; i++) {
+                arr[i] = s.nextInt();
+            }</code></pre>
+<p>그냥 이런 식으로 0은 스킵하고 1부터 차례대로 index에 맞춰서 입력했다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>그리고 DFS, BFS를 사용하지 않고 그냥 스택을 이용해 풀었다.&nbsp;</p>
+<pre id="code_1596537688617" class="java" data-ke-language="java" data-ke-type="codeblock"><code>for (int i = 1; i &lt;= n; i++) {
+                if (!mark[i]) {
+                    st.push(i);
+                    mark[i] = true;
+                    cnt++;
+                }
+
+                while (true) {
+                    int f = st.peek();
+                    boolean none = true;
+                    int x = arr[f]; // 현재 정점이 가르키고 있는 정점
+
+                    if (!mark[x]) { // 가르키고 있는 정점을 방문한적 없다면
+                        st.push(x);
+                        mark[x] = true;
+                        none = false;
+                    }
+                    // none이 true라는 것은 가르키는 다음 정점이 이미 방문됨.
+                    // 즉 순열 사이클의 끝.
+                    if (none) break;
+                }
+
+            }</code></pre>
+<p>처음 정점 1을 스택에 넣고 그 정점이 가리키는 다음 정점으로 이동한다.&nbsp;</p>
+<p>그렇게 계속 이동하다가 가르키는 다음 정점이 이미 방문한 정점이면 순열 사이클의 끝이라는 것이다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>그다음 정점 2가 이미 방문했다면 스킵하고 방문하지 않았으면 또다시 정점 2에서부터 가리키는 정점으로 이동하면서 순열 사이클의 끝까지 이동한다.&nbsp;</p>
+<p>새로운 순열 사이클 시작할 때마다 cnt값 증가시키면 마지막에 cnt값이 순열 사이클의 개수이다.&nbsp;</p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1596537884439" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.*;
+
+public class Main {
+
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+
+        int t = s.nextInt(); // test case
+
+        for(int z = 0; z &lt; t; z++) { // while test case~
+            Stack&lt;Integer&gt; st = new Stack&lt;Integer&gt;();
+            int n = s.nextInt(); // 순열의 크기 n
+
+            boolean mark[] = new boolean[n+1];
+
+            int[] arr = new int[n + 1];
+            // arr에 삽입
+            for (int i = 1; i &lt; n + 1; i++) {
+                arr[i] = s.nextInt();
+            }
+
+            int cnt = 0;
+
+            for (int i = 1; i &lt;= n; i++) {
+                if (!mark[i]) {
+                    st.push(i);
+                    mark[i] = true;
+                    cnt++;
+                }
+
+                while (true) {
+                    int f = st.peek();
+                    boolean none = true;
+                    int x = arr[f]; // 현재 정점이 가르키고 있는 정점
+
+                    if (!mark[x]) { // 가르키고 있는 정점을 방문한적 없다면
+                        st.push(x);
+                        mark[x] = true;
+                        none = false;
+                    }
+                    // none이 true라는 것은 가르키는 다음 정점이 이미 방문됨.
+                    // 즉 순열 사이클의 끝.
+                    if (none) break;
+                }
+
+            }
+            System.out.println(cnt);
+
+        }
+    }
+}
+</code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style6" />
+<p><b>Solution</b></p>
+<p>&nbsp;</p>
+<p><u>코드</u></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1596538065001" class="java" data-ke-language="java" data-ke-type="codeblock"><code>import java.util.*;
+
+public class Main {
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
+
+        while(k-- &gt; 0) {
+            // read vertex size, create vertex
+            int n = sc.nextInt();
+            ArrayList&lt;Integer&gt;[] a =
+                    (ArrayList&lt;Integer&gt;[])new ArrayList[n + 1];
+            for(int i = 1; i &lt;= n; i++)
+                a[i] = new ArrayList&lt;Integer&gt;();
+
+            // write edge
+            for(int i = 1; i &lt;= n; i++) {
+                int v = sc.nextInt();
+                a[i].add(v); // 하나의 정점에서 하나의 간선만이 존재.
+            }
+
+            boolean[] c = new boolean[n + 1]; // mark or check
+            int count = 0;
+            for(int i = 1; i &lt;= n; i++) { // dfs 탐색
+                if(c[i] == false) { // 새로운 탐색 시작
+                    count++; // 새로운 연결 요소가 시작되는 셈.
+                    dfs(a, c, i);
+                }
+            }
+            System.out.println(count);
+
+        }
+    }
+
+    public static void dfs(
+            ArrayList&lt;Integer&gt;[] a, boolean[] c, int x) {
+        c[x] = true;
+
+        for(int y : a[x]) { // 정점에 연결된 모든 간선 탐색
+            if(c[y] == false) dfs(a, c, y);
+        }
+        
+        /* 정점연결 간선 하나뿐이므로 이렇게 해도 됨.
+        int y = a[x].get(0); // 정점에 연결된 간선이 하나뿐
+        if(c[y] == false) dfs(a, c, y);
+         */
+    }
+
+}</code></pre>
+</div>
+</div>
+<p>솔루션에서는 그냥 DFS를 썼다.&nbsp;</p>
+<p>그런데 DFS함수에서 어차피 정점 연결 간선이 하나뿐이므로&nbsp;</p>
+<p>for(int y : a[x]) 이런 식으로 배열의 모든 요소 방문하지 않고</p>
+<p>int y = a[x].get(0) 이런 식으로 가장 첫 번째 원소만 갖고 와도 무방하다.&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #graph 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

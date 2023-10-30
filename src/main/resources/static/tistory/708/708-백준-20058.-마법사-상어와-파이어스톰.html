@@ -1,0 +1,57 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 20058. 마법사 상어와 파이어스톰</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 20058. 마법사 상어와 파이어스톰</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-06-10 14:50:59</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/20058" target="_blank" rel="noopener">https://www.acmicpc.net/problem/20058</a></p>
+<figure id="og_1654839997508" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="20058번: 마법사 상어와 파이어스톰" data-og-description="마법사 상어는&nbsp;파이어볼과 토네이도를 조합해&nbsp;파이어스톰을 시전할 수 있다. 오늘은 파이어스톰을 크기가 2N&nbsp;&times; 2N인 격자로 나누어진 얼음판에서 연습하려고 한다.&nbsp;위치 (r,&nbsp;c)는 격자의 r행 c" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/20058" data-og-url="https://www.acmicpc.net/problem/20058" data-og-image="https://scrap.kakaocdn.net/dn/rQwi1/hyOIk9sLLX/2RfwXANjeNynL7yS0ByOVK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/KsUdu/hyOIjircuO/bYlKUSzMLAI5ZTez890mT1/img.jpg?width=1072&amp;height=1078&amp;face=0_0_1072_1078,https://scrap.kakaocdn.net/dn/eg9JQX/hyOIccwSnL/DnkHE9ZezgLcoXuQ5vj8BK/img.jpg?width=1068&amp;height=1068&amp;face=0_0_1068_1068"><a href="https://www.acmicpc.net/problem/20058" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/20058">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/rQwi1/hyOIk9sLLX/2RfwXANjeNynL7yS0ByOVK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/KsUdu/hyOIjircuO/bYlKUSzMLAI5ZTez890mT1/img.jpg?width=1072&amp;height=1078&amp;face=0_0_1072_1078,https://scrap.kakaocdn.net/dn/eg9JQX/hyOIccwSnL/DnkHE9ZezgLcoXuQ5vj8BK/img.jpg?width=1068&amp;height=1068&amp;face=0_0_1068_1068');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">20058번: 마법사 상어와 파이어스톰</p>
+<p class="og-desc" data-ke-size="size16">마법사 상어는&nbsp;파이어볼과 토네이도를 조합해&nbsp;파이어스톰을 시전할 수 있다. 오늘은 파이어스톰을 크기가 2N&nbsp;&times; 2N인 격자로 나누어진 얼음판에서 연습하려고 한다.&nbsp;위치 (r,&nbsp;c)는 격자의 r행 c</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제의 핵심이 되는 부분은 격자를 2^L x 2^L 크기로 나눠서 회전시키는 부분이었다.&nbsp;</p>
+<p data-ke-size="size16">처음에 코드를 짜기 쉽도록 새로운 (N+1 x N+1) 크기의 격자를 만들고 원본의 <span><span>&nbsp;(</span>2^L x 2^L) 좌표 부분만 회전시키고, 해당 부분을 원본에 반영시켰더니 시간 초과를 받았다. </span></p>
+<p data-ke-size="size16"><span>한 (2^L x 2^L) 격자 부분을 회전시킬때마다 <span><span>&nbsp;</span>(N+1 x N+1) 크기의 격자를 만들고 연산했기 때문이었다.&nbsp;</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span><span>그래서 <span><span>&nbsp;</span>(N+1 x N+1) 크기의 격자를 새로 만들지 않고 (2^L x 2^L) 크기의 격자를 새로 만들어서 원본 격자에서 해당 격자의 값을 가져와서 회전 시킨 후에, 다시 원본의 원래 자리에 반영시키는 방식으로 짰더니 통과했다.</span></span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/519e2bf243eacabe61ce5f44a0ecbf75.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

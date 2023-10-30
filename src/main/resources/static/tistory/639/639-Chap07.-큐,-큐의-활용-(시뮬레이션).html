@@ -1,0 +1,124 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap07. 큐, 큐의 활용 (시뮬레이션)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap07. 큐, 큐의 활용 (시뮬레이션)</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-11 16:54:21</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">큐를 이용한 시뮬레이션.</p>
+<p data-ke-size="size16">큐는 햄버거를 기다리는 사람들의 대기실.</p>
+<p data-ke-size="size16">큐에 햄버거 당 걸리는 시간을 저장, dequeue 하면서 햄버거를 만듦.&nbsp;</p>
+<p data-ke-size="size16">최종적으로 최초에 지정한 큐의 크기 (대기실의 크기)에 1시간 동안 주문한 사람들을 모두 수용할수 있는지에 대한 시뮬레이션.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>HamburgerSIm.c&nbsp;</b></p>
+<pre class="cpp"><code>/*
+ * pg272. Hamburger simulation
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include "CircularQueue.h"
+
+#define CUS_COME_TERM 15 // 고객의 주문 간격
+
+// 버거들 상수
+#define CHE_BUR 0
+#define BUL_BUR 1
+#define DUB_BUR 2
+
+// 제작 시간
+#define CHE_TERM 12
+#define BUL_TERM 15
+#define DUB_TERM 24
+
+int main()
+{
+    int makeProc = 0; // 햄버거 제작 현황
+    int cheOrder = 0, bulOrder = 0, dubOrder = 0;
+    int sec;
+
+    Queue que;
+    QueueInit(&amp;que);
+    srand(time(NULL));
+
+    // for문 1 loop는 1초의 시간이 흐름을 의미함
+    for(sec = 0; sec &lt; 3600; sec++)
+    {
+        // 15초 마다 손님이 온다
+        if(sec % CUS_COME_TERM == 0)
+        {
+            switch(rand() % 3)
+            {
+                case CHE_BUR:
+                    Enqueue(&amp;que, CHE_TERM);
+                    cheOrder += 1;
+                    break;
+
+                case BUL_BUR:
+                    Enqueue(&amp;que, BUL_BUR);
+                    bulOrder += 1;
+                    break;
+
+                case DUB_BUR:
+                    Enqueue(&amp;que, DUB_TERM);
+                    dubOrder += 1;
+                    break;
+            }
+        }
+
+        // 햄버거 하나를 다 만들었고 아직 만들어야할 햄버거가 있다면 다음 햄버거 만들기 시작
+        if(makeProc &lt;= 0 &amp;&amp; !QIsEmpty(&amp;que))
+            makeProc = Dequeue(&amp;que);
+
+        makeProc--;
+    }
+
+    printf("Simulation Report\n");
+    printf(" - Cheese Burger: %d\n", cheOrder);
+    printf(" - Bul Burger: %d\n", bulOrder);
+    printf(" - Double Burger: %d\n", dubOrder);
+    printf(" - Wating room size: %d\n", QUE_LEN);
+
+}
+
+</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #자료구조 #C #Queue 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,281 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch11. MVC 1 : 커맨드 객체 : 중첩, 콜렉션 프로퍼티</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch11. MVC 1 : 커맨드 객체 : 중첩, 콜렉션 프로퍼티</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-07-16 21:36:18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">우선 다음 두 클래스를 보자.</p>
+<p data-ke-size="size16">다음 두 클래스는 세 개의 <b>설문(survey)</b>&nbsp;항목과 응답자의 지역과 나이를 입력받는 설문조사를 담기 위한 클래스들이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Respondent.java</b></p>
+<pre id="code_1657973151363" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package survey;
+
+// 응답자 정보 
+public class Respondent 
+{
+	private int age;
+	private String location;
+	
+	public int getAge() {return age;} 
+	
+	public void setAge(int age) { this.age = age; }
+	
+	public String getLocation() { return location; }
+	
+	public void setLocation(String location) { this.location = location; }
+	
+}</code></pre>
+<p data-ke-size="size16"><b>AnsweredData.java</b></p>
+<pre id="code_1657973201029" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package survey;
+
+import java.util.List;
+
+// 설문 항목에 대한 답변, 응답자 정보 
+public class AnsweredData 
+{
+	private List&lt;String&gt; responses; // 답변 목록 
+	private Respondent res; // 응답자 정보 
+	
+	public List&lt;String&gt; getResponses() { return responses; }
+	
+	public void setResponses(List&lt;String&gt; responses) { this.responses = responses; } 
+		
+	public Respondent getRes() { return res; } 
+		
+	public void setRes(Respondent res) { this.res = res; } 	
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Respondent</b> 클래스는 응답자의 정보를담고,</p>
+<p data-ke-size="size16"><b>AnswerdData</b> 클래스는 설문 항목에 대한 답변과 응답자 정보 Respondent 를 담는다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>AnsweredData는 커맨드 객체로서 사용할 클래스다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>AnsweredData는 필드에 Respondent 타입이 있는데</b>, Respondent는 그 자체로 age와 location 프로퍼티를 갖는다.&nbsp;</p>
+<p data-ke-size="size16">즉 Respondent.age, Respondent.location을 갖는데, 이를 <b>중첩된 형식</b>이라고 표현한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">또한 <b>AnsweredData는 List&lt;String&gt; responses의 리스트 타입의 프로퍼티</b>가 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h3 data-ke-size="size23"><b>커맨드 객체 : 중첩, 콜렉션 프로퍼티&nbsp;</b></h3>
+<p data-ke-size="size16">스프링 MVC는 커맨드 객체가 리스트 타입의 프로퍼티를 가졌거나 중첩 프로퍼티를 가진 경우에 요청 파라미터의 값을 커맨드 객체에 설정해준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">예를들어 AnsweredData 객체는 List&lt;String&gt; responses, Respondent 를 프로퍼티로 갖는다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- HTTP 요청 파라미터 이름이 <b>"프로퍼티이름[인덱스]"</b> 형식이면 <b>List 타입 프로퍼티의 값 목록으로 처리</b>한다.</p>
+<p data-ke-size="size16">&nbsp;예를들어 &lt;input&gt; 태그가 다음과 같고 <b>커맨드 객체가 AnsweredData</b> 라면</p>
+<pre id="code_1657973638895" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;input type="radio" name="responses[0]" value="서버"&gt;서버개발자&lt;/label&gt;</code></pre>
+<p data-ke-size="size16">커맨드 객체인 AnsweredData의 List 타입인 List&lt;String&gt;<b> responses의 0번째 인덱스</b>에 매핑된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- HTTP 요청 파라미터 이름이<b> "프로퍼티이름.프로퍼티이름"</b> 형식이면<b> 중첩</b> 프로퍼티 값을 처리한다.</p>
+<p data-ke-size="size16">예를들어 &lt;input&gt; 태그가 다음과 같고 <b>커맨드 객체가 AnswerdData</b> 라면&nbsp;</p>
+<pre id="code_1657973814766" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;input type="text" name="res.location"&gt;</code></pre>
+<p data-ke-size="size16">커맨드 객체인 AnsweredData의 <b>Respondent res의 location</b>에 매핑된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">설문 관련을 처리할 컨트롤러 클래스를 작성한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>SurveyController.java</b></p>
+<pre id="code_1657974011602" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package survey;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/survey") // 이 클래스는 "/survey" 경로 처리  
+public class SurveyController 
+{
+	// GET 방식의 "/survey" 경로 요청 처리 (주소창 직접 입력은 GET 방식) 
+	@GetMapping
+	public String form() 
+	{
+		return "survey/surveyForm";			
+	}
+
+	// POST 방식의 "/survey" 경로 요청 처리  
+	// surveyForm.jsp에서 form이 submit되서 오면 여기서 처리됨 
+	@PostMapping 
+	public String submit(@ModelAttribute("ansData") AnsweredData data) // 커맨드 객체 
+	{
+		return "survey/submitted";
+	}
+}</code></pre>
+<p data-ke-size="size16">해당 클래스는 @RequestMapping("/survey")로 "/survey" 요청 경로를 처리한다.</p>
+<p data-ke-size="size16">두 개의 메서드가 있는데 각각 @GetMapping, @PostMapping 으로서,&nbsp;</p>
+<p data-ke-size="size16">@GetMapping인 form() 메서드는 "/survey" 요청 경로이면서 GET 방식 요청을 처리한다. (주소창 입력이 GET 방식이다)&nbsp;</p>
+<p data-ke-size="size16">@PostMapping인 submit() 메서드는 "/survey" 요청 경로이면서 POST 방식 요청을 처리한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">컨트롤러 클래스를 설정 파일에서 <b>빈으로 추가</b>.</p>
+<pre id="code_1657974170337" class="java" data-ke-language="java" data-ke-type="codeblock"><code>@Configuration 
+public class ControllerConfig 
+{
+	... // 생략 
+    
+	@Bean
+	public SurveyController surveyController() 
+	{
+		return new SurveyController();
+	}
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>WEB-INF/view/survey/surveyForm.jsp</b></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1657974239560" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;%@ page contentType="text/html; charset=utf-8" %&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;title&gt;설문조사&lt;/title&gt; 
+&lt;/head&gt;
+
+&lt;body&gt;
+	&lt;h2&gt;설문조사&lt;/h2&gt; 
+	&lt;form method="post"&gt;
+	
+	&lt;p&gt;
+		1. 당신의 역할은? &lt;br/&gt;
+		&lt;label&gt;&lt;input type="radio" name="responses[0]" value="서버"&gt;서버개발자&lt;/label&gt;
+		&lt;label&gt;&lt;input type="radio" name="responses[0]" value="프론트"&gt;프론트개발자&lt;/label&gt;
+		&lt;label&gt;&lt;input type="radio" name="responses[0]" value="풀스택"&gt;풀스택개발자&lt;/label&gt;
+	&lt;/p&gt;
+	
+	&lt;p&gt;
+		2. 가장 많이 사용하는 개발도구는? &lt;br/&gt;
+		&lt;label&gt;&lt;input type="radio" name="responses[1]" value="Eclipse"&gt;Eclipse&lt;/label&gt;
+		&lt;label&gt;&lt;input type="radio" name="responses[1]" value="Intellij"&gt;Intellij&lt;/label&gt;
+		&lt;label&gt;&lt;input type="radio" name="responses[1]" value="Sublime"&gt;Sublime&lt;/label&gt;	
+	&lt;/p&gt;
+	
+	&lt;p&gt;
+		3. 하고 싶은 말 &lt;br/&gt;
+		&lt;input type="text" name="responses[2]"&gt;
+	&lt;/p&gt;
+	
+	&lt;p&gt;
+		&lt;label&gt;응답자 위치:&lt;br&gt;
+		&lt;input type="text" name="res.location"&gt;
+		&lt;/label&gt;
+	&lt;/p&gt;
+	
+	&lt;p&gt;
+		&lt;label&gt;응답자 나이:&lt;br&gt;
+		&lt;input type="text" name="res.age"&gt; 
+		&lt;/label&gt;
+	&lt;/p&gt;
+	&lt;input type="submit" value="전송"&gt;
+		
+	&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>WEB-INF/view/survey/submitted.jsp</b></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<pre id="code_1657974260239" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;%@ page contentType="text/html; charset=utf-8" %&gt;
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt; 
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;응답 내용&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+	&lt;p&gt;응답 내용&lt;/p&gt;
+	&lt;ul&gt;
+		&lt;c:forEach var="response" items="${ansData.responses}" varStatus="status"&gt;
+		&lt;li&gt;${status.index+1}번 문항: ${response } &lt;/li&gt;
+		&lt;/c:forEach&gt;			
+	&lt;/ul&gt;	
+	&lt;p&gt;응답자 위치: ${ansData.res.location} &lt;/p&gt;
+	&lt;p&gt;응답자 나이: ${ansData.res.age} &lt;/p&gt; 
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h3 data-ke-size="size23"><b>흐름</b></h3>
+<p data-ke-size="size16">서버를 시작하고<b> "http://localhost:8080/sp5-chap11/survey"</b> 로 가면 아래 화면이 나온다.&nbsp;</p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">SurveyController 클래스에서 @RequestMapping으로 "/survey" 경로를 처리한다고 하였고, 주소창에 직접 입력하는 것은 GET 방식 이므로 SurveyController 클래스의 form() 메서드가 이를 처리하고 이 메서드는 뷰 이름으로 "survey/surveyForm" 을 리턴한다. 따라서 surveyForm.jsp 에 따라 위 화면이 출력되는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">항목을 채우고 전송하는 경우를 생각해보자.</p>
+<p data-ke-size="size16">surveyForm.jsp의 &lt;form&gt;에 데이터들이 쌓일 것이다.</p>
+<p data-ke-size="size16">surveyForm.jsp의 다음 &lt;input&gt; 태그를 보자.</p>
+<pre id="code_1657974521665" class="java" data-ke-language="java" data-ke-type="codeblock"><code>&lt;label&gt;&lt;input type="radio" name="responses[0]" value="서버"&gt;서버개발자&lt;/label&gt;</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>responses[0]</b>은 여기서 사용되는 커맨드 객체의 responses 프로퍼티의 (이 프로퍼티는 List일 것이다) 0번째 인덱스에 value 값인 "서버"가 저장될 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">항목을 채우고 전송을 누른다. 이 &lt;form&gt; 태그의 method는 "post"이기 때문에, "/survey" 경로의 POST 방식을 처리하는 submit() 메서드가 이를 처리한다. submit() 메서드를 보면 커맨드 객체로 AnsweredData를 사용한다.&nbsp;</p>
+<p data-ke-size="size16">또한 뷰이름으로서 "survey/submitted"를 리턴하기 때문에 submitted.jsp가 뷰를 처리한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>submitted.jsp</b>를 보면 아래와 같은 foreach 문이 있다.</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption>submitted.jsp</figcaption>
+</figure></p>
+<p data-ke-size="size16">커맨드 객체 AnswerdData의 response를 순회하면서 출력하고 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="color: #555555;">출처 : 스프링5 프로그래밍 입문 (최범균 저)&nbsp;</span></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #MVC #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

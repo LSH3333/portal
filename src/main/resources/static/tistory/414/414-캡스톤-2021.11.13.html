@@ -1,0 +1,84 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>캡스톤 2021.11.13</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">캡스톤 2021.11.13</h2>
+                                <div class="box-info">
+                                    <p class="category">학교/캡스톤</p>
+                                    <p class="date">2021-11-08 16:32:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">사용자가 원하는 이미지로 수정하는 기능은 구현 완료.</p>
+<p data-ke-size="size16">텍스트 수정에 아직 문제가 있다.</p>
+<p data-ke-size="size16">지금 구현된 기능으로는 사용자가 웹상에서 텍스트 파일을 일일히 직접 지정해줘야하는데</p>
+<p data-ke-size="size16">너무 번거로울뿐만 아니라 나중에 만약에 서버에 올리는 상황이 오면 문제가 있을것으로 예상된다.&nbsp;</p>
+<p data-ke-size="size16">따라서 다른 방법이 필요할것 같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">생각해놓은 방법으로는 <b>html 파일의 모든 문자열을 불러와서 유니티 스크립트에서 그 문자열을 수정한후 html 파일에 반영하는 것.</b></p>
+<p data-ke-size="size16">그러기 위해서 먼저 유니티상에서 html 파일을 불러오고 수정하는 기능이 정상적으로 작동되는지 테스트가 필요하다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/7d8e3b36577fca607c3ed914f67c7216.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- Unity에서 html 파일 불러오는 기능 확인&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="756" data-origin-height="504" data-filename="Nov-08-2021 16-30-29.gif" width="646" height="430" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.gif" data-origin-width="756" data-origin-height="504" data-filename="Nov-08-2021 16-30-29.gif" width="646" height="430" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- Unity에서 html 파일 수정되는지 확인&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="756" data-origin-height="504" data-filename="Nov-08-2021 16-31-02.gif" width="680" height="453" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.gif" data-origin-width="756" data-origin-height="504" data-filename="Nov-08-2021 16-31-02.gif" width="680" height="453" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption>html 파일의 마지막에 "appended text" 추가된것 확인</figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. html 파일 읽어온다</p>
+<p data-ke-size="size16">2. 읽어온 html 파일을 문자열로 모두 바꾼후에 각 라인별로 "FixFlag" 라는 문자열이 포함되어있는지 확인한다</p>
+<p data-ke-size="size16">("FixFlag"는 이 부분의 html 코드가 변경이 필요하다는 기준점)&nbsp;</p>
+<p data-ke-size="size16">3. "FixFlag"가 포함되어있으면 다음 줄에 유저가 지정한 문자열들을 차례대로 삽입한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/96ae774975b9b6ecbb8abce3d1f52d91.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="860" data-origin-height="510" data-filename="Nov-08-2021 18-10-41.gif" width="777" height="461" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.gif" data-origin-width="860" data-origin-height="510" data-filename="Nov-08-2021 18-10-41.gif" width="777" height="461" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">다음 버튼을 누르니 index.html 파일이 정상적으로 생성된것을 볼 수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

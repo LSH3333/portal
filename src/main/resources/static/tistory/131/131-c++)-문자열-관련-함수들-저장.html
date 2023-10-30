@@ -1,0 +1,116 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>c++) 문자열 관련 함수들 저장</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">c++) 문자열 관련 함수들 저장</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2021-04-02 22:47:30</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><b>입력관련:</b></p>
+<p><b>cin</b></p>
+<p>&lt;iostream&gt;</p>
+<p>표준 입력 버퍼에서 개행 문자 제외한 값 가져옴.</p>
+<p>공백, 개행 입력시 그 전까지 받아들임.</p>
+<p>개행 문자를 입력 버퍼에 남겨둠.</p>
+<p>&nbsp;</p>
+<p><b>cin.getline</b></p>
+<p>&lt;iostream&gt;</p>
+<p>cin.getline(변수 주소, 최대 입력 문자수, 종결 문자)</p>
+<p>char 형 배열에 저장가능.</p>
+<p>ex) cin.getline(str, 10)</p>
+<p>&nbsp;</p>
+<p>null 관련 참고: <a href="https://m.blog.naver.com/PostView.nhn?blogId=ekthatkxkd&amp;logNo=221098511549&amp;proxyReferer=https:%2F%2Fwww.google.co.kr%2F" target="_blank" rel="noopener">m.blog.naver.com/PostView.nhn?blogId=ekthatkxkd&amp;logNo=221098511549&amp;proxyReferer=https:%2F%2Fwww.google.co.kr%2F</a></p>
+<p>&nbsp;</p>
+<p><b>getline</b></p>
+<p>string 라이브러리에 포함.</p>
+<p>string에 저장가능.</p>
+<p>ex) getline(cin, string)</p>
+<p>&nbsp;</p>
+<p><b>int tolower(int c);</b></p>
+<p>소문자로 변경</p>
+<p>&nbsp;</p>
+<p><b>int toupper(int c);</b></p>
+<p>대문자로 변경</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>reverse</b></p>
+<p>문자열 거꾸로 변환</p>
+<p>ex) reverse(str.begin(), str.end());</p>
+<p>&nbsp;</p>
+<p><b>문자열 변환함수</b></p>
+<p><b>stoi : string to int</b></p>
+<p><b>stof : string to float</b></p>
+<p><b>stol : string to long int</b></p>
+<p><b>stod : string to double</b></p>
+<p>&nbsp;</p>
+<p>ex) int num = stoi(str1);</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>substr</b></p>
+<p>문자열의 일부를 리턴</p>
+<p>substr(pos, count)</p>
+<p>&nbsp;</p>
+<p>pos: 첫번째 문자의 위치 (원래의 문자열에서)</p>
+<p>count: 부분 문자열의 길이</p>
+<p>&nbsp;</p>
+<p>리턴: 원래 문자열에서 [pos, pos+count) 까지의 문자열 반환.</p>
+<p>&nbsp;</p>
+<p><b>append</b></p>
+<p>string str1 = "abc";</p>
+<p>string str2 = "def";</p>
+<p>str1.append(str2);</p>
+<p>cout &lt;&lt; str1;&nbsp;&nbsp;</p>
+<p>// 출력: "abcdef"</p>
+<p>&nbsp;</p>
+<p><b>to_string</b></p>
+<p>Integer을 string으로 변환</p>
+<p>&nbsp;</p>
+<p>int num = 10;</p>
+<p>cout &lt;&lt; to_string(num);&nbsp;</p>
+<p>// 출력: "10"</p>
+<p>&nbsp;</p>
+<p><b>string.find</b></p>
+<p>찾는 문자열을 찾았다면 해당 문자열의 시작지점 반환.</p>
+<p>찾지 못했다면 string::npos 반환.</p>
+<p>(string::npos is defined with a value of -1)&nbsp;</p>
+<p><a href="http://www.cplusplus.com/reference/string/string/npos/" target="_blank" rel="noopener">www.cplusplus.com/reference/string/string/npos/</a></p>
+<p>&nbsp;</p>
+<p>ex)&nbsp;</p>
+<p>string s = "abc";</p>
+<p>if(s.find("d") == -1) cout &lt;&lt; "no d";</p>
+<p>&nbsp;</p>
+<p>output: "no d"</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,327 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Java) 함수의 파라미터에는 복사된 주소값이 전달된다</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Java) 함수의 파라미터에는 복사된 주소값이 전달된다</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2022-11-13 12:02:32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">자바에서 함수로 전달된 객체의 값이 변경될지언정 전달되는 것이 객체의 주소<b>값</b>을 복사해서 전달하기 때문에 Call by value라는 것은 알고 있었는데 의문이 들어 좀더 자세히 찾아봤다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">내가 든 의문은 주소값을 복사해서 전달하더라도 어쨌든 주소를 넘겼고 실제로 객체의 데이터도 변경이 되는데 왜 call by reference가 아닌지였다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 call by value와 call by reference를 좀더 정확히 정의해보면&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><b>Call by value&nbsp;</b></h3>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>복사된 데이터를 전달한다</li>
+<li>callee(호출을 받은쪽) 에서 수정해도 원본은 영향을 받지 않는다&nbsp;</li>
+</ul>
+<h3 data-ke-size="size23"><b>Call by reference&nbsp;</b></h3>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>실제 주소값을 전달한다&nbsp;</li>
+<li>callee 에서 수정하면 원본이 영향을 받는다&nbsp;</li>
+</ul>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23">&nbsp;</h3>
+<h2 data-ke-size="size26"><b>햇갈리는점 : Java는 함수내에서 값을 변경하면 값이 바뀌는데 왜 call-by-value인가?</b></h2>
+<p data-ke-size="size16">우선 다음 두 경우는 다른 경우라는 것을 이해해야 한다&nbsp;</p>
+<h3 data-ke-size="size23"><b>1)객체가 함수에 전달되어 해당 객체의 필드값 변경 vs 2)객체 자체를 변경&nbsp;</b></h3>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1) </b>먼저 객체가 함수에 전달되어 해당 객체의 필드값을 변경하는 경우다&nbsp;</p>
+<pre class="arduino"><code>class Type {
+    public int num;
+    public int getNum() {
+        return num;
+    }
+    public void setNum(int _num) {
+        num = _num;
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args) throws IOException
+    {
+        Type a = new Type();
+        a.setNum(1);
+        foo(a);
+        System.out.println(a.getNum()); // 2
+    }
+
+    static void foo(Type type) {
+        type.setNum(2);
+    }
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">foo 함수에 Type a를 전달했고 함수 내에서 setNum(2)로 값을 변경했다.</p>
+<p data-ke-size="size16">메인함수에서 찍어보면 분명이 값은 2로 변경되었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이게 자바가 call by value 인지 ref인지 햇갈리는 이유다.</p>
+<p data-ke-size="size16">분명 자바가 call by value라면 foo() 함수내에서 Type a 값을 변경했더라도 메인함수의 Type a 는 여전히 값이 1이어야 한다.</p>
+<p data-ke-size="size16">그런데 실제로는 변경됐다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2)</b> 다음은 객체 자체를 변경하는 경우다&nbsp;</p>
+<pre class="arduino"><code>class Type {
+    public int num;
+    public int getNum() {
+        return num;
+    }
+    public void setNum(int _num) {
+        num = _num;
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args) throws IOException
+    {
+        Type a = new Type();
+        a.setNum(1);
+        foo(a);
+        System.out.println(a.getNum()); // 1
+    }
+
+    static void foo(Type type) {
+        type = new Type();
+        type.setNum(2);
+    }
+}</code></pre>
+<p data-ke-size="size16">foo 함수에서 전달된 Type type에 새로운 객체를 만들어 할당하고 값을 지정해줬다.</p>
+<p data-ke-size="size16">그런데 메인함수에 돌아와 보면 a는 여전히 1 이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">foo 함수로 a를 전달했고 함수 내에서 새로운 객체를 만들어 할당했는데 반영이 되지 않았다.</p>
+<p data-ke-size="size16"><b>이게 java가 call by value인 이유다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1) 과 2)의 차이의 결론은 함수의 파라미터로 전달된 객체의 필드에 접근해서 <b>객체의 필드의 값을 변경할수는 있지만, 객체 그 자체의 변경은 </b></p>
+<p data-ke-size="size16"><b>불가능</b>하다는 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이는 함수의 파라미터로 객체를 전달할때 객체 자체가 전달되는 것이 아닌 객체의 주소값이 복사되어 전달되기 때문이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style2" />
+<h2 data-ke-size="size26"><b>이유? </b></h2>
+<h2 data-ke-size="size26">&nbsp;</h2>
+<h2 data-ke-size="size26"><b>1)번 경우: </b><b>객체가 함수에 전달되어 해당 객체의 필드값 변경</b></h2>
+<p data-ke-size="size16"><span>자바는<span>&nbsp;</span></span>기본형 타입<span>은 그냥 스택에 저장하고,<span>&nbsp;</span></span>레퍼런스 오브젝트 타입은 실제 객체는 힙에 저장하고 해당 객체를 가르키는 주소값은 스택에 저장한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="arduino"><code>class Type {
+    public int num;
+    public int getNum() {
+        return num;
+    }
+    public void setNum(int _num) {
+        num = _num;
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args) throws IOException
+    {
+        Type a = new Type();
+        a.setNum(1);
+        foo(a);
+        System.out.println(a.getNum()); // 2
+    }
+
+    static void foo(Type type) {
+        type.setNum(2);
+    }
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1. 메인함수에서 Type a 를 생성하고 1을 할당했다.</b></p>
+<p data-ke-size="size16">여기서 자바는 레퍼런스 오브젝트 타입의 실제 객체는 힙에 생성하고 주소값은 스택에 보관하기 때문에 아래와 같이된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="361" height="343" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" width="361" height="343"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2. foo 함수에 a 를 전달했다.&nbsp;</b></p>
+<p><figure class="imageblock alignLeft" width="365" height="326" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="365" height="326"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">a의 주소값이 복사되어 foo에 전달되기 때문에 위와 같이 foo의 파라미터 Type type은 결과적으로 Type a와 같은 곳을 가르키게 된다.</p>
+<p data-ke-size="size16"><b>a의 주소값이 복사된다는 것이 중요하다.</b></p>
+<p data-ke-size="size16">복사가 된것이기 때문에 a와 type은 같은 곳을 가르키고 있는 것은 맞지만 둘은 다르다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>3. foo 내부에서 파라미터인 Type type의 필드값을 2로 변경한다.</b></p>
+<p><figure class="imageblock alignLeft" width="395" height="353" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="395" height="353"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">type은 a가 가르키는 곳과 같은 곳을 가르키기 때문에 a의 실제 객체의 값이 변경된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>4. foo 함수가 종료되고 메인함수로 돌아온다</b></p>
+<p><figure class="imageblock alignLeft" width="382" height="377" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" width="382" height="377"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">foo 함수가 종료되고 메인함수로 되돌아오면 foo 함수 지역내에서 사용된 자원은 사라지게 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>결과적으로 a의 num값은 2로 변경됐다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>2)번 경우: </b><b>객체 자체를 변경&nbsp;</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="arduino"><code>class Type {
+    public int num;
+    public int getNum() {
+        return num;
+    }
+    public void setNum(int _num) {
+        num = _num;
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args) throws IOException
+    {
+        Type a = new Type();
+        a.setNum(1);
+        foo(a);
+        System.out.println(a.getNum()); // 1
+    }
+
+    static void foo(Type type) {
+        type = new Type();
+        type.setNum(2);
+    }
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1. 메인함수에서 Type a 를 생성하고 1을 할당했다.</b></p>
+<p data-ke-size="size16">여기서 자바는 레퍼런스 오브젝트 타입의 실제 객체는 힙에 생성하고 주소값은 스택에 보관하기 때문에 아래와 같이된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" width="361" height="343" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" width="361" height="343"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2. foo 함수에 a 를 전달했다.&nbsp;</b></p>
+<p><figure class="imageblock alignLeft" width="365" height="326" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" width="365" height="326"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">a의 주소값이 복사되어 foo에 전달되기 때문에 위와 같이 foo의 파라미터 Type type은 결과적으로 Type a와 같은 곳을 가르키게 된다.</p>
+<p data-ke-size="size16"><b>a의 주소값이 복사된다는 것이 중요하다.</b></p>
+<p data-ke-size="size16">복사가 된것이기 때문에 a와 type은 같은 곳을 가르키고 있는 것은 맞지만 둘은 다르다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>3. foo 내부에서 파라미터 객체 type에 new 로 새로운 객체를 할당한다</b></p>
+<p><figure class="imageblock alignLeft" width="373" height="317" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" width="373" height="317"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이렇게 type에 새로운 객체를 할당하는 순간 파라미터 객체 type은 새로운 객체를 가르키게 되고,</p>
+<p data-ke-size="size16">결과적으로 원래 같은 곳을 가르키고 있던 a와 type은 서로 다른 객체를 가르키게 되었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>4. foo 함수가 종료되고 메인함수로 돌아온다</b></p>
+<p><figure class="imageblock alignLeft" width="328" height="288" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" width="328" height="288"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">foo 함수가 종료되고 메인함수로 되돌아오면 foo 함수 지역내에서 사용된 자원은 사라지게 된다.</p>
+<p data-ke-size="size16"><b>따라서 메인함수에 되돌아와서 a를 찍어보면 여전히 a.num의 값은 1이 된다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이게 바로 1) 케이스 처럼 <b>함수의 파라미터로 전달된 객체의 필드값은 변경할수 있지만, 새로운 객체를 할당할수는 없는 이유이고, 자바가 Call By Value인 이유이다.</b>&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://dev.to/sbu_05/reassigning-an-object-parameter-4amk" target="_blank" rel="noopener">https://dev.to/sbu_05/reassigning-an-object-parameter-4amk</a></p>
+<figure id="og_1668308467445" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="Reassigning an Object parameter" data-og-description="Welcome back to my series, where I go over the little java quirks and obstacles that I encountered on..." data-og-host="dev.to" data-og-source-url="https://dev.to/sbu_05/reassigning-an-object-parameter-4amk" data-og-url="https://dev.to/sbu_05/reassigning-an-object-parameter-4amk" data-og-image="https://scrap.kakaocdn.net/dn/bdUPXp/hyQxGi9GvX/8HiTbShqnUhRvsKnKzVkR1/img.png?width=1128&amp;height=600&amp;face=0_0_1128_600,https://scrap.kakaocdn.net/dn/bdKzBL/hyQxA4mxCx/bT1Yilf7knkdvcu0LL80C0/img.png?width=775&amp;height=333&amp;face=0_0_775_333,https://scrap.kakaocdn.net/dn/bUrp3T/hyQxLktJi5/WM4SUewIMElkxbKHwKKfAK/img.png?width=647&amp;height=420&amp;face=0_0_647_420"><a href="https://dev.to/sbu_05/reassigning-an-object-parameter-4amk" target="_blank" rel="noopener" data-source-url="https://dev.to/sbu_05/reassigning-an-object-parameter-4amk">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bdUPXp/hyQxGi9GvX/8HiTbShqnUhRvsKnKzVkR1/img.png?width=1128&amp;height=600&amp;face=0_0_1128_600,https://scrap.kakaocdn.net/dn/bdKzBL/hyQxA4mxCx/bT1Yilf7knkdvcu0LL80C0/img.png?width=775&amp;height=333&amp;face=0_0_775_333,https://scrap.kakaocdn.net/dn/bUrp3T/hyQxLktJi5/WM4SUewIMElkxbKHwKKfAK/img.png?width=647&amp;height=420&amp;face=0_0_647_420');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Reassigning an Object parameter</p>
+<p class="og-desc" data-ke-size="size16">Welcome back to my series, where I go over the little java quirks and obstacles that I encountered on...</p>
+<p class="og-host" data-ke-size="size16">dev.to</p>
+</div>
+</a></figure>
+<p data-ke-size="size16"><a href="https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value" target="_blank" rel="noopener">https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value</a></p>
+<figure id="og_1668308489974" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Is Java &quot;pass-by-reference&quot; or &quot;pass-by-value&quot;?" data-og-description="I always thought Java uses pass-by-reference. However, I've seen a blog post that claims that Java uses pass-by-value. I don't think I understand the distinction they're making. What is the explana..." data-og-host="stackoverflow.com" data-og-source-url="https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value" data-og-url="https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value" data-og-image="https://scrap.kakaocdn.net/dn/kXDz1/hyQxEFD8EL/EdCHAfpHpqHsun09ENAeLk/img.png?width=316&amp;height=316&amp;face=0_0_316_316,https://scrap.kakaocdn.net/dn/cW9Wg1/hyQxLY4dYR/e0qPGPQxLZNkARaps4BW0K/img.png?width=590&amp;height=305&amp;face=0_0_590_305,https://scrap.kakaocdn.net/dn/KfbhO/hyQznWAvfq/rrHg1uJK6zPpftoZ9TpxNK/img.png?width=582&amp;height=295&amp;face=0_0_582_295"><a href="https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value" target="_blank" rel="noopener" data-source-url="https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/kXDz1/hyQxEFD8EL/EdCHAfpHpqHsun09ENAeLk/img.png?width=316&amp;height=316&amp;face=0_0_316_316,https://scrap.kakaocdn.net/dn/cW9Wg1/hyQxLY4dYR/e0qPGPQxLZNkARaps4BW0K/img.png?width=590&amp;height=305&amp;face=0_0_590_305,https://scrap.kakaocdn.net/dn/KfbhO/hyQznWAvfq/rrHg1uJK6zPpftoZ9TpxNK/img.png?width=582&amp;height=295&amp;face=0_0_582_295');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Is Java "pass-by-reference" or "pass-by-value"?</p>
+<p class="og-desc" data-ke-size="size16">I always thought Java uses pass-by-reference. However, I've seen a blog post that claims that Java uses pass-by-value. I don't think I understand the distinction they're making. What is the explana...</p>
+<p class="og-host" data-ke-size="size16">stackoverflow.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16"><a href="https://www.javadude.com/articles/passbyvalue.htm" target="_blank" rel="noopener">https://www.javadude.com/articles/passbyvalue.htm</a></p>
+<figure id="og_1668308499597" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="Java is Pass-by-Value, Dammit!" data-og-description="Java passes everything _by value_. Period." data-og-host="www.javadude.com" data-og-source-url="https://www.javadude.com/articles/passbyvalue.htm" data-og-url="https://javadude.com/articles/passbyvalue.htm" data-og-image=""><a href="https://www.javadude.com/articles/passbyvalue.htm" target="_blank" rel="noopener" data-source-url="https://www.javadude.com/articles/passbyvalue.htm">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">Java is Pass-by-Value, Dammit!</p>
+<p class="og-desc" data-ke-size="size16">Java passes everything _by value_. Period.</p>
+<p class="og-host" data-ke-size="size16">www.javadude.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Java 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

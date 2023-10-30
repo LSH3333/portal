@@ -1,0 +1,66 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>배경 반복</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">배경 반복</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-01-20 20:40:48</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <pre id="code_1611142751405" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>using System.Collections;
+using System.Collections.Generic;using UnityEngine;
+
+public class RepeatBackground : MonoBehaviour
+{
+    [SerializeField]
+    private Transform centerBackground; // 3개의 배경중 가운데
+
+    private void Update()
+    {
+        // 카메라의 y pos가 centerBackground y pos 보다 커지면
+        // centerBackground의 위치를 옮김.
+        if(transform.position.y &gt;= centerBackground.position.y + 10.2f)
+        {
+            centerBackground.position = new Vector2(centerBackground.position.x, transform.position.y + 10.2f);
+        }
+
+        else if(transform.position.y &lt;= centerBackground.position.y - 10.2f)
+        {
+            centerBackground.position = new Vector2(centerBackground.position.x, transform.position.y - 10.2f);
+        }
+
+    }
+}
+</code></pre>
+<p>attach this script to the camera</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

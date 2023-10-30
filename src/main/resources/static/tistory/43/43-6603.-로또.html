@@ -1,0 +1,108 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>6603. 로또</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">6603. 로또</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2020-09-26 20:15:51</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="http://www.acmicpc.net/problem/6603" target="_blank" rel="noopener">www.acmicpc.net/problem/6603</a></p>
+<figure id="og_1601117907182" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="6603번: 로또" data-og-description="입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 한 줄로 이루어져 있다. 첫 번째 수는 k (6 &lt; k &lt; 13)이고, 다음 k개 수는 집합 S에 포함되는 수이다. S의 원소는 오름차순으로 " data-og-host="www.acmicpc.net" data-og-source-url="http://www.acmicpc.net/problem/6603" data-og-url="https://www.acmicpc.net/problem/6603" data-og-image="https://scrap.kakaocdn.net/dn/CvXtV/hyHuQ9zrW3/wr7kEcRSPVsMdwpGXZ9jT0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="http://www.acmicpc.net/problem/6603" target="_blank" rel="noopener" data-source-url="http://www.acmicpc.net/problem/6603">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/CvXtV/hyHuQ9zrW3/wr7kEcRSPVsMdwpGXZ9jT0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">6603번: 로또</p>
+<p class="og-desc">입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 한 줄로 이루어져 있다. 첫 번째 수는 k (6 &lt; k &lt; 13)이고, 다음 k개 수는 집합 S에 포함되는 수이다. S의 원소는 오름차순으로</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>next_permutation(), prev_permutation 함수를 이용.</p>
+<p>next_permutation을 이용하는 새로운 방법을 이 문제에서 알게되었다.</p>
+<p>&nbsp;</p>
+<p>문제는 k(k&gt;6)개의 숫자중 6개를 뽑아서 순열을 만드는 거라고 볼수 있다.</p>
+<p>그럼 예제에 있는것처럼 k = 7일때는 7개중 6개를 뽑아야한다.</p>
+<p>&nbsp;</p>
+<p>[1,1,1,0]을 prev_permutation을 돌려보면,</p>
+<p>&nbsp;</p>
+<p>[1,1,1,0]&nbsp;</p>
+<p>[1,1,0,1]</p>
+<p>[1,0,1,1]</p>
+<p>[0,1,1,1]</p>
+<p>&nbsp;</p>
+<p>이 나온다.</p>
+<p>&nbsp;</p>
+<p>이것은 4개의 숫자 중 3개를 뽑아서 순열을 만드는 것과 같다.</p>
+<p>숫자가 [1,2,3,4]라면</p>
+<p>&nbsp;</p>
+<p>[1,1,1,0]&nbsp; [<span style="color: #ee2323;">1,2,3</span>,4]</p>
+<p>[1,1,0,1]&nbsp; <span style="color: #333333;">[<span style="color: #ee2323;">1,2</span>,3,<span style="color: #ee2323;">4</span>]</span></p>
+<p>[1,0,1,1]&nbsp; <span style="color: #333333;">[<span style="color: #ee2323;">1</span>,2,<span style="color: #ee2323;">3,4</span>]</span></p>
+<p>[0,1,1,1]&nbsp; <span style="color: #333333;">[1,<span style="color: #ee2323;">2,3,4</span>]</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<pre id="code_1601118941646" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+#include &lt;algorithm&gt;
+
+int main() {
+	while(true) {
+		int n;
+		cin &gt;&gt; n;
+		if (n == 0) break; // n = 0이면 프로그램 종료
+
+		int a[100];
+		int b[100] = { 0 };
+
+		for (int i = 0; i &lt; n; i++) {
+			cin &gt;&gt; a[i];
+		}
+
+		for (int i = 0; i &lt; 6; i++) { // 6개를 골라야 하므로 6개의 1
+			b[i] = 1;
+		}
+
+
+		do {
+
+			for (int i = 0; i &lt; n; i++) {
+				if (b[i] == 1) cout &lt;&lt; a[i] &lt;&lt; " ";;
+			}
+			cout &lt;&lt; "\n";
+		} while (prev_permutation(b, b + n));
+	
+		cout &lt;&lt; "\n";
+	}
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #CPP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

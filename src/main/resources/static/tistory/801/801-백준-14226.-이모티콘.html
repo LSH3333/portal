@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 14226. 이모티콘</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 14226. 이모티콘</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-07-22 13:47:13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/14226" target="_blank" rel="noopener">https://www.acmicpc.net/problem/14226</a></p>
+<figure id="og_1658464956001" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="14226번: 이모티콘" data-og-description="영선이는 매우 기쁘기 때문에, 효빈이에게 스마일 이모티콘을 S개 보내려고 한다. 영선이는 이미 화면에 이모티콘 1개를 입력했다. 이제, 다음과 같은 3가지 연산만 사용해서 이모티콘을 S개 만" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/14226" data-og-url="https://www.acmicpc.net/problem/14226" data-og-image="https://scrap.kakaocdn.net/dn/coegfa/hyPaARZ5st/JYVajYV9OemuwOwMeKyHSK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/14226" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/14226">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/coegfa/hyPaARZ5st/JYVajYV9OemuwOwMeKyHSK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">14226번: 이모티콘</p>
+<p class="og-desc" data-ke-size="size16">영선이는 매우 기쁘기 때문에, 효빈이에게 스마일 이모티콘을 S개 보내려고 한다. 영선이는 이미 화면에 이모티콘 1개를 입력했다. 이제, 다음과 같은 3가지 연산만 사용해서 이모티콘을 S개 만</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">bfs 문제.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음 세가지의 연산을 모두 수행해서 길이 S가 되도록 하면된다.</p>
+<ol style="list-style-type: disc;" data-ke-list-type="disc">
+<li>화면에 있는 이모티콘을 모두 복사해서 클립보드에 저장한다.</li>
+<li>클립보드에 있는 모든 이모티콘을 화면에 붙여넣기 한다.</li>
+<li>화면에 있는 이모티콘 중 하나를 삭제한다.</li>
+</ol>
+<p data-ke-size="size16">문제는 bfs 알고리즘을 사용할때 중복되는 노드를 걸러내는 조건을 만들어줘야 하는데 이 문제는 S의 최대 길이가 1000 이라서 그냥 1번 연산의 조건으로 이미 현재 이모티콘 길이를 복사한적 있으면 하지 않도록 해줬다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아마 2차원 배열로 [현재 이모티콘 길이][클립보드에 복사된 길이] 를 만들어서 2번 연산에도 조건을 달아주면 더 빠르게 완료될것 같기도 하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/58a918d22def6830189cfd593c56e5d1.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #graph #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

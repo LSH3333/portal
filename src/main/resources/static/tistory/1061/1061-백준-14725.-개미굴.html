@@ -1,0 +1,61 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 14725. 개미굴</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 14725. 개미굴</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-02-13 14:25:34</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/14725" target="_blank" rel="noopener">https://www.acmicpc.net/problem/14725</a></p>
+<figure id="og_1676265685340" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="14725번: 개미굴" data-og-description="첫 번째 줄은 로봇 개미가 각 층을 따라 내려오면서 알게 된 먹이의 정보 개수 N개가 주어진다. &nbsp;(1 &le; N &le; 1000) 두 번째 줄부터 N+1 번째 줄까지, 각 줄의 시작은 로봇 개미 한마리가 보내준 먹이 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/14725" data-og-url="https://www.acmicpc.net/problem/14725" data-og-image="https://scrap.kakaocdn.net/dn/llhoB/hyRAfd365S/beHrs90Yz2rtMYOR6nAvqK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bE7y32/hyRAfLU7ai/3on3B9SSjqykK0ueTHstok/img.png?width=1503&amp;height=785&amp;face=0_0_1503_785"><a href="https://www.acmicpc.net/problem/14725" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/14725">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/llhoB/hyRAfd365S/beHrs90Yz2rtMYOR6nAvqK/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/bE7y32/hyRAfLU7ai/3on3B9SSjqykK0ueTHstok/img.png?width=1503&amp;height=785&amp;face=0_0_1503_785');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">14725번: 개미굴</p>
+<p class="og-desc" data-ke-size="size16">첫 번째 줄은 로봇 개미가 각 층을 따라 내려오면서 알게 된 먹이의 정보 개수 N개가 주어진다. &nbsp;(1 &le; N &le; 1000) 두 번째 줄부터 N+1 번째 줄까지, 각 줄의 시작은 로봇 개미 한마리가 보내준 먹이</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제가 조금 햇갈리는 부분이 있는데 예제1번을 보면 하나의 굴에서 다음 층의 굴로 나뉠때 음식의 종류는 하나만 가능하다.</p>
+<p data-ke-size="size16">하나의 굴에서 이어진 다음 굴에 같은 종류의 음식들은 나올수 없다는 의미다.</p>
+<p data-ke-size="size16">&nbsp; &nbsp; A</p>
+<p data-ke-size="size16">&nbsp; /&nbsp; &nbsp; \&nbsp;</p>
+<p data-ke-size="size16">B&nbsp; &nbsp; &nbsp; B</p>
+<p data-ke-size="size16">이런식으로는 불가능.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">노드풀에 트리의 자식의 주소를 저장하는 방식으로 구현하면 된다.</p>
+<p data-ke-size="size16">같은 층에 여러개의 방이 있을때는 사전순으로 순서가 앞서는 먹이가 먼저 출력되야 하기 때문에 출력 전에 모든 노드들의 자식들을 음식의 알파벳 순서 기준으로 오름차순 정렬해줘야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/96ceed20375facbf7bcb088e3f1512ca.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Tree 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

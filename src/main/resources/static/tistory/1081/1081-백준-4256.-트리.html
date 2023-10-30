@@ -1,0 +1,69 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 4256. 트리</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 4256. 트리</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-02-28 14:22:05</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/4256" target="_blank" rel="noopener">https://www.acmicpc.net/problem/4256</a></p>
+<figure id="og_1677561547573" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="4256번: 트리" data-og-description="첫째 줄에 테스트 케이스의 개수 T가 주어진다. 각 테스트 케이스의 첫째 줄에는 노드의 개수 n이 주어진다. (1 &le; n &le; 1,000) BT의 모든 노드에는 1부터 n까지 서로 다른 번호가 매겨져 있다. 다음 " data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/4256" data-og-url="https://www.acmicpc.net/problem/4256" data-og-image=""><a href="https://www.acmicpc.net/problem/4256" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/4256">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">4256번: 트리</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 테스트 케이스의 개수 T가 주어진다. 각 테스트 케이스의 첫째 줄에는 노드의 개수 n이 주어진다. (1 &le; n &le; 1,000) BT의 모든 노드에는 1부터 n까지 서로 다른 번호가 매겨져 있다. 다음</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이전 풀었던 <b>2263. 트리의 순회</b>랑 같은 문제다.</p>
+<p data-ke-size="size16">트리의 순회 문제는 중위순회와 후위순회 결과가 주어지고, 전위 순회 결과를 구하는 문제였다.</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/950" target="_blank" rel="noopener">https://tose33.tistory.com/950</a></p>
+<figure id="og_1677561539484" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="백준 2263. 트리의 순회" data-og-description="https://www.acmicpc.net/problem/2263 2263번: 트리의 순회 첫째 줄에 n(1 &le; n &le; 100,000)이 주어진다. 다음 줄에는 인오더를 나타내는 n개의 자연수가 주어지고, 그 다음 줄에는 같은 식으로 포스트오더가 주" data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/950" data-og-url="https://tose33.tistory.com/950" data-og-image="https://scrap.kakaocdn.net/dn/bcKgVk/hyRMt99yVj/pq18Gk9vPrE7FMzJUg2TkK/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/ejSj7i/hyRMmb8VD4/9Zl4akLIX2vHKKUi92jQ60/img.png?width=800&amp;height=800&amp;face=0_0_800_800"><a href="https://tose33.tistory.com/950" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/950">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bcKgVk/hyRMt99yVj/pq18Gk9vPrE7FMzJUg2TkK/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/ejSj7i/hyRMmb8VD4/9Zl4akLIX2vHKKUi92jQ60/img.png?width=800&amp;height=800&amp;face=0_0_800_800');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">백준 2263. 트리의 순회</p>
+<p class="og-desc" data-ke-size="size16">https://www.acmicpc.net/problem/2263 2263번: 트리의 순회 첫째 줄에 n(1 &le; n &le; 100,000)이 주어진다. 다음 줄에는 인오더를 나타내는 n개의 자연수가 주어지고, 그 다음 줄에는 같은 식으로 포스트오더가 주</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이번 문제는 전위 순회와 중위 순회가 주어지고 후위 순회를 구하는 문제다.</p>
+<p data-ke-size="size16">마찬가지로 중위 순회 결과에서 루트 노드 기준 왼쪽이 왼쪽 자식들이고 오른쪽이 오른쪽 자식들이란 점을 이용해서, 분할 정복으로 풀면 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/7bf4274bb92a2a91c4951b0b07440b56.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Tree #recursion #divide and conquer 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

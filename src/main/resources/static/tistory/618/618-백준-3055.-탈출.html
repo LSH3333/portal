@@ -1,0 +1,67 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 3055. 탈출</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 3055. 탈출</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-04-01 17:51:35</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/3055" target="_blank" rel="noopener">https://www.acmicpc.net/problem/3055</a></p>
+<figure id="og_1648802660635" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="3055번: 탈출" data-og-description="사악한 암흑의 군주 이민혁은 드디어 마법 구슬을 손에 넣었고, 그 능력을 실험해보기 위해 근처의 티떱숲에 홍수를 일으키려고 한다. 이 숲에는 고슴도치가 한 마리 살고 있다. 고슴도치는 제" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/3055" data-og-url="https://www.acmicpc.net/problem/3055" data-og-image="https://scrap.kakaocdn.net/dn/dI2UO7/hyNTmNoWPN/5R6yROLGzsrph35WqRyyV1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/3055" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/3055">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/dI2UO7/hyNTmNoWPN/5R6yROLGzsrph35WqRyyV1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">3055번: 탈출</p>
+<p class="og-desc" data-ke-size="size16">사악한 암흑의 군주 이민혁은 드디어 마법 구슬을 손에 넣었고, 그 능력을 실험해보기 위해 근처의 티떱숲에 홍수를 일으키려고 한다. 이 숲에는 고슴도치가 한 마리 살고 있다. 고슴도치는 제</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">홍수의 시작지점들과 고슴도치의 시작점을 큐에 넣고 bfs 를 진행하면 된다.&nbsp;</p>
+<p data-ke-size="size16">처음에 저지른 실수가 고슴도치와 홍수를 각각 다른 큐에 넣은것인데 <b>홍수와 고슴도치가 같이 한칸씩 이동되야 하므로 동일한 큐에 넣어서 관리해야 한다.&nbsp;</b></p>
+<p data-ke-size="size16">또한 고슴도치는 물이 찰 예정인 칸은 이동할수 없으므로 같은 큐에 홍수의 시작지점들부터 넣고 그다음에 고슴도치의 시작지점을 넣어야 한다. 그래야만 현재 물이 있는 칸들이 모두 다음 칸으로 확산되고 그 후에 고슴도치가 이동할수 있는지 아닌지 판단 할 수 있다.</p>
+<p data-ke-size="size16">만약 고슴도치의 위치부터 큐에 넣으면 고슴도치가 물이 확산되는 위치에 존재하게 될 수도 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음과 같은 구조체를 만들어 큐에 넣어줬다.</p>
+<pre class="cpp"><code>struct loc
+{
+    int type; // 0:홍수, 1:고슴도치
+    int r;
+    int c;
+    int depth;
+};</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/6de2714d10cb669465ca8abc32f05cc7.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>css) css unit (px, %, em, rem, vh, vw)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">css) css unit (px, %, em, rem, vh, vw)</h2>
+                                <div class="box-info">
+                                    <p class="category">html & css</p>
+                                    <p class="date">2021-08-06 18:00:47</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h3 data-ke-size="size23"><u>px - 절대적인 값</u></h3>
+<p data-ke-size="size16">px은 절대적인 값이다. (상대적아님 %처럼)</p>
+<p data-ke-size="size16">웹의 창 크기를 변형해도 픽셀로 정의한 글자크기는 변하지 않는다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1772" data-origin-height="536" data-filename="스크린샷 2021-08-06 오후 5.52.26.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1772" data-origin-height="536" data-filename="스크린샷 2021-08-06 오후 5.52.26.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u>% - 상대적인 값 </u></h3>
+<p data-ke-size="size16">상대적인 값인 %는 parent element에 따라 결정된다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="732" data-origin-height="244" data-filename="스크린샷 2021-08-06 오후 5.57.39.png" width="543" height="181" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="732" data-origin-height="244" data-filename="스크린샷 2021-08-06 오후 5.57.39.png" width="543" height="181" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption>index.html</figcaption>
+</figure></p>
+<p data-ke-size="size16">inner 클래스의 parent는 outer 클래스다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="2014" data-origin-height="764" data-filename="스크린샷 2021-08-06 오후 5.58.06.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="2014" data-origin-height="764" data-filename="스크린샷 2021-08-06 오후 5.58.06.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">inner 클래스의 width, height가 부모인 outer 클래스의 크기에 따라 상대적으로 결정된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u>em</u></h3>
+<p data-ke-size="size16"><u>em은 기본적으로 <b>브라우저의 설정</b>에 따라 달라진다.&nbsp;</u></p>
+<p><figure class="imageblock alignCenter" data-origin-width="1624" data-origin-height="426" data-filename="스크린샷 2021-08-07 오후 2.22.36.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="1624" data-origin-height="426" data-filename="스크린샷 2021-08-07 오후 2.22.36.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">현재 크롬 브라우저의 설정에서 font size가 medium으로 되어있는 상태에서는 1em = 16px 이므로&nbsp;</p>
+<p data-ke-size="size16">두 relative, absolute 글자 크기가 동일하다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">크롬 설정에서 fontsize를 바꾸면 relative 문자의 크기가 바뀌게 된다.</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16"><u>또한 em은 <b>parent에 따라 상대적으로 바뀐다.</b></u></p>
+<p><figure class="imageblock alignLeft" data-origin-width="874" data-origin-height="360" data-filename="스크린샷 2021-08-07 오후 2.28.18.png" width="476" height="196" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="874" data-origin-height="360" data-filename="스크린샷 2021-08-07 오후 2.28.18.png" width="476" height="196" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption>index.html</figcaption>
+</figure></p>
+<p data-ke-size="size16">&lt;div&gt;가 두 &lt;h3&gt;를 감싸고있다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1684" data-origin-height="624" data-filename="스크린샷 2021-08-07 오후 2.29.58.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="1684" data-origin-height="624" data-filename="스크린샷 2021-08-07 오후 2.29.58.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">relative, absolut 두 클래스 모두 div의 자식이지만</p>
+<p data-ke-size="size16">font-size가 em으로 정의된 relative 클래스는 크기가 커졌고&nbsp;</p>
+<p data-ke-size="size16">px로 정의된 absolute 클래스는 그대로다.&nbsp;</p>
+<p data-ke-size="size16"><b>em은 부모에 따라 바뀌기 때문에 여기서는 1em = 30px이 된다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u>rem</u></h3>
+<p data-ke-size="size16">rem depends on root (relative)</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1804" data-origin-height="556" data-filename="스크린샷 2021-08-07 오후 2.36.24.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="1804" data-origin-height="556" data-filename="스크린샷 2021-08-07 오후 2.36.24.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">relative 클래스의 root인 html의 크기에 따라 변한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u>vh, vw</u></h3>
+<p data-ke-size="size16">vh - height - percent of the screen</p>
+<p data-ke-size="size16">vw - width - percent of the screen&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">vh, vw는 스크린의 크기에 따라 상대적으로 변한다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="2362" data-origin-height="1626" data-filename="스크린샷 2021-08-07 오후 2.42.38.png" width="468" height="322" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="2362" data-origin-height="1626" data-filename="스크린샷 2021-08-07 오후 2.42.38.png" width="468" height="322" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="2854" data-origin-height="1646" data-filename="스크린샷 2021-08-07 오후 2.42.10.png" width="473" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png" data-origin-width="2854" data-origin-height="1646" data-filename="스크린샷 2021-08-07 오후 2.42.10.png" width="473" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">웹스크린 사이즈에 따라 50퍼센트 비율을 유지한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #CSS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

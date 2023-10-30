@@ -1,0 +1,89 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>isServer, isClient</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">isServer, isClient</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-01-08 20:28:32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-filename="20210108201834.png" data-origin-width="209" data-origin-height="115" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20210108201834.png" data-origin-width="209" data-origin-height="115" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption>Network Manager HUD</figcaption>
+</figure></p>
+<p><b>LAN Server Only(S)</b> : 이 버튼을 눌러서 서버를 열면, 이 network identity의 isServer가 true가 된다.</p>
+<p><b>LAN Client(C)</b> : 이 버튼을 눌러서 열린 서버에 클라이언트로써 접속하면 isClient가 true가 된다.</p>
+<p><b>LAN Host(H)</b> : 이 버튼을 눌러서 네트워크가 게임의 호스트가 되어서 다른 클라이언트들의 연결을 받는다면, isServer, isClient가 모두 true가 된다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>* 주의</p>
+<p>하다가 알았는데 주의해야할 점이 있다.</p>
+<p>LAN HOST로 server를 만들고, 다른 기기에서 LAN Client로 접속하면 <b>server</b>의 player object는 IsServer와 isClient 둘다 true, <b>client</b>의 playerprefab은 isServer는 false고 isClient는 true여야 된다고 생각했다. 하지만 아니었다.</p>
+<p>&nbsp;</p>
+<p><span style="color: #333333;">isServer should be "true" on all NetworkBehaviour scripts run on the server. That includes player objects representing non-server clients. You use isServer to differentiate what code in a script is run on the server or not, not to determine if a player object represents a server player or client player.</span></p>
+<p><span style="color: #333333;">(참조: <a href="https://forum.unity.com/threads/isserver-is-true-for-the-host-and-the-other-client-running-on-a-different-device.522006/" target="_blank" rel="noopener">forum.unity.com/threads/isserver-is-true-for-the-host-and-the-other-client-running-on-a-different-device.522006/</a>)</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>내가 원하던것 : <b>Host의 PlayerObject와 Client의 PlayerObject를 구별</b>하는 방법.</p>
+<p>해결법 :&nbsp; isLocalPlayer 사용.</p>
+<pre id="code_1610107614844" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code> 
+[SyncVar]
+public bool ThisIsTheServerPlayer = false;
+ 
+void Start()
+{
+    if (isLocalPlayer &amp;&amp; isServer)
+    {
+        ThisIsTheServerPlayer = true;
+    }
+}</code></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="402" data-origin-height="433" data-filename="20210108202349.png" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="402" data-origin-height="433" data-filename="20210108202349.png" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption>NetworkManager</figcaption>
+</figure></p>
+<p>Auto Create Player를 체크하면 클라이언트가 접속할때마다 PlayerPrefab이 자동 생성된다.</p>
+<p>이 PlayerPrefab이 나의 것인지 알려주는것이 <b>isLocalPlayer</b> 이다.</p>
+<p>예를들어 클라이언트의 player object만 작동해야 하는 코드면 isLocalPlayer를 사용 하면된다.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

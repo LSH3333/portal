@@ -1,0 +1,80 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2231. 분해합</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2231. 분해합</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-04-30 20:24:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/2231" target="_blank" rel="noopener">www.acmicpc.net/problem/2231</a></p>
+<figure id="og_1619781785581" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="2231번: 분해합" data-og-description="어떤 자연수 N이 있을 때, 그 자연수 N의 분해합은 N과 N을 이루는 각 자리수의 합을 의미한다. 어떤 자연수 M의 분해합이 N인 경우, M을 N의 생성자라 한다. 예를 들어, 245의 분해합은 256(=245+2+4+5)이" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2231" data-og-url="https://www.acmicpc.net/problem/2231" data-og-image="https://scrap.kakaocdn.net/dn/ep3tmW/hyJ2le38nJ/vh7vJz0TotwE6RKvbk0sU1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/2231" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2231">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/ep3tmW/hyJ2le38nJ/vh7vJz0TotwE6RKvbk0sU1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">2231번: 분해합</p>
+<p class="og-desc">어떤 자연수 N이 있을 때, 그 자연수 N의 분해합은 N과 N을 이루는 각 자리수의 합을 의미한다. 어떤 자연수 M의 분해합이 N인 경우, M을 N의 생성자라 한다. 예를 들어, 245의 분해합은 256(=245+2+4+5)이</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<pre id="code_1619781789693" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// num의 각 자릿수를 더한값 리턴
+int sums(int num) {
+    int sum = 0;
+    while(num != 0) {
+        sum += num % 10;
+        num /= 10;
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    int ans=0;
+    cin &gt;&gt; n;
+
+    for(int i = 1; i &lt;= n; i++) {
+        // i값과 i의 각 자릿수들의 합이 n이라면 i가 생성자
+        if(i + sums(i) == n) {
+            ans = i;
+            break;
+        }
+    }
+    cout &lt;&lt; ans;
+}</code></pre>
+<p>조심할점은 생성자가 없는 자연수도 있고, 그경우 0을 출력해야 하기 때문에</p>
+<p>ans값을 0으로 꼭 초기화 해줘야 for문을 돌고 생성자를 못찾았을때 ans를 0으로 출력한다.&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1981. 검문</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1981. 검문</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-12-01 14:05:43</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2981" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2981</a></p>
+<figure id="og_1669870233327" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2981번: 검문" data-og-description="트럭을 타고 이동하던 상근이는 경찰의 검문을 받게 되었다. 경찰은 상근이가 운반하던 화물을 하나하나 모두 확인할 것이기 때문에, 검문하는데 엄청나게 오랜 시간이 걸린다. 상근이는 시간" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2981" data-og-url="https://www.acmicpc.net/problem/2981" data-og-image="https://scrap.kakaocdn.net/dn/QQ1WZ/hyQKYiYvvC/07g1T5B3fiRzUDnddwL7c0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/2981" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2981">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/QQ1WZ/hyQKYiYvvC/07g1T5B3fiRzUDnddwL7c0/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2981번: 검문</p>
+<p class="og-desc" data-ke-size="size16">트럭을 타고 이동하던 상근이는 경찰의 검문을 받게 되었다. 경찰은 상근이가 운반하던 화물을 하나하나 모두 확인할 것이기 때문에, 검문하는데 엄청나게 오랜 시간이 걸린다. 상근이는 시간</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">수학적 지식도 요구하고, 약수를 구할때 가장 빠른 방법으로 구하는 방법도 알아야 하는 어려운 문제였다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 입력이 다음과 같을때를 생각해보자&nbsp;</p>
+<p data-ke-size="size16"><b>5 17 23 14 83&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">각 수들은 M으로 나눈다고 했으므로 <b>어떤수 a 곱하기 M에 나머지 값 r을 더하면</b> 해당 수가 될것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>5 = M * a1 + r&nbsp;</b></p>
+<p data-ke-size="size16"><b>17 = M * a2 + r&nbsp;</b></p>
+<p data-ke-size="size16"><b>23 = M * a3+ r&nbsp;</b></p>
+<p data-ke-size="size16"><b>14 = M * a4+ r&nbsp;</b></p>
+<p data-ke-size="size16"><b>83 = M * a5 + r</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">여기서 나머지는 모두 같게 된다고 했으므로 나머지 r 은 사실 다 지워도 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>5 = M * a1&nbsp;</b></p>
+<p data-ke-size="size16"><b>17 = M * a2&nbsp;</b></p>
+<p data-ke-size="size16"><b>23 = M * a3</b></p>
+<p data-ke-size="size16"><b>14 = M * a4</b></p>
+<p data-ke-size="size16"><b>83 = M * a5</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우리는 M을 구해야하기 때문에 두 식을 연립방정식으로 계산해보면</p>
+<p data-ke-size="size16">17 - 5 = (M * a2) - (M * a1)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>12 = M * (a2 - a1)</b> 이 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이식을 잘보자.</p>
+<p data-ke-size="size16">여기서 사실 (a2-a1)이 몇인지는 중요하지 않다.</p>
+<p data-ke-size="size16">중요한건 M에 어떤 값을 곱하면 12 가 된다는 것이고,</p>
+<p data-ke-size="size16"><b>그 말은즉 M은 12의 약수 중 하나라는 뜻이다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다른 숫자들도 모두 연립방정식으로 풀어보면 다음과 같이된다. (그러기 전에 좌측이 음수가 되지 않도록 정렬하고 푼다)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>5 = M * a1&nbsp;</b></p>
+<p data-ke-size="size16"><b>14 = M * a4</b></p>
+<p data-ke-size="size16"><b>17 = M * a2&nbsp;</b></p>
+<p data-ke-size="size16"><b>23 = M * a3</b></p>
+<p data-ke-size="size16"><b>83 = M * a5</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">연립방정식으로 풀면&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>9 = M * (a4-a1)</b></p>
+<p data-ke-size="size16"><b>3 = M * (a2 - a4)&nbsp;</b></p>
+<p data-ke-size="size16"><b>6 = M * (a3 - a2)</b></p>
+<p data-ke-size="size16"><b>60 = M * (a5 - a3)&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">a값들은 중요하지 않다.</p>
+<p data-ke-size="size16">M은 9의 약수,&nbsp;</p>
+<p data-ke-size="size16">M은 3의 약수,</p>
+<p data-ke-size="size16">M은 6의 약수,</p>
+<p data-ke-size="size16">M은 60의 약수.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">위 조건들을 모두 만족하는 숫자들이 우리가 찾는 M값들이 된다.&nbsp;</p>
+<p data-ke-size="size16"><b>즉 9의 약수 &amp;&amp; 3의 약수 &amp;&amp; 6의 약수 &amp;&amp; 60의 약수&nbsp;</b></p>
+<p data-ke-size="size16">9의 약수이면서 3의 약수이면서 6의 약수이면서 60의 약수이려면, 해당 값들의 최대 공약수를 구하고, 최대 공약수의 약수들을 구하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">어떤 숫자 n의 약수를 구할때는 n의 제곱근까지만 구하고,&nbsp;</p>
+<p data-ke-size="size16">n % i == 0 이 될때, i와 n/i 두 개가 약수가 된다.</p>
+<p data-ke-size="size16">예를들어 36의 약수를 구할때를 생각해보면&nbsp;</p>
+<p data-ke-size="size16">1 36</p>
+<p data-ke-size="size16">2 13&nbsp;</p>
+<p data-ke-size="size16">3 12&nbsp;</p>
+<p data-ke-size="size16">4 9</p>
+<p data-ke-size="size16">6 6&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/a080684d3aca45e51b65c1ac5d8762f6.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #정수론 #유클리드 호제법 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

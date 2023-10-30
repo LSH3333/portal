@@ -1,0 +1,169 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 6987. 월드컵</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 6987. 월드컵</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-24 15:03:07</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/6987" target="_blank" rel="noopener">https://www.acmicpc.net/problem/6987</a></p>
+<figure id="og_1627106004896" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="6987번: 월드컵" data-og-description="월드컵 조별 최종 예선에서는 6개국으로 구성된 각 조별로 동일한 조에 소속된 국가들과 한 번씩, 각 국가별로 총 5번의 경기를 치른다. 조별리그가 끝난 후, 기자가 보내온 각 나라의 승, 무승부" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/6987" data-og-url="https://www.acmicpc.net/problem/6987" data-og-image="https://scrap.kakaocdn.net/dn/cSv0kO/hyKZhP2FJi/tm2IDYGIPKKq1GuxbkkxiK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/6987" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/6987">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/cSv0kO/hyKZhP2FJi/tm2IDYGIPKKq1GuxbkkxiK/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">6987번: 월드컵</p>
+<p class="og-desc" data-ke-size="size16">월드컵 조별 최종 예선에서는 6개국으로 구성된 각 조별로 동일한 조에 소속된 국가들과 한 번씩, 각 국가별로 총 5번의 경기를 치른다. 조별리그가 끝난 후, 기자가 보내온 각 나라의 승, 무승부</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">처음에 단순히 승리,패배 횟수와 무승부 횟수만 놓고 계산을 했다.</p>
+<p data-ke-size="size16">하면서도 아닌것 같다는 느낌이 들었지만 일단 해봤고 당연히 틀렸다.</p>
+<p data-ke-size="size16">솔직히 푸는 방법이 딱하니 떠오르지 않아서 다른 분들의 풀이를 참고좀 했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. <b>모든 경기</b></p>
+<p data-ke-size="size16">일단 하나의 조에 6개의 국가가 있고, 동일한 조에 소속된 국가들과 한번씩 , 각 국가별로 총 5개의 경기를 치룬다.</p>
+<p data-ke-size="size16">그러면 먼저 <b>모든 경기의 경우의수</b>를 보면</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">{A,B} {A,C} {A,D} {A,E} {A,F}&nbsp;</p>
+<p data-ke-size="size16">{B,C} {B,D} {B,E} {B,F}&nbsp; &nbsp; &nbsp;// {B,A}는 이미 위에서 치뤘다&nbsp;</p>
+<p data-ke-size="size16">{C,D} {C,E} {C,F}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // 마찬가지로 {C,A} {C,B} 도 이미 치룬 경기다&nbsp;</p>
+<p data-ke-size="size16">{D,E} {D,F}</p>
+<p data-ke-size="size16">{E,F}</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 총 15개의 경기가 치뤄진다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. <b>하나의 경기당 결과</b></p>
+<p data-ke-size="size16">하나의 경기 당 있을수 있는 경우는 총 3가지다</p>
+<p data-ke-size="size16">team1 승, team2 패&nbsp;</p>
+<p data-ke-size="size16">team1 무, team2 무</p>
+<p data-ke-size="size16">team1 패, team2 승&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 모든 경기에 대하여 모든 결과를 적용해 기자가 보내온 표와 같은지를 판단하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1627106573139" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// 기자가 보내온 원본
+int cup[6][3];
+// dfs에 의해 만들어진 경우
+int ans[6][3];
+// 정답 저장
+int res[4];
+
+// 가능한 경기의 경우의수
+int idx1[15] = {0,0,0,0,0, 1,1,1,1, 2,2,2, 3,3, 4};
+int idx2[15] = {1,2,3,4,5, 2,3,4,5, 3,4,5, 4,5, 5};
+
+bool CheckAns()
+{
+    for(int i = 0; i &lt; 6; i++)
+    {
+        for(int j = 0; j &lt; 3; j++)
+        {
+            // 하나라도 틀린부분 있으면 불가능한 경우
+            if(ans[i][j] != cup[i][j])
+                return false;
+        }
+    }
+    // 모두 동일하다면 가능한 경우
+    return true;
+}
+
+//
+void DFS(int round, int group)
+{
+    // 총 15 라운드의 경기를 모두 치뤘다
+    if(round == 15)
+    {
+        // 이미 정답을 찾은경우
+        if(res[group] == 1)
+            return;
+
+        // 불가능한 경우 다른 경우를 탐색하러감
+        if(!CheckAns())
+            return;
+
+        // 맞는 경우를 찾음
+        res[group] = 1;
+        return;
+    }
+
+    // 이번 라운드의 첫번째팀과 두번째팀
+    int team1 = idx1[round];
+    int team2 = idx2[round];
+
+    // 승:0, 무:1, 패:2
+    // team1 승, team2 패
+    ans[team1][0]++;
+    ans[team2][2]++;
+    DFS(round+1, group);
+    ans[team1][0]--;
+    ans[team2][2]--;
+
+    // team1 무, team2 무
+    ans[team1][1]++;
+    ans[team2][1]++;
+    DFS(round+1, group);
+    ans[team1][1]--;
+    ans[team2][1]--;
+
+    // team1 패, team2 승
+    ans[team1][2]++;
+    ans[team2][0]++;
+    DFS(round+1, group);
+    ans[team1][2]--;
+    ans[team2][0]--;
+
+}
+
+int main()
+{
+    // 총 4개의 그룹
+    for(int group = 0; group &lt; 4; group++)
+    {
+        // inputs
+        for(int i = 0; i &lt; 6; i++)
+        {
+            for(int j = 0; j &lt; 3; j++)
+            {
+                cin &gt;&gt; cup[i][j];
+            }
+        }
+        DFS(0, group);
+    }
+
+    for(int i = 0; i &lt; 4; i++)
+        cout &lt;&lt; res[i] &lt;&lt; ' ';
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force #재귀 #dfs 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

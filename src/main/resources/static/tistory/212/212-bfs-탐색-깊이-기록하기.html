@@ -1,0 +1,111 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>bfs 탐색 깊이 기록하기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">bfs 탐색 깊이 기록하기</h2>
+                                <div class="box-info">
+                                    <p class="category">알고리즘</p>
+                                    <p class="date">2021-07-19 17:25:45</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1626683022375" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+vector&lt;int&gt; edge[10];
+bool mark[10];
+
+void bfs(int idx)
+{
+    // {방문 정점, 깊이}
+    queue&lt;pair&lt;int,int&gt;&gt; q;
+
+    // 정점 idx, 시작 정점이므로 깊이는 0부터 시작
+    q.push({idx, 0});
+    // 방문 기록
+    mark[idx] = true;
+
+
+    while(!q.empty())
+    {
+        // 기준 정점
+        int vertex = q.front().first;
+        // 깊이
+        int depth = q.front().second;
+        q.pop();
+
+        cout &lt;&lt; "depth: " &lt;&lt; depth &lt;&lt; endl;
+        cout &lt;&lt; "vertex: " &lt;&lt; vertex &lt;&lt; endl;
+
+        // 기준 정점과 이어져 있는 모든 정점들 탐색
+        for(auto x : edge[vertex])
+        {
+            // 기준 정점과 이어져있지만 이미 방문했다면 continue
+            if(mark[x]) continue;
+
+            mark[x] = true;
+            // 이어진 정점과 깊이를 큐에 푸쉬
+            q.push({x, depth+1});
+        }
+    }
+}
+
+int main()
+{
+    int v, e;
+    cin &gt;&gt; v &gt;&gt; e;
+
+    for(int i = 0; i &lt; e; i++)
+    {
+        int f,t;
+        cin &gt;&gt; f &gt;&gt; t;
+        edge[f].push_back(t);
+        edge[t].push_back(f);
+    }
+
+    bfs(0);
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">input:</p>
+<p data-ke-size="size16">6 6. // 정점, 간선 갯수&nbsp;<br />0 1&nbsp; // 서로 이어진 정점들&nbsp;<br />1&nbsp;2<br />0&nbsp;4<br />0&nbsp;2<br />2&nbsp;3<br />4&nbsp;5</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">output:</p>
+<p><figure class="imageblock alignLeft" data-origin-width="286" data-origin-height="724" data-filename="스크린샷 2021-07-19 오후 5.25.16.png" width="249" height="630" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="286" data-origin-height="724" data-filename="스크린샷 2021-07-19 오후 5.25.16.png" width="249" height="630" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #BFS #bfs의 깊이 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

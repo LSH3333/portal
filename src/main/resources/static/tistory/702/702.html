@@ -1,0 +1,239 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Ch03. Spring Container, ApplicationContext 설정 파일</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Ch03. Spring Container, ApplicationContext 설정 파일</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2022-06-01 17:00:09</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">- 스프링은 객체를 관리하는<b> 컨테이너</b>다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- <b>ApplicationContext</b> 클래스에 객체 생성 초기화 관련 기능이 정의되어 있고, 그 아래 여러 클래스들이 존재한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- <b>AnnotationConfigApplicationContext</b> 클래스는 그 중 하나로, 자바 클래스에서 정보를 읽어와 객체 생성과 초기화를 수행한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/AnnotationConfigApplicationContext.html" target="_blank" rel="noopener">https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/AnnotationConfigApplicationContext.html</a></p>
+<figure id="og_1656142546543" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="AnnotationConfigApplicationContext (Spring Framework 5.3.21 API)" data-og-description="&nbsp;void registerBean(String&nbsp;beanName, Class &nbsp;beanClass, Supplier &nbsp;supplier, BeanDefinitionCustomizer...&nbsp;customizers) Register a bean from the given bean class, using the given supplier for obtaining a new instance (typically declared as a lambda express" data-og-host="docs.spring.io" data-og-source-url="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/AnnotationConfigApplicationContext.html" data-og-url="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/AnnotationConfigApplicationContext.html" data-og-image=""><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/AnnotationConfigApplicationContext.html" target="_blank" rel="noopener" data-source-url="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/AnnotationConfigApplicationContext.html">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">AnnotationConfigApplicationContext (Spring Framework 5.3.21 API)</p>
+<p class="og-desc" data-ke-size="size16">&nbsp;void registerBean(String&nbsp;beanName, Class &nbsp;beanClass, Supplier &nbsp;supplier, BeanDefinitionCustomizer...&nbsp;customizers) Register a bean from the given bean class, using the given supplier for obtaining a new instance (typically declared as a lambda express</p>
+<p class="og-host" data-ke-size="size16">docs.spring.io</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">레퍼런스를 보면 <b>AnnotationConfigApplicationContext : <span style="background-color: #ffffff; color: #474747;">accepting<span>&nbsp;</span></span>component classes<span style="background-color: #ffffff; color: #474747;"><span>&nbsp;</span>as input &mdash; in </span></b></p>
+<p data-ke-size="size16"><b><span style="background-color: #ffffff; color: #474747;">particular<span>&nbsp;</span></span><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html">@Configuration</a><span style="background-color: #ffffff; color: #474747;">-annotated classes</span></b></p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #474747;">라고 되있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><span style="background-color: #ffffff; color: #474747;">즉 AnnotationConfigApplicationContext는 ApplicationContext 인터페이스를 구현하는 클래스이고,&nbsp;</span></b></p>
+<p data-ke-size="size16"><b><span style="background-color: #ffffff; color: #474747;">@Configuration이 붙은 클래스, 즉 설정 클래스를 받아 빈 컨테이너를 생성한다는 것.</span></b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>스프링 설정 파일 (클래스)</b></p>
+<pre id="code_1654070062419" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+
+import spring.ChangePasswordService;
+import spring.MemberDao;
+import spring.MemberRegisterService;
+
+@Configuration 
+public class AppCtx 
+{
+	@Bean 
+	public MemberDao memberDao() 
+	{
+		return new MemberDao();
+	}
+	
+	@Bean 
+	public MemberRegisterService memberRegSvc() 
+	{
+		return new MemberRegisterService(memberDao()); // DI 
+	}
+	
+	@Bean 
+	public ChangePasswordService changePwdSvc() 
+	{
+		ChangePasswordService pwdSvc = new ChangePasswordService();
+		pwdSvc.setMemberDao(memberDao()); // setter 
+		return pwdSvc; 
+	}
+}</code></pre>
+<p data-ke-size="size16">클래스에 @Configuration 을 명시해줘야 해당 클래스가 스프링 설정 클래스가 된다.</p>
+<p data-ke-size="size16">총 3개의 Bean 객체가 생성됐다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Main</b></p>
+<pre id="code_1654070117885" class="java" data-ke-language="java" data-ke-type="codeblock"><code>package main;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import assembler.Assembler;
+import config.AppCtx;
+import spring.ChangePasswordService;
+import spring.DuplicateMemberException;
+import spring.MemberNotFoundException;
+import spring.MemberRegisterService;
+import spring.RegisterRequest;
+import spring.WrongIdPasswordException;
+
+public class MainForSpring 
+{
+	// spring container 
+	private static ApplicationContext ctx = null; 
+	
+	public static void main(String[] args) throws IOException  
+	{
+		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
+		while(true) 
+		{
+			System.out.println("명령어를 입력하세요: "); 
+			String command = reader.readLine();
+			
+			if(command.equalsIgnoreCase("exit")) // exit 
+			{
+				System.out.println("종료 ");
+				break;
+			}
+			if(command.startsWith("new ")) // new  
+			{
+				processNewCommand(command.split(" "));
+				continue;
+			}
+			else if(command.startsWith("change ")) // change  
+			{
+				processChangeCommand(command.split(" "));
+				continue;		
+			}
+			printHelp();
+		}
+	}
+	
+
+	private static void processNewCommand(String[] arg) 
+	{
+		if(arg.length != 5) // 부적절한 input 
+		{
+			printHelp();
+			return; 
+		}
+		
+		// get Bean object 
+		MemberRegisterService regSvc = ctx.getBean("memberRegSvc", MemberRegisterService.class);
+		RegisterRequest req = new RegisterRequest(); 
+		req.setEmail(arg[1]);
+		req.setName(arg[2]);
+		req.setPassword(arg[3]);
+		req.setConfirmPassword(arg[4]);
+		
+		if(!req.isPasswordEqualToConfirmPassword())
+		{
+			System.out.println("암호와 확인이 일치하지 않습니다. \n");
+			return; 
+		}
+		try 
+		{
+			regSvc.regist(req);
+			System.out.println("등록했습니다 \n");		
+		} catch (DuplicateMemberException e) 
+		{
+			System.out.println("이미 존재하는 이메일입니다 \n");
+		}
+	}
+	
+	private static void processChangeCommand(String[] arg) 
+	{
+		if(arg.length != 4)
+		{
+			printHelp();
+			return;
+		}
+		
+		ChangePasswordService changePwdSvc = ctx.getBean("changePwdSvc", ChangePasswordService.class);
+		try 
+		{
+			changePwdSvc.changePassword(arg[1], arg[2], arg[3]);
+			System.out.println("암호를 변경했습니다 \n");
+		}
+		catch (MemberNotFoundException e) 
+		{
+			System.out.println("존재하지 않는 이메일입니다 \n");
+		}
+		catch (WrongIdPasswordException e) 
+		{
+			System.out.println("이메일과 암호가 일치하지 않습니다 \n");
+		}
+	}
+	
+	private static void printHelp() 
+	{
+		System.out.println();
+		System.out.println("잘못된 명령어입니다. 아래 명령어 사용법을 확인하세요 "); 
+		System.out.println("명령어 사용법: ");
+		System.out.println("new 이메일 이름 암호 암호확인 ");
+		System.out.println("change 이메일 현재비번 변경비번 ");
+		System.out.println();
+	}
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">메인 클래스를 보면 다음과 같이 ApplicationContext 클래스를 AnnotationConfigApplicationContext 생성자로 초기화하고 있고, 설정파일인 AppCtx 클래스를 전달하고 있다.&nbsp;</p>
+<pre id="code_1654070178098" class="java" data-ke-language="java" data-ke-type="codeblock"><code>private static ApplicationContext ctx = null; 
+	
+	public static void main(String[] args) throws IOException  
+	{
+		ctx = new AnnotationConfigApplicationContext(AppCtx.class);</code></pre>
+<p data-ke-size="size16"><b>이렇게 함으로서 설정 파일 AppCtx 클래스에 따라 스프링 컨테이너가 생성됐다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리고 아래와 같이 스프링 컨테이너로 부터 Bean 객체를 갖고온다.</p>
+<pre id="code_1654070346648" class="java" data-ke-language="java" data-ke-type="codeblock"><code>MemberRegisterService regSvc = ctx.getBean("memberRegSvc", MemberRegisterService.class);</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">출처: 스프링5 프로그래밍 입문 (최범균 저)</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Spring 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

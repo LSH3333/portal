@@ -1,0 +1,206 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Chap07. 큐, 배열 기반의 원형 큐</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Chap07. 큐, 배열 기반의 원형 큐</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열혈 자료구조</p>
+                                    <p class="date">2022-04-11 15:35:29</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>큐의 ADT</b></h2>
+<p data-ke-size="size16">큐도 스택과 마찬가지로 ADT가 거의 정형화되어 있다. 할 수 있는 일이 거의 비슷하기 때문.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>void QueueInit(Queue *pq);</b></p>
+<p data-ke-size="size16">- 큐의 초기화</p>
+<p data-ke-size="size16">- 큐 생성 후 제일 먼저 호출되어야함&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>int QIsEmpty(Queue *pq);</b></p>
+<p data-ke-size="size16">- 큐가 빈 경우 TRUE, 그렇지 않은 경우 FALSE 반환</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>void Enqueue(Queue *pq Data data);</b></p>
+<p data-ke-size="size16">- 큐에 매개변수 data로 전달된 데이터 저장.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Data Dequeue(Queue *pq);</b></p>
+<p data-ke-size="size16">- 저장순서가 가장 앞선 데이터 삭제&nbsp;</p>
+<p data-ke-size="size16">- 삭제된 데이터는 반환&nbsp;</p>
+<p data-ke-size="size16">- 이 함수의 호출을 위해서는 데이터가 하나 이상 존재함이 보장되어야함&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>Data QPeek(Queue *pq);</b></p>
+<p data-ke-size="size16">- 저장순서가 가장 앞선 데이터 반환하되 삭제 하지 않음.</p>
+<p data-ke-size="size16">- 이 함수의 호출을 위해서는 데이터가 하나 이상 존재함이 보장되어야함&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>큐의 배열 기반 구현 : 원형 큐&nbsp;</b></h2>
+<p data-ke-size="size16">큐의 머리를 가르키는 포인터 F (Front), 큐의 꼬리를 가르키는 포인터 R (Rear)이 있다고 생각해보자.</p>
+<p data-ke-size="size16">큐는 선입선출, 뒤로 넣고 앞으로 빼는 자료구조이기 때문에 큐에 데이터를 넣는 <b>Enqueue</b> 연산 시에는 큐의 뒤에 데이터를 넣고 R을 오른쪽으로 한칸 이동하면 될것이다.</p>
+<p data-ke-size="size16">그런데 <b>Dequeue</b> 연산 시, 큐의 머리에서 데이터를 빼낸 후에 반환할 데이터 즉 큐의 가장 top에 있는 데이터를 배열의 첫부분에 위치 시키는 방식으로 구현한다고 하면, Dequeue 연산을 할때마다 큐에 존재하는 모든 데이터를 한칸씩 왼쪽으로 땡겨야한다. (Dequeue의 시간복잡도가 O(N)이 된다).&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 이런 방법을 취하지 않고 Dequeue를 할때 머리를 가르키는 <b>F</b>를 오른쪽으로 1칸씩 이동하는 방식을 취하게 되는데, 이럴 경우 R이 큐의 끝을 가르키고 있는 상황이 오면 Enqueue 시에 데이터를 더이상 저장할 공간이 없다 (R을 오른쪽으로 이동시킬수 없다.)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제의 해결방법이 바로&nbsp;<b>원형 큐&nbsp;</b>이다.&nbsp;</p>
+<p data-ke-size="size16">R이 큐의 꼬리를 가르킬때 데이터가 더 Enqueue 되게 되면, R을 배열의 첫부분을 가르키도록 하는 것이다. F도 마찬가지다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이런 원형 큐에도 문제가 남아있는데 바로<b> F와 R의 위치만으로는 큐의 상태를 알수가 없다는 것이다.</b></p>
+<p data-ke-size="size16">F와 R이 원형으로 계속 돌기때문에 큐가 꽉찬 상태에서도 큐가 비어있는 상태에서도 F가 R보다 한 칸 앞 선 위치를 가르킨다.</p>
+<p data-ke-size="size16">이에 대한 <b>해결책은 배열에 데이터를 꽉 채우지 않고 한칸을 남기는 것이다.</b></p>
+<p data-ke-size="size16">그러면 큐가 empty인 상황에서는 F,R이 동일한 위치를 가르키고, 큐가 full인 상황에서는 F가 R보다 한 칸 앞선 위치를 가르키게 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<h2 data-ke-size="size26"><b>원형 큐 구현&nbsp;</b></h2>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>CircularQueue.h</b></p>
+<pre class="cpp"><code>/*
+ * 배열 기반 원형 큐 구현
+ */
+#ifndef CHAP07_CIRCULARQUEUE_H
+#define CHAP07_CIRCULARQUEUE_H
+
+#define TRUE 1
+#define FALSE 0
+
+#define QUE_LEN 100
+typedef int Data;
+
+typedef struct _cQueue
+{
+    int front;
+    int rear;
+    Data queArr[QUE_LEN];
+} CQueue; // Circular Queue
+typedef CQueue Queue;
+
+void QueueInit(Queue *pq);
+int QIsEmpty(Queue *pq);
+
+void Enqueue(Queue *pq, Data data);
+Data Dequeue(Queue *pq);
+Data QPeek(Queue *pq);
+
+#endif //CHAP07_CIRCULARQUEUE_H
+</code></pre>
+<p data-ke-size="size16"><b>CircularQueue.c</b></p>
+<pre class="xl"><code>#include "CircularQueue.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+// 최초에 큐 텅빈 경우 front와 rear는 동일한 위치 가르킴
+void QueueInit(Queue *pq)
+{
+    pq-&gt;front = 0;
+    pq-&gt;rear = 0;
+}
+
+int QIsEmpty(Queue *pq)
+{
+    // front, rear 동일한 위치 가르킨다면 큐가 비어있음
+    if(pq-&gt;front == pq-&gt;rear) return TRUE;
+    else return FALSE;
+}
+
+int NextPosIdx(int pos)
+{
+    // 원형으로 돌기위함
+    if(pos == QUE_LEN-1) return 0;
+    else return pos+1;
+}
+
+void Enqueue(Queue *pq, Data data)
+{
+    // 큐의 꼬리가 큐의 머리에 한 칸 앞서있다 = 큐가 꽉찼다
+    if(NextPosIdx(pq-&gt;rear) == pq-&gt;front)
+    {
+        printf("Queue is full");
+        exit(-1);
+    }
+
+    pq-&gt;rear = NextPosIdx(pq-&gt;rear);
+    pq-&gt;queArr[pq-&gt;rear] = data;
+}
+
+Data Dequeue(Queue *pq)
+{
+    if(QIsEmpty(pq))
+    {
+        printf("Queue is full");
+        exit(-1);
+    }
+
+    pq-&gt;front = NextPosIdx(pq-&gt;front);
+    return pq-&gt;queArr[pq-&gt;front];
+}
+
+Data QPeek(Queue *pq)
+{
+    if(QIsEmpty(pq))
+    {
+        printf("Queue is full");
+        exit(-1);
+    }
+
+    // F는 항상 빈 공간 가르키고 있다. peek을 위해서는 다음칸의 데이터를 리턴해줘야함
+    return pq-&gt;queArr[NextPosIdx(pq-&gt;front)];
+}
+</code></pre>
+<p data-ke-size="size16"><b>CircularQueueMain.c</b></p>
+<pre class="reasonml"><code>#include &lt;stdio.h&gt;
+#include "CircularQueue.h"
+
+int main()
+{
+    Queue q;
+    QueueInit(&amp;q);
+
+    // data enqueue
+    Enqueue(&amp;q, 1);
+    Enqueue(&amp;q, 2);
+    Enqueue(&amp;q, 3);
+    Enqueue(&amp;q, 4);
+    Enqueue(&amp;q, 5);
+
+    // data dequeue
+    while(!QIsEmpty(&amp;q))
+    {
+        printf("%d ", Dequeue(&amp;q));
+    }
+}</code></pre>
+<p><figure class="imageblock alignLeft" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C #Queue 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

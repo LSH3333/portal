@@ -1,0 +1,192 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>week 1. Inserted sort~</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">week 1. Inserted sort~</h2>
+                                <div class="box-info">
+                                    <p class="category">학교/알고리즘 및 실습</p>
+                                    <p class="date">2020-09-07 20:32:17</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p>Inserted sort는 지금까지 배운 selection sort와 다름.</p>
+<p>2,4,5,10 -&gt; 2,4,5,7,10 : 기존에 이미 sorted된 set에 순서에 맞게 7을 insert.</p>
+<p>&nbsp;</p>
+<p><b>INSERTED SORT(A)</b></p>
+<pre id="code_1599474326315" class="c++ arduino" style="display: block; overflow: auto; padding: 15px; color: #383a42; background: #f6f7f8; font-size: 14px; border-radius: 3px; font-family: Menlo, Consolas, Monaco, monospace; border: 1px solid #dddddd; margin: 20px auto 0px; cursor: default; z-index: 1; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;" data-ke-language="c++" data-ke-type="codeblock"><code>for j = 2 to A.length
+	key = A[j]
+    // Insert A[j] into the sorted sequence A[1..j-1]
+    i = j - 1
+    while i &gt; 0 and A[i] &gt; key
+    	A[i+1] = A[i] // 자리바꾸기 
+        i = i - 1
+    A[i+1] = key</code></pre>
+<p><figure class="imageblock alignCenter" data-filename="20200907193040.png" data-origin-width="960" data-origin-height="275" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="20200907193040.png" data-origin-width="960" data-origin-height="275" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>&nbsp;</p>
+<p>j는 1이 아닌 2부터 시작 : j보다 작은 수와 비교하기 때문.</p>
+<p>&nbsp;</p>
+<p>- what do you think is the role of the while statement on line five?</p>
+<p>-&gt; A[i]가 key값보다 클때만 자리가 바뀌고 작으면 바뀔필요가 없다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>- why the assignment on line eight happens?</p>
+<p>-&gt; index가 j보다 작은 수와 키값을 비교할때 while문을 보면 원래 키값이 있던자리에는 대체된값이 들어가고 원래 key값은 array에 아무곳에도 존재하지 않는다.</p>
+<p>비교가 끝났을때(while문 끝났을때) key 값을 맞는 자리에 넣어줘야한다.&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p>#</p>
+<p><figure class="imageblock alignCenter" data-filename="20200917213121.png" data-origin-width="654" data-origin-height="303" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="20200917213121.png" data-origin-width="654" data-origin-height="303" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>- 1줄의 time 는 n-1이 아닌 n.</p>
+<p>이유는 for 루프에서 만약 for 2 to 5면 5번째 루프까지 돌고 6간다음에 5를 초과했는지 검사를 하기때문.</p>
+<p>&nbsp;</p>
+<p>- 2줄의 time는 n-1. 이유는 1줄과는 다르게 값이 n+1일때는 루프에 들어가지 않기 때문.</p>
+<p>&nbsp;</p>
+<p>- 5줄은 t가 5줄의 while loop의 매번 한번의 execution의 execution time일때,</p>
+<p>&nbsp;sum of every t.</p>
+<p>&nbsp;</p>
+<p>- 6,7줄은 1,2번줄의 차이의 이유와 동일.</p>
+<p>&nbsp;그리고 둘다 while루프 안에 있으므로 동일한 time 소요.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>- the number of executions of the most frequently running line becomes the execution time or run time of the algorithm.</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>Analysis of insertion sort</b></p>
+<p>&nbsp;</p>
+<p>- assume that each execution of the ith line takes time <b>ci</b>. (where ci is a constant)</p>
+<p>- let <b>tj</b> denote the number of times the <b>while loop</b> test in line 5 is executed for that value of j.</p>
+<p>- <b>running time</b> of the algorithm is the sum of running times for each statement executed.</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><u>(week2-2)</u></p>
+<p>&nbsp;</p>
+<p><b>Analyzing algorithms</b></p>
+<p>&nbsp;</p>
+<p>Analyzing an algorithm : predicting the resources that the algorithm requires.</p>
+<p>&nbsp;</p>
+<p>Analysis of <b>insertion sort :</b></p>
+<p>- running time of algorithm is: (cost of statement) x ( statement가 실행된 횟수 #)</p>
+<p>- tj : # of times that <b>while loop</b> test is executed for that value of j.</p>
+<p>&nbsp;</p>
+<p>- insertion sort의 <b>best case</b>: 배열이 이미 정렬되어 있다면 best case다. 그 말은 즉 while loop가 한번만 돌면된다는 뜻.&nbsp;</p>
+<p>&nbsp;</p>
+<p>- <b>Worst case:&nbsp;</b>배열이 정렬의 정확히 반대로되어있으면 worst case일것. 즉 tj = i.&nbsp;</p>
+<p>&nbsp;<b>tj = i</b>라는 것은 tj가 j값에 대해 while loop가 실행된 횟수 이므로 while loop가 i번까지 완전히 다 돌았다는것.</p>
+<p>즉 최악의 케이스.&nbsp;&nbsp;</p>
+<p>- worst case gives a guaranteed upeer bound on the running time for any input.</p>
+<p>&nbsp;</p>
+<p>- <b>Average case</b>는 실행시간이 worst case의 절반정도. (tj = j/2)</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p>대부분의 경우 worst case 실행 시간을 고려한다. 그이유는?</p>
+<p>어떤 input인지에 따라 언제든지 worst case가 될수 있고 input값은 항상 바뀔것이기 때문에.</p>
+<p>&nbsp;</p>
+<p><b>Order of Growth</b></p>
+<p>- approximate growth of the run time of an algorithm.</p>
+<p>- abstraction to ease analysis and focus on the important features.</p>
+<p>- Order of Growth represents how fast the run time of an algorithm increases in terms of the input size n.</p>
+<p>(input size is data size)</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>Divide and conquer</b><b></b></p>
+<p>&nbsp;</p>
+<p>- Insertion sort 알고리즘을 만든 <b>incremental method</b>와는 대비된다.&nbsp;</p>
+<p>- for insertion sort, you increase the sorted set one by one, until all the given data are sorted.</p>
+<p>It looks like that the solution<b> grows up step by step.</b></p>
+<p>&nbsp;</p>
+<p>- Devide and Conquer은 주어진 데이터를 여러 조각으로 나눈다.</p>
+<p>- problem : given data, Subproblem : data divided into pieces</p>
+<p>- 이렇게 데이터를 조각낸뒤에 그 작은 조각 하나의 데이터를 해결하고 그렇게 모은 조각들을 합친다.&nbsp;</p>
+<p>- Incremental method: insertion sort, devide and conquer: merge sort</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><b>Merge sort</b></p>
+<p>&nbsp;</p>
+<p>- Devide and conquer 방법으로 디자인된 알고리즘.&nbsp;</p>
+<p>- worst case가 insertion sort보다 작다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>MERGE-SORT(A,p,r)</p>
+<pre id="code_1599726397382" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>if p &lt; r
+	then q &lt;-  &lfloor;(p+r) / 2&rfloor;
+    	MERGE-SORT(A,p,q)
+        MERGE-SORT(A,q+1,r)
+        MERGE(A,p,q,r)</code></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>MERGE(A,p,q,r)</p>
+<pre id="code_1599728537735" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>n1 &lt;- q - p + 1  // subarray A[p..q]의 길이
+n2 &lt;- r - q  // subarray A[q+1 ... r]의 길이
+
+let L[1... n1+1] and R[1 .. n2+1] be new arrays
+
+for i = 1 to n1
+	L[i] = A[p + i - 1] // // A[p..q]를 L[1..n1]에 복사
+    
+for j = 1 to n2
+	R[j] = A[q + j]  // A[q+1 .. r] 을 R[1..n2]에 복사
+    
+L[n1+1] = &infin;
+R[n2+1] = &infin;
+i = 1
+j = 1
+
+for k = p to r
+	if L[i] &lt;= R[j]
+    	A[k] = L[i]
+    	i = i + 1
+    else A[k] = R[j]
+    	j = j + 1</code></pre>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="20200910175726.png" data-origin-width="1101" data-origin-height="626" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-filename="20200910175726.png" data-origin-width="1101" data-origin-height="626" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>참조:</p>
+<p><span>Introduction to Algorithms, Second Edition, or Third Edition</span></p>
+<p>By Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

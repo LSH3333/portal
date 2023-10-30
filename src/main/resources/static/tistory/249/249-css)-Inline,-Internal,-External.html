@@ -1,0 +1,179 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>css) Inline, Internal, External</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">css) Inline, Internal, External</h2>
+                                <div class="box-info">
+                                    <p class="category">html & css</p>
+                                    <p class="date">2021-08-03 23:07:46</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><span style="color: #666666;">CSS : Cascading Style Sheet</span><span style="color: #666666;"></span></p>
+<p data-ke-size="size16">css는 html을 꾸며주는 역활을 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23"><u>Inline css</u></h3>
+<p data-ke-size="size16">css의 기본적인 예제는 다음과 같다</p>
+<p><figure class="imageblock alignLeft" data-origin-width="578" data-origin-height="27" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="578" data-origin-height="27" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="278" data-origin-height="63" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="278" data-origin-height="63" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이런식으로 아주 쉽게 html로 작성한 문서를 꾸며줄수 있다.</p>
+<p data-ke-size="size16">그런데 단점이있다.</p>
+<p data-ke-size="size16">보통 웹페이지에는 수많은 문단들과 문장들이 있고 수없이 많은 요소들이 있는데&nbsp;</p>
+<p data-ke-size="size16">예를들어 &lt;h1&gt; 태그를 사용할때마다 일일히 색과 폰트 크기와 그 외 수많은 요소들을 설정해줘야 할까?</p>
+<p data-ke-size="size16">그렇게 된다면 코드를 볼때마다 머리가 아프고 매우 귀찮은 작업이 될것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그래서 css를 적용하는 방법들이 있다.</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>internal css</li>
+<li>external css</li>
+<li>inline css</li>
+</ul>
+<p data-ke-size="size16">위에 예처럼 적용하고자 하는 태그안에 style 요소를 이용해 css를 적용하는것이 inline 이다.</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u>Internal css</u></h3>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">internal css는 html의 &lt;head&gt; 태그 내부에 &lt;style&gt; 태그를 이용해 css를 적용하는 방법이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="318" data-origin-height="264" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="318" data-origin-height="264" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignLeft" data-origin-width="308" data-origin-height="337" width="238" height="260" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="308" data-origin-height="337" width="238" height="260" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이런식으로 모든 &lt;h1&gt;, &lt;h2&gt; 태그에 style이 적용된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게<b> internal css</b>는 모든 태그마다 일일히 style을 적용시키지 않아도 되도록 해준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u>External css</u></h3>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그럼 만약 html 페이지가 여러개 있다면 어떨까?</p>
+<p data-ke-size="size16">모든 html 파일의 &lt;head&gt; 태그에 &lt;style&gt;을 적용시켜야 할까?</p>
+<p data-ke-size="size16">그런일이 없도록 해주는게<span>&nbsp;</span><b>external css</b>이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">style들을 정의할 css 파일을 만든다. 이름은 상관없다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="85" data-origin-height="19" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="85" data-origin-height="19" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">style.css 파일을 만들었다.</p>
+<p data-ke-size="size16">style.css 파일에 내가 원하는 태그들의 style을 설정해 줄수 있다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="235" data-origin-height="150" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="235" data-origin-height="150" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이제 html 파일에 적용하려면 html 파일의 &lt;head&gt; 태그에 &lt;link&gt; 태그로 css 파일을 연결한다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="434" data-origin-height="29" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="434" data-origin-height="29" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 external 방식으로 css를 적용시키면 모든 html 파일에 style을 새롭게 설정할 필요 없이</p>
+<p data-ke-size="size16">style이 저장된 css파일을 링크해주기만 하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><b>우선순위</b></h3>
+<p data-ke-size="size16">inline, internal, external 의 우선순위는 어떻게 될까?</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음과 같은 <b>css 파일</b>이 있고</p>
+<p data-ke-size="size16">h1 태그의 색을 red로 정의했다.</p>
+<p><figure class="imageblock alignLeft" data-origin-width="297" data-origin-height="94" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="297" data-origin-height="94" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">html 파일에 링크하고 <b>(external)</b>,</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">html 파일의 head 태그에 <b>internal</b> 방식으로&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="208" data-origin-height="119" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png" data-origin-width="208" data-origin-height="119" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이번에는 h1 태그의 색을 blue로 정의했다.</p>
+<p data-ke-size="size16">이런식으로 함수를 오버라이딩 하듯이 적용하면 어떻게 될까</p>
+<p data-ke-size="size16">&lt;h1&gt; 태그의 색은 무슨 색일까? 빨강? 파랑?</p>
+<p><figure class="imageblock alignLeft" data-origin-width="200" data-origin-height="123" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_9.png" data-origin-width="200" data-origin-height="123" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">정답은 파랑이다.</p>
+<p data-ke-size="size16">즉 <b>internal 방식이 external 보다 우선순위를 갖는다.</b></p>
+<p data-ke-size="size16"><b>Internal &gt; External</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">이 상태에서 다음과 같이 하나의 &lt;h1&gt; 태그를 inline 방식으로 스타일을 정의하면 어떻게 될까</p>
+<p><figure class="imageblock alignLeft" data-origin-width="428" data-origin-height="27" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_10.png" data-origin-width="428" data-origin-height="27" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignLeft" data-origin-width="197" data-origin-height="116" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_11.png" data-origin-width="197" data-origin-height="116" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">해당하는 &lt;h1&gt; 태그가 초록색이 됐다.</p>
+<p data-ke-size="size16">즉 <b>inline 방식이 internal 방식보다 우선시 된다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>결론:</b></p>
+<p data-ke-size="size16"><b>Inline &gt; Internal &gt; External</b></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #CSS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

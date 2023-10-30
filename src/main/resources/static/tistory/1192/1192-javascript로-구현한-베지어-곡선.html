@@ -1,0 +1,119 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>javascript로 구현한 베지어 곡선</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">javascript로 구현한 베지어 곡선</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2023-09-13 11:03:52</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">이전 galaga 게임을 만들때 C#으로 구현한 베지어 곡선.</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/848" target="_blank" rel="noopener">https://tose33.tistory.com/848</a></p>
+<figure id="og_1694570761494" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="베지어 곡선" data-og-description="https://ko.javascript.info/bezier-curve 베지어 곡선 ko.javascript.info 위에 베지어 곡선에 대해서 아주 잘 정리되어 있다. 유니티에서 구현해 봤다. 베지어 곡선을 만드는 알고리즘은 재귀적으로 구현하는데" data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/848" data-og-url="https://tose33.tistory.com/848" data-og-image="https://scrap.kakaocdn.net/dn/dpxL6E/hyTSp6sVF6/NAORkoh9qJXtCuC7XADOsk/img.gif?width=800&amp;height=486&amp;face=0_0_800_486,https://scrap.kakaocdn.net/dn/baGwon/hyTSCEKz6d/wgIv3Mmu8fBQvAfdIQUNtk/img.gif?width=800&amp;height=486&amp;face=0_0_800_486"><a href="https://tose33.tistory.com/848" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/848">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/dpxL6E/hyTSp6sVF6/NAORkoh9qJXtCuC7XADOsk/img.gif?width=800&amp;height=486&amp;face=0_0_800_486,https://scrap.kakaocdn.net/dn/baGwon/hyTSCEKz6d/wgIv3Mmu8fBQvAfdIQUNtk/img.gif?width=800&amp;height=486&amp;face=0_0_800_486');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">베지어 곡선</p>
+<p class="og-desc" data-ke-size="size16">https://ko.javascript.info/bezier-curve 베지어 곡선 ko.javascript.info 위에 베지어 곡선에 대해서 아주 잘 정리되어 있다. 유니티에서 구현해 봤다. 베지어 곡선을 만드는 알고리즘은 재귀적으로 구현하는데</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">만드는 중인 포폴 사이트의 galaga 를 소개하는 부분에 galaga 적들이 움직이고 있으면 재밌을것 같아서 javascript로 옮겨봤다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/bezier1.gif"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>기존의 Unity 에 사용된 C# 코드</b><b></b></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<script src="https://gist.github.com/LSH3333/9014a7896668bd67d1e9a2adabd9aa7f.js"></script>
+</div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>javascript</b></p>
+<div data-ke-type="moreLess" data-text-more="더보기" data-text-less="닫기">
+<div class="moreless-content-ignore">
+<script src="https://gist.github.com/LSH3333/3adbe063aa9671f649af28f94b29d6aa.js"></script>
+</div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">알고리즘 자체는 기존과 다를게 하나도 없지만 javascript 로 옮기면서 해결해야 하는 문제가 있었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 베지어 곡선을 그리는 방법은 다음과 같은데</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. N개의 조절점을 이어 N-1 개의 선분을 만든다</p>
+<p data-ke-size="size16">2. 각 선분의 t 값에 비례하는 곳에 점을 찍는다 (따라서 N-1 개의 새로운 점이 생긴다)</p>
+<p data-ke-size="size16">3. 1~2를 반복하면 결국 새로운 점의 갯수는 줄어들어 1개의 점이 된다.</p>
+<p data-ke-size="size16">4. 해당 점의 위치가 베지어 곡선을 그릴때 다음 점의 위치가 된다.</p>
+<p data-ke-size="size16">5. t 값을 증가시킨다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">내 코드에서는 dfs() 재귀 함수가 이를 수행한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>유니티에서는 x,y 좌표가 있어서 다음 점의 위치는 x,y 로 나타난다.</b></p>
+<p data-ke-size="size16">따라서 베지어 곡선을 따라 이동하는 오브젝트를 다음과 같이 다음 지점(arrivePoint)으로 이동시키기만 하면 된다.</p>
+<pre id="code_1694571504064" class="csharp" data-ke-language="csharp" data-ke-type="codeblock"><code> // 개체의 도착지점으로 이동  
+private void MoveToArrivePos()
+{
+    obj.transform.position = Vector3.MoveTowards(obj.transform.position, 
+		new Vector3(arrivePoint.transform.position.x, arrivePoint.transform.position.y, 0f), Time.deltaTime * speed);
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">내가 이제 하고 싶은건 웹 html 에서 예를들면 &lt;div&gt; 박스를 하나의 공간으로 보고, 그 내부에서 베지어 곡선을 그리면서 오브젝트를 이동시키고 싶다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 div 에는 x,y 좌표 같은것이 없다.</p>
+<p data-ke-size="size16">따라서 나는 css 의 <b>position:absolute 을 이용</b>했다.</p>
+<p data-ke-size="size16">position:absoulte 는 가장 가까운 position:relative 인 부모 기준으로 위치가 정해진다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<div style="background-color: #1f1f1f; color: #cccccc;">
+<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">div</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">id</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"parent"</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">style</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"</span><span style="color: #ce9178;">position:relative"</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #cccccc;">&nbsp; &nbsp; </span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">div</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">id</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"child"</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">sylte</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"position:absolute"</span><span style="color: #808080;">&gt;&lt;/</span><span style="color: #569cd6;">div</span><span style="color: #808080;">&gt;</span></div>
+<div><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">div</span><span style="color: #808080;">&gt;</span></div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 위와 같이 parent 와 child &lt;div&gt; 을 만들면, child의 left, bottom 을 x,y 로 생각할수 있다.</p>
+<p data-ke-size="size16">(left = 0, bottom = 0) 이면 (x=0,y=0)</p>
+<p data-ke-size="size16">(left = 20px, bottom = 20px) 이면 (x=20,y=20) 으로 생각할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

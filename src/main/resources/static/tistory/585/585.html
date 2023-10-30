@@ -1,0 +1,130 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>윤성우의 열혈 c++) Chapter 05. 복사 생성자 (Copy Constructor)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">윤성우의 열혈 c++) Chapter 05. 복사 생성자 (Copy Constructor)</h2>
+                                <div class="box-info">
+                                    <p class="category">윤성우의 열헐 C++</p>
+                                    <p class="date">2022-03-19 14:45:25</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26">문제 05-1 [복사 생성자의 정의]&nbsp;</h2>
+<pre class="cpp"><code>#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+using namespace std;
+
+namespace COMP_POS
+{
+    enum { CLERK, SENIOR, ASSIST, MANAGER };
+
+    void ShowRank(int _rank)
+    {
+        switch(_rank)
+        {
+            case CLERK:
+                cout &lt;&lt; "사원" &lt;&lt; endl;
+                break;
+            case SENIOR:
+                cout &lt;&lt; "주임" &lt;&lt; endl;
+                break;
+            case ASSIST:
+                cout &lt;&lt; "대리" &lt;&lt; endl;
+                break;
+            case MANAGER:
+                cout &lt;&lt; "과장" &lt;&lt; endl;
+                break;
+        }
+    }
+}
+
+class NameCard
+{
+private:
+    char * name;
+    char * company;
+    char * phoneNumber;
+    int rank;
+
+public:
+    NameCard(char * _name, char * _company, char * _phoneNumber, int _rank) : rank(_rank)
+    {
+        name = new char[strlen(_name)+1];
+        strcpy(name, _name);
+
+        company = new char[strlen(_company)+1];
+        strcpy(company, _company);
+
+        phoneNumber = new char[strlen(_phoneNumber)+1];
+        strcpy(phoneNumber, _phoneNumber);
+    }
+
+    NameCard(const NameCard &amp;copy) : rank(copy.rank)
+    {
+        name = new char[strlen(copy.name) + 1];
+        strcpy(name, copy.name);
+        company = new char[strlen(copy.company) + 1];
+        strcpy(company, copy.company);
+        phoneNumber = new char[strlen(copy.phoneNumber) + 1];
+        strcpy(phoneNumber, copy.phoneNumber);
+    }
+
+    void ShowNameCardInfo()
+    {
+        cout &lt;&lt; "이름: " &lt;&lt; name &lt;&lt; endl;
+        cout &lt;&lt; "회사: " &lt;&lt; company &lt;&lt; endl;
+        cout &lt;&lt; "전화번호: " &lt;&lt; phoneNumber &lt;&lt; endl;
+        cout &lt;&lt; "직급: "; COMP_POS::ShowRank(rank);
+        cout &lt;&lt; endl;
+    }
+
+    ~NameCard()
+    {
+        delete name;
+        delete company;
+        delete phoneNumber;
+        cout &lt;&lt; "소멸자 실행" &lt;&lt; endl;
+    }
+};
+
+int main()
+{
+    NameCard manClerk("Lee", "ABCEng", "010-1111-2222", COMP_POS::CLERK);
+    NameCard copy1 = manClerk;
+
+    NameCard manSENIOR("Hong", "OrangeEng", "010-3333-4444", COMP_POS::SENIOR);
+    NameCard copy2 = manSENIOR;
+
+    copy1.ShowNameCardInfo();
+    copy2.ShowNameCardInfo();
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

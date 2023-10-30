@@ -1,0 +1,67 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 10835. 카드게임</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 10835. 카드게임</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-02-09 16:15:12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/10835" target="_blank" rel="noopener">https://www.acmicpc.net/problem/10835</a></p>
+<figure id="og_1675926606010" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="10835번: 카드게임" data-og-description="첫 줄에는 한 더미의 카드의 개수를 나타내는 자연수 N(1 &le; N &le; 2,000)이 주어진다. 다음 줄에는 왼쪽 더미의 카드에 적힌 정수 A(1 &le; A &le; 2,000)가 카드 순서대로 N개 주어진다. 그 다음 줄에는 오" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/10835" data-og-url="https://www.acmicpc.net/problem/10835" data-og-image="https://scrap.kakaocdn.net/dn/bnvbXO/hyRzAnnt0K/Qny9tVfGCUcMmEZN9n6ga1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/SWDa2/hyRzwkYQdM/cUGTK5vxn1ZWntF6RkOjYK/img.png?width=586&amp;height=600&amp;face=0_0_586_600"><a href="https://www.acmicpc.net/problem/10835" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/10835">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bnvbXO/hyRzAnnt0K/Qny9tVfGCUcMmEZN9n6ga1/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480,https://scrap.kakaocdn.net/dn/SWDa2/hyRzwkYQdM/cUGTK5vxn1ZWntF6RkOjYK/img.png?width=586&amp;height=600&amp;face=0_0_586_600');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">10835번: 카드게임</p>
+<p class="og-desc" data-ke-size="size16">첫 줄에는 한 더미의 카드의 개수를 나타내는 자연수 N(1 &le; N &le; 2,000)이 주어진다. 다음 줄에는 왼쪽 더미의 카드에 적힌 정수 A(1 &le; A &le; 2,000)가 카드 순서대로 N개 주어진다. 그 다음 줄에는 오</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제의 핵심은 2차원 dp 배열을 만드는 것이다.&nbsp;</p>
+<pre class="markdown"><code>// i : 카드의 깊이
+// j : LEFT or RIGHT
+// dp[2][3] = 10 이라면 왼쪽 카드는 2번째 카드, 오른쪽 카드는 3번째, 그때의 점수는 10점
+int dp[2010][2010];</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">현재 왼쪽 카드 LEFT와 오른쪽 카드 RIGHT가 각각 LEFT=i, RIGHT=j 라고 하면 [i][j] 이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">왼쪽 카드만 버리는 경우에는 카드의 위치는 [i+1][j]가 된다.</p>
+<p data-ke-size="size16">양쪽 카드를 버리는 경우에는 카드의 위치는 [i+1][j]가 된다.<br />오른쪽 카드를 버릴수 있을때, 오른쪽 카드를 버리는 경우에는 카드의 위치는 [i][j+1] 이 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 2차원 배열에 왼쪽 카드와 오른쪽 카드의 위치를 나타내고 점수를 저장한다.&nbsp;</p>
+<p data-ke-size="size16">dp배열을 최초에 -1로 초기화 해놓고,</p>
+<p data-ke-size="size16">카드를 버릴수만 있기 때문에 2중 루프를 1부터 N까지 순서대로 돌면서 dp[i][j]에 저장된 값이 0이상인 경우에만 계산해주면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/6c47fc77494ea368ee72dac1b5305d26.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #DP 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

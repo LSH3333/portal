@@ -1,0 +1,246 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 3085. 사탕 게임</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 3085. 사탕 게임</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-07-05 22:21:10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/3085" target="_blank" rel="noopener">https://www.acmicpc.net/problem/3085</a></p>
+<figure id="og_1625490778944" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="3085번: 사탕 게임" data-og-description="예제 3의 경우 4번 행의 Y와 C를 바꾸면 사탕 네 개를 먹을 수 있다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/3085" data-og-url="https://www.acmicpc.net/problem/3085" data-og-image="https://scrap.kakaocdn.net/dn/Fork0/hyKN066qdi/PZIH2sT0C4pWbI6ETsRoT1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/3085" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/3085">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/Fork0/hyKN066qdi/PZIH2sT0C4pWbI6ETsRoT1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">3085번: 사탕 게임</p>
+<p class="og-desc" data-ke-size="size16">예제 3의 경우 4번 행의 Y와 C를 바꾸면 사탕 네 개를 먹을 수 있다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">- 금방 풀어놓고 i,j 위치 하나 잘못써서 애를 먹었다..</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제가 처음에 잘 이해가 안갔고 솔직히 아직까지도 뭔가 이상하다고 생각이든다.</p>
+<p data-ke-size="size16">"상근이는 사탕의 색이 다른 인접한 두칸을 고르고, 고른 칸에 들어있는 사탕을 서로 교환한다"</p>
+<p data-ke-size="size16">고 문제가 되어있는데 이상하다고 생각이 든것은</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제를 그대로 해석하자면 상근이는 사탕의 색이 다른 인접한 두칸을 고르고<b> 무조건 한번은 서로 자리를 바꿔야한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 예제2번을 보면 다음과 같이 입력이 나와있는데</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">4</p>
+<p data-ke-size="size16">PPPP</p>
+<p data-ke-size="size16">CYZY</p>
+<p data-ke-size="size16">CCPY</p>
+<p data-ke-size="size16">PPCC</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 입력에 대한 답이 4로 나와있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제 대로라면 사탕의 색이 <b>서로다른&nbsp;</b>인접한 두칸을 골라 자리를 바꿔야 하는데 그 경우 아무리 생각해봐도 4가 나올수 없다.</p>
+<p data-ke-size="size16">답이 4가 나오려면<b> 자리를 아예 안바꾸거나, 서로 같은 인접한 두칸을 골라 자리를 바꿀수 있어야 한다.</b></p>
+<p data-ke-size="size16">...</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아무리 생각해도 문제 조건대로 풀면 답이 안나와서 서로 같은 인접한 두칸을 골라 자리를 바꿔도 된다는 조건으로 풀었다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">브루트포스 방식으로 모든 칸을 상하 또는 좌우로 색을 바꿔본 후에</p>
+<p data-ke-size="size16">보드에서 가장 긴 길이가 몇인지 찾으면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1625491250129" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int n;
+char board[51][51];
+
+int ans = 0;
+
+// 현재 board에서 가장 긴 문자열의 수를 구해서 ans에 갱신함
+void Calculate() {
+    int hor_longest = 0;
+    int ver_longest = 0;
+
+    for(int i = 0; i &lt; n; i++) {
+        char hor_col = board[i][0];
+        char ver_col = board[0][i];
+
+        int hor_len = 1;
+        int ver_len = 1;
+
+        for(int j = 1; j &lt; n; j++) {
+            if(board[i][j] == hor_col) {
+                hor_len++;
+            }
+            else {
+                hor_longest = max(hor_len, hor_longest);
+                hor_col = board[i][j];
+                hor_len = 1;
+            }
+
+            if(board[j][i] == ver_col) {
+                ver_len++;
+            }
+            else {
+                ver_longest = max(ver_len, ver_longest);
+                ver_col = board[j][i];
+                ver_len = 1;
+            }
+
+        }
+        hor_longest = max(hor_len, hor_longest);
+        ver_longest = max(ver_len, ver_longest);
+    }
+    int bigger = max(ver_longest, hor_longest);
+
+    ans = max(ans, bigger);
+
+}
+
+
+// r을 to_r로, c를 to_c로 바꿔서 가장긴 문자열을 계산하고 원상태로 되돌림
+void Swap(int r, int c, int to_r, int to_c) {
+    // 원래 board[r][c]에 있던 값 보존
+    char original = board[r][c];
+
+    // 자리 바꿈
+    board[r][c] = board[to_r][to_c];
+    board[to_r][to_c] = original;
+
+    // 가장긴 문자열 계산
+    Calculate();
+
+    // 원래자리로 돌림
+    board[to_r][to_c] = board[r][c];
+    board[r][c] = original;
+}
+
+int main() {
+    cin &gt;&gt; n;
+
+    for(int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; board[i];
+    }
+
+    // 보드의 하나의 좌표를 기준으로 위아래로 swap함
+    for(int i = 0; i &lt; n; i++) {
+        for(int j = 0; j &lt; n; j++) {
+
+            // 위아래 swap
+            if(i != n-1)
+                Swap(i, j, i+1, j);
+            // 좌우 swap
+            if(j != n-1)
+                Swap(i, j, i, j+1);
+
+        }
+    }
+
+    cout &lt;&lt; ans &lt;&lt; '\n';
+
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&lt;algorithm&gt; 라이브러리의 swap() 함수를 써서 푼것</p>
+<pre id="code_1625493155687" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int n;
+char board[51][51];
+
+int res = 0;
+
+// 현재 보드에서 같은 색으로 이루어져 있는 가장 긴 연속부분의 길이를 반환한다
+int Calculate() {
+    // hor
+    int hor_len = 1;
+    for(int i = 0; i &lt; n; i++) {
+        char col = board[i][0];
+        int len = 1;
+
+        for(int j = 1; j &lt; n; j++) {
+            if(board[i][j] == col) {
+                len++;
+            }
+            else {
+                hor_len = max(hor_len, len);
+                col = board[i][j];
+                len = 1;
+            }
+        }
+        hor_len = max(hor_len, len);
+    }
+
+    // ver
+    int ver_len = 1;
+    for(int i = 0; i &lt; n; i++) {
+        char col = board[0][i];
+        int len = 1;
+
+        for(int j = 1; j &lt; n; j++) {
+            if(board[j][i] == col) {
+                len++;
+            }
+            else {
+                ver_len = max(ver_len, len);
+                col = board[j][i];
+                len = 1;
+            }
+        }
+        ver_len = max(ver_len, len);
+    }
+
+    return max(hor_len, ver_len);
+}
+
+int main() {
+    cin &gt;&gt; n;
+    for(int i = 0; i &lt; n; i++)
+        cin &gt;&gt; board[i];
+
+    for(int i = 0; i &lt; n; i++) {
+        for(int j = 0; j &lt; n-1; j++) {
+            // 좌우
+            swap(board[i][j], board[i][j+1]);
+            res = max(res, Calculate());
+            swap(board[i][j], board[i][j+1]); // 원상태로
+
+            // 상하
+            swap(board[j][i], board[j+1][i]);
+            res = max(res, Calculate());
+            swap(board[j][i], board[j+1][i]);
+        }
+    }
+
+    cout &lt;&lt; res;
+}</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Brute Force #swap 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 11497. 통나무 건너뛰기</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 11497. 통나무 건너뛰기</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-08-11 15:17:25</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/11497" target="_blank" rel="noopener">https://www.acmicpc.net/problem/11497</a></p>
+<figure id="og_1628662109601" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="11497번: 통나무 건너뛰기" data-og-description="남규는 통나무를 세워 놓고 건너뛰기를 좋아한다. 그래서 N개의 통나무를 원형으로 세워 놓고 뛰어놀려고 한다. 남규는 원형으로 인접한 옆 통나무로 건너뛰는데, 이때 각 인접한 통나무의 높이" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/11497" data-og-url="https://www.acmicpc.net/problem/11497" data-og-image="https://scrap.kakaocdn.net/dn/2In9g/hyLdwxAU5t/sJCkSpixhNQlTFRoRuqkF0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/rLj3O/hyLdnUW9Ts/wcpJ5EwJxf582jFG5zXQh1/img.png?width=548&amp;height=536&amp;face=0_0_548_536"><a href="https://www.acmicpc.net/problem/11497" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/11497">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/2In9g/hyLdwxAU5t/sJCkSpixhNQlTFRoRuqkF0/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630,https://scrap.kakaocdn.net/dn/rLj3O/hyLdnUW9Ts/wcpJ5EwJxf582jFG5zXQh1/img.png?width=548&amp;height=536&amp;face=0_0_548_536');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">11497번: 통나무 건너뛰기</p>
+<p class="og-desc" data-ke-size="size16">남규는 통나무를 세워 놓고 건너뛰기를 좋아한다. 그래서 N개의 통나무를 원형으로 세워 놓고 뛰어놀려고 한다. 남규는 원형으로 인접한 옆 통나무로 건너뛰는데, 이때 각 인접한 통나무의 높이</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 통나무를 오름차순으로 정렬한다&nbsp;</p>
+<p data-ke-size="size16">2. 가장 작은 통나무부터 순서대로 양끝에 배치한다&nbsp;</p>
+<p data-ke-size="size16">3. 최대 차이 계산&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">ex)</p>
+<p data-ke-size="size16">입력이 다음과 같다면&nbsp;</p>
+<p data-ke-size="size16"><b>5</b></p>
+<p data-ke-size="size16"><b>2<span> </span>4<span> </span>5<span> </span>7<span> </span>9</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. 정렬:</p>
+<p data-ke-size="size16">2 4 5 7 9</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 가장 작은 통나무부터 순서대로 양끝 배치&nbsp;</p>
+<p data-ke-size="size16">2&nbsp; 5&nbsp; 9&nbsp; 7&nbsp; 4</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre id="code_1628662252505" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+
+    int tc; // test case
+    cin &gt;&gt; tc;
+
+    while(tc--)
+    {
+        int arr[10001];
+        int copy[10001];
+        int n;
+        cin &gt;&gt; n;
+        for(int i = 0; i &lt; n; i++)
+            cin &gt;&gt; arr[i];
+
+        // 오름차순 정렬
+        sort(arr, arr+n);
+
+        // 가장 작은 통나무부터 순서대로 양끝에 배치한다
+        bool pushFront = true;
+        int frontIdx = 0;
+        int backIdx = n-1;
+        for(int i = 0; i &lt; n; i++)
+        {
+            if(pushFront)
+            {
+                copy[frontIdx] = arr[i];
+                frontIdx++;
+                pushFront = false;
+            }
+            else
+            {
+                copy[backIdx] = arr[i];
+                backIdx--;
+                pushFront = true;
+            }
+        }
+
+        // 난이도 계산
+        int ans = abs(copy[n-1] - copy[0]);
+        for(int i = 0; i &lt; n-1; i++)
+        {
+            ans = max(abs(copy[i]-copy[i+1]), ans);
+        }
+        cout &lt;&lt; ans &lt;&lt; '\n';
+    }
+
+
+}</code></pre>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #greedy 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

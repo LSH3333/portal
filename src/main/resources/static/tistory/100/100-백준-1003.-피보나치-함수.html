@@ -1,0 +1,165 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1003. 피보나치 함수</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 1003. 피보나치 함수</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2021-03-06 17:05:32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><a href="https://www.acmicpc.net/problem/1003" target="_blank" rel="noopener">www.acmicpc.net/problem/1003</a></p>
+<figure id="og_1615017228868" contenteditable="false" data-ke-type="opengraph" data-og-type="website" data-og-title="1003번: 피보나치 함수" data-og-description="각 테스트 케이스마다 0이 출력되는 횟수와 1이 출력되는 횟수를 공백으로 구분해서 출력한다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/1003" data-og-url="https://www.acmicpc.net/problem/1003" data-og-image="https://scrap.kakaocdn.net/dn/e8f1Y/hyJtJF7yeu/kmRMYJhI6IFVQOoJnaYFYk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630"><a href="https://www.acmicpc.net/problem/1003" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/1003">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/e8f1Y/hyJtJF7yeu/kmRMYJhI6IFVQOoJnaYFYk/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title">1003번: 피보나치 함수</p>
+<p class="og-desc">각 테스트 케이스마다 0이 출력되는 횟수와 1이 출력되는 횟수를 공백으로 구분해서 출력한다.</p>
+<p class="og-host">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p>&nbsp;</p>
+<p>처음에 시간제한 보고 그냥 주어진 코드에 memoization 추가하면 될줄 알았는데</p>
+<p>&nbsp;</p>
+<p><span>// memoization!!<br /></span><span>if</span>(d[n] &gt; <span>0</span>) { <span>return </span>d[n]<span>; </span>}</p>
+<p>&nbsp;</p>
+<p>이렇게 하게되면 0과 1의 호출이 생략되기 때문에 호출 횟수를 출력할수가 없다.</p>
+<p>&nbsp;</p>
+<p>그래서 memoization을 수정해야 하나 이리저리 고민하다가 0과 1의 호출 횟수를 세어보니</p>
+<p>&nbsp;</p>
+<table style="border-collapse: collapse; width: 100%; height: 95px;" border="1">
+<tbody>
+<tr>
+<td style="width: 33.3333%;">fibo</td>
+<td style="width: 33.3333%;">0 호출 횟수</td>
+<td style="width: 33.3333%;">1 호출 횟수</td>
+</tr>
+<tr style="height: 19px;">
+<td style="width: 33.3333%; height: 19px;">fibo(0)</td>
+<td style="width: 33.3333%; height: 19px;">1</td>
+<td style="width: 33.3333%; height: 19px;">0</td>
+</tr>
+<tr style="height: 19px;">
+<td style="width: 33.3333%; height: 19px;"><span style="color: #333333;">fibo(1)</span></td>
+<td style="width: 33.3333%; height: 19px;">0</td>
+<td style="width: 33.3333%; height: 19px;">1</td>
+</tr>
+<tr style="height: 19px;">
+<td style="width: 33.3333%; height: 19px;"><span style="color: #333333;">fibo(2)</span></td>
+<td style="width: 33.3333%; height: 19px;">1</td>
+<td style="width: 33.3333%; height: 19px;">1</td>
+</tr>
+<tr style="height: 19px;">
+<td style="width: 33.3333%; height: 19px;"><span style="color: #333333;">fibo(3)</span></td>
+<td style="width: 33.3333%; height: 19px;">1</td>
+<td style="width: 33.3333%; height: 19px;">2</td>
+</tr>
+<tr style="height: 19px;">
+<td style="width: 33.3333%; height: 19px;"><span style="color: #333333;">fibo(4)</span></td>
+<td style="width: 33.3333%; height: 19px;">2</td>
+<td style="width: 33.3333%; height: 19px;">3</td>
+</tr>
+<tr>
+<td style="width: 33.3333%;"><span style="color: #333333;">fibo(5)</span></td>
+<td style="width: 33.3333%;">3</td>
+<td style="width: 33.3333%;">5</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>그냥 0과 1의 호출횟수도 피보나치 수열이었다.</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+<tbody>
+<tr>
+<td style="width: 16.6667%;">idx</td>
+<td style="width: 16.6667%;">0</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">2</td>
+<td style="width: 16.6667%;">3</td>
+<td style="width: 16.6667%;">4</td>
+</tr>
+<tr>
+<td style="width: 16.6667%;">fibo</td>
+<td style="width: 16.6667%;">0</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">1</td>
+<td style="width: 16.6667%;">2</td>
+<td style="width: 16.6667%;">3</td>
+</tr>
+</tbody>
+</table>
+<p>fibo(3)의 0의 호출 횟수 : 1</p>
+<p>fibo(3)의 1의 호출 횟수 : 2</p>
+<p>&nbsp;</p>
+<p>fibo(4)의 0 호출 횟수 : 2</p>
+<p>fibo(4)의 1 호출 횟수 : 3</p>
+<p>&nbsp;</p>
+<p>fibo(n)의 0 호출 횟수 : fibo(n-1)</p>
+<p>fibo(n)의 1의 호출 횟수 : fibo(n)</p>
+<p>&nbsp;</p>
+<p>따라서 그냥 피보나치 Top-down 코드를 그대로 쓰면된다.</p>
+<p>&nbsp;</p>
+<pre id="code_1615017918716" class="c++ arduino" data-ke-language="c++" data-ke-type="codeblock"><code>#include &lt;iostream&gt;
+using namespace std;
+
+int d[101] = {0,1,};
+
+int fibonacci(int n) {
+    // base
+    if(n == 0) {   return 0; }
+    if(n == 1) {   return 1; }
+
+    // memoization!!
+    if(d[n] &gt; 0) {  return d[n]; }
+
+
+    d[n] = fibonacci(n-1) + fibonacci(n - 2);
+    return d[n];
+}
+
+int main() {
+    int t;
+    cin &gt;&gt; t;
+
+    while(t--) {
+        int n;
+        cin &gt;&gt; n;
+        fibonacci(n);
+
+        if(n == 0) cout &lt;&lt; "1 " &lt;&lt; "0" &lt;&lt; '\n';
+        else if(n == 1) cout &lt;&lt; "0 " &lt;&lt; "1" &lt;&lt; '\n';
+        else cout &lt;&lt; d[n-1] &lt;&lt; ' ' &lt;&lt; d[n] &lt;&lt; '\n';
+
+    }
+}</code></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

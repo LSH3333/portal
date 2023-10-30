@@ -1,0 +1,141 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>mac에서 직접 라이브러리 만들기 (dll 파일, unityengine.dll 참조)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">mac에서 직접 라이브러리 만들기 (dll 파일, unityengine.dll 참조)</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-08-22 11:48:32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h3 data-ke-size="size23"><u><b>dll 파일 생성</b></u></h3>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. Visual Studio에서 파일-&gt;새솔루션</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 앱 및 콘솔 -&gt; 라이브러리 -&gt; 클래스 라이브러리(c#)&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1780" data-origin-height="1294" data-filename="스크린샷 2021-08-22 오전 11.13.43.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-origin-width="1780" data-origin-height="1294" data-filename="스크린샷 2021-08-22 오전 11.13.43.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1768" data-origin-height="1290" data-filename="스크린샷 2021-08-22 오전 11.13.54.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-origin-width="1768" data-origin-height="1290" data-filename="스크린샷 2021-08-22 오전 11.13.54.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1792" data-origin-height="1308" data-filename="스크린샷 2021-08-22 오전 11.14.59.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-origin-width="1792" data-origin-height="1308" data-filename="스크린샷 2021-08-22 오전 11.14.59.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">프레임워크는 유니티의 프레임워크 버전과 일치시켜야 하는것으로 알고있는데 일단은 정상적으로 구동되는것을 확인했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. 유니티엔진의 클래스들을 사용할것이기 때문에 unityengine.dll을 참조시켜야함.</p>
+<p data-ke-size="size16">.dll 우클릭 -&gt; 추가 -&gt; 참조</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1356" data-origin-height="1422" data-filename="스크린샷 2021-08-22 오전 11.16.44.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-origin-width="1356" data-origin-height="1422" data-filename="스크린샷 2021-08-22 오전 11.16.44.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1736" data-origin-height="1140" data-filename="스크린샷 2021-08-22 오전 11.18.55.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-origin-width="1736" data-origin-height="1140" data-filename="스크린샷 2021-08-22 오전 11.18.55.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">찾아보기 누른후 unityengine.dll 참조시킨다.&nbsp;</p>
+<p data-ke-size="size16">내 맥에서 경로는 다음과 같았다.</p>
+<p data-ke-size="size16">/Applications/Unity/Hub/Editor/2017.4.39f1/Unity.app/Contents/Managed/UnityEngine.dll</p>
+<p data-ke-size="size16">(Managed 폴더에 UnityEngine이라는 폴더가 있고 그 안에 또 UnityEngine.dll이 있는데 이 dll 파일이 아니고 Managed폴더의 UnityEngine.dll 파일이다)</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1912" data-origin-height="754" data-filename="스크린샷 2021-08-22 오전 11.41.34.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-origin-width="1912" data-origin-height="754" data-filename="스크린샷 2021-08-22 오전 11.41.34.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이제 이렇게&nbsp; UnityEngine의 클래스들을 사용할수 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style5" />
+<h3 data-ke-size="size23"><u><b>유니티에서 내 라이브러리 참조</b></u></h3>
+<p data-ke-size="size16">1. 빌드 -&gt; MyEngine.dll 빌드&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-origin-width="590" data-origin-height="586" data-filename="스크린샷 2021-08-22 오전 11.23.10.png" width="356" height="354" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_6.png" data-origin-width="590" data-origin-height="586" data-filename="스크린샷 2021-08-22 오전 11.23.10.png" width="356" height="354" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">Finder에서 표시를 눌러서 솔루션 경로로 가서,</p>
+<p data-ke-size="size16">bin/Debug/netcore/ 로 가면 방금 빌드한 dll 파일이 있다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="732" data-origin-height="796" data-filename="스크린샷 2021-08-22 오전 11.24.05.png" width="402" height="437" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_7.png" data-origin-width="732" data-origin-height="796" data-filename="스크린샷 2021-08-22 오전 11.24.05.png" width="402" height="437" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1922" data-origin-height="432" data-filename="스크린샷 2021-08-22 오전 11.40.57.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_8.png" data-origin-width="1922" data-origin-height="432" data-filename="스크린샷 2021-08-22 오전 11.40.57.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">2. 유니티 프로젝트의 Asset에 Plugins 폴더를 만들고 그 폴더안에 dll 파일을 넣어준다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="338" data-origin-height="144" data-filename="스크린샷 2021-08-22 오전 11.45.57.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_9.png" data-origin-width="338" data-origin-height="144" data-filename="스크린샷 2021-08-22 오전 11.45.57.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. 테스트를 위해 새로운 씬의 빈 게임오브젝트에 스크립트를 만든다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="1266" data-origin-height="526" data-filename="스크린샷 2021-08-22 오전 11.35.50.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_10.png" data-origin-width="1266" data-origin-height="526" data-filename="스크린샷 2021-08-22 오전 11.35.50.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" data-origin-width="1080" data-origin-height="794" data-filename="스크린샷 2021-08-22 오전 11.46.55.png" width="621" height="456" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_11.png" data-origin-width="1080" data-origin-height="794" data-filename="스크린샷 2021-08-22 오전 11.46.55.png" width="621" height="456" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">4. 시작해보면 Class1의 DLLTestMethod가 정상적으로 작동되는것을 볼수 있다.</p>
+<p><figure class="imageblock alignCenter" data-origin-width="532" data-origin-height="176" data-filename="스크린샷 2021-08-22 오전 11.47.24.png" data-ke-mobilestyle="widthOrigin">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_12.png" data-origin-width="532" data-origin-height="176" data-filename="스크린샷 2021-08-22 오전 11.47.24.png" data-ke-mobilestyle="widthOrigin" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

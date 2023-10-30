@@ -1,0 +1,72 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2211. 네트워크 복구</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2211. 네트워크 복구</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2023-01-14 15:10:36</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2211" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2211</a></p>
+<figure id="og_1673676228266" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2211번: 네트워크 복구" data-og-description="첫째 줄에 두 정수 N, M이 주어진다. 다음 M개의 줄에는 회선의 정보를 나타내는 세 정수 A, B, C가 주어진다. 이는 A번 컴퓨터와 B번 컴퓨터가 통신 시간이 C (1 &le; C &le; 10)인 회선으로 연결되어 있다" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2211" data-og-url="https://www.acmicpc.net/problem/2211" data-og-image=""><a href="https://www.acmicpc.net/problem/2211" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2211">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2211번: 네트워크 복구</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 두 정수 N, M이 주어진다. 다음 M개의 줄에는 회선의 정보를 나타내는 세 정수 A, B, C가 주어진다. 이는 A번 컴퓨터와 B번 컴퓨터가 통신 시간이 C (1 &le; C &le; 10)인 회선으로 연결되어 있다</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제에서 두개의 조건이 주어진다.</p>
+<p data-ke-size="size16">1. 최소 개수의 회선을 복구시켜야하고, 모든 노드들이 연결되어 있어야한다.</p>
+<p data-ke-size="size16">2. 슈퍼컴퓨터인 1번 노드에서 다른 모든 노드들이 최단거리로 연결되어야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그런데 <b>1번 조건은 2번 조건을 충족시키면 저절로 충족된다</b>.&nbsp;</p>
+<p data-ke-size="size16">1번 노드에서 다른 모든 노드들이 최단거리로 연결되려면 당연히 모든 노드들은 서로 연결되어 있을 것이고, 최단거리로 연결되어 있기 때문에 갯수도 최소 갯수일 것 이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그럼 2번 조건을 충족시키면 되는데 그냥 조건만 봐도 <b>다익스트라</b> 알고리즘인것을 알 수 있다.&nbsp;</p>
+<p data-ke-size="size16">문제는 다익스트라 알고리즘은 하나의 노드에서 다른 모든 노드들의 거리를 저장한다는 것이다.</p>
+<p data-ke-size="size16">그런데 <b>이 문제는 거리가 아닌 간선을 출력해야 한다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">간선 기억도 다익스트라에서 조금만 추가하면 가능하다.</p>
+<p data-ke-size="size16"><b>int e[1001] 배열에 연결된 노드를 저장하도록 하면 된다.</b></p>
+<p data-ke-size="size16">즉 e[3] = 2 라면 3번 노드와 2번 노드가 연결되어 있다는 뜻이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다익스트라 알고리즘에서 nextDistance가 해당 노드에 저장되어 있는 거리보다 짧다면 갱신하게 되는데, 이때 e[i] 즉 연결된 노드도 갱신하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다익스트라 알고리즘 종료 후 e[i] &gt; 0 인 노드들이 연결된 두 노드이므로 출력해주면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/b35cfc39d3f1a40aa25e80c8eea0a9e2.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Dijkstra 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
