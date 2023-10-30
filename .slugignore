@@ -8,4 +8,4 @@ out/
 .idea/
 .git/
 .svn/
-tistory/*
+/src/main/resources/static/tistory/*
