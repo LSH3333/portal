@@ -26,7 +26,7 @@ public class BlogController {
         // fetchTistory.js fetchHTML() 에서 fetch 할 html 경로
         String fetchURL = "/tistory/"+extractNumber(pageName)+"/"+pageName;
         // header 이름 렌더링
-        String headerPageName = pageName.substring(0, pageName.length()-5);
+        String headerPageName = pageName.substring(pageName.indexOf('-')+1, pageName.length()-5);
 
         model.addAttribute("headerTextBoxText", headerPageName);
         model.addAttribute("fetchURL", fetchURL);
