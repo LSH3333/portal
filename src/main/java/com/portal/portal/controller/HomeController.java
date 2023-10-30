@@ -72,35 +72,8 @@ public class HomeController {
 
 
 
-    @GetMapping("blogPortal")
-    public String blogPortal(Model model) {
-        model.addAttribute("headerTextBoxText", "Algorithm");
-        return "blog/blogPortal";
-    }
-
-    @GetMapping("blog/{pageName}")
-    public String blogPage(Model model, @PathVariable String pageName) {
-        // fetchTistory.js fetchHTML() 에서 fetch 할 html 경로
-        String fetchURL = "/tistory/"+pageName;
-        // header 이름 렌더링
-        String headerPageName = pageName.substring(0, pageName.length()-5);
-
-        model.addAttribute("headerTextBoxText", headerPageName);
-        model.addAttribute("fetchURL", fetchURL);
-        return "blog/tistoryPage";
-    }
 
 
-//    @GetMapping("blog")
-//    public String blog(Model model) {
-//        model.addAttribute("headerTextBoxText", "BLOG");
-//        return "blog/tistoryTest";
-//    }
-//
-//    @GetMapping("tistory1")
-//    public String tistory1(Model model) {
-//        model.addAttribute("headerTextBoxText", "TISTORY1");
-//        return "blog/tistory1";
-//    }
+
 
 }

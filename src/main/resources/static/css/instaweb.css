@@ -11,20 +11,12 @@
 header {
     min-height: 50vh;
     width: 100%;
-    /* linear-gradient: 이미지에 명암을 줌 (default는 to bottom) */
-    /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/spring.png); */
-    background-image: url(../images/spring.png);
-    background-size:80% 70%;
-    background-position: 50% 80%;
-    background-repeat: no-repeat;
-    /* background-color: rgba(4, 9, 30, 0.3); */
-    background-color: whitesmoke;
-    /* border-bottom: 1px solid gray; */
-    position: relative;
 }
-
+#headerBackground {    
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/spring.png);
+}
 #header-text-box {
-    color:black;
+    color:white;
 }
 
 

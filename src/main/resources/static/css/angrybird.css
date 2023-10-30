@@ -4,13 +4,10 @@ header {
     position: relative;    
     min-height: 50vh;
     width: 100%;
-    /* linear-gradient: 이미지에 명암을 줌 (default는 to bottom) */
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/angrybird2.png);         
-    background-size:100% 100%;
-    background-position: 50% 80%;
-    background-repeat: no-repeat;
-    background-color: rgba(4, 9, 30, 0.7);
-}
 
+}
+#headerBackground {
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/unity.svg);
+}
 
 
