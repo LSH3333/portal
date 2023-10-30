@@ -1,0 +1,10 @@
+node_modules/
+*.log
+*.swp
+dist/
+build/
+out/
+.vscode/
+.idea/
+.git/
+.svn/
