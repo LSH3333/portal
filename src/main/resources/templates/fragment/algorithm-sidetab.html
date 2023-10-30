@@ -5,14 +5,15 @@
 <div th:fragment="algorithm-sidetab">    
     <div class="side-menu">
         <ul>
-            <li><a href="">그래프</a></li>
-            <li><a href="">트리</a></li>
-            <li><a href="">최단 거리 알고리즘</a></li>
-            <li><a href="">MST</a></li>
-            <li><a href="">DP</a></li>
-            <li><a href="">백트래킹</a></li>
-            <li><a href="">구현</a></li>
-            <li><a href="">브루트포스</a></li>
+            <li id="backToAlgo"><a href="/templates/blog/blogPortal.html" th:href="@{/blogPortal}">../알고리즘</a></li>
+            <li><a href="/templates/blog/graph.html" th:href="@{/blogPortal/graph}">그래프</a></li>
+            <li><a href="/templates/blog/tree.html" th:href="@{/blogPortal/tree}">트리</a></li>
+            <li><a href="/templates/blog/shortestPath.html" th:href="@{/blogPortal/shortestPath}">최단 거리 알고리즘</a></li>
+            <li><a href="/templates/blog/mst.html" th:href="@{/blogPortal/mst}">MST</a></li>
+            <li><a href="/templates/blog/dp.html" th:href="@{/blogPortal/dp}">DP</a></li>
+            <li><a href="/templates/blog/backtracking.html" th:href="@{/blogPortal/backtracking}">백트래킹</a></li>
+            <li><a href="/templates/blog/implementation.html" th:href="@{/blogPortal/implementation}">구현</a></li>
+            <li><a href="/templates/blog/bruteforce.html" th:href="@{/blogPortal/bruteforce}">브루트포스</a></li>
         </ul>
     </div>
 </div>

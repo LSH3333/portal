@@ -37,9 +37,47 @@ public class BlogController {
         return url.substring(0, url.indexOf('-'));
     }
 
+
+
     @GetMapping("blogPortal/graph")
     public String graph(Model model) {
         model.addAttribute("headerTextBoxText", "Graph");
         return "blog/graph";
+    }
+
+    @GetMapping("blogPortal/tree")
+    public String tree(Model model) {
+        model.addAttribute("headerTextBoxText", "Tree");
+        return "blog/tree";
+    }
+
+    @GetMapping("blogPortal/shortestPath")
+    public String shortestPath(Model model) {
+        model.addAttribute("headerTextBoxText", "ShortestPath Algorithm");
+        return "blog/shortestPath";
+    }
+
+    @GetMapping("blogPortal/dp")
+    public String dp(Model model) {
+        model.addAttribute("headerTextBoxText", "Dynamic Programming");
+        return "blog/dp";
+    }
+
+    @GetMapping("blogPortal/backtracking")
+    public String backtracking(Model model) {
+        model.addAttribute("headerTextBoxText", "BackTracking");
+        return "blog/backtracking";
+    }
+
+    @GetMapping("blogPortal/implementation")
+    public String implementation(Model model) {
+        model.addAttribute("headerTextBoxText", "Implementation");
+        return "blog/implementation";
+    }
+
+    @GetMapping("blogPortal/bruteforce")
+    public String bruteforce(Model model) {
+        model.addAttribute("headerTextBoxText", "BruteForce");
+        return "blog/bruteforce";
     }
 }

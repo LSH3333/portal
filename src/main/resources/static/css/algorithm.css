@@ -31,6 +31,10 @@ main {
     color: black;
 }
 
+#backToAlgo {
+    margin: 10px 0 20px 0;
+}
+
 /* CONTENT */
 .content {
     flex-grow: 1;
