@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BLOG TESTING</title>
+    <title>Algorithm</title>
     <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
         th:href="@{/css/mainContentBlock.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
@@ -34,25 +34,18 @@
     <header th:replace="fragment/header :: header"></header>
 
     <!-- MAIN -->
-    <main>
-        <div id="mainContentBlock">
-            <div class="mainContentBlockWrap">
-                <div id="ContentBlock">
-                    <div>
-                        <a href="/templates/instaweb.html"
-                            th:href="@{/blog/1183-백준-13335.-트럭.html}">1183-백준-13335.-트럭.html</a>
-                    </div>
-                    <div>
-                        <a href="/templates/instaweb.html"
-                            th:href="@{/blog/1176-백준-14284.-간선-이어가기-2.html}">1176-백준-14284.-간선-이어가기-2.html</a>
-                    </div>
-                    <div>
-                        <a href="/templates/instaweb.html"
-                            th:href="@{/blog/1182-백준-14395.-4연산.html}">1182-백준-14395.-4연산.html</a>
-                    </div>
+    <main>      
+        <div class="algorithmBlock">
+            <a class="algoBlockAnchor" href=""><div id="graphBlock" class="squareBlock">그래프</div></a>            
+            <a class="algoBlockAnchor" href=""><div id="treeBlock" class="squareBlock">트리</div></a>
+            <a class="algoBlockAnchor" href=""><div id="shortestPathAlgoBlock" class="squareBlock">최단 거리 알고리즘</div></a>
+            <a class="algoBlockAnchor" href=""><div id="MSTBlock" class="squareBlock">MST</div></a>
+            <a class="algoBlockAnchor" href=""><div id="dpBlock" class="squareBlock">DP</div></a>
+            <a class="algoBlockAnchor" href=""><div id="backtrackingBlock" class="squareBlock">백트래킹</div></a>
+            <a class="algoBlockAnchor" href=""><div id="implementationBlock" class="squareBlock">구현</div></a>
+            <a class="algoBlockAnchor" href=""><div id="bruteforceBlock" class="squareBlock">브루트포스</div></a>
 
-                </div>
-            </div>
+    
         </div>
     </main>
 
