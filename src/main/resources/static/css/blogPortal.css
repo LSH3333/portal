@@ -12,12 +12,17 @@ header {
 }
 
 .contentBlock {
+    /* background-color: gray; */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     flex-wrap: wrap;
     padding: 3% 16% 0 16%;
     line-height: 2;
+}
+.contentBlock a {
+    text-decoration: underline;
+    color: black;
 }
 /* Read more Btn */
 #readmoreBtn {
