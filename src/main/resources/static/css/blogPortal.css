@@ -2,17 +2,48 @@
 header {
     min-height: 50vh;
     width: 100%;
-    /* linear-gradient: 이미지에 명암을 줌 (default는 to bottom) */
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/interface-3614766_1280.png);
-    /* background-color: black; */
-    background-position: center;
-    background-size: cover;
-    position: relative;
+}
+#headerBackground {    
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/algorithm.png);    
 }
 
 .algoBlockAnchor {
     text-decoration: none;
 }
+
+.contentBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 3% 16% 0 16%;
+    line-height: 2;
+}
+/* Read more Btn */
+#readmoreBtn {
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#readmoreBtn:hover {
+    cursor: pointer;
+    background-color: #3db39e;
+}
+
+#readmoreBtn a {
+    text-decoration: none;
+    color: white;
+}
+
+
 
 .algorithmBlock {
     /* background-color: rgb(239, 239, 245); */
@@ -22,7 +53,7 @@ header {
     flex-wrap: wrap;
     min-height: 50vh;
     padding: 2% 16%;
-    margin: 5% 0;
+    margin: 0 0 5% 0;
     line-height: 2;
 }
 
@@ -78,4 +109,32 @@ header {
 }
 #bruteforceBlock{
     background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/bruteforce.png);
+}
+
+#binarySearchBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/binarysearch.png);
+}
+#dataStructureBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/datastructure.png);
+}
+#recursionBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/recursion.png);
+}
+#bitmaskBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/bitmask.png);
+}
+#greedyBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/greedy.png);
+}
+#prefixSumBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/prefixSum.png);
+}
+#twoPointerBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/twoPointer.png);
+}
+#stringBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/string.png);
+}
+#disjointSetBlock{
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/disjointSet.png);
 }

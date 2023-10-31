@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>비트마스킹</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/algorithm.css" th:href="@{/css/algorithm.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/algorithm/bitmask.css"
+        th:href="@{/css/algorithm/bitmask.css}" />
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&family=Skranji&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header th:replace="fragment/header :: header"></header>
+
+    <!-- MAIN -->
+    <main>
+        <!-- SIDE TAB -->
+        <div th:replace="fragment/algorithm-sidetab">
+        </div>
+        <div class="content">
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1162-백준-2098.-외판원-순회.html}">백준-2098.-외판원-순회</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1165-백준-1562.-계단-수.html}">백준-1562.-계단-수</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1040-백준-4991.-로봇-청소기.html}">백준-4991.-로봇-청소기</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/893-백준-2234.-성곽.html}">백준-2234.-성곽</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1063-백준-14391.-종이-조각.html}">백준-14391.-종이-조각</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/967-백준-1062.-가르침.html}">백준-1062.-가르침</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/317-백준-1052.-물병.html}">백준-1052.-물병</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/1095-백준-16938.-캠프-준비.html}">백준-16938.-캠프-준비</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/234-백준-15661.-링크와-스타트.html}">백준-15661.-링크와-스타트</a>
+            </div>    
+            <div class="postList">
+                <a href="#" th:href="@{/blog/920-백준-17419.-비트가-넘쳐흘러.html}">백준-17419.-비트가-넘쳐흘러</a>
+            </div>    
+            
+            
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer th:replace="fragment/footer :: footer"></footer>
+
+
+</body>
+
+</html>

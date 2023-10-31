@@ -80,4 +80,58 @@ public class BlogController {
         model.addAttribute("headerTextBoxText", "BruteForce");
         return "blog/bruteforce";
     }
+
+    @GetMapping("blogPortal/binarysearch")
+    public String binarySearch(Model model) {
+        model.addAttribute("headerTextBoxText", "BinarySearch");
+        return "blog/binarysearch";
+    }
+
+    @GetMapping("blogPortal/datastructure")
+    public String dataStructure(Model model) {
+        model.addAttribute("headerTextBoxText", "DataStructure");
+        return "blog/datastructure";
+    }
+
+    @GetMapping("blogPortal/recursion")
+    public String recursion(Model model) {
+        model.addAttribute("headerTextBoxText", "Recursion");
+        return "blog/recursion";
+    }
+
+    @GetMapping("blogPortal/bitmask")
+    public String bitmask(Model model) {
+        model.addAttribute("headerTextBoxText", "Bitmask");
+        return "blog/bitmask";
+    }
+
+    @GetMapping("blogPortal/greedy")
+    public String greedy(Model model) {
+        model.addAttribute("headerTextBoxText", "Greedy");
+        return "blog/greedy";
+    }
+
+    @GetMapping("blogPortal/prefixSum")
+    public String prefixSum(Model model) {
+        model.addAttribute("headerTextBoxText", "PrefixSum");
+        return "blog/prefixSum";
+    }
+
+    @GetMapping("blogPortal/twopointer")
+    public String twoPointer(Model model) {
+        model.addAttribute("headerTextBoxText", "TwoPointer");
+        return "blog/twopointer";
+    }
+
+    @GetMapping("blogPortal/string")
+    public String string(Model model) {
+        model.addAttribute("headerTextBoxText", "String");
+        return "blog/string";
+    }
+
+    @GetMapping("blogPortal/disjointset")
+    public String disjointSet(Model model) {
+        model.addAttribute("headerTextBoxText", "Disjoint Set");
+        return "blog/disjointset";
+    }
 }
