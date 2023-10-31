@@ -1,5 +1,9 @@
 /* 내용 작성 블록 */
 
+ul > li {
+    margin-left: 10px;
+}
+
 /* mainContentBlock */
 .mainContentBlock {  
     /* background-color: rgb(239, 239, 245); */
@@ -63,4 +67,14 @@
     margin: 0 auto;
     width: 10%;
     border: 2px solid gray; 
+}
+
+
+/* 제목 블록 */
+.titleBlock {
+    padding: 0 16%;
+    line-height: 2;
+}
+.titleBlock hr {
+    margin: 2% 0;
 }

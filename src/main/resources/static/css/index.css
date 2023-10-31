@@ -78,93 +78,76 @@ main {
 }
 
 
+/* instaweb-block */
+#instaweb-block {
+    justify-content: space-around;
+    padding: 6% 6%;
+    min-height: 45vh;
 
+    display: flex;
+    /* align-items: center; */
+}
 
+#instaweb-block .imgBlock {
+    max-width: 70%;
+    /* border: 1px solid gray; */
+}
 
+#instaweb-block .imgBlock img {
+    max-width: 100%;
+}
 
-/* mainBlock2 */
-#mainBlock2 {
+#instaweb-block #instaweb-block-Content {
+    max-width: 30%;
+}
+
+#instaweb-block a {
+    font-size: 18px;
+    font-style: italic;
+    text-decoration-line: underline;
+    color: black;
+}
+
+#instaweb-block .techStack {
+    margin-top: 20%;
+}
+
+/* galaga-block */
+#galaga-block {
     background-color: rgb(239, 239, 245);
-    padding: 5% 20%;
-    position: relative;
-    height: 30vh;
-}
-
-#mainBlock2Wrap {
-    /* background-color: #3db39e; */
-    position: absolute;
-    display: flex;
-    align-items: center;
-
-    left: -100%;
-    opacity: 0;
-
-    transition: left 1s ease, opacity 1s ease;
-}
-
-#mainBlock2Wrap.slide-left {
-    left: 15%;
-    opacity: 2;
-}
-
-#mainBlock2 #mainBlock2Content {
-    /* background-color: antiquewhite; */
-    margin-bottom: 20px;
-    margin-right: 100px;
-}
-
-#mainBlock2 #mainBlock2Content p {
-    font-size: 40px;
-    margin: 5% 0;
-    color: #3db39e;
-}
-
-#imgBlock2 {
-    /* background-color: #3db39e; */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-#imgBlock2 img {
-    border-radius: 50%;
-    width: 170px;
-    height: 60px;
-    margin: 0 3%;
-}
-
-
-
-/* mainBlock3 */
-#mainBlock3 {
     display: flex;
     justify-content: space-around;
-    padding: 2% 20%;
-    margin: 5% 0;
+    padding: 6% 6%;
+    min-height: 45vh;
+    position: relative;
 
-    opacity: 0;
-    transition: opacity 3s ease;
+    display: flex;
+    align-items: center;
 }
 
-#mainBlock3.slide-left {
-    opacity: 1;
-}
-
-#mainBlock3 .imgBlock {
-    max-width: 40%;
-}
-
-#mainBlock3 .imgBlock img {
+#galaga-block .imgBlock {
     max-width: 60%;
 }
 
-#mainBlock3 #mainBlock3Content p {
-    font-size: 40px;
-    margin: 5% 0;
-    color: #3db39e;
+#galaga-block .imgBlock img {
+    max-width: 70%;
 }
+
+#galaga-block #galaga-block-Content {
+    max-width: 30%;
+}
+
+#galaga-block #galaga-block-Content .galaga-link {
+    font-size: 18px;
+    font-style: italic;
+    text-decoration-line: underline;
+    color: black;
+}
+
+#galaga-block #galaga-block-Content .techStack {
+    margin-top: 20%;
+}
+
 
 
 

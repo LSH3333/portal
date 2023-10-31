@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>home</title>
-    
+    <!-- css style -->
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/index.css" th:href="@{/css/index.css}" />
@@ -42,8 +44,77 @@
                 <div id="readmoreBtn"><a href="/templates/aboutme.html" th:href="@{/aboutme}">About me!</a></div>
             </div>
         </div>
-        <!-- MAIN BLOCK 2 -->
-        <div id="mainBlock2">
+        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h2>기술</h2>
+                    <hr>
+                    <ul>
+                        <li>
+                            <b>Language</b> (클릭 시 언어 사용한곳으로 이동)
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/controller/PageController.java#L308-L355"
+                                        target="_blank">JAVA</a>,
+                                    <a target="_blank" href="#" th:href="@{/blog/844-백준-2933.-미네랄.html}">C++</a>,
+                                    <a href="https://github.com/LSH3333/Instaweb/blob/70861f21f9cd46b404f6340cf7f566ac5c5b086c/src/main/resources/templates/fragment/editorData.html#L929-L959"
+                                        target="_blank">javascript</a>,
+                                    <a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116"
+                                        target="_blank">C#</a>,
+                                    <!-- html,css 는 이 페이지 작성 다 끝나고 해당 git permalink 추가 -->
+                                    <a target="_blank" href="">HTML</a>,
+                                    <a target="_blank" href="">CSS</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Framework / Engine</b>
+                            <ul>
+                                <li>
+                                    <a target="_blank" href="/templates/instaweb.html"
+                                        th:href="@{/instaweb}">Spring</a>,
+                                    <a target="_blank" href="/templates/instaweb.html" th:href="@{/instaweb}">JPA</a>,
+                                    <a target="_blank" href="/templates/galaga.html" th:href="@{/galaga}">Uniy
+                                        Engine</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="titleBlock">
+            <h2>프로젝트</h2>
+            <hr>
+        </div>
+        <!-- Instaweb Block -->
+        <div id="instaweb-block">
+            <div class="imgBlock">
+                <img src="/static/images/instaweb.png" th:src="@{/images/instaweb.png}" alt="">
+            </div>
+            <div id="instaweb-blockContent">
+                <p>
+                    <div id="readmoreBtn"><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></div>
+                    로그인 후 글, 댓글을 작성 시 DB에 저장하는 웹.                
+                <a href="https://lsh-instaweb.herokuapp.com/" target="_blank"><i class="fa-solid fa-link"></i>visit
+                    web →</a><br>
+                <a href="https://github.com/LSH3333/Instaweb" target="_blank"><i class="fa-brands fa-github"></i>
+                    visit git →</a>
+                </p>
+                <div class="techStack">
+                    <img src="/static/images/spring.svg" th:src="@{/images/spring.svg}" alt="">
+                    <img src="/static/images/hibernate.svg" th:src="@{/images/hibernate.svg}" alt="">
+                    <img src="/static/images/html.svg" th:src="@{/images/html.svg}" alt="">
+                    <img src="/static/images/css.svg" th:src="@{/images/css.svg}" alt="">
+                    <img src="/static/images/thymeleaf.svg" th:src="@{/images/thymeleaf.svg}" alt="">
+                    <img src="/static/images/js.svg" th:src="@{/images/js.svg}" alt="">
+                    <img src="/static/images/heroku.svg" th:src="@{/images/heroku.svg}" alt="">
+                    <img src="/static/images/postgres.svg" th:src="@{/images/postgres.svg}" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- Galaga Block -->
+        <div id="galaga-block">
             <!-- 베지어 곡선 따라 이동하는 오브젝트들 -->
             <span style="position: absolute;" id="obj"><img id="imgObj" src="/images/Enemy1_1.png" alt=""></span>
             <span style="position: absolute;" id="obj2"><img id="imgObj2" src="/images/Enemy2_1.png" alt=""></span>
@@ -54,29 +125,24 @@
             <span style="position: absolute;" id="p2"></span>
             <span style="position: absolute;" id="p3"></span>
             <span style="position: absolute;" id="p4"></span>
-            <div id="mainBlock2Wrap">
-                <div id="mainBlock2Content">
-                    <p>What I did</p>
-                    제가 만든 웹사이트와 게임들,<br> 한 번 구경해보실래요?<br>
-                    <div id="readmoreBtn"><a href="/templates/portfolio.html" th:href="@{/portfolio}">Portfolio</a>
-                    </div>
-                </div>
-                <div id="imgBlock2">
-                    <img src="/static/images/instawebLogo.png" th:src="@{/images/instawebLogo.png}" alt="">
-                    <img src="/static/images/galagaLogo.png" th:src="@{/images/galagaLogo.png}" alt="">
-                    <img src="/static/images/manyGamesLogo.png" th:src="@{/images/manyGamesLogo.png}" alt="">
+            <div id="galaga-block-Content">
+                <p>
+                    <div id="readmoreBtn"><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></div>
+                    Unity 로 구현한 갤러그.<br><br>                    
+                    <a class="galaga-link" href="https://lsh3333.itch.io/galaga" target="_blank"><i class="fa-solid fa-gamepad"></i>play
+                        game →</a><br>
+                    <a class="galaga-link" href="https://github.com/LSH3333/Galaga" target="_blank"><i class="fa-brands fa-github"></i>
+                        visit git →</a>
+                </p>
+                <div class="techStack">
+                    <img src="/static/images/csharp.svg" th:src="@{/images/csharp.svg}" alt="">
+                    <img src="/static/images/unity.svg" th:src="@{/images/unity.svg}" alt="">
                 </div>
             </div>
-        </div>
-        <!-- MAIN BLOCK 3 -->
-        <div id="mainBlock3">
             <div class="imgBlock">
-                <img src="/static/images/draw-4067546_1280.png" th:src="@{/images/draw-4067546_1280.png}" alt="">
-            </div>
-            <div id="mainBlock3Content">
-                <p>Blog</p>
-                공부하면서 기록해놓는 제 블로그입니다.<br>
-                <div id="readmoreBtn"><a href="https://tose33.tistory.com/" target="_blank">My blog</a></div>
+                <!-- <img style="width: 60%;" src="/static/images/galaga_spawn.png" th:src="@{/images/galaga1.png}" alt=""> -->
+                <iframe frameborder="0" src="https://itch.io/embed-upload/8826622?color=333333" allowfullscreen=""
+                    width="360" height="700"><a href="https://lsh3333.itch.io/galaga">Play galga on itch.io</a></iframe>
             </div>
         </div>
     </main>
@@ -84,8 +150,10 @@
     <!-- FOOTER -->
     <footer th:replace="fragment/footer :: footer"></footer>
 
-    <script type="text/javascript" src="/static/js/bezierHome.js" th:src="@{/js/bezierHome.js}"></script>
+    <!-- <script type="text/javascript" src="/static/js/bezierHome.js" th:src="@{/js/bezierHome.js}"></script> -->
     <script type="text/javascript" src="/static/js/slideObj.js" th:src="@{/js/slideObj.js}"></script>
+    <!-- <script type="text/javascript" src="/static/js/bezier.js" th:src="@{/js/bezier.js}"></script> -->
+    <script type="text/javascript" src="/static/js/bezierGalaga.js" th:src="@{/js/bezierGalaga.js}"></script>
 </body>
 
 </html>
