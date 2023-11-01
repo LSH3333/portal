@@ -93,7 +93,7 @@ function dynamicallyAddGist(gists, index) {
             var div = document.createElement('div');
             div.innerHTML = data.div;
             dynamicallyAddedGists.push(div.firstChild);
-
+            setGistNoneVisible(div.firstChild); // 추가된 gist 최초에 안보이도록 처리 
             gist.parentNode.replaceChild(div.firstChild, gist);
             dynamicallyAddGist(gists, index + 1); // 다음 재귀로 
         };
@@ -103,8 +103,9 @@ function dynamicallyAddGist(gists, index) {
         langGistRenderer = document.getElementById('lang-gist-renderer')
         // 여러 언어 gist 존재하는 경우에만 
         if (langGistRenderer != null) {
-            // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리
-            setAllGistNoneVisible();
+            // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리            
+            // 첫 하나만 보이도록함 
+            setGistVisible(dynamicallyAddedGists[0]);
             getLangAnchors();
             addEventListenerToLangAnchors();
         }
@@ -113,11 +114,6 @@ function dynamicallyAddGist(gists, index) {
 }
 
 // gist.style.display 수정해서 gist element 보이도록하거나 보이지 않도록함 
-function setAllGistNoneVisible() {
-    dynamicallyAddedGists.forEach(gist => {
-        setGistNoneVisible(gist);
-    });
-}
 function setGistNoneVisible(gist) {
     gist.style.display = 'none';
 }
@@ -140,7 +136,7 @@ function getLangAnchors() {
 function addEventListenerToLangAnchors() {
     langAnchors.forEach(function (anchor) {
         anchor.addEventListener('click', function (event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
             // langAnchors[] 에서 anchor 의 인덱스 
             let idx = langAnchors.indexOf(anchor);
@@ -152,7 +148,7 @@ function addEventListenerToLangAnchors() {
 
 function renderAddedGist(langGistRenderer, addedGist) {
     // gist 랜더링되는 <div id='langGistRenderer'> 내부 비우고 
-    langGistRenderer.childNodes.forEach(gist => {        
+    langGistRenderer.childNodes.forEach(gist => {
         gist.remove();
     });
     // 새로 선택한 언어 gist 랜더링 
@@ -161,48 +157,3 @@ function renderAddedGist(langGistRenderer, addedGist) {
 }
 
 
-// function dynamicallyAddGist() {
-//     // ajax 컨테이너 내부 모든 <script> gist 찾음
-//     var ajaxContainer = document.getElementById('ContentBlock');
-//     var gists = ajaxContainer.querySelectorAll('script[src^="https://gist.github.com/"]');
-
-//     // gist 존재한다면
-//     console.log('gists.length = ' + gists.length)
-//     if (gists.length > 0) {
-//         // 각 gist 업데이트
-//         gists.forEach(function (gist) {
-//             console.log('gist1 = ' + gist.src);
-
-//             // jsonp 로 gist 를 json 으로 가져옴
-//             var scriptSrc = gist.getAttribute('src');
-//             var gistId = scriptSrc.split('/').pop().split('.')[0];
-//             var jsonpUrl = `https://gist.github.com/${gistId}.json`;
-//             console.log('gistId = ' + gistId)
-//             // JSONP request
-//             var script = document.createElement('script');
-//             script.src = jsonpUrl + '?callback=gistCallback';
-//             document.head.appendChild(script);
-
-//             // 콜백
-//             window.gistCallback = function (data) {
-//                 console.log('gist2 = ' + gist.src);
-//                 // script 를 gist 로 대체
-//                 var div = document.createElement('div');
-//                 div.innerHTML = data.div;
-//                 gist.parentNode.replaceChild(div.firstChild, gist);
-
-//                 // style 필요하면 갖고오는데, 여기서는 필요없음
-//                 // addStylesheetOnce('https://gist.github.com/' + data.stylesheet);
-//             };
-//         });
-//     }
-// }
-
-// function addStylesheetOnce(href) {
-//     if (!document.querySelector(`link[href="${href}"]`)) {
-//         var link = document.createElement('link');
-//         link.rel = 'stylesheet';
-//         link.href = href;
-//         document.head.appendChild(link);
-//     }
-// }

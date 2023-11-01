@@ -11,5 +11,11 @@ header {
     position: relative;
 }
 
-
-
+#lang-anchor-block {
+    margin-bottom: 20px;
+}
+#lang-anchor-block a {
+    margin: 0 5px;
+    color: black;
+    text-decoration: underline;
+}

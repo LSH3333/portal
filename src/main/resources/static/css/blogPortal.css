@@ -93,7 +93,9 @@ header {
 
 
 
-
+#multiLangBlock {
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/multiLang.png);
+}
 #graphBlock {
     background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../images/graph.png);
 }

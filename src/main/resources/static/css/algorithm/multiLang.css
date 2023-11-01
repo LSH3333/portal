@@ -1,0 +1,13 @@
+
+#headerBackground {
+    height: 40vh;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url(../../images/multiLang.png);
+    background-position: center;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.content ul {
+    margin: 30px;
+}

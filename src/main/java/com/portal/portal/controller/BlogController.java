@@ -38,6 +38,11 @@ public class BlogController {
     }
 
 
+    @GetMapping("blogPortal/multiLang")
+    public String multiLang(Model model) {
+        model.addAttribute("headerTextBoxText", "Multi Language");
+        return "blog/multiLang";
+    }
 
     @GetMapping("blogPortal/graph")
     public String graph(Model model) {
