@@ -1,72 +1,90 @@
-
 <meta charset="utf-8">
 <html lang="ko">
+
 <head>
     <link rel="stylesheet" type="text/css" href="./../style.css" />
     <title>백준 18222. 투에-모스 문자열</title>
 </head>
+
 <body id="tt-body-page" class="">
-<div id="wrap" class="wrap-right">
-    <div id="container">
-        <main class="main ">
-            <div class="area-main">
-                <div class="area-view">
-                    <div class="article-header">
-                        <div class="inner-article-header">
-                            <div class="box-meta">
-                                <h2 class="title-article">백준 18222. 투에-모스 문자열</h2>
-                                <div class="box-info">
-                                    <p class="category">PS</p>
-                                    <p class="date">2023-09-24 12:38:24</p>
+    <div id="wrap" class="wrap-right">
+        <div id="container">
+            <main class="main ">
+                <div class="area-main">
+                    <div class="area-view">
+                        <div class="article-header">
+                            <div class="inner-article-header">
+                                <div class="box-meta">
+                                    <h2 class="title-article">백준 18222. 투에-모스 문자열</h2>
+                                    <div class="box-info">
+                                        <p class="category">PS</p>
+                                        <p class="date">2023-09-24 12:38:24</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="article-view">
-                        <div class="contents_style">
-                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/18222" target="_blank" rel="noopener">https://www.acmicpc.net/problem/18222</a></p>
-<figure id="og_1695526465133" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="18222번: 투에-모스 문자열" data-og-description="0과 1로 이루어진 길이가 무한한 문자열 X가 있다. 이 문자열은 다음과 같은 과정으로 만들어진다. X는 맨 처음에 &quot;0&quot;으로 시작한다.&nbsp; X에서 0을 1로, 1을 0으로&nbsp;뒤바꾼 문자열 X'을 만든다. X의 뒤에" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/18222" data-og-url="https://www.acmicpc.net/problem/18222" data-og-image="https://scrap.kakaocdn.net/dn/dQpB5N/hyTZaOJjjD/6BL2TZE3dBNEidwrPHFp2K/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/18222" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/18222">
-<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/dQpB5N/hyTZaOJjjD/6BL2TZE3dBNEidwrPHFp2K/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
-<div class="og-text">
-<p class="og-title" data-ke-size="size16">18222번: 투에-모스 문자열</p>
-<p class="og-desc" data-ke-size="size16">0과 1로 이루어진 길이가 무한한 문자열 X가 있다. 이 문자열은 다음과 같은 과정으로 만들어진다. X는 맨 처음에 "0"으로 시작한다.&nbsp; X에서 0을 1로, 1을 0으로&nbsp;뒤바꾼 문자열 X'을 만든다. X의 뒤에</p>
-<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
-</div>
-</a></figure>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">분할정복.</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">문자를 길이가 2이하가 될때까지 반씩 접어 나간다.</p>
-<p data-ke-size="size16">그러면 결국 첫번째나 두번째 자리에 오게되는데, 접은 횟수가 홀수라면 그대로 짝수라면 반대로 출력한다.</p>
-<p data-ke-size="size16">&nbsp;</p>
-<script src="https://gist.github.com/LSH3333/4117f50f8cf9b18ad2429fbe9e802bad.js"></script>
-<p data-ke-size="size16">&nbsp;</p>
-<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
-<p data-ke-size="size16">&nbsp;</p>
-<script src="https://gist.github.com/LSH3333/32136e7fe0c3bc8ae08d0666c5706e0f.js"></script>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">이건 다른 분 코드를 보고 엄청 좋은것 같아서 다시 풀어봤다.</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">우선 반씩 접는 것을 아래와 같이 구했다.</p>
-<pre class="abnf" style="background-color: #2b2b2b; color: #a9b7c6;"><code>for(l = 1; l+l &lt; n; l+=l);</code></pre>
-<p data-ke-size="size16">이렇게 하면 자연스럽게 n 보다 작은 다음 반접은 길이가 나오고,</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">n-l 을 해주면 그곳이 반을 접은 상태에서 다음 위치가 된다.</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">그리고 n==1 이 되면 리턴해주는데&nbsp;</p>
-<p data-ke-size="size16">이전에 나는 깊이가 홀수면 그대로, 짝수면 반대로 출력해줬다.</p>
-<p data-ke-size="size16">그런데 리턴할때 ! 즉 0이면 1, 1이면 0을 리턴함으로써 해당 부분이 구현된다.</p>
-                        </div>
-                        <br/>
-                        <div class="tags">
-                            #recursion #divide and conquer 
+                        <hr>
+                        <div class="article-view">
+                            <div class="contents_style">
+                                <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/18222" target="_blank"
+                                        rel="noopener">https://www.acmicpc.net/problem/18222</a></p>
+                                <figure id="og_1695526465133" contenteditable="false" data-ke-type="opengraph"
+                                    data-ke-align="alignCenter" data-og-type="website" data-og-title="18222번: 투에-모스 문자열"
+                                    data-og-description="0과 1로 이루어진 길이가 무한한 문자열 X가 있다. 이 문자열은 다음과 같은 과정으로 만들어진다. X는 맨 처음에 &quot;0&quot;으로 시작한다.&nbsp; X에서 0을 1로, 1을 0으로&nbsp;뒤바꾼 문자열 X'을 만든다. X의 뒤에"
+                                    data-og-host="www.acmicpc.net"
+                                    data-og-source-url="https://www.acmicpc.net/problem/18222"
+                                    data-og-url="https://www.acmicpc.net/problem/18222"
+                                    data-og-image="https://scrap.kakaocdn.net/dn/dQpB5N/hyTZaOJjjD/6BL2TZE3dBNEidwrPHFp2K/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480">
+                                    <a href="https://www.acmicpc.net/problem/18222" target="_blank" rel="noopener"
+                                        data-source-url="https://www.acmicpc.net/problem/18222">
+                                        <div class="og-image"
+                                            style="background-image: url('https://scrap.kakaocdn.net/dn/dQpB5N/hyTZaOJjjD/6BL2TZE3dBNEidwrPHFp2K/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">
+                                            &nbsp;</div>
+                                        <div class="og-text">
+                                            <p class="og-title" data-ke-size="size16">18222번: 투에-모스 문자열</p>
+                                            <p class="og-desc" data-ke-size="size16">0과 1로 이루어진 길이가 무한한 문자열 X가 있다. 이
+                                                문자열은 다음과 같은 과정으로 만들어진다. X는 맨 처음에 "0"으로 시작한다.&nbsp; X에서 0을 1로, 1을
+                                                0으로&nbsp;뒤바꾼 문자열 X'을 만든다. X의 뒤에</p>
+                                            <p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+                                        </div>
+                                    </a></figure>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">분할정복.</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">문자를 길이가 2이하가 될때까지 반씩 접어 나간다.</p>
+                                <p data-ke-size="size16">그러면 결국 첫번째나 두번째 자리에 오게되는데, 접은 횟수가 홀수라면 그대로 짝수라면 반대로 출력한다.</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <script
+                                    src="https://gist.github.com/LSH3333/4117f50f8cf9b18ad2429fbe9e802bad.js"></script>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <script
+                                    src="https://gist.github.com/LSH3333/32136e7fe0c3bc8ae08d0666c5706e0f.js"></script>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">이건 다른 분 코드를 보고 엄청 좋은것 같아서 다시 풀어봤다.</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">우선 반씩 접는 것을 아래와 같이 구했다.</p>
+                                <pre class="abnf"
+                                    style="background-color: #2b2b2b; color: #a9b7c6;"><code>for(l = 1; l+l &lt; n; l+=l);</code></pre>
+                                <p data-ke-size="size16">이렇게 하면 자연스럽게 n 보다 작은 다음 반접은 길이가 나오고,</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">n-l 을 해주면 그곳이 반을 접은 상태에서 다음 위치가 된다.</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">그리고 n==1 이 되면 리턴해주는데&nbsp;</p>
+                                <p data-ke-size="size16">이전에 나는 깊이가 홀수면 그대로, 짝수면 반대로 출력해줬다.</p>
+                                <p data-ke-size="size16">그런데 리턴할때 ! 즉 0이면 1, 1이면 0을 리턴함으로써 해당 부분이 구현된다.</p>
+                            </div>
+                            <br />
+                            <div class="tags">
+                                #recursion #divide and conquer
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
 </body>
+
 </html>
