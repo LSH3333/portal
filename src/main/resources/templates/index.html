@@ -33,7 +33,7 @@
     <!-- MAIN -->
     <main>
         <!-- MAIN BLOCK 1 -->
-        <div id="mainBlock1">
+        <div class="" id="mainBlock1">
             <div id="imgBlock1" class="imgBlock">
                 <img src="/static/images/music-32859_1280.png" th:src="@{/images/music-32859_1280.png}" alt="">
             </div>
@@ -51,7 +51,7 @@
                     <hr>
                     <ul>
                         <li>
-                            <b>Language</b> (클릭 시 언어 사용한곳으로 이동)
+                            <b>Language</b> (클릭 시 사용한곳으로 이동)
                             <ul>
                                 <li>
                                     <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/controller/PageController.java#L308-L355"
@@ -61,9 +61,8 @@
                                         target="_blank">javascript</a>,
                                     <a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116"
                                         target="_blank">C#</a>,
-                                    <!-- html,css 는 이 페이지 작성 다 끝나고 해당 git permalink 추가 -->
-                                    <a target="_blank" href="">HTML</a>,
-                                    <a target="_blank" href="">CSS</a>
+                                    <a target="_blank" href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/templates/index.html#L47-L89">HTML</a>,
+                                    <a target="_blank" href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/static/css/mainContentBlock.css#L7-L26">CSS</a>
                                 </li>
                             </ul>
                         </li>
@@ -94,8 +93,9 @@
             </div>
             <div id="instaweb-blockContent">
                 <p>
-                    <div id="readmoreBtn"><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></div>
-                    로그인 후 글, 댓글을 작성 시 DB에 저장하는 웹.                
+                <h2>WEB</h2>                    
+                <div id="readmoreBtn"><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></div>
+                로그인 후 글, 댓글을 작성 시 DB에 저장하는 웹.<br><br>
                 <a href="https://lsh-instaweb.herokuapp.com/" target="_blank"><i class="fa-solid fa-link"></i>visit
                     web →</a><br>
                 <a href="https://github.com/LSH3333/Instaweb" target="_blank"><i class="fa-brands fa-github"></i>
@@ -127,12 +127,15 @@
             <span style="position: absolute;" id="p4"></span>
             <div id="galaga-block-Content">
                 <p>
-                    <div id="readmoreBtn"><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></div>
-                    Unity 로 구현한 갤러그.<br><br>                    
-                    <a class="galaga-link" href="https://lsh3333.itch.io/galaga" target="_blank"><i class="fa-solid fa-gamepad"></i>play
-                        game →</a><br>
-                    <a class="galaga-link" href="https://github.com/LSH3333/Galaga" target="_blank"><i class="fa-brands fa-github"></i>
-                        visit git →</a>
+                <h2>UNITY</h2>
+                <div id="readmoreBtn"><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></div>
+                Unity 로 구현한 갤러그.<br><br>
+                <a class="galaga-link" href="https://lsh3333.itch.io/galaga" target="_blank"><i
+                        class="fa-solid fa-gamepad"></i>play
+                    game →</a><br>
+                <a class="galaga-link" href="https://github.com/LSH3333/Galaga" target="_blank"><i
+                        class="fa-brands fa-github"></i>
+                    visit git →</a>
                 </p>
                 <div class="techStack">
                     <img src="/static/images/csharp.svg" th:src="@{/images/csharp.svg}" alt="">
@@ -145,14 +148,25 @@
                     width="360" height="700"><a href="https://lsh3333.itch.io/galaga">Play galga on itch.io</a></iframe>
             </div>
         </div>
+        <!-- Algorithm Block -->
+        <div id="algorithm-block">
+            <div class="imgBlock">
+                <img src="/static/images/draw-4067546_1280.png" th:src="@{/images/draw-4067546_1280.png}" alt="">
+            </div>
+            <div id="algorithm-block-Content">
+                <p>Algorithm</p>
+                프로젝트들을 진행하면서도 알고리즘 문제는 꾸준히 풀며 <b>1000 문제</b> 이상을 풀었고
+                앞으로도 계속할 생각입니다.
+                <br>
+                <div id="readmoreBtn"><a href="/templates/blog/blogPortal.html" th:href="@{/blogPortal}" target="_blank">Algorithm</a></div>
+            </div>
+        </div>
     </main>
 
     <!-- FOOTER -->
     <footer th:replace="fragment/footer :: footer"></footer>
 
-    <!-- <script type="text/javascript" src="/static/js/bezierHome.js" th:src="@{/js/bezierHome.js}"></script> -->
     <script type="text/javascript" src="/static/js/slideObj.js" th:src="@{/js/slideObj.js}"></script>
-    <!-- <script type="text/javascript" src="/static/js/bezier.js" th:src="@{/js/bezier.js}"></script> -->
     <script type="text/javascript" src="/static/js/bezierGalaga.js" th:src="@{/js/bezierGalaga.js}"></script>
 </body>
 

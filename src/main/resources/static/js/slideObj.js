@@ -29,7 +29,7 @@ function deactivateSlideLeft(elem) {
 }
 
 
-// Function to check if an element is in the viewport
+// elem 이 화면내 있는지 확인하고 그렇다면 true else false 
 function isElementInViewport(elem) {
     var rect = elem.getBoundingClientRect();
     // console.log('top = ' + rect.top)
@@ -45,7 +45,7 @@ function isElementInViewport(elem) {
     return false;
 }
 
-// Add an event listener for the scroll event
+
 window.addEventListener('scroll', function () {
     // mainBlock1
     if (!mainBlock1ScrolledIn && isElementInViewport(mainBlock1)) {
@@ -58,22 +58,5 @@ window.addEventListener('scroll', function () {
         deactivateSlideRight(mainBlock1Content);
         deactivateSlideLeft(imgBlock1);
     }
-    // mainBlock2    
-    if (!mainBlock2ScrolledIn && isElementInViewport(mainBlock2)) {
-        mainBlock2ScrolledIn = true;
-        activateSlideLeft(mainBlock2Wrap);
-    }
-    if (mainBlock2ScrolledIn && !isElementInViewport(mainBlock2)) {
-        mainBlock2ScrolledIn = false;
-        deactivateSlideLeft(mainBlock2Wrap);
-    }
-    // mainBlock3
-    if (!mainBlock3ScrolledIn && isElementInViewport(mainBlock3)) {
-        mainBlock3ScrolledIn = true;
-        activateSlideLeft(mainBlock3)
-    }
-    if (mainBlock3ScrolledIn && !isElementInViewport(mainBlock3)) {
-        mainBlock3ScrolledIn = false;
-        deactivateSlideLeft(mainBlock3)
-    }
+  
 });
