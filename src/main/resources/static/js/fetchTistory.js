@@ -6,16 +6,15 @@ let langAnchors = []
 // 선택된 언어 gist 렌더링 할 블록 엘레먼트 
 let langGistRenderer;
 
-/**
- *      <div id="lang-gist-renderer">
-                                    <p>lang-gist-renderer</p>
-                                </div>
-                                <div id="lang-anchor-block">
-                                    <a href="">C++</a>
-                                    <a href="">JAVA</a>
-                                </div>
- */
-
+// 여러 언어 gist 보여줄 tistory html 에 아래 추가하면됨 
+/** 
+<div id="lang-anchor-block">
+    <a href="">C++</a>
+    <a href="">JAVA</a>
+</div>
+<div id="lang-gist-renderer">
+</div>
+*/
 
 // tistory 블로그 백업 파일 모두 static/tistory/ 에 들어있음 
 // htmlSrc 로는 /static/tistory/{postNumber}/{postName} 의 postName 이 들어옴
@@ -93,7 +92,6 @@ function dynamicallyAddGist(gists, index) {
         window.gistCallback = function (data) {
             var div = document.createElement('div');
             div.innerHTML = data.div;
-            console.log('callback')
             dynamicallyAddedGists.push(div.firstChild);
 
             gist.parentNode.replaceChild(div.firstChild, gist);
@@ -102,18 +100,31 @@ function dynamicallyAddGist(gists, index) {
     }
     // 모든 gist html에 넣은 이후에 해야할 연산들 수행 
     else {
-        console.log('dynamicallyAdded = ' + dynamicallyAddedGists.length)
-        // for(let i = 0; i < dynamicallyAddedGists.length; i++) {
-        //     console.log(dynamicallyAddedGists[i]);
-        // }
         langGistRenderer = document.getElementById('lang-gist-renderer')
-        if(langGistRenderer != null) {
+        // 여러 언어 gist 존재하는 경우에만 
+        if (langGistRenderer != null) {
+            // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리
+            setAllGistNoneVisible();
             getLangAnchors();
             addEventListenerToLangAnchors();
         }
-    
+
     }
 }
+
+// gist.style.display 수정해서 gist element 보이도록하거나 보이지 않도록함 
+function setAllGistNoneVisible() {
+    dynamicallyAddedGists.forEach(gist => {
+        setGistNoneVisible(gist);
+    });
+}
+function setGistNoneVisible(gist) {
+    gist.style.display = 'none';
+}
+function setGistVisible(gist) {
+    gist.style.display = 'block';
+}
+
 
 // langAnchors[] 에 언어 스위치용 버튼 <a> element 넣음 
 function getLangAnchors() {
@@ -129,16 +140,10 @@ function getLangAnchors() {
 function addEventListenerToLangAnchors() {
     langAnchors.forEach(function (anchor) {
         anchor.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent default behavior of links (e.g., navigating to a new page)
-
-            console.log('langAnchors.length = ' + langAnchors.length)
-            console.log('Link clicked:', anchor.textContent);
-            console.log('index = ' + langAnchors.indexOf(anchor))
+            event.preventDefault(); 
 
             // langAnchors[] 에서 anchor 의 인덱스 
             let idx = langAnchors.indexOf(anchor);
-            console.log('dynamicallyAddedGists[idx]')
-            console.log(dynamicallyAddedGists[idx])
 
             renderAddedGist(langGistRenderer, dynamicallyAddedGists[idx])
         });
@@ -146,7 +151,13 @@ function addEventListenerToLangAnchors() {
 }
 
 function renderAddedGist(langGistRenderer, addedGist) {
+    // gist 랜더링되는 <div id='langGistRenderer'> 내부 비우고 
+    langGistRenderer.childNodes.forEach(gist => {        
+        gist.remove();
+    });
+    // 새로 선택한 언어 gist 랜더링 
     langGistRenderer.appendChild(addedGist);
+    setGistVisible(addedGist);
 }
 
 
