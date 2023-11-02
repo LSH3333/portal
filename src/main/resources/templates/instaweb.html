@@ -128,6 +128,21 @@
                         target="_blank">Service에서 연관관계 맺기</a>
                     <br><br>
 
+                    <ul>
+                        <li><b>폼과 DTO</b></li>
+                    </ul>
+                    <p>서버에서 클라이언트로 보내는 모든 데이터는 폼, DTO 로 보내도록 했습니다.</p>
+                    <p>폼이나 DTO 를 사용하는 이유는 다음과 같습니다.</p>
+                    <p>&nbsp;&nbsp;1. 엔티티 자체를 트랜잭션을 벗어나서 접근하는 경우 문제가 생깁니다. (fetch 타입이 lazy 일 경우)</p>
+                    <p>&nbsp;&nbsp;2. 엔티티에 있는 맴버변수와 실제로 클라이언트쪽에서 사용할 맴버변수는 대부분의 경우 일부뿐입니다.</p>
+                    <p>저는 클라이언트에서 사용자와 뭔가 상호작용이 있는 데이터들은 폼이라는 이름으로,</p>
+                    <p>제가 직접 클라이언트에서 javascript 등으로 다뤄야 하거나 서버 내부 트랜잭션을 벗어나 다뤄야하는 데이터들은 DTO 라는 이름으로 전송했습니다.</p>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/a296d2413b51942f814136a1833db362d388ba3b/src/main/java/web/instaweb/controller/PageController.java#L159-L204"
+                        target="_blank">DTO 로 데이터 받아 Wrap 후 클라이언트에 보내기</a><br>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/a296d2413b51942f814136a1833db362d388ba3b/src/main/java/web/instaweb/controller/PageController.java#L58-L62"
+                        target="_blank">이미 저장된 작성중 글 존재하는 경우 해당 데이터 폼에 채워서 클라이언트에 보내기</a>
+                    <br><br>
+
                     <h3>클라이언트</h3>
                     <h4>에디터</h4>
                     <img src="/static/images/instaweb_edit.png" th:src="@{/images/instaweb_edit.png}" alt="">
@@ -163,163 +178,6 @@
                     <p>Promise 내부에서 이미지 모두 로드 됐는지 확인하고 로드 완료했다면 다음으로 진행, 아직이라면 다시 시도 하도록 했습니다. </p>
                     <a href="https://github.com/LSH3333/Instaweb/blob/70861f21f9cd46b404f6340cf7f566ac5c5b086c/src/main/resources/templates/fragment/editorData.html#L929-L959"
                         target="_blank">Promise 내부에서 이미지 로드 시도</a>
-
-
-
-
-
-
-
-                    <!-- <h2>주요 기능</h2>
-                    <hr>
-                    <h4>가입</h4>
-                    <img src="/static/images/instaweb_reg.png" th:src="@{/images/instaweb_reg.png}" alt="">
-                    <p>입력한 내용이 주어진 조건에 맞는지 확인, db에 중복되는 loginId, name 있는지 확인.</p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/main/src/main/java/web/instaweb/controller/MemberController.java"
-                        target="_blank">MemberController.java</a>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>로그인</h4>
-                    <img src="/static/images/instaweb_login.png" th:src="@{/images/instaweb_login.png}" alt="">
-                    <p>로그인 여부 확인은 Spring Interceptor 통해서 진행.</p>
-                    <p>모든 경로 막아 놓고 로그인 불필요한 경로(home 화면, 글 보기, ajax 요청 경로 등) 만 Interceptor 거치치 않도록 함.</p>
-                    <p>회원가입 없이 guest 아이디 로그인 지원.</p>
-                    <br>
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/3055332448adafbf4d22b2a890ca155be510a96b/src/main/java/web/instaweb/interceptor/LoginCheckInterceptor.java#L13-L37">로그인
-                            체크 인터셉터</a></p>
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/3055332448adafbf4d22b2a890ca155be510a96b/src/main/java/web/instaweb/WebConfig.java#L9-L40">WebConfig</a>
-                    </p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>에디터</h4>
-                    <img src="/static/images/instaweb_edit.png" th:src="@{/images/instaweb_edit.png}" alt="">
-                    <p>생각보다 구현이 어려웠던 에디터</p><br>
-                    <p>해결해야 했던 문제들:</p>
-
-                    <p><b>글자크기,유형 변경 시 텍스트 드래그 영역 혹은 커서 위치 텍스트 식별 </b></p>
-                    <p> javascript 의 selection, range api 로 식별 후 선택된 html element 저장 해놓은 후에, 사용자가 글자크기, 글자 유형 변경 버튼 클릭시
-                        이전 선택된 element 들 style 변경 처리. </p>
-
-
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>글 작성, 수정, 삭제</h4>
-                    <img src="/static/images/instaweb_edit.png" th:src="@{/images/instaweb_edit.png}" alt="">
-                    <p>글 작성, 수정에서 작성된 모든 내용 (제목,콘텐츠,이미지 등) 들은 모두 ajax 요청으로 서버로 보내서 저장 처리.</p>
-                    <p>수정시 서버에서 해당 글에 저장된 모든것들 불러와서 다시 로드함.</p>
-                    <br>
-                    <p><b>이미지</b>는 사용자가 삽입했다가 지웠다가 할 수 있으므로 삽입시 html에 img 태그 삽입과 함께 고유 uuid 부여해서 해당 값을 key 값으로하는 map 에
-                        저장해놓는다.</p>
-                    <p>이미지를 사용자가 지우면 img 태그가 지워진다.</p>
-                    <p>글 작성이 끝나고 서버에 정보들이 보내질때 img 태그들과 map 을 대조해서 지워지지 않은 이미지들만 서버로 보낸다.</p>
-                    <p>작성된 내용들은 html 그대로 db 에 저장된다.</p>
-                    <br>
-                    <p><b>에디터</b> 내 복사 붙여넣기 지원. (html element 를 통째로 복사해서 붙여 넣는 방법으로 속성(폰트크기 등)들 유지됨)</p>
-                    <p>외부 프로그램에서 복사 붙여 넣기 시 모두 단순 텍스트로 변형해서 붙여넣어짐.</p>
-                    <p>에디터 기능은 글 작성, 수정에서 동일하게 쓰이므로 thymeleaf fragment 로 만들어서 관리함.</p>
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/main/src/main/resources/templates/fragment/editorData.html">editorData
-                            fragment</a></p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>글 삭제</h4>
-                    <p>로그인한 Member 가 작성한 Page 는 삭제할수 있다.</p>
-                    <img src="/static/images/instaweb_delete1.png" th:src="@{/images/instaweb_delete1.png}" alt="">
-                    <img src="/static/images/instaweb_delete2.png" th:src="@{/images/instaweb_delete2.png}" alt="">
-                    <p>스프링 인터셉터로 등록된 LoginCheckInterceptor 에서는 삭제를 포함한 모든 로그인이 필요한 요청에 대해, 로그인되지 않은 상태로 요청할 경우 로그인 화면으로
-                        리다이렉트하도록 되어있다.</p>
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/a32aabc8b8631e3889c0daf8c77fc8c7de525973/src/main/java/web/instaweb/interceptor/LoginCheckInterceptor.java#L13-L37">LoginCheckInterceptor</a>
-                    </p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>홈</h4>
-                    <img src="/static/images/instaweb_home.png" th:src="@{/images/instaweb_home.png}" alt="">
-                    <p>홈에서는 모든 유저들이 작성한 글들을 볼 수 있다.</p>
-                    <p>홈과 작성된 글들은 로그인 여부에 상관 없이 볼 수 있다.</p>
-                    <p>(스프링 인터셉터에서 LoginCheckInterceptor 의 검사 경로에서 제외)</p>
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/af3e3fab8dc91a822f6ada977f9685d21311b588/src/main/java/web/instaweb/WebConfig.java#L12-L30">WebConfig
-                            인터셉터 경로 제외</a></p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>나의 작성 목록</h4>
-                    <img src="/static/images/instaweb_mypage.png" th:src="@{/images/instaweb_mypage.png}" alt="">
-                    <p>나의 작성 목록 탭에서는 내가 작성한 글들만 표시된다.</p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>Infinite Scroll</h4>
-                    <p><b>홈, 나의 작성 목록</b>에서 Page 목록이 보여질때는 스크롤을 내리면 서버에서 클라이언트로 새로운 Page 들을 ajax 로 보내준다.</p>
-                    <p>서버에서 Page 들은 생성일 기준으로 정렬되어 저장되어 있고, 차례대로 클라이언트로 보내지기 때문에 최근에 작성된 Page 가 먼저 클라이언트로 보내진다.</p>
-                    <p>서버에서 Page 와 Page 에 속하는 첫 번째 이미지를 Wrap 해서 클라이언트로 보내주고, 클라이언트는 받아서 화면에 띄운다.</p>
-                    <img src="/static/images/instaweb_page1.png" th:src="@{/images/instaweb_page1.png}" alt="">
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/af3e3fab8dc91a822f6ada977f9685d21311b588/src/main/java/web/instaweb/controller/PageController.java#L159-L204">서버에서
-                            클라이언트로 wrap data 전송</a></p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>글 검색</h4>
-                    <img src="/static/images/instaweb_search1.png" th:src="@{/images/instaweb_search1.png}" alt="">
-                    <p>글 검색은 db 에서 저장된 Page 들을 가져와서 title, content에 유저가 검색한 searchQuery 문자와 일치하는 문자가 있는지 탐색한다.</p>
-                    <p>content 는 html 통째로 저장되기 때문에 단순히 searchQuery 와 일치하는 문자열이 존재하는지 탐색하면 element 와 충돌하는 경우가 있는데 ("a"
-                        검색시 태그를 찾음)</p>
-                    <p>해결하기 위해 element 들을 모두 골라내 text 부분만을 대상으로 searchQuery 와 대조해본다.</p>
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/4bc9a2228f3c4b98ee0f3d970ff2c20d8d33e25e/src/main/java/web/instaweb/repository/PageRepository.java#L119-L143">checkContentWithSearchQuery</a>
-                    </p>
-                    <img src="/static/images/instaweb_search2.png" th:src="@{/images/instaweb_search2.png}" alt="">
-                    <img src="/static/images/instaweb_search3.png" th:src="@{/images/instaweb_search3.png}" alt="">
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>댓글</h4>
-                    <img src="/static/images/instaweb_comment.png" th:src="@{/images/instaweb_comment.png}" alt="">
-                    <p>댓글 입력, 삭제할때는 ajax 로 동적으로 처리.</p>
-                    <p>변경 발생할때마다 클라이언트의 댓글 모두 지우고, 서버에서 통째로 가져와서 다시 디스플레이하는 방식.</p>
-                    <p><a target="_blank"
-                            href="https://github.com/LSH3333/Instaweb/blob/main/src/main/resources/templates/pages/pageView.html#L73-L206">클라이언트에서
-                            서버로 댓글 데이터 보내고 받기</a></p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>모바일 ui 지원</h4>
-                    <img style="max-width: 40%;" src="/static/images/instaweb_mob1.png"
-                        th:src="@{/images/instaweb_mob1.png}" alt="">
-                    <img style="max-width: 40%;" src="/static/images/instaweb_mob2.jpg"
-                        th:src="@{/images/instaweb_mob2.jpg}" alt="">
-                    <p>좌: 데스크톱 웹</p>
-                    <p>우: 모바일</p>
-                    <p>css @media 로 화면 크기 감지해서 html element 변경으로 처리.</p>
-                    <div class="divider">
-                        <hr>
-                    </div>
-
-                    <h4>게임</h4>
-                    <img src="/static/images/instaweb_game1.png" th:src="@{/images/instaweb_game1.png}" alt="">
-                    <img src="/static/images/instaweb_game2.png" th:src="@{/images/instaweb_game2.png}" alt="">
-                    <p>Unity 로 만든 게임들을 itch.io 라는 인디게임들을 올릴수 있는 사이트에 올려 놓았는데 링크를 타고 가서 게임을 플레이해볼수 있다.</p>
-                    <p><a target="_blank" href="https://github.com/LSH3333/Galaga">Galaga git</a></p>
-                    <p><a target="_blank" href="https://github.com/LSH3333/Unity_ManyGames">ManyGames git</a></p> -->
 
                 </div>
             </div>
