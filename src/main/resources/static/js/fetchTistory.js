@@ -11,6 +11,10 @@ let langGistRenderer;
 <div id="lang-anchor-block">
     <a href="">C++</a>
     <a href="">JAVA</a>
+    <a href="">Python</a>
+    <a href="">Kotlin</a>
+    <a href="">C#</a>
+    <a href="">Javascript</a>
 </div>
 <div id="lang-gist-renderer">
 </div>
@@ -83,7 +87,8 @@ function dynamicallyAddGist(gists, index) {
         var scriptSrc = gist.getAttribute('src');
         var gistId = scriptSrc.split('/').pop().split('.')[0];
         var jsonpUrl = `https://gist.github.com/${gistId}.json`;
-        // JSONP request
+        // JSONP(JSON with Padding, 다른 도메인으로부터 데이터 갖고오기위함) request
+        // <script> 으로 다른 도메인 요청은 가능하기 때문에 src 에 주소 넣고 실행 
         var script = document.createElement('script');
         script.src = jsonpUrl + '?callback=gistCallback';
         document.head.appendChild(script);
@@ -93,7 +98,8 @@ function dynamicallyAddGist(gists, index) {
             var div = document.createElement('div');
             div.innerHTML = data.div;
             dynamicallyAddedGists.push(div.firstChild);
-            setGistNoneVisible(div.firstChild); // 추가된 gist 최초에 안보이도록 처리 
+            // 추가된 gist 최초에 안보이도록 처리 
+            setGistNoneVisible(div.firstChild);         
             gist.parentNode.replaceChild(div.firstChild, gist);
             dynamicallyAddGist(gists, index + 1); // 다음 재귀로 
         };
@@ -105,7 +111,7 @@ function dynamicallyAddGist(gists, index) {
         if (langGistRenderer != null) {
             // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리            
             // 첫 하나만 보이도록함 
-            setGistVisible(dynamicallyAddedGists[0]);
+            renderAddedGist(langGistRenderer, dynamicallyAddedGists[0])
             getLangAnchors();
             addEventListenerToLangAnchors();
         }
@@ -149,6 +155,7 @@ function addEventListenerToLangAnchors() {
 function renderAddedGist(langGistRenderer, addedGist) {
     // gist 랜더링되는 <div id='langGistRenderer'> 내부 비우고 
     langGistRenderer.childNodes.forEach(gist => {
+        // setGistNoneVisible(gist);
         gist.remove();
     });
     // 새로 선택한 언어 gist 랜더링 
