@@ -35,13 +35,10 @@ function fetchHTML(htmlSrc) {
             // 이후 동적으로 gist 추가 (gist <script> 내부의 document.write 가 있어서 page load 이후에 실행안됨 )            
             let gists = container.querySelectorAll('script[src^="https://gist.github.com/"]');
             if (gists.length > 0) {
-                // gists.length 만큼 반복하는 재귀 함수 
-                dynamicallyAddGist(gists, 0);
+                dynamicallyAddAllGists();
             }
         })
         .catch(error => console.error('Error:', error));
-
-
 }
 
 fetchHTML(fetchURL);
@@ -71,16 +68,36 @@ function modifyImgElement(container) {
         img.src = newSrc;
     }
 
-
     // img.src = http://localhost:8080/blog/img/img_5.png
     // /tistory/1070/img/img.png
 }
 
-// fetchHTML 로 html 가져온후 동적으로 gist <script> 실제 gist 로 대체 
+
+
+
+// fetchHTML 로 html 가져온후 동적으로 gist <script> 실행
 //  (gist <script> 내부의 document.write 가 있어서 page load 이후에 실행안되기 때문 )            
-// gists.length 만큼 반복하는 재귀 함수 
+async function dynamicallyAddAllGists() {
+    let gists = container.querySelectorAll('script[src^="https://gist.github.com/"]');
+    for (let i = 0; i < gists.length; i++) {        
+        await dynamicallyAddGist(gists, i); // gist <script> 순차적으로 실행, 삽입 
+    }
+
+    // 모든 gist <script> 실행 후, <div id='lang-gist-renderer'> 에 렌더링 등 필요한 연산 실행
+    langGistRenderer = document.getElementById('lang-gist-renderer')
+    // 여러 언어 gist 존재하는 경우에만 
+    if (langGistRenderer != null) {
+        // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리            
+        // 첫 하나만 보이도록함 
+        renderAddedGist(langGistRenderer, dynamicallyAddedGists[0])
+        getLangAnchors();
+        addEventListenerToLangAnchors();
+    }
+}
+
+// JSONP 를 이용해 gist <script> 실행하고 결과 data fetch 된 html 에 삽입 
 function dynamicallyAddGist(gists, index) {
-    if (index < gists.length) {
+    return new Promise((resolve, reject) => {
         var gist = gists[index];
 
         // jsonp 로 gist 를 json 으로 가져옴 
@@ -93,31 +110,21 @@ function dynamicallyAddGist(gists, index) {
         script.src = jsonpUrl + '?callback=gistCallback';
         document.head.appendChild(script);
 
-        // 콜백
+        // callback=gistCallback
         window.gistCallback = function (data) {
             var div = document.createElement('div');
             div.innerHTML = data.div;
             dynamicallyAddedGists.push(div.firstChild);
             // 추가된 gist 최초에 안보이도록 처리 
-            setGistNoneVisible(div.firstChild);         
+            setGistNoneVisible(div.firstChild);
             gist.parentNode.replaceChild(div.firstChild, gist);
-            dynamicallyAddGist(gists, index + 1); // 다음 재귀로 
+            resolve();
         };
-    }
-    // 모든 gist html에 넣은 이후에 해야할 연산들 수행 
-    else {
-        langGistRenderer = document.getElementById('lang-gist-renderer')
-        // 여러 언어 gist 존재하는 경우에만 
-        if (langGistRenderer != null) {
-            // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리            
-            // 첫 하나만 보이도록함 
-            renderAddedGist(langGistRenderer, dynamicallyAddedGists[0])
-            getLangAnchors();
-            addEventListenerToLangAnchors();
-        }
-
-    }
+    })
 }
+
+
+
 
 // gist.style.display 수정해서 gist element 보이도록하거나 보이지 않도록함 
 function setGistNoneVisible(gist) {
