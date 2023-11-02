@@ -22,7 +22,7 @@ let langGistRenderer;
 
 // tistory 블로그 백업 파일 모두 static/tistory/ 에 들어있음 
 // htmlSrc 로는 /static/tistory/{postNumber}/{postName} 의 postName 이 들어옴
-// 예: '528-백준-1913.-달팽이.html'
+// htmlSrc 예: '528-백준-1913.-달팽이.html'
 // htmlSrc 해당하는 html 파일 fetch 해서 tistoryPage.html 에 동적으로 랜더링함 
 function fetchHTML(htmlSrc) {
     // html file fetch 
