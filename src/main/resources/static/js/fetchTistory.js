@@ -44,8 +44,8 @@ function fetchHTML(htmlSrc) {
 fetchHTML(fetchURL);
 
 // fetchHTML() 로 tistoryPage.html 에 htmlSrc 파일 동적으로 랜더링하면 이미지의 경로가 다르게됨
-// 본래 htmlSrc 파일에 <img> 포함되어 있다면 해당 파일 상위 폴더에 img 폴더가 있고 그곳에 이미지 보관됨
-// 따라서 htmlSrc의 html 파일의 <img src='../img/imgFile'> 이런식이기 때문에 이미지 경로 오류
+// 본래 htmlSrc 파일에 <img> 포함되어 있다면 해당 파일 폴더에 img 폴더가 있고 그곳에 이미지 보관됨
+// 따라서 htmlSrc의 html 파일의 <img src='./img/imgFile'> 이런식이기 때문에 이미지 경로 오류
 // 모든 <img> 엘러먼트 찾아서 아래와 같이 src 변경 필요 
 // "http://localhost:8080/blog/img/img_5.png" -> "/tistory/1070/img/img.png"
 function modifyImgElement(container) {
@@ -84,8 +84,7 @@ async function dynamicallyAddAllGists() {
     }
 
     // 모든 gist <script> 실행 후, <div id='lang-gist-renderer'> 에 렌더링 등 필요한 연산 실행
-    langGistRenderer = document.getElementById('lang-gist-renderer')
-    console.log(langGistRenderer)
+    langGistRenderer = document.getElementById('lang-gist-renderer')    
     // 여러 언어 gist 존재하는 경우에만 
     if (langGistRenderer != null) {
         // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리            
