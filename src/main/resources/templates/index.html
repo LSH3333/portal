@@ -12,6 +12,8 @@
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/index.css" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/readmoreBtn.css" th:href="@{/css/readmoreBtn.css}" />
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +30,8 @@
 
 <body>
     <!-- HEADER -->
-    <header th:replace="fragment/header :: header"></header>
+    <header th:replace="fragment/header :: header">
+    </header>
 
     <!-- MAIN -->
     <main>
@@ -57,16 +60,17 @@
                                     <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/controller/PageController.java#L308-L355"
                                         target="_blank">JAVA</a>,
                                     <a target="_blank" href="#" th:href="@{/blog/844-백준-2933.-미네랄.html}">C++</a>,
-                                    <a href="https://tose33.tistory.com/1301"
-                                        target="_blank">javascript</a>,
+                                    <a href="https://tose33.tistory.com/1301" target="_blank">javascript</a>,
                                     <a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116"
                                         target="_blank">C#</a>,
-                                    <a target="_blank" href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/templates/index.html#L47-L89">HTML</a>,
-                                    <a target="_blank" href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/static/css/mainContentBlock.css#L7-L26">CSS</a>
+                                    <a target="_blank"
+                                        href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/templates/index.html#L47-L89">HTML</a>,
+                                    <a target="_blank"
+                                        href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/static/css/mainContentBlock.css#L7-L26">CSS</a>
                                 </li>
                                 <li>
-                                    weak : 
-                                    <a target="_blank" href="#" th:href="@{/blogPortal/multiLang}">Python</a>, 
+                                    weak :
+                                    <a target="_blank" href="#" th:href="@{/blogPortal/multiLang}">Python</a>,
                                     <a target="_blank" th:href="@{/blogPortal/multiLang}">Kotlin</a>
                                 </li>
                             </ul>
@@ -98,7 +102,7 @@
             </div>
             <div id="instaweb-blockContent">
                 <p>
-                <h2>WEB</h2>                    
+                <h2>WEB</h2>
                 <div id="readmoreBtn"><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></div>
                 로그인 후 글, 댓글을 작성 시 DB에 저장하는 웹.<br><br>
                 <a href="https://lsh-instaweb.herokuapp.com/" target="_blank"><i class="fa-solid fa-link"></i>visit
@@ -163,7 +167,8 @@
                 프로젝트들을 진행하면서도 알고리즘 문제는 꾸준히 풀며 <b>1000 문제</b> 이상을 풀었고
                 앞으로도 계속할 생각입니다.
                 <br>
-                <div id="readmoreBtn"><a href="/templates/blog/blogPortal.html" th:href="@{/blogPortal}" >Algorithm</a></div>
+                <div id="readmoreBtn"><a href="/templates/blog/blogPortal.html" th:href="@{/blogPortal}">Algorithm</a>
+                </div>
             </div>
         </div>
     </main>

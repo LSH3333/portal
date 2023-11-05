@@ -40,6 +40,12 @@ public class HomeController {
         return "instaweb";
     }
 
+    @GetMapping("paper")
+    public String paper(Model model) {
+        model.addAttribute("headerTextBoxText", "PAPER");
+        return "paper";
+    }
+
     @GetMapping("manygames")
     public String manygames(Model model) {
         model.addAttribute("headerTextBoxText", "MANYGAMES");

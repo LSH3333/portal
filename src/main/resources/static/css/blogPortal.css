@@ -31,30 +31,6 @@ header {
     color: black;
 }
 
-/* Read more Btn */
-#readmoreBtn {
-    background-color: black;
-    text-decoration: none;
-    color: white;
-    border-radius: 20px;
-    width: 120px;
-    height: 40px;
-    font-size: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#readmoreBtn:hover {
-    cursor: pointer;
-    background-color: #3db39e;
-}
-
-#readmoreBtn a {
-    text-decoration: none;
-    color: white;
-}
-
 
 
 .algorithmBlock {

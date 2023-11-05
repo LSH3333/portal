@@ -76,7 +76,7 @@ header {
 .menu:hover .navSub {
     opacity: 1;
     visibility: visible;
-    height: 25vh;
+    height: 100px;
 }
 
 .menu:hover>a {
@@ -85,6 +85,11 @@ header {
 
 .menu:hover .navSub ul {
     opacity: 1;
+}
+
+.clickable:hover {
+    text-decoration: underline;
+    color: #3db39e;
 }
 
 .navSub {
@@ -111,7 +116,7 @@ header {
     transition: opacity 0.5s;
     box-sizing: border-box;
     /* background-color: red; */
-    height: 20vh;
+    height: 50px;
     width: 15%;
     padding: 2%;
 }
@@ -134,7 +139,6 @@ header {
 .navSub ul li a:hover {
     text-decoration: underline;
 }
-
 
 
 

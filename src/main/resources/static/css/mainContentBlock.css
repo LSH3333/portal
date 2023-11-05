@@ -6,11 +6,11 @@ ul > li {
 
 /* mainContentBlock */
 .mainContentBlock {  
-    min-height: 50vh;
+    min-height: 10vh;
     display: flex;
     justify-content: space-around;
     padding: 2% 16%;
-    margin: 5% 0;
+    margin: 20px 0;
     line-height: 2;
 }
 .mainContentBlock a {

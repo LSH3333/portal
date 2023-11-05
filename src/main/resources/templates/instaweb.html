@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/instaweb.css" th:href="@{/css/instaweb.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/readmoreBtn.css" th:href="@{/css/readmoreBtn.css}" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,36 +32,8 @@
 
     <!-- MAIN -->
     <main>
-        <!-- MainBlock1 -->
-        <div id="mainBlock1">
-            <div class="imgBlock">
-                <img src="/static/images/instaweb.png" th:src="@{/images/instaweb.png}" alt="">
-            </div>
-            <div id="mainBlock1Content">
-                <p>
-                    로그인 후 글, 댓글을 작성할수 있는 웹.<br><br>
-                    백엔드는 스프링, 데이터 저장은 jpa 를 사용했고 db는 postgresql, 클라이언트 사이드는 javascript, 프론트 디자인은 html 과 css 로 구현했습니다.
-                    <!-- 서버 사이드는 Spring을 사용해 구현했고 클라이언트 사이드는 javascript, 프론트 디자인은 html 과 css 로 구현했습니다. -->
-                    <br><br>
-                    <a href="https://lsh-instaweb.herokuapp.com/" target="_blank"><i class="fa-solid fa-link"></i>visit
-                        web →</a><br>
-                    <a href="https://github.com/LSH3333/Instaweb" target="_blank"><i class="fa-brands fa-github"></i>
-                        visit git →</a>
-                </p>
-                <div class="techStack">
-                    <img src="/static/images/spring.svg" th:src="@{/images/spring.svg}" alt="">
-                    <img src="/static/images/hibernate.svg" th:src="@{/images/hibernate.svg}" alt="">
-                    <img src="/static/images/html.svg" th:src="@{/images/html.svg}" alt="">
-                    <img src="/static/images/css.svg" th:src="@{/images/css.svg}" alt="">
-                    <img src="/static/images/thymeleaf.svg" th:src="@{/images/thymeleaf.svg}" alt="">
-                    <img src="/static/images/js.svg" th:src="@{/images/js.svg}" alt="">
-                    <img src="/static/images/heroku.svg" th:src="@{/images/heroku.svg}" alt="">
-                    <img src="/static/images/postgres.svg" th:src="@{/images/postgres.svg}" alt="">
-                </div>
-            </div>
-        </div>
         <!-- mainContentBlock -->
-        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
+        <div class="mainContentBlock">
             <div class="mainContentBlockWrap">
                 <div class="ContentBlock">
                     <h2>도메인 모델</h2>
@@ -68,7 +42,8 @@
                 </div>
             </div>
         </div>
-        <div class="mainContentBlock">
+
+        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
             <div class="mainContentBlockWrap">
                 <div class="ContentBlock">
                     <h2>기술 스택</h2>
@@ -85,7 +60,8 @@
                 </div>
             </div>
         </div>
-        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
+
+        <div class="mainContentBlock">
             <div class="mainContentBlockWrap">
                 <div class="ContentBlock">
                     <h2>문제와 해결</h2>
@@ -182,6 +158,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h2>링크</h2>
+                    <hr>
+                    <div id="readmoreBtn"><a target="_blank" href="https://lsh-instaweb.herokuapp.com/">InstaWeb</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </main>
 
     <!-- FOOTER -->

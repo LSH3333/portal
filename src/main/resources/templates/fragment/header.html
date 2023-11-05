@@ -8,32 +8,43 @@
             <a id="logo" href="/templates/index.html" th:href="@{/}">LSH</a>
             <div id="navLinks">
                 <ul>
-                    <li class="menu"><a href="/templates/index.html" th:href="@{/}">HOME</a>
+                    <li class="menu clickable"><a href="/templates/index.html" th:href="@{/}">HOME</a>
                     </li>
-                    <li class="menu"><a href="/templates/blog/blogPortal.html" th:href="@{/blogPortal}">ALGORITHM</a>
+                    <li class="menu clickable"><a href="/templates/blog/blogPortal.html"
+                            th:href="@{/blogPortal}">ALGORITHM</a>
                     </li>
-                    <li class="menu"><a style="pointer-events: none; cursor: default;" href="/templates/portfolio.html" th:href="@{/portfolio}">WEB</a>
+                    <li class="menu"><a style="pointer-events: none; cursor: default;" href="/templates/portfolio.html"
+                            th:href="@{/portfolio}">WEB</a>
                         <div class="navSub">
                             <ul>
                                 <li><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="menu"><a style="pointer-events: none; cursor: default;" href="/templates/portfolio.html" th:href="@{/portfolio}">UNITY</a>
+                    <li class="menu"><a style="pointer-events: none; cursor: default;" href="/templates/portfolio.html"
+                            th:href="@{/portfolio}">UNITY</a>
                         <div class="navSub">
                             <ul>
                                 <li><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></li>
                             </ul>
                             <ul>
-                                <li><a href="/templates/manygames.html" th:href="@{/manygames}">ManyGames</a></li>
                                 <li><a href="/templates/angrybird.html" th:href="@{/angrybird}">AngryBird</a></li>
-                                <li><a href="/templates/flappybird.html" th:href="@{/flappybird}">FlappyBird</a></li>
+                            </ul>
+                            <ul>
+                                <li><a href="/templates/flappybird.html" th:href="@{/flappybird}">FlappyBird</a>
+                                </li>
+                            </ul>
+                            <ul>
                                 <li><a href="/templates/jumper.html" th:href="@{/jumper}">Jumper</a></li>
+                            </ul>
+                            <ul>
                                 <li><a href="/templates/nightmare.html" th:href="@{/nightmare}">Nightmare</a></li>
                             </ul>
                         </div>
                     </li>
-                    <li class="menu"><a href="/templates/aboutme.html" th:href="@{/aboutme}">ABOUT ME</a>
+                    <li class="menu clickable"><a href="/templates/paper.html" th:href="@{/paper}">PAPER</a>
+                    </li>
+                    <li class="menu clickable"><a href="/templates/aboutme.html" th:href="@{/aboutme}">ABOUT ME</a>
                         <div class="navSub">
                             <ul>
                                 <li><a href="https://tose33.tistory.com/" target="_blank">Blog</a></li>
@@ -54,5 +65,5 @@
         <div id="header-text-box">
             <h1 th:text="${headerTextBoxText}">LSH's Portal</h1>
         </div>
-    </div>    
+    </div>
 </header>
