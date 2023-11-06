@@ -9,13 +9,14 @@ let langGistRenderer;
 // 여러 언어 gist 보여줄 tistory html 에 아래 추가하면됨 
 /** 
 <div id="lang-anchor-block">
-    <div class="readmoreBtn"><a href="">C++</a></div>
-    <div class="readmoreBtn"><a href="">JAVA</a></div>
-    <div class="readmoreBtn"><a href="">Python</a></div>
-    <div class="readmoreBtn"><a href="">Kotlin</a></div>
-    <div class="readmoreBtn"><a href="">C#</a></div>
-    <div class="readmoreBtn"><a href="">JS</a></div>
+       <div class="readmoreBtn"><a>C++</a></div>
+        <div class="readmoreBtn"><a>JAVA</a></div>
+        <div class="readmoreBtn"><a>Python</a></div>
+        <div class="readmoreBtn"><a>Kotlin</a></div>
+        <div class="readmoreBtn"><a>C#</a></div>
+        <div class="readmoreBtn"><a>JS</a></div>
 </div>
+<div id="loading" class="lds-dual-ring"></div>
 <div id="lang-gist-renderer">
 </div>
 */
@@ -86,22 +87,26 @@ function modifyImgElement(container) {
 // fetchHTML 로 html 가져온후 동적으로 gist <script> 실행
 //  (gist <script> 내부의 document.write 가 있어서 page load 이후에 실행안되기 때문 )            
 async function dynamicallyAddAllGists() {
+    langGistRenderer = document.getElementById('lang-gist-renderer')    
     let gists = container.querySelectorAll('script[src^="https://gist.github.com/"]');
+    getLangAnchors();
+
     for (let i = 0; i < gists.length; i++) {        
         await dynamicallyAddGist(gists, i); // gist <script> 순차적으로 실행, 삽입 
     }
 
+    // 로딩 끝 처리, 첫 gist 보이도록 처리 
+    unVisibleLoading();
+    renderAddedGist(langGistRenderer, dynamicallyAddedGists[0]);
+
     // 모든 gist <script> 실행 후, <div id='lang-gist-renderer'> 에 렌더링 등 필요한 연산 실행
-    langGistRenderer = document.getElementById('lang-gist-renderer')    
+
     // 여러 언어 gist 존재하는 경우에만 
     if (langGistRenderer != null) {
-        // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리            
-        // 첫 하나만 보이도록함 
-        renderAddedGist(langGistRenderer, dynamicallyAddedGists[0]);
-        getLangAnchors();
+        // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리                    
         addEventListenerToLangAnchors();
     } 
-    // 한개의 언어 gist 존재하는 경우 모든 gist visible 처리 
+    // 한개의 언어 gist 존재하는 경우는 그냥 visible 처리 
     else {
         dynamicallyAddedGists.forEach((gist) => {
             setGistVisible(gist);
@@ -174,10 +179,10 @@ function addEventListenerToLangAnchors() {
     });
 }
 
+// <div id='langGistRenderer'> 비우고 내부에 gist 추가해서 보이도록함 
 function renderAddedGist(langGistRenderer, addedGist) {
     // gist 랜더링되는 <div id='langGistRenderer'> 내부 비우고 
     langGistRenderer.childNodes.forEach(gist => {
-        // setGistNoneVisible(gist);
         gist.remove();
     });
     // 새로 선택한 언어 gist 랜더링 
@@ -185,4 +190,6 @@ function renderAddedGist(langGistRenderer, addedGist) {
     setGistVisible(addedGist);
 }
 
-
+function unVisibleLoading() {
+    document.getElementById('loading').classList.add('unVisible');
+}
