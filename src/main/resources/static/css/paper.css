@@ -1,0 +1,13 @@
+/* HEADER */
+header {
+    min-height: 50vh;
+    width: 100%;
+}
+#headerBackground {
+    height: 40vh;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/interface-3614766_1280.png);
+    background-position: center;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}

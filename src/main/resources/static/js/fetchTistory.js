@@ -20,13 +20,21 @@ let langGistRenderer;
 </div>
 */
 
+// uri 를 퍼센트 인코딩한다. ('/' 제외)
+function URIEncode(uri) {
+    return encodeURIComponent(uri).replace(/%2F/g, '/');
+  }
+
 // tistory 블로그 백업 파일 모두 static/tistory/ 에 들어있음 
 // htmlSrc 로는 /static/tistory/{postNumber}/{postName} 의 postName 이 들어옴
 // htmlSrc 예: '528-백준-1913.-달팽이.html'
 // htmlSrc 해당하는 html 파일 fetch 해서 tistoryPage.html 에 동적으로 랜더링함 
 function fetchHTML(htmlSrc) {
+    // url 퍼센트 인코딩 
+    let encodedHtmlSrc = URIEncode(htmlSrc);    
+
     // html file fetch 
-    fetch(htmlSrc)
+    fetch(encodedHtmlSrc)
         .then(response => response.text())
         .then(html => {
             // container 에 html 넣음 
