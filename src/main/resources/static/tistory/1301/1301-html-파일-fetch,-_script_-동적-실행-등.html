@@ -1,0 +1,181 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>html 파일 fetch, &lt;script&gt; 동적 실행 등</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">html 파일 fetch, &lt;script&gt; 동적 실행 등</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2023-11-02 15:10:14</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">만드는 중인 웹에 내가 티스토리에 쓴 글들을 그대로 가져와 보여주고 싶었다.</p>
+<p data-ke-size="size16">그 과정과 문제들, 해결한 방법에 대해 기록한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li><b>티스토리에 쓴 글들 (html) 을 내 웹의 디자인을 적용하고 싶다</b>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>내가 쓴 글들은 천개가 넘는다. 천개의 html 파일들을 모두 수정 불가능</li>
+</ol>
+</li>
+<li><b>html 내부에 코드를 보여주기 위한 github gist &lt;script&gt; 이 존재</b>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>내가 쓴글 html 을 동적으로 가져오면 &lt;script&gt; 실행이 동적으로 안되는 문제 발생&nbsp;</li>
+<li>SOP 에 의해 github 에 대한 요청 거부됨&nbsp;</li>
+<li>반드시 gist 들을 모두 가져온 이후에 실행되어야 할 로직들이 존재&nbsp;</li>
+</ol>
+</li>
+<li><b>내가 쓴글 html 에 이미지가 포함된다</b>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>html 에 포함된 &lt;img&gt; 의 경로와 내가 fetch 해서 가져온 후 경로가 다르다&nbsp;</li>
+</ol>
+</li>
+</ol>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 티스토리 관리 페이지에서 내가 쓴 글들을 백업할수 있도록 백업파일들을 받을수있다.</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption>티스토리 관리 &gt; 블로그 &gt; 데이터 관리</figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">백업하기를 누르면 내가 쓴 글들을 html, css, img 파일로 제공한다.</p>
+<p><figure class="imageblock alignCenter" width="487" height="365" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" width="487" height="365"  />
+    </span>
+    <figcaption></figcaption>
+</figure><figure class="imageblock alignCenter" width="785" height="126" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" width="785" height="126"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이렇게 제공되기 때문에 그냥 static 폴더에 다 넣으면 된다. (spring)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>1.</b> <b>티스토리에 쓴 글들 (html) 을 내 웹의 디자인을 적용하고 싶다</b></h2>
+<p data-ke-size="size16">그런데 나는 이 글들에 모두 내 웹의 헤더 디자인 등을 적용하고 싶었다.</p>
+<p data-ke-size="size16">따라서 javascript 로 해당 html 파일을 읽어서 header 디자인 등이 모두 적용된 html 파일의 중간에 삽입하도록 했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<ol style="list-style-type: decimal;" data-ke-list-type="decimal">
+<li>tistoryPage.html 이라는 html 을 따로 만들고</li>
+<li>티스토리 글(html) 의 경로를 javascript 로 가져와서 해당 경로에 있는 html 파일 fetch</li>
+<li>fetch 결과를 tistoryPage.html 에 삽입&nbsp;</li>
+</ol>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/ada11157fb4426b5701b44b3bf1d1768.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png"  />
+    </span>
+    <figcaption>fetch 성공!</figcaption>
+</figure></p>
+<h2 data-ke-size="size26">&nbsp;</h2>
+<h2 data-ke-size="size26">&nbsp;</h2>
+<h2 style="color: #000000; text-align: start;" data-ke-size="size26"><b>2.&nbsp; html 내부에 코드를 보여주기 위한 github gist &lt;script&gt; 이 존재</b></h2>
+<h3 data-ke-size="size23">1. 내가 쓴글 html 을 동적으로 가져오면 &lt;script&gt; 실행이 동적으로 안되는 문제 발생&nbsp;</h3>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">(1)번에서 티스토리 글 html 을 fetch 해서 tistoryPage.html 에 삽입한건 좋은데,</p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">티스토리 글 html 에 존재하는 &lt;script&gt; 가 실행되지 않는 문제가 발생했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>원인
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li><span style="color: #333333; text-align: start;">github embedded gist 는 document.write 를 사용해 gist element 를 생성하는데,<span>&nbsp;</span></span><b>document.write 는 페이지 로드 이후 실행되지 않는다.</b></li>
+</ul>
+</li>
+</ul>
+<p data-ke-size="size16">따라서 존재하는 &lt;script&gt; 를 모두 읽어서 동적으로 실행해줘야 했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23">2. SOP 에 의해 github 에 대한 요청 거부됨&nbsp;</h3>
+<p data-ke-size="size16">여기서 또 문제는 <b>자바스크립트는 동일근원정책 (SOP, Same Origin Policy) 에 의해 서로 다른 도메인에 의한 요청을 거부</b>한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이를 회피하기 위한 방법으로 <b>JSONP&nbsp;</b>를 사용했다.</p>
+<p data-ke-size="size16">JSONP 는 &lt;script&gt; 으로 다른 도메인으로 요청시 SOP 가 적용되지 않는다는 사실을 이용해 SOP를 회피하는 방법이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h3 data-ke-size="size23">3. 반드시 gist 들을 모두 가져온 이후에 실행되어야 할 로직들이 존재&nbsp;</h3>
+<p data-ke-size="size16">JSONP 에 의한 gist 요청은 비동기적으로 처리된다.</p>
+<p data-ke-size="size16">따라서 promise,async,awiat 을 통해 적절히 처리해줘야 했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/d337eda4ce79661108c595fdc9318068.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">3. 내가 쓴글 html 에 이미지가 포함된다</h2>
+<p data-ke-size="size16">티스토리에서 백업 받은 파일들의 구조는&nbsp;</p>
+<p data-ke-size="size16">tistory 폴더 내부에 글 번호의 폴더들이 존재하고, 해당 폴더 내부에 html 파일, 그리고 img 폴더가 있다.</p>
+<p data-ke-size="size16">따라서 이미지의 경로는 아래와 같게 된다</p>
+<div style="background-color: #1f1f1f; color: #cccccc;">
+<div><span style="color: #cccccc;">&nbsp;</span><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">img</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">src</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"./img/img.png"</span><span style="color: #cccccc;"> &nbsp;</span><span style="color: #808080;">/&gt;</span></div>
+</div>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">문제는 티스토리 글 html 을 fetch 해서 가져오면 저 이미지 경로는 다른곳을 가르킨다.</p>
+<p data-ke-size="size16">&lt;img&gt; 의 경로를 바꿔주면 되지만 티스토리 글은 천개가 넘는다.. 일일히 바꿔주는것은 불가능.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">따라서 티스토리 글 html 을 fetch 한후 모든 &lt;img&gt; 엘러먼트를 스캔해서 src를 바꿔줬다.</p>
+<p data-ke-size="size16">예를들어 좌측과 같은 경로를 우측처럼 변경.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">"http://localhost:8080/blog/img/img_5.png"&nbsp;-&gt;&nbsp;"/tistory/1070/img/img.png"</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/743df01c7c1730d94e6923633857f2a9.js"></script>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26">결과</h2>
+<p style="color: #333333; text-align: start;" data-ke-size="size16">tistory 글</p>
+<p style="color: #333333; text-align: start;" data-ke-size="size16"><a href="https://tose33.tistory.com/536" target="_blank" rel="noopener&nbsp;noreferrer">https://tose33.tistory.com/536</a></p>
+<figure id="og_1698905358978" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="백준 1011. Fly me to the Alpha Centauri" data-og-description="https://www.acmicpc.net/problem/1011 1011번: Fly me to the Alpha Centauri 우현이는 어린 시절, 지구 외의 다른 행성에서도 인류들이 살아갈 수 있는 미래가 오리라 믿었다. 그리고 그가 지구라는 세상에 발을 내" data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/536" data-og-url="https://tose33.tistory.com/536" data-og-image="https://scrap.kakaocdn.net/dn/bLa2Ea/hyUnPiGqha/3yj8pI5quQKbkvWOwUzBH0/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/A7YMP/hyUnIRoTmJ/x1bLOlVrIvgYxrynJqwfu0/img.png?width=800&amp;height=800&amp;face=0_0_800_800"><a href="https://tose33.tistory.com/536" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/536">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bLa2Ea/hyUnPiGqha/3yj8pI5quQKbkvWOwUzBH0/img.png?width=800&amp;height=800&amp;face=0_0_800_800,https://scrap.kakaocdn.net/dn/A7YMP/hyUnIRoTmJ/x1bLOlVrIvgYxrynJqwfu0/img.png?width=800&amp;height=800&amp;face=0_0_800_800');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">백준 1011. Fly me to the Alpha Centauri</p>
+<p class="og-desc" data-ke-size="size16">https://www.acmicpc.net/problem/1011 1011번: Fly me to the Alpha Centauri 우현이는 어린 시절, 지구 외의 다른 행성에서도 인류들이 살아갈 수 있는 미래가 오리라 믿었다. 그리고 그가 지구라는 세상에 발을 내</p>
+<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">내 웹&nbsp;</p>
+<p data-ke-size="size16"><a href="https://lsh-portal-f9ba5ffd8137.herokuapp.com/blog/536-%EB%B0%B1%EC%A4%80-1011.-Fly-me-to-the-Alpha-Centauri.html" target="_blank" rel="noopener&nbsp;noreferrer">https://lsh-portal-f9ba5ffd8137.herokuapp.com/blog/536-%EB%B0%B1%EC%A4%80-1011.-Fly-me-to-the-Alpha-Centauri.html</a></p>
+<figure id="og_1698905373418" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="페이지" data-og-description="" data-og-host="lsh-portal-f9ba5ffd8137.herokuapp.com" data-og-source-url="https://lsh-portal-f9ba5ffd8137.herokuapp.com/blog/536-%EB%B0%B1%EC%A4%80-1011.-Fly-me-to-the-Alpha-Centauri.html" data-og-url="https://lsh-portal-f9ba5ffd8137.herokuapp.com/blog/536-%EB%B0%B1%EC%A4%80-1011.-Fly-me-to-the-Alpha-Centauri.html" data-og-image=""><a href="https://lsh-portal-f9ba5ffd8137.herokuapp.com/blog/536-%EB%B0%B1%EC%A4%80-1011.-Fly-me-to-the-Alpha-Centauri.html" target="_blank" rel="noopener" data-source-url="https://lsh-portal-f9ba5ffd8137.herokuapp.com/blog/536-%EB%B0%B1%EC%A4%80-1011.-Fly-me-to-the-Alpha-Centauri.html">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">페이지</p>
+<p class="og-desc" data-ke-size="size16">&nbsp;</p>
+<p class="og-host" data-ke-size="size16">lsh-portal-f9ba5ffd8137.herokuapp.com</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">fetchTistory.js&nbsp;</p>
+<p data-ke-size="size16"><a href="https://github.com/LSH3333/portal/blob/cf0974ad8bde088d3ad37f796b7ee00cc333475f/src/main/resources/static/js/fetchTistory.js#L1-L177" target="_blank" rel="noopener&nbsp;noreferrer">https://github.com/LSH3333/portal/blob/cf0974ad8bde088d3ad37f796b7ee00cc333475f/src/main/resources/static/js/fetchTistory.js#L1-L177</a></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
