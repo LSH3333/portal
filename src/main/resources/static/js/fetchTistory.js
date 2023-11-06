@@ -9,12 +9,12 @@ let langGistRenderer;
 // 여러 언어 gist 보여줄 tistory html 에 아래 추가하면됨 
 /** 
 <div id="lang-anchor-block">
-    <a href="">C++</a>
-    <a href="">JAVA</a>
-    <a href="">Python</a>
-    <a href="">Kotlin</a>
-    <a href="">C#</a>
-    <a href="">Javascript</a>
+    <div class="readmoreBtn"><a href="">C++</a></div>
+    <div class="readmoreBtn"><a href="">JAVA</a></div>
+    <div class="readmoreBtn"><a href="">Python</a></div>
+    <div class="readmoreBtn"><a href="">Kotlin</a></div>
+    <div class="readmoreBtn"><a href="">C#</a></div>
+    <div class="readmoreBtn"><a href="">JS</a></div>
 </div>
 <div id="lang-gist-renderer">
 </div>
@@ -152,8 +152,9 @@ function setGistVisible(gist) {
 // langAnchors[] 에 언어 스위치용 버튼 <a> element 넣음 
 function getLangAnchors() {
     let langAnchorBlock = document.getElementById('lang-anchor-block')
-    for (let i = 0; i < langAnchorBlock.childNodes.length; i++) {
-        if (langAnchorBlock.childNodes[i].nodeName.toLowerCase() === 'a') {
+    for (let i = 0; i < langAnchorBlock.childNodes.length; i++) {        
+        if(langAnchorBlock.childNodes[i] == undefined || langAnchorBlock.childNodes[i].childNodes[0] == undefined) continue;        
+        if (langAnchorBlock.childNodes[i].childNodes[0].nodeName.toLowerCase() === 'a') {
             langAnchors.push(langAnchorBlock.childNodes[i]);
         }
     }

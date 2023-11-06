@@ -1,0 +1,144 @@
+<meta charset="utf-8">
+<html lang="ko">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 1149. RGB거리</title>
+</head>
+
+<body id="tt-body-page" class="">
+    <div id="wrap" class="wrap-right">
+        <div id="container">
+            <main class="main ">
+                <div class="area-main">
+                    <div class="area-view">
+                        <div class="article-header">
+                            <div class="inner-article-header">
+                                <div class="box-meta">
+                                    <h2 class="title-article">백준 1149. RGB거리</h2>
+                                    <div class="box-info">
+                                        <p class="category">PS</p>
+                                        <p class="date">2021-03-10 18:15:24</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="article-view">
+                            <div class="contents_style">
+                                <p><a href="https://www.acmicpc.net/problem/1149" target="_blank"
+                                        rel="noopener">www.acmicpc.net/problem/1149</a></p>
+                                <figure id="og_1615366982929" contenteditable="false" data-ke-type="opengraph"
+                                    data-og-type="website" data-og-title="1149번: RGB거리"
+                                    data-og-description="첫째 줄에 집의 수 N(2 &le; N &le; 1,000)이 주어진다. 둘째 줄부터 N개의 줄에는 각 집을 빨강, 초록, 파랑으로 칠하는 비용이 1번 집부터 한 줄에 하나씩 주어진다. 집을 칠하는 비용은 1,000보다 작거나"
+                                    data-og-host="www.acmicpc.net"
+                                    data-og-source-url="https://www.acmicpc.net/problem/1149"
+                                    data-og-url="https://www.acmicpc.net/problem/1149"
+                                    data-og-image="https://scrap.kakaocdn.net/dn/UZ8vY/hyJw8FwOZO/4vkqejDJzRS1HtHmwfyKu1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630">
+                                    <a href="https://www.acmicpc.net/problem/1149" target="_blank" rel="noopener"
+                                        data-source-url="https://www.acmicpc.net/problem/1149">
+                                        <div class="og-image"
+                                            style="background-image: url('https://scrap.kakaocdn.net/dn/UZ8vY/hyJw8FwOZO/4vkqejDJzRS1HtHmwfyKu1/img.png?width=1200&amp;height=630&amp;face=0_0_1200_630');">
+                                            &nbsp;</div>
+                                        <div class="og-text">
+                                            <p class="og-title">1149번: RGB거리</p>
+                                            <p class="og-desc">첫째 줄에 집의 수 N(2 &le; N &le; 1,000)이 주어진다. 둘째 줄부터 N개의 줄에는 각
+                                                집을 빨강, 초록, 파랑으로 칠하는 비용이 1번 집부터 한 줄에 하나씩 주어진다. 집을 칠하는 비용은 1,000보다 작거나</p>
+                                            <p class="og-host">www.acmicpc.net</p>
+                                        </div>
+                                    </a>
+                                </figure>
+                                <p>&nbsp;</p>
+                                <p>집을 R,G,B 색으로 칠하는데 조건이</p>
+                                <ul>
+                                    <li>1번 집의 색은 2번 집의 색과 같지 않아야 한다.</li>
+                                    <li>N번 집의 색은 N-1번 집의 색과 같지 않아야 한다.</li>
+                                    <li>i(2 &le; i &le; N-1)번 집의 색은 i-1번, i+1번 집의 색과 같지 않아야 한다.</li>
+                                </ul>
+                                <p>이렇게 조건이 주어졌지만 쉽게 말하면<b> 인접한 집끼리의 색이 같으면 안된다</b>는 말이다.</p>
+                                <p>&nbsp;</p>
+                                <p>주어진 예제:</p>
+                                <table style="border-collapse: collapse; width: 27.5002%; height: 110px;" border="1">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 33.3333%;">26</td>
+                                            <td style="width: 33.3333%;">40</td>
+                                            <td style="width: 33.3333%;">83</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 33.3333%;">49</td>
+                                            <td style="width: 33.3333%;">60</td>
+                                            <td style="width: 33.3333%;">57</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 33.3333%;">13</td>
+                                            <td style="width: 33.3333%;">89</td>
+                                            <td style="width: 33.3333%;">99</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>&nbsp;</p>
+                                <p>d[1001][3]의 배열을 만들고,</p>
+                                <p>d[n][0] : n번째 집을 R로 칠할때의 최소비용</p>
+                                <p>d[n][1] : n번째 집을 G로 칠할때의 최소비용</p>
+                                <p>d[n][2] : n번째 집을 B로 칠할때의 최소비용</p>
+                                <p>&nbsp;</p>
+                                <p>d[1][0], d[1][1], d[1][2]는 첫 번 째 집이므로 그냥 첫번째 집의 RGB 값을 넣어준다.</p>
+                                <table style="border-collapse: collapse; width: 24.4471%; height: 37px;" border="1">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 33.3333%;">26</td>
+                                            <td style="width: 33.3333%;">40</td>
+                                            <td style="width: 37.4525%;">83</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>&nbsp;</p>
+                                <p><b>d[2][0]</b> : 2번째 집을 R로 칠한다.</p>
+                                <p>2번째 집을 R로 칠하려면, 1번째 집은 G나 B로 칠했어야한다.&nbsp;</p>
+                                <p>따라서 1번째 집의 G(40) ,B(83) 중 작은 값 + 2번째 집의 R(26)</p>
+                                <p>d[2][0] = 40 + 26 = 89</p>
+                                <p>&nbsp;</p>
+                                <p><b>d[2][1]</b> : 2번째 집을 G로 칠한다.</p>
+                                <p>2번쨰 집을 G로 칠하려면, 1번째 집은 R이나 B로 칠했어야 한다.</p>
+                                <p>따라서 1번째 집의 R(26), B(83)중 작은 값 + 2번째 집의 G(60)</p>
+                                <p>d[2][1] = 26 + 60 = 86</p>
+                                <p>&nbsp;</p>
+                                <p><b>d[2][2]</b> : 2번째 집을 B로 칠한다.</p>
+                                <p>2번째 집을 B로 칠하려면, 1번째 집은 R이나 G로 칠했어야 한다.</p>
+                                <p>따라서 1번째 집의 R(26), G(40) 중 작은 값 + 2번째 집의 B(57)</p>
+                                <p>d[2][2] = 26 + 57 = 83</p>
+                                <p>&nbsp;</p>
+                                <p>이렇게 아래서부터 bottom-up 방식으로 d 배열을 만들어나가서,</p>
+                                <p>d[n][0], d[n][1], d[n][2] 중 가장 작은 값이 답이다.</p>
+                                <p>&nbsp;</p>
+
+                                <div id="lang-anchor-block">
+                                    <div class="readmoreBtn"><a href="">C++</a></div>
+                                    <div class="readmoreBtn"><a href="">JAVA</a></div>
+                                    <div class="readmoreBtn"><a href="">Python</a></div>
+                                    <div class="readmoreBtn"><a href="">Kotlin</a></div>
+                                    <div class="readmoreBtn"><a href="">C#</a></div>
+                                </div>
+                                <div id="lang-gist-renderer">
+                                </div>
+                                <script src="https://gist.github.com/LSH3333/fc94412b9f335ca63e73a18d8ce33bb7.js"></script>
+                                <script src="https://gist.github.com/LSH3333/69b9b1ce10fff3d092f7772a7e57d8a2.js"></script>
+                                <script src="https://gist.github.com/LSH3333/ad7744d4b67d2298fea3af00ad3e0495.js"></script>
+                                <script src="https://gist.github.com/LSH3333/03b7c993d8fdc7ff91758baa2aac2c4f.js"></script>
+                                <script src="https://gist.github.com/LSH3333/1c2bf86c0e5b7d16a9f584c1f4559d51.js"></script>
+
+                            </div>
+                            <br />
+                            <div class="tags">
+                                #C++ #DP
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

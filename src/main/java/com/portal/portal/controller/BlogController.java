@@ -24,7 +24,6 @@ public class BlogController {
      */
     @GetMapping("blog/{pageName}")
     public String blogPage(Model model, @PathVariable String pageName) {
-        System.out.println("pageName = " + pageName);
         // fetchTistory.js fetchHTML() 에서 fetch 할 html 경로
         String fetchURL = "/tistory/"+extractNumber(pageName)+"/"+pageName;
         // header 이름 렌더링
