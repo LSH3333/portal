@@ -24,7 +24,7 @@ let langGistRenderer;
 // uri 를 퍼센트 인코딩한다. ('/' 제외)
 function URIEncode(uri) {
     return encodeURIComponent(uri).replace(/%2F/g, '/');
-  }
+}
 
 // tistory 블로그 백업 파일 모두 static/tistory/ 에 들어있음 
 // htmlSrc 로는 /static/tistory/{postNumber}/{postName} 의 postName 이 들어옴
@@ -32,7 +32,7 @@ function URIEncode(uri) {
 // htmlSrc 해당하는 html 파일 fetch 해서 tistoryPage.html 에 동적으로 랜더링함 
 function fetchHTML(htmlSrc) {
     // url 퍼센트 인코딩 
-    let encodedHtmlSrc = URIEncode(htmlSrc);    
+    let encodedHtmlSrc = URIEncode(htmlSrc);
 
     // html file fetch 
     fetch(encodedHtmlSrc)
@@ -87,26 +87,28 @@ function modifyImgElement(container) {
 // fetchHTML 로 html 가져온후 동적으로 gist <script> 실행
 //  (gist <script> 내부의 document.write 가 있어서 page load 이후에 실행안되기 때문 )            
 async function dynamicallyAddAllGists() {
-    langGistRenderer = document.getElementById('lang-gist-renderer')    
+    langGistRenderer = document.getElementById('lang-gist-renderer')
     let gists = container.querySelectorAll('script[src^="https://gist.github.com/"]');
-    getLangAnchors();
 
-    for (let i = 0; i < gists.length; i++) {        
+
+    for (let i = 0; i < gists.length; i++) {
         await dynamicallyAddGist(gists, i); // gist <script> 순차적으로 실행, 삽입 
     }
 
-    // 로딩 끝 처리, 첫 gist 보이도록 처리 
-    unVisibleLoading();
-    renderAddedGist(langGistRenderer, dynamicallyAddedGists[0]);
+
 
     // 모든 gist <script> 실행 후, <div id='lang-gist-renderer'> 에 렌더링 등 필요한 연산 실행
 
     // 여러 언어 gist 존재하는 경우에만 
     if (langGistRenderer != null) {
         // 최초에 gist 들 모두 안보이도록 처리하고 언어버튼 클릭시 해당 언어 gist 만 보이도록 처리                    
+        // 로딩 끝 처리, 첫 gist 보이도록 처리 
+        unVisibleLoading();
+        getLangAnchors();
+        renderAddedGist(langGistRenderer, dynamicallyAddedGists[0]);
         addEventListenerToLangAnchors();
-    } 
-    // 한개의 언어 gist 존재하는 경우는 그냥 visible 처리 
+    }
+    // 한개의 언어 gist 존재하는 경우는 그냥 모두 visible 처리 
     else {
         dynamicallyAddedGists.forEach((gist) => {
             setGistVisible(gist);
@@ -157,8 +159,8 @@ function setGistVisible(gist) {
 // langAnchors[] 에 언어 스위치용 버튼 <a> element 넣음 
 function getLangAnchors() {
     let langAnchorBlock = document.getElementById('lang-anchor-block')
-    for (let i = 0; i < langAnchorBlock.childNodes.length; i++) {        
-        if(langAnchorBlock.childNodes[i] == undefined || langAnchorBlock.childNodes[i].childNodes[0] == undefined) continue;        
+    for (let i = 0; i < langAnchorBlock.childNodes.length; i++) {
+        if (langAnchorBlock.childNodes[i] == undefined || langAnchorBlock.childNodes[i].childNodes[0] == undefined) continue;
         if (langAnchorBlock.childNodes[i].childNodes[0].nodeName.toLowerCase() === 'a') {
             langAnchors.push(langAnchorBlock.childNodes[i]);
         }
