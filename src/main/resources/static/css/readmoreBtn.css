@@ -18,7 +18,12 @@
     background-color: #3db39e;
 }
 
-.readmoreBtn a {
+.readmoreBtn {
+    text-decoration: none;
+    color: white;
+}
+
+.readmoreBtn > div {
     text-decoration: none;
     color: white;
 }
