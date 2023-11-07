@@ -13,7 +13,7 @@ header {
     width: 100%;
 }
 #headerBackground {    
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/spring.png);
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/spring_home.png);
 }
 #header-text-box {
     color:white;

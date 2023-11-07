@@ -7,9 +7,13 @@
     font-family: 'Noto Sans KR', sans-serif;
 }
 
+header {
+    min-height: 50vh;
+}
+
 #headerBackground {
     /* background-color: rgba(4, 9, 30, 0.7); */
-    height: 90vh;
+    /* height: 90vh; */
 }
 
 
@@ -192,3 +196,104 @@ main {
 }
 
 
+
+/* round block container */
+.roundBlockContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 2% 2%; */
+    margin: 2% 2%;
+}
+
+.roundBlock {
+    border-radius: 25px;
+    margin: 0 20px;
+    height: 400px;
+}
+
+.roundBlock_upper {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    background-repeat: no-repeat;
+    height: 250px;
+    background-position: 50% 50%;
+    /* background-size: 700px 250px; */
+}
+
+.roundBlock_lower {
+    height: 150px;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    text-align: center;
+    box-sizing: border-box;
+    /* padding: 20px; */
+
+    /* background-color: #ddecff;
+    opacity: 0.8;
+    background-size: 10px 10px;
+    background-image: repeating-linear-gradient(45deg, #ffffff 0, #ffffff 1px, #ddecff 0, #ddecff 50%); */
+}
+.roundBlock_lower #readmoreBtn {
+    margin: 0;
+    margin: auto;
+}
+.roundBlock_lower_1 {
+    height: 80px;
+    padding: 20px 10px 10px 10px;
+    box-sizing: border-box;    
+}
+.roundBlock_lower_2 {
+    height: 70px;    
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+/* roundBlock 크기 */
+.roundBlock_1 {
+    width: 55%;
+    min-width: 500px;
+}
+
+.roundBlock_2 {
+    width: 35%;
+    min-width: 400px;
+}
+
+.roundBlock_upper_web {
+    background-image: url(../images/spring_home.png);
+    background-size: 900px 400px;
+}
+
+.roundBlock_upper_unity {
+    background-image: url(../images/unity_home.webp);
+}
+
+.roundBlock_upper_paper {
+    background-image: url(../images/books_home.jpg);
+}
+
+.roundBlock_upper_algo {
+    background-image: url(../images/algorithm_home.jpeg);
+}
+
+.backgroundColor_1 {
+    background-image: linear-gradient(to right top, #d0e4fc, #e0e7fd, #eeeafd, #f8effc, #fff4fc);
+}
+.backgroundColor_2 {
+    background-image: linear-gradient(to right top, #fcfcec, #eff8e7, #e1f5e5, #d3f1e6, #c7ece9);
+}
+.backgroundColor_3 {
+    background-image: linear-gradient(to right top, #fff4fc, #fff4f7, #fff5f0, #fff8ec, #fcfcec);
+}
+.backgroundColor_4 {
+    background-image: linear-gradient(to right top, #fff4fc, #f3f1ff, #e2efff, #d1eef8, #c7ece9);
+}
+
+/* fff4fc */
+/* D0E4FC */
+/* fcfcec */
+/* c7ece9 */
+/* d4ecfc */

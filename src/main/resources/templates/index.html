@@ -35,149 +35,68 @@
 
     <!-- MAIN -->
     <main>
-        <!-- MAIN BLOCK 1 -->
-        <div class="" id="mainBlock1">
-            <div id="imgBlock1" class="imgBlock">
-                <img src="/static/images/music-32859_1280.png" th:src="@{/images/music-32859_1280.png}" alt="">
+        <div class="roundBlockContainer">
+            <div class="roundBlock roundBlock_1">
+                <a class="roundBlock_upper" href="/templates/instaweb.html" th:href="@{/instaweb}">
+                    <div class="roundBlock_upper roundBlock_upper_web"></div>
+                </a>
+                <div class="roundBlock_lower backgroundColor_1">
+                    <div class="roundBlock_lower_1">
+                        <h3>스프링 프레임워크, JPA, Javascript 를 이용한 웹 어플리케이션</h3>
+                    </div>
+                    <div class="roundBlock_lower_2">
+                        <div id="readmoreBtn"><a href="/templates/instaweb.html" th:href="@{/instaweb}">WEB</a></div>
+                    </div>
+                </div>
             </div>
-            <div id="mainBlock1Content">
-                <p>Welcome!</p>
-                이 공간은 저 자신을 소개하기 위해 만든 웹사이트입니다.<br>
-                둘러보시면서 저에 대해 알아보세요!<br>
-                <div id="readmoreBtn"><a href="/templates/aboutme.html" th:href="@{/aboutme}">About me!</a></div>
-            </div>
-        </div>
-        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
-            <div class="mainContentBlockWrap">
-                <div class="ContentBlock">
-                    <h2>기술</h2>
-                    <hr>
-                    <ul>
-                        <li>
-                            <b>Language</b> (클릭 시 사용한곳으로 이동)
-                            <ul>
-                                <li>
-                                    <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/controller/PageController.java#L308-L355"
-                                        target="_blank">JAVA</a>,
-                                    <a target="_blank" href="#" th:href="@{/blog/844-백준-2933.-미네랄.html}">C++</a>,
-                                    <a href="https://tose33.tistory.com/1301" target="_blank">javascript</a>,
-                                    <a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116"
-                                        target="_blank">C#</a>,
-                                    <a target="_blank"
-                                        href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/templates/index.html#L47-L89">HTML</a>,
-                                    <a target="_blank"
-                                        href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/static/css/mainContentBlock.css#L7-L26">CSS</a>
-                                </li>
-                                <li>
-                                    weak :
-                                    <a target="_blank" href="#" th:href="@{/blogPortal/multiLang}">Python</a>,
-                                    <a target="_blank" th:href="@{/blogPortal/multiLang}">Kotlin</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <b>Framework / Engine</b>
-                            <ul>
-                                <li>
-                                    <a target="_blank" href="/templates/instaweb.html"
-                                        th:href="@{/instaweb}">Spring</a>,
-                                    <a target="_blank" href="/templates/instaweb.html" th:href="@{/instaweb}">JPA</a>,
-                                    <a target="_blank" href="/templates/galaga.html" th:href="@{/galaga}">Uniy
-                                        Engine</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+
+            <div class="roundBlock roundBlock_2">
+                <a class="roundBlock_upper" href="/templates/galaga.html" th:href="@{/galaga}">
+                    <div class="roundBlock_upper roundBlock_upper_unity"></div>
+                </a>
+                <div class="roundBlock_lower backgroundColor_2">
+                    <div class="roundBlock_lower_1">
+                        <h3>유니티 엔진</h3>
+                    </div>
+                    <div class="roundBlock_lower_2">
+                        <div id="readmoreBtn"><a href="/templates/galaga.html" th:href="@{/galaga}">UNITY</a></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="titleBlock">
-            <h2>프로젝트</h2>
-            <hr>
-        </div>
-        <!-- Instaweb Block -->
-        <div id="instaweb-block">
-            <div class="imgBlock">
-                <img src="/static/images/instaweb.png" th:src="@{/images/instaweb.png}" alt="">
+        <div class="roundBlockContainer">
+            <div class="roundBlock roundBlock_2">
+                <a class="roundBlock_upper" href="/templates/paper.html" th:href="@{/paper}">
+                    <div class="roundBlock_upper roundBlock_upper_paper"></div>
+                </a>
+                <div class="roundBlock_lower backgroundColor_3">
+                    <div class="roundBlock_lower_1">
+                        <h3>정리와 기록</h3>
+                    </div>
+                    <div class="roundBlock_lower_2">
+                        <div id="readmoreBtn"><a href="/templates/paper.html" th:href="@{/paper}">PAPER</a></div>
+                    </div>
+                </div>
             </div>
-            <div id="instaweb-blockContent">
-                <p>
-                <h2>WEB</h2>
-                <div id="readmoreBtn"><a href="/templates/instaweb.html" th:href="@{/instaweb}">InstaWeb</a></div>
-                로그인 후 글, 댓글을 작성 시 DB에 저장하는 웹.<br><br>
-                <a href="https://lsh-instaweb.herokuapp.com/" target="_blank"><i class="fa-solid fa-link"></i>visit
-                    web →</a><br>
-                <a href="https://github.com/LSH3333/Instaweb" target="_blank"><i class="fa-brands fa-github"></i>
-                    visit git →</a>
-                </p>
-                <div class="techStack">
-                    <img src="/static/images/spring.svg" th:src="@{/images/spring.svg}" alt="">
-                    <img src="/static/images/hibernate.svg" th:src="@{/images/hibernate.svg}" alt="">
-                    <img src="/static/images/html.svg" th:src="@{/images/html.svg}" alt="">
-                    <img src="/static/images/css.svg" th:src="@{/images/css.svg}" alt="">
-                    <img src="/static/images/thymeleaf.svg" th:src="@{/images/thymeleaf.svg}" alt="">
-                    <img src="/static/images/js.svg" th:src="@{/images/js.svg}" alt="">
-                    <img src="/static/images/heroku.svg" th:src="@{/images/heroku.svg}" alt="">
-                    <img src="/static/images/postgres.svg" th:src="@{/images/postgres.svg}" alt="">
+
+            <div class="roundBlock roundBlock_1">
+                <a class="roundBlock_upper" href="/templates/blog/blogPortal.html" th:href="@{/blogPortal}"><div class="roundBlock_upper roundBlock_upper_algo"></div></a>        
+                <div class="roundBlock_lower backgroundColor_4">
+                    <div class="roundBlock_lower_1">
+                        <h3>알고리즘, Problem Solving</h3>
+                    </div>
+                    <div class="roundBlock_lower_2">
+                        <div id="readmoreBtn"><a href="/templates/blog/blogPortal.html"
+                                th:href="@{/blogPortal}">ALGORITHM</a></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Galaga Block -->
-        <div id="galaga-block">
-            <!-- 베지어 곡선 따라 이동하는 오브젝트들 -->
-            <span style="position: absolute;" id="obj"><img id="imgObj" src="/images/Enemy1_1.png" alt=""></span>
-            <span style="position: absolute;" id="obj2"><img id="imgObj2" src="/images/Enemy2_1.png" alt=""></span>
-            <span style="position: absolute;" id="obj3"><img id="imgObj3" src="/images/Enemy3_1.png" alt=""></span>
-            <span style="position: absolute;" id="obj4"><img id="imgObj4" src="/images/Enemy4_1.png" alt=""></span>
-            <!-- 조절점들 -->
-            <span style="position: absolute;" id="p1"></span>
-            <span style="position: absolute;" id="p2"></span>
-            <span style="position: absolute;" id="p3"></span>
-            <span style="position: absolute;" id="p4"></span>
-            <div id="galaga-block-Content">
-                <p>
-                <h2>UNITY</h2>
-                <div id="readmoreBtn"><a href="/templates/galaga.html" th:href="@{/galaga}">Galaga</a></div>
-                Unity 로 구현한 갤러그.<br><br>
-                <a class="galaga-link" href="https://lsh3333.itch.io/galaga" target="_blank"><i
-                        class="fa-solid fa-gamepad"></i>play
-                    game →</a><br>
-                <a class="galaga-link" href="https://github.com/LSH3333/Galaga" target="_blank"><i
-                        class="fa-brands fa-github"></i>
-                    visit git →</a>
-                </p>
-                <div class="techStack">
-                    <img src="/static/images/csharp.svg" th:src="@{/images/csharp.svg}" alt="">
-                    <img src="/static/images/unity.svg" th:src="@{/images/unity.svg}" alt="">
-                </div>
-            </div>
-            <div class="imgBlock">
-                <!-- <img style="width: 60%;" src="/static/images/galaga_spawn.png" th:src="@{/images/galaga1.png}" alt=""> -->
-                <iframe frameborder="0" src="https://itch.io/embed-upload/8826622?color=333333" allowfullscreen=""
-                    width="360" height="700"><a href="https://lsh3333.itch.io/galaga">Play galga on itch.io</a></iframe>
-            </div>
-        </div>
-        <!-- Algorithm Block -->
-        <div id="algorithm-block">
-            <div class="imgBlock">
-                <img src="/static/images/draw-4067546_1280.png" th:src="@{/images/draw-4067546_1280.png}" alt="">
-            </div>
-            <div id="algorithm-block-Content">
-                <p>Algorithm</p>
-                프로젝트들을 진행하면서도 알고리즘 문제는 꾸준히 풀며 <b>1000 문제</b> 이상을 풀었고
-                앞으로도 계속할 생각입니다.
-                <br>
-                <div id="readmoreBtn"><a href="/templates/blog/blogPortal.html" th:href="@{/blogPortal}">Algorithm</a>
-                </div>
-            </div>
-        </div>
+
     </main>
 
     <!-- FOOTER -->
     <footer th:replace="fragment/footer :: footer"></footer>
-
-    <script type="text/javascript" src="/static/js/slideObj.js" th:src="@{/js/slideObj.js}"></script>
-    <script type="text/javascript" src="/static/js/bezierGalaga.js" th:src="@{/js/bezierGalaga.js}"></script>
 </body>
 
 </html>
