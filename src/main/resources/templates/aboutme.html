@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>aboutme</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+    th:href="@{/css/mainContentBlock.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/aboutme.css" th:href="@{/css/aboutme.css}" />
@@ -28,10 +30,51 @@
 
     <!-- MAIN -->
     <main>
+        <div class="mainContentBlock" >
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h2>기술</h2>
+                    <hr>
+                    <ul>
+                        <li>
+                            <b>Language</b> (클릭 시 사용한곳으로 이동)
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/controller/PageController.java#L308-L355"
+                                        target="_blank">JAVA</a>,
+                                    <a target="_blank" href="#" th:href="@{/blog/844-백준-2933.-미네랄.html}">C++</a>,
+                                    <a href="https://tose33.tistory.com/1301" target="_blank">javascript</a>,
+                                    <a href="https://github.com/LSH3333/Galaga/blob/e24087b095567b632028bffa32c18505aa70c59a/Assets/Scripts/BezierController.cs#L5-L116"
+                                        target="_blank">C#</a>,
+                                    <a target="_blank"
+                                        href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/templates/index.html#L47-L89">HTML</a>,
+                                    <a target="_blank"
+                                        href="https://github.com/LSH3333/portal/blob/289e58353c063e794e9c27a8981ebfd29a6fbb03/src/main/resources/static/css/mainContentBlock.css#L7-L26">CSS</a>
+                                </li>
+                                <li>
+                                    weak :
+                                    <a target="_blank" href="#" th:href="@{/blogPortal/multiLang}">Python</a>,
+                                    <a target="_blank" th:href="@{/blogPortal/multiLang}">Kotlin</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Framework / Engine</b>
+                            <ul>
+                                <li>
+                                    <a target="_blank" href="/templates/instaweb.html"
+                                        th:href="@{/instaweb}">Spring</a>,
+                                    <a target="_blank" href="/templates/instaweb.html" th:href="@{/instaweb}">JPA</a>,
+                                    <a target="_blank" href="/templates/galaga.html" th:href="@{/galaga}">Uniy
+                                        Engine</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div id="mainBlock1">
-            <!-- <div class="imgBlock">
-                <img src="headerImg.jpeg" alt="">
-            </div> -->
             <div id="mainBlock1Content">
                 <p id="title">About me...</p>
                 <p>게임을 좋아하는 저는 <b>유니티 엔진</b>으로 게임을 만들어 봤습니다.</p>

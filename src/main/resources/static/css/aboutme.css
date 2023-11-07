@@ -37,7 +37,7 @@ main {
     display: flex;
     justify-content: space-around;
     padding: 2% 6%;
-    margin: 5% 0;
+    margin: 1% 0;
 }
 
 #mainBlock1 .imgBlock {
