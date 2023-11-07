@@ -48,24 +48,7 @@
                                         </div>
                                     </a>
                                 </figure>
-                                <p>&nbsp;</p>
-                                <p>다시 푼 문제, 이전 글: <a href="https://tose33.tistory.com/29" target="_blank"
-                                        rel="noopener">tose33.tistory.com/29</a></p>
-                                <p>&nbsp;</p>
-                                <p>2178. 미로탐색 과 같지만 다른점은 익은 토마토가 여러개 있을수 있어, 처음에 큐에 1개 이상의 값이 들어간다.</p>
-                                <p>&nbsp;</p>
-                                <p>처음에 입력 받을때, 익은 토마토라면 미리 큐에 다 넣어준다.</p>
-                                <pre id="code_1617355661930" class="c++ arduino" data-ke-language="c++"
-                                    data-ke-type="codeblock"><code> for(int i = 0; i &lt; H; i++) {
-        for(int j = 0; j &lt; W; j++) {
-            if(tomato[i][j] == 1) { // 이미 익은 토마토
-                q.push(make_pair(i,j)); // 큐에 다 미리 넣어놈
-                mark[i][j] = 0; // 이미 익었으므로 익는데 걸리는 시간 : 0일
-            }
-        }
-    }</code></pre>
-                                <p>&nbsp;</p>
-                                <p>&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
                                 <div id="lang-anchor-block">
                                     <div class="readmoreBtn"><a>C++</a></div>
                                     <div class="readmoreBtn"><a>JAVA</a></div>
@@ -86,6 +69,24 @@
                                     src="https://gist.github.com/LSH3333/bb61b2bb127d512015832470ce778bc7.js"></script>
                                 <script
                                     src="https://gist.github.com/LSH3333/86193ce386b6194dbaf355a848e5dce1.js"></script>
+                                <p>다시 푼 문제, 이전 글: <a href="https://tose33.tistory.com/29" target="_blank"
+                                        rel="noopener">tose33.tistory.com/29</a></p>
+                                <p>&nbsp;</p>
+                                <p>2178. 미로탐색 과 같지만 다른점은 익은 토마토가 여러개 있을수 있어, 처음에 큐에 1개 이상의 값이 들어간다.</p>
+                                <p>&nbsp;</p>
+                                <p>처음에 입력 받을때, 익은 토마토라면 미리 큐에 다 넣어준다.</p>
+                                <pre id="code_1617355661930" class="c++ arduino" data-ke-language="c++"
+                                    data-ke-type="codeblock"><code> for(int i = 0; i &lt; H; i++) {
+        for(int j = 0; j &lt; W; j++) {
+            if(tomato[i][j] == 1) { // 이미 익은 토마토
+                q.push(make_pair(i,j)); // 큐에 다 미리 넣어놈
+                mark[i][j] = 0; // 이미 익었으므로 익는데 걸리는 시간 : 0일
+            }
+        }
+    }</code></pre>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                               
                             </div>
                             <br />
                             <div class="tags">
