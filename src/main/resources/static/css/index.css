@@ -235,7 +235,10 @@ main {
     background-size: 10px 10px;
     background-image: repeating-linear-gradient(45deg, #ffffff 0, #ffffff 1px, #ddecff 0, #ddecff 50%); */
 }
-.roundBlock_lower #readmoreBtn {
+.roundBlock_lower h3 {
+    font-weight: lighter;
+}
+.roundBlock_lower .readmoreBtn {
     margin: 0;
     margin: auto;
 }
@@ -291,6 +294,8 @@ main {
 .backgroundColor_4 {
     background-image: linear-gradient(to right top, #fff4fc, #f3f1ff, #e2efff, #d1eef8, #c7ece9);
 }
+
+
 
 /* fff4fc */
 /* D0E4FC */

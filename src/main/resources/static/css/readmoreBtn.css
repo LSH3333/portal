@@ -1,5 +1,5 @@
 /* Read more Btn */
-#readmoreBtn {
+.readmoreBtn {
     background-color: black;
     text-decoration: none;
     color: white;
@@ -13,12 +13,12 @@
     align-items: center;
 }
 
-#readmoreBtn:hover {
+.readmoreBtn:hover {
     cursor: pointer;
     background-color: #3db39e;
 }
 
-#readmoreBtn a {
+.readmoreBtn a {
     text-decoration: none;
     color: white;
 }
