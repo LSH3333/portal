@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
     <link rel="stylesheet" type="text/css" href="/static/css/instaweb.css" th:href="@{/css/instaweb.css}" />
-    
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,7 +77,7 @@
                     <p>글 작성폼, 글 수정폼에서 사용자가 글을 작성하고 서버로 보내는경우 로직이 같기 때문에 ajax 로 통째로 받아서
                         데이터베이스에 저장하는 로직을 공유하도록 했습니다.
                     </p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/controller/PageController.java#L308-L355"
+                    <a href="https://github.com/LSH3333/Instaweb/blob/9b0255a273a59cbad612864c74110c0b4da1f82f/src/main/java/web/instaweb/controller/PageController.java#L309-L365"
                         target="_blank">클라이언트에서 받은 데이터 저장</a>
                     <br><br>
 
@@ -90,8 +90,10 @@
                         때문에
                         이미지도 하나의 도메인으로 분리했습니다.
                     </p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/domain/Image.java#L10-L79"
-                        target="_blank">이미지 도메인</a>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Image.java#L28-L34"
+                        target="_blank">이미지 도메인의 UUID 존재 이유</a>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Page.java#L25-L34"
+                        target="_blank">Page 에 텍스트로 저장되는 이미지 엘러먼트와 저장 및 처리 방식</a>
                     <br><br>
 
                     <ul>
@@ -101,8 +103,8 @@
                     <p>원인은 객체와 연관관계에 있는 다른 객체를 가져올때 fetchType=LAZY 로 설정했기 때문인데 (LAZY 아닌 EAGER 설정 시 객체와 연관관계 있는 모든 객체
                         갖고오게됨)
                         개발을 하면서 트랜잭션 내부인 서비스 영역에서 모든 관계를 맺어준 후에 다른 영역에서 사용할수 있도록 변경했습니다.</p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/cb653487036b3a75a5c75819e4abf4695c20fd11/src/main/java/web/instaweb/service/CommentService.java#L17-L40"
-                        target="_blank">Service에서 연관관계 맺기</a>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/7078d707a190f29a52695487881d17305b6b0124/src/main/java/web/instaweb/service/CommentService.java#L26-L47"
+                        target="_blank">Service에서 연관관계 맺고 레포지토리를 통해 저장</a>
                     <br><br>
 
                     <ul>
@@ -165,7 +167,10 @@
                 <div class="ContentBlock">
                     <h2>링크</h2>
                     <hr>
-                    <a style="text-decoration: none;" class="readmoreBtn" target="_blank" href="https://lsh-instaweb.herokuapp.com/"><div>InstaWeb</div></a>                                    
+                    <a style="text-decoration: none;" class="readmoreBtn" target="_blank"
+                        href="https://lsh-instaweb.herokuapp.com/">
+                        <div>InstaWeb</div>
+                    </a>
                 </div>
             </div>
         </div>
