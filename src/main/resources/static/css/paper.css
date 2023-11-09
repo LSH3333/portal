@@ -11,3 +11,15 @@ header {
     background-repeat: no-repeat;
     background-size: 100%;
 }
+
+
+.explainBlock {
+    display: inline-block;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid gray;
+}
+
+.explainBlock a {
+    color: black;    
+}
