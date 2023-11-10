@@ -218,7 +218,7 @@ main {
     background-repeat: no-repeat;
     height: 250px;
     background-position: 50% 50%;
-    /* background-size: 700px 250px; */
+    /* background-size: contain; */
 }
 
 .roundBlock_lower {
@@ -256,12 +256,14 @@ main {
 
 /* roundBlock 크기 */
 .roundBlock_1 {
-    width: 55%;
+    width: 40em;
+    /* width: 55%; */
     min-width: 500px;
 }
 
 .roundBlock_2 {
-    width: 35%;
+    width: 25em;
+    /* width: 35%; */
     min-width: 400px;
 }
 
