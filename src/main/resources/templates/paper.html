@@ -40,8 +40,10 @@
             <h4>Web</h4>
             <hr>
             <div class="paperRow">
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+                <a th:href="@{/blog/941-Spring-MVC-구조.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/mvc.png}" src="/static/images/papers/mvc.png" alt="">
+                    </div>
                     <div class="textArea">
                         <p class="paperBlock_title">Spring MVC 구조</p>
                         <p class="paperBlock_content">
@@ -51,71 +53,158 @@
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a th:href="@{/blog/1301-html-파일-fetch,-_script_-동적-실행-등.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/fetch.png}" src="/static/images/papers/fetch.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">html 파일 fetch, &ltscript&gt 동적 실행 등</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            만드는 중인 웹에 내가 티스토리에 쓴 글들을 그대로 가져와 보여주고 싶었다.
+                            그 과정과 문제들, 해결한 방법에 대해 기록한다.
+                            티스토리에 쓴 글들 (html) 을 내 웹의 디자인을 적용하고 싶다
+                            내가 쓴 글들은 천개가 넘는다. 천개의 html 파일들을 모두 수정 불가능
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a th:href="@{/blog/1302-Thymeleaf-와-URL-인코딩.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/thymeleaf-logo.png}"
+                            src="/static/images/papers/thymeleaf-logo.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">Thymeleaf 와 URL 인코딩</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            서버에서 PathVariable 로 html 파일의 이름을 받는 과정에서 문제가 발생했다.
+                            html 파일의 이름에 예약어가 포함될 경우
+                            예를들어 '474-c#)-가변배열.html' 같은 경우 '#' 이 포함되는데 # 은 프래그먼트를 나타내는 심볼로서 # 뒤에 나타난 문자열은 서버로 보내지지 않는다.
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a th:href="@{/blog/996-JPA-정리.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/jpa.png}" src="/static/images/papers/jpa.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">JPA 정리</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            지금까지 공부한것에 의하면 JPA는 결국 어플리케이션을 만드는 객체지향적 환경과 데이타베이스의 관계형 DB의 환경을 연결해 주는 것이다.
+                            어플리케이션의 객체를 다룰때 처럼 데이터베이스의 데이터도 다루고 싶지만 이것이 불가능하다.
+                            따라서 데이터를 갖고 뭔가를 하기 전에 객체와 데이터베이스의 테이블을 미리 일일히 매핑을 해놓으면, 내가 객체만 신경쓰면 이미 모두 데이터베이스 테이블에 매핑되어
+                            있으므로 JPA가 이에 걸맞는 sql 문을 만들어서 DB에 명령을 내린다.
                         </p>
                     </div>
                 </a>
             </div>
+
             <div class="paperRow">
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+                <a href="https://tose33.tistory.com/1303" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/oauth.png}" src="/static/images/papers/oauth.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">Google OAuth2</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            요즘 많은 웹사이트들은 구글, 카카오 등으로 로그인을 지원하는데 내 개인정보가 구글,카카오가 아닌 현재 사용중인 웹 서버에도 전달되는지 궁금한 적이 있다.
+                            결론부터 말하자면 구글,카카오가 아닌 중간 다리 역할을 하는 웹에는 전달되지 않는다.
+                            원리를 아주 아주 간단하게 설명하면 사용자의 개인 정보는 구글에 보내지고, 구글은 중간웹사이트에게 사용자의 아이디,비밀
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a href="https://tose33.tistory.com/1304" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/scretkey.png}" src="/static/images/papers/scretkey.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">git 프로젝트의 secret key 관리, heroku 배포 시 secret key 관리</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            구글 api 에 내 클라이언트를 등록하고 나면 secret key 가 발급되...
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a href="https://tose33.tistory.com/1305" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/webclient.jpg}" src="/static/images/papers/webclient.jpg" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">Spring WebClient</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            WebClient 는 스프링이 제공하는 말 그대로 client 로서의 역할을 하기 위한 모듈이다.
+                            동기 API 요청을 처리할때 사용한다.
+                            RestTemplate vs WebClient 이전에는 동기 api 요청을 처리할때 RestTemplate 을 사용했는데 위 doc를 보면 아래와 같이
+                            spring5.0 부터는 webclient 사용을 권장하고 있다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/1192-javascript로-구현한-베지어-곡선.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/bezier.gif}" src="/static/images/papers/bezier.gif" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">javascript로 구현한 베지어 곡선</p>
+                        <p class="paperBlock_content">
+                            알고리즘 자체는 기존과 다를게 하나도 없지만 javascript 로 옮기면서 해결해야 하는 문제가 있었다.
+                            우선 베지어 곡선을 그리는 방법은 다음과 같은데
+                            1. N개의 조절점을 이어 N-1 개의 선분을 만든다
+                            2. 각 선분의 t 값에 비례하는 곳에 점을 찍는다 (따라서 N-1 개의 새로운 점이 생긴다)
+                            3. 1~2를 반복하면 결국 새로운 점의 갯수는 줄어들어 1개의 점이 된다.
+                            4. 해당 점의 위치가 베지어 곡선을 그릴때 다음 점의 위치가 된다.
+                            5. t 값을 증가시킨다.
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="paperRow">
+                <a th:href="@{/blog/1072-Api-예외-처리.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/api_exception.png}" src="/static/images/papers/api_exception.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Api 예외 처리</p>
+                        <p class="paperBlock_content">
+                            오류 페이지는 단순히 사용자에게 에러 페이지를 보여주면 끝이지만, api 통신의 예외는 각 오류에 맞는 오류 응답 스펙을 정하고, JSON 으로 데이터를 보내줘야
+                            한다.
+                            컨트롤러에서 어떻게든 예외를 처리하지 않으면 서블렛, WAS 까지 갔을때는 무조건 500 대 로 인식한다.
+                            아래는 컨트롤러에서 예외가 터졌을때의 흐름이다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/743-JDBC.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/jdbc.png}" src="/static/images/papers/jdbc.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">JDBC</p>
+                        <p class="paperBlock_content">
+                            Java Database Connectivity
+                            JDBC(Java Database Connectivity)는 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 API이다.
+                            내가 어떤 프로그램을 만들었고 데이터베이스를 사용하는 상황이다.
+                            데이터베이스에도 여러 종류가있다 오라클 디비, MSSQL 등등 엄청 많다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/760-JDBC-기본-흐름.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/jdbc_flow.png}" src="/static/images/papers/jdbc_flow.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">JDBC 기본 흐름</p>
+                        <p class="paperBlock_content">
+                            이전에 쓴대로 기본적인 흐름은 아래와 같다.
+                            1. 일단 JDBC 드라이버에 모든 코드들이 있기 때문에 드라이버를 로드해야 할 것이다.
+                            Class.forName("oracle.jdbc.driver.OracleDriver");
+                            이렇게 하면 메모리에 JDBC 드라이버가 로드된 상태일 것이다.
                         </p>
                     </div>
                 </a>
@@ -123,50 +212,116 @@
         </div>
 
         <div class="paperArea">
-            <h4>Web</h4>
+            <h4>Languages</h4>
             <hr>
             <div class="paperRow">
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+                <a th:href="@{/blog/937-Java)-함수의-파라미터에는-복사된-주소값이-전달된다.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/java_param.png}" src="/static/images/papers/java_param.png"
+                            alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">Java) 함수의 파라미터에는 복사된 주소값이 전달된다</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            내가 든 의문은 주소값을 복사해서 전달하더라도 어쨌든 주소를 넘겼고 실제로 객체의 데이터도 변경...                            
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a th:href="@{/blog/937-Java)-함수의-파라미터에는-복사된-주소값이-전달된다.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/amortized.png}" src="/static/images/papers/amortized.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">Amortized time complexity</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            내가 이해한 바로는 분할 상환이라는 이름대로, 알고리즘 수행 중 비정상적으로 많은 시간을 소요하는 연산을 분할해서, 나머지 낮은 시간을 소요하는 연산에 분배(상환)해
+                            알고리즘의 시간 복잡도를 판단한다는 것이다.
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a th:href="@{/blog/988-c++)-객체의-==-비교.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/==comp.png}" src="/static/images/papers/==comp.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">c++) 객체의 == 비교</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            자바에서 == 비교는 객체의 레퍼런스를 비교한다.
+                            두 객체가 같은 값을 갖고 있어도 다른 레퍼런스를 갖으면 서로 다르고 == 비교 했을때 false이다.
+                            예를들어 아래의 결과는 false 다.
                         </p>
                     </div>
                 </a>
-                <a href="#" class="paperBlock">
-                    <div class="imgArea"><img src="/static/images/papers/mvc.png" alt=""></div>
+
+                <a th:href="@{/blog/661-kotlin)-Array_Int_-vs-IntArray.html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/kotlin.png}" src="/static/images/papers/kotlin.png" alt="">
+                    </div>
                     <div class="textArea">
-                        <p class="paperBlock_title">Spring MVC 구조</p>
+                        <p class="paperBlock_title">kotlin) Array&ltInt&gt vs IntArray</p>
                         <p class="paperBlock_content">
-                            DispatcherServlet (Front Controller)
-                            이름에 Servlet이 있다시피 DispatcherServlet은 Servlet이고, HttpServlet을 상속 받는다.
-                            DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet
+                            찾아보니 코틀린의 IntArray, LongArray는 박싱을 안하는 자바로 따지면 int[], long[]과 같고 Array&ltInt&gt,
+                            Array&ltLong&gt은 자동 박싱이 진행되는 Integer[] 같은것이라고 한다.
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="paperRow">
+                <a th:href="@{/blog/632-꼬리-재귀-(Tail-Recursion).html}" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/tail_rec.png}" src="/static/images/papers/tail_rec.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">꼬리 재귀 (Tail Recursion)</p>
+                        <p class="paperBlock_content">
+                            c++로 풀었던 백준 문제를 파이썬으로 변환하다가 메모리 초과가 났다.
+                            이유가 뭔지 찾아봤는데 이유는 다음과 같았다.
+                            1. c++도 그렇지만 파이썬도 재귀함수를 호출하면 함수가 끝나지 않은채 함수가 또 호출되기 때문에 스택 메모리에 메모리가 계속 쌓이게 된다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/600-The-rule-of-3-_-0.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/rule_of_3.png}" src="/static/images/papers/rule_of_3.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">The rule of 3 / 0</p>
+                        <p class="paperBlock_content">
+                            만약 클래스에 사용자가 정의한 복사 생성자, 소멸자, 복사 연산자(연산자 오버로딩) 중 하나라도 선언되어 있다면 세가지 모두 선언되어야 한다는 법칙이다.
+                            3가지 모두가 필요한 이유는 리소스를 일관되게 관리하기 위함이다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/474-c#)-가변배열.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/jaggedArr.png}" src="/static/images/papers/jaggedArr.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">c#) 가변배열</p>
+                        <p class="paperBlock_content">
+                            c#은 특이한 배열이 있는데 바로 가변배열이다.
+                            가변배열은 다차원 배열과는 조금 다르다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/474-c#)-가변배열.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/buffered.png}" src="/static/images/papers/buffered.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">java) BufferedReader, BufferedWriter, StringBuilder</p>
+                        <p class="paperBlock_content">
+                            버퍼를 사용하지 않는 입력은 키보드의 입력이 키를 누르는 즉시 바로 프로그램에 전달된다.
+                            버퍼를 사용하는 입력은 키보드의 입력이 있을때마다 버퍼로 전송되고,
                         </p>
                     </div>
                 </a>

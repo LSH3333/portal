@@ -1,55 +1,92 @@
-
 <meta charset="utf-8">
 <html lang="ko">
+
 <head>
     <link rel="stylesheet" type="text/css" href="./../style.css" />
     <title>Thymeleaf 와 URL 인코딩</title>
 </head>
+
 <body id="tt-body-page" class="">
-<div id="wrap" class="wrap-right">
-    <div id="container">
-        <main class="main ">
-            <div class="area-main">
-                <div class="area-view">
-                    <div class="article-header">
-                        <div class="inner-article-header">
-                            <div class="box-meta">
-                                <h2 class="title-article">Thymeleaf 와 URL 인코딩</h2>
-                                <div class="box-info">
-                                    <p class="category">노트</p>
-                                    <p class="date">2023-11-06 15:05:18</p>
+    <div id="wrap" class="wrap-right">
+        <div id="container">
+            <main class="main ">
+                <div class="area-main">
+                    <div class="area-view">
+                        <div class="article-header">
+                            <div class="inner-article-header">
+                                <div class="box-meta">
+                                    <h2 class="title-article">Thymeleaf 와 URL 인코딩</h2>
+                                    <div class="box-info">
+                                        <p class="category">노트</p>
+                                        <p class="date">2023-11-06 15:05:18</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="article-view">
-                        <div class="contents_style">
-                            <p data-ke-size="size16"><a href="https://tose33.tistory.com/1301" target="_blank" rel="noopener&nbsp;noreferrer">https://tose33.tistory.com/1301</a></p>
-<figure id="og_1699249370333" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="html 파일 fetch, &lt;script&gt; 동적 실행 등" data-og-description="만드는 중인 웹에 내가 티스토리에 쓴 글들을 그대로 가져와 보여주고 싶었다. 그 과정과 문제들, 해결한 방법에 대해 기록한다. 티스토리에 쓴 글들 (html) 을 내 웹의 디자인을 적용하고 싶다 내" data-og-host="tose33.tistory.com" data-og-source-url="https://tose33.tistory.com/1301" data-og-url="https://tose33.tistory.com/1301" data-og-image="https://scrap.kakaocdn.net/dn/D1JMF/hyUrCbVltu/rw7ORa5KGQnXVV8INBodkk/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/b8JcBs/hyUrE8EIbS/bzBNzHQSw5ADK0SSELCKyK/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/cDeCXW/hyUrBjNDmv/SsbfKe0ZywK93qdCgkvjTK/img.png?width=2033&amp;height=850&amp;face=0_0_2033_850"><a href="https://tose33.tistory.com/1301" target="_blank" rel="noopener" data-source-url="https://tose33.tistory.com/1301">
-<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/D1JMF/hyUrCbVltu/rw7ORa5KGQnXVV8INBodkk/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/b8JcBs/hyUrE8EIbS/bzBNzHQSw5ADK0SSELCKyK/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/cDeCXW/hyUrBjNDmv/SsbfKe0ZywK93qdCgkvjTK/img.png?width=2033&amp;height=850&amp;face=0_0_2033_850');">&nbsp;</div>
-<div class="og-text">
-<p class="og-title" data-ke-size="size16">html 파일 fetch, &lt;script&gt; 동적 실행 등</p>
-<p class="og-desc" data-ke-size="size16">만드는 중인 웹에 내가 티스토리에 쓴 글들을 그대로 가져와 보여주고 싶었다. 그 과정과 문제들, 해결한 방법에 대해 기록한다. 티스토리에 쓴 글들 (html) 을 내 웹의 디자인을 적용하고 싶다 내</p>
-<p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
-</div>
-</a></figure>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">서버에서 PathVariable 로 html 파일의 이름을 받는 과정에서 문제가 발생했다.</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">html 파일의 이름에 <b>예약어가 포함될 경우&nbsp;</b></p>
-<p data-ke-size="size16">예를들어 <b>'474-c#)-가변배열.html'</b> 같은 경우 '#' 이 포함되는데 # 은 프래그먼트를 나타내는 심볼로서 # 뒤에 나타난 문자열은 서버로 보내지지 않는다.&nbsp;</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">조사해보니 <b>타임리프 url syntax&nbsp;</b><b>에 따르면 자동으로 퍼센트 인코딩을 해서 서버로 보낸다고 한다.</b></p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">나의 경우 html 파일들이 너무 많아서 편의를 위해 아래와 같이 그냥 파일명을 복사해서 붙여 넣어버렸었다.</p>
-<div style="background-color: #1f1f1f; color: #cccccc;">
-<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">li</span><span style="color: #808080;">&gt;&lt;</span><span style="color: #569cd6;">a</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">href</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"#"</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">th:href</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"@{/blog/474-c#)-가변배열.html}"</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">c#)-가변배열</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">a</span><span style="color: #808080;">&gt;&lt;/</span><span style="color: #569cd6;">li</span><span style="color: #808080;">&gt;</span></div>
-</div>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">컨트롤러:</p>
-<pre id="code_1699250381194" class="reasonml" style="background-color: #f8f8f8; color: #383a42; text-align: start;" data-ke-type="codeblock" data-ke-language="java"><code>    /**
+                        <hr>
+                        <div class="article-view">
+                            <div class="contents_style">
+                                <p data-ke-size="size16"><a href="https://tose33.tistory.com/1301" target="_blank"
+                                        rel="noopener&nbsp;noreferrer">https://tose33.tistory.com/1301</a></p>
+                                <figure id="og_1699249370333" contenteditable="false" data-ke-type="opengraph"
+                                    data-ke-align="alignCenter" data-og-type="article"
+                                    data-og-title="html 파일 fetch, &lt;script&gt; 동적 실행 등"
+                                    data-og-description="만드는 중인 웹에 내가 티스토리에 쓴 글들을 그대로 가져와 보여주고 싶었다. 그 과정과 문제들, 해결한 방법에 대해 기록한다. 티스토리에 쓴 글들 (html) 을 내 웹의 디자인을 적용하고 싶다 내"
+                                    data-og-host="tose33.tistory.com"
+                                    data-og-source-url="https://tose33.tistory.com/1301"
+                                    data-og-url="https://tose33.tistory.com/1301"
+                                    data-og-image="https://scrap.kakaocdn.net/dn/D1JMF/hyUrCbVltu/rw7ORa5KGQnXVV8INBodkk/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/b8JcBs/hyUrE8EIbS/bzBNzHQSw5ADK0SSELCKyK/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/cDeCXW/hyUrBjNDmv/SsbfKe0ZywK93qdCgkvjTK/img.png?width=2033&amp;height=850&amp;face=0_0_2033_850">
+                                    <a href="https://tose33.tistory.com/1301" target="_blank" rel="noopener"
+                                        data-source-url="https://tose33.tistory.com/1301">
+                                        <div class="og-image"
+                                            style="background-image: url('https://scrap.kakaocdn.net/dn/D1JMF/hyUrCbVltu/rw7ORa5KGQnXVV8INBodkk/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/b8JcBs/hyUrE8EIbS/bzBNzHQSw5ADK0SSELCKyK/img.png?width=800&amp;height=334&amp;face=0_0_800_334,https://scrap.kakaocdn.net/dn/cDeCXW/hyUrBjNDmv/SsbfKe0ZywK93qdCgkvjTK/img.png?width=2033&amp;height=850&amp;face=0_0_2033_850');">
+                                            &nbsp;</div>
+                                        <div class="og-text">
+                                            <p class="og-title" data-ke-size="size16">html 파일 fetch, &lt;script&gt; 동적
+                                                실행 등</p>
+                                            <p class="og-desc" data-ke-size="size16">만드는 중인 웹에 내가 티스토리에 쓴 글들을 그대로 가져와
+                                                보여주고 싶었다. 그 과정과 문제들, 해결한 방법에 대해 기록한다. 티스토리에 쓴 글들 (html) 을 내 웹의 디자인을 적용하고
+                                                싶다 내</p>
+                                            <p class="og-host" data-ke-size="size16">tose33.tistory.com</p>
+                                        </div>
+                                    </a></figure>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">서버에서 PathVariable 로 html 파일의 이름을 받는 과정에서 문제가 발생했다.</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">html 파일의 이름에 <b>예약어가 포함될 경우&nbsp;</b></p>
+                                <p data-ke-size="size16">예를들어 <b>'474-c#)-가변배열.html'</b> 같은 경우 '#' 이 포함되는데 # 은 프래그먼트를
+                                    나타내는 심볼로서 # 뒤에 나타난 문자열은 서버로 보내지지 않는다.&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">조사해보니 <b>타임리프 url syntax&nbsp;</b><b>에 따르면 자동으로 퍼센트 인코딩을 해서 서버로
+                                        보낸다고 한다.</b></p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">나의 경우 html 파일들이 너무 많아서 편의를 위해 아래와 같이 그냥 파일명을 복사해서 붙여 넣어버렸었다.
+                                </p>
+                                <div style="background-color: #1f1f1f; color: #cccccc;">
+                                    <div><span style="color: #808080;">&lt;</span><span
+                                            style="color: #569cd6;">li</span><span
+                                            style="color: #808080;">&gt;&lt;</span><span
+                                            style="color: #569cd6;">a</span><span style="color: #cccccc;"> </span><span
+                                            style="color: #9cdcfe;">href</span><span
+                                            style="color: #cccccc;">=</span><span
+                                            style="color: #ce9178;">"#"</span><span style="color: #cccccc;">
+                                        </span><span style="color: #9cdcfe;">th:href</span><span
+                                            style="color: #cccccc;">=</span><span
+                                            style="color: #ce9178;">"@{/blog/474-c#)-가변배열.html}"</span><span
+                                            style="color: #808080;">&gt;</span><span
+                                            style="color: #cccccc;">c#)-가변배열</span><span
+                                            style="color: #808080;">&lt;/</span><span
+                                            style="color: #569cd6;">a</span><span
+                                            style="color: #808080;">&gt;&lt;/</span><span
+                                            style="color: #569cd6;">li</span><span style="color: #808080;">&gt;</span>
+                                    </div>
+                                </div>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">컨트롤러:</p>
+                                <pre id="code_1699250381194" class="reasonml"
+                                    style="background-color: #f8f8f8; color: #383a42; text-align: start;"
+                                    data-ke-type="codeblock" data-ke-language="java"><code>    /**
      *  &lt;a href="/templates/instaweb.html" th:href="@{/blog/1183-백준-13335.-트럭.html}"&gt;1183-백준-13335.-트럭.html&lt;/a&gt;
      *  이런식의 &lt;a&gt; 링크 타면, @PathVariable String pageName = "1183-백준-13335.-트럭.html"
      *  pageName 을 tistoryPage.html 에 전달하면 fetchTistory.js 에서 정적으로 저장된 pageName 에 해당하는 html 가져와서 랜더링함
@@ -65,79 +102,158 @@
         model.addAttribute("fetchURL", fetchURL);
         return "blog/tistoryPage";
     }</code></pre>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">따라서 퍼센트 인코딩이 되지 않았고 # 뒤부분이 짤려서 pageName = '474-c' 가 서버에 전달되어 버렸다.</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">&nbsp;</p>
-<h2 data-ke-size="size26">해결 방법</h2>
-<div style="background-color: #1f1f1f; color: #cccccc;">
-<div><span style="color: #808080;">&lt;</span><span style="color: #569cd6;">li</span><span style="color: #808080;">&gt;&lt;</span><span style="color: #569cd6;">a</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">href</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"#"</span><span style="color: #cccccc;"> </span><span style="color: #9cdcfe;">th:href</span><span style="color: #cccccc;">=</span><span style="color: #ce9178;">"@{/blog/{pageName}(pageName='474-c#)-가변배열.html')}"</span><span style="color: #808080;">&gt;</span><span style="color: #cccccc;">c#)-가변배열</span><span style="color: #808080;">&lt;/</span><span style="color: #569cd6;">a</span><span style="color: #808080;">&gt;&lt;/</span><span style="color: #569cd6;">li</span><span style="color: #808080;">&gt;</span></div>
-</div>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">위와 같이 타임리프의 url syntax 를 따르면 된다.</p>
-<p data-ke-size="size16">이렇게 할 경우 타임리프가 pageName 을 자동으로 퍼센트 인코딩 해준다.</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">따라서 아래와 같의 타임리프 문법이 서버를 실행시키고 실제로 열어보면&nbsp;</p>
-<p><figure class="imageblock alignCenter" >
-    <span data-lightbox="lightbox">
-        <img src="./img/img.png"  />
-    </span>
-    <figcaption></figcaption>
-</figure></p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">아래와 같이 pageName 부분이 인코딩 된것을 볼 수 있다.</p>
-<p><figure class="imageblock alignCenter" >
-    <span data-lightbox="lightbox">
-        <img src="./img/img_1.png"  />
-    </span>
-    <figcaption></figcaption>
-</figure></p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16">참고:</p>
-<p data-ke-size="size16"><a href="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html" target="_blank" rel="noopener&nbsp;noreferrer">https://www.thymeleaf.org/doc/articles/standardurlsyntax.html</a></p>
-<figure id="og_1699250301699" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="Standard URL Syntax - Thymeleaf" data-og-description="The Thymeleaf standard dialects &ndash;called Standard and SpringStandard&ndash; offer a way to easily create URLs in your web applications so that they include any required URL preparation artifacts. This is done by means of the so-called link expressions, a type" data-og-host="www.thymeleaf.org" data-og-source-url="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html" data-og-url="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html" data-og-image=""><a href="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html" target="_blank" rel="noopener" data-source-url="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html">
-<div class="og-image" style="background-image: url();">&nbsp;</div>
-<div class="og-text">
-<p class="og-title" data-ke-size="size16">Standard URL Syntax - Thymeleaf</p>
-<p class="og-desc" data-ke-size="size16">The Thymeleaf standard dialects &ndash;called Standard and SpringStandard&ndash; offer a way to easily create URLs in your web applications so that they include any required URL preparation artifacts. This is done by means of the so-called link expressions, a type</p>
-<p class="og-host" data-ke-size="size16">www.thymeleaf.org</p>
-</div>
-</a></figure>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16"><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609" target="_blank" rel="noopener&nbsp;noreferrer">https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609</a></p>
-<figure id="og_1699250299169" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="article" data-og-title="[Percent Encoding] 왜 때문에 URL Encoding?" data-og-description="1루수가 누구야? 누구 1루수! 1루수가 누구냐고 1루수 이름이 누구라고. &nbsp;-&nbsp;'who's on first' &amp;l..." data-og-host="blog.naver.com" data-og-source-url="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609" data-og-url="https://blog.naver.com/j880825/221231640609" data-og-image="https://scrap.kakaocdn.net/dn/bwnd3m/hyUrt0od5T/xZTvg2VTqyM1Av7jBDXy50/img.png?width=743&amp;height=59&amp;face=0_0_743_59"><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609" target="_blank" rel="noopener" data-source-url="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609">
-<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bwnd3m/hyUrt0od5T/xZTvg2VTqyM1Av7jBDXy50/img.png?width=743&amp;height=59&amp;face=0_0_743_59');">&nbsp;</div>
-<div class="og-text">
-<p class="og-title" data-ke-size="size16">[Percent Encoding] 왜 때문에 URL Encoding?</p>
-<p class="og-desc" data-ke-size="size16">1루수가 누구야? 누구 1루수! 1루수가 누구냐고 1루수 이름이 누구라고. &nbsp;-&nbsp;'who's on first' &amp;l...</p>
-<p class="og-host" data-ke-size="size16">blog.naver.com</p>
-</div>
-</a></figure>
-<p data-ke-size="size16">&nbsp;</p>
-<p data-ke-size="size16"><a href="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable" target="_blank" rel="noopener&nbsp;noreferrer">https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable</a></p>
-<figure id="og_1699250315578" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="How to automatically escape special characters in a thymeleaf pathvariable?" data-og-description="I am sending a string pathvariable from a thymeleaf href template to a Spring-boot controller but if a URL is contained in this string, its slash characters &quot;//&quot; get interpreted as a part..." data-og-host="stackoverflow.com" data-og-source-url="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable" data-og-url="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable" data-og-image="https://scrap.kakaocdn.net/dn/bSFkKZ/hyUrxPgEw1/e1uG7vc61GQtYAHnL625kk/img.png?width=316&amp;height=316&amp;face=0_0_316_316"><a href="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable" target="_blank" rel="noopener" data-source-url="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable">
-<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bSFkKZ/hyUrxPgEw1/e1uG7vc61GQtYAHnL625kk/img.png?width=316&amp;height=316&amp;face=0_0_316_316');">&nbsp;</div>
-<div class="og-text">
-<p class="og-title" data-ke-size="size16">How to automatically escape special characters in a thymeleaf pathvariable?</p>
-<p class="og-desc" data-ke-size="size16">I am sending a string pathvariable from a thymeleaf href template to a Spring-boot controller but if a URL is contained in this string, its slash characters "//" get interpreted as a part...</p>
-<p class="og-host" data-ke-size="size16">stackoverflow.com</p>
-</div>
-</a></figure>
-<p data-ke-size="size16">&nbsp;</p>
-                        </div>
-                        <br/>
-                        <div class="tags">
-                            #URL #HTTP #Thymeleaf 
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">따라서 퍼센트 인코딩이 되지 않았고 # 뒤부분이 짤려서 pageName = '474-c' 가 서버에 전달되어
+                                    버렸다.</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <h2 data-ke-size="size26">해결 방법</h2>
+                                <div style="background-color: #1f1f1f; color: #cccccc;">
+                                    <div><span style="color: #808080;">&lt;</span><span
+                                            style="color: #569cd6;">li</span><span
+                                            style="color: #808080;">&gt;&lt;</span><span
+                                            style="color: #569cd6;">a</span><span style="color: #cccccc;"> </span><span
+                                            style="color: #9cdcfe;">href</span><span
+                                            style="color: #cccccc;">=</span><span
+                                            style="color: #ce9178;">"#"</span><span style="color: #cccccc;">
+                                        </span><span style="color: #9cdcfe;">th:href</span><span
+                                            style="color: #cccccc;">=</span><span
+                                            style="color: #ce9178;">"@{/blog/{pageName}(pageName='474-c#)-가변배열.html')}"</span><span
+                                            style="color: #808080;">&gt;</span><span
+                                            style="color: #cccccc;">c#)-가변배열</span><span
+                                            style="color: #808080;">&lt;/</span><span
+                                            style="color: #569cd6;">a</span><span
+                                            style="color: #808080;">&gt;&lt;/</span><span
+                                            style="color: #569cd6;">li</span><span style="color: #808080;">&gt;</span>
+                                    </div>
+                                </div>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">위와 같이 타임리프의 url syntax 를 따르면 된다.</p>
+                                <p data-ke-size="size16">이렇게 할 경우 타임리프가 pageName 을 자동으로 퍼센트 인코딩 해준다.</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">따라서 아래와 같의 타임리프 문법이 서버를 실행시키고 실제로 열어보면&nbsp;</p>
+                                <p>
+                                <figure class="imageblock alignCenter">
+                                    <span data-lightbox="lightbox">
+                                        <img src="./img/img.png" />
+                                    </span>
+                                    <figcaption></figcaption>
+                                </figure>
+                                </p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">아래와 같이 pageName 부분이 인코딩 된것을 볼 수 있다.</p>
+                                <p>
+                                <figure class="imageblock alignCenter">
+                                    <span data-lightbox="lightbox">
+                                        <img src="./img/img_1.png" />
+                                    </span>
+                                    <figcaption></figcaption>
+                                </figure>
+                                </p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16">참고:</p>
+                                <p data-ke-size="size16"><a
+                                        href="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html"
+                                        target="_blank"
+                                        rel="noopener&nbsp;noreferrer">https://www.thymeleaf.org/doc/articles/standardurlsyntax.html</a>
+                                </p>
+                                <figure id="og_1699250301699" contenteditable="false" data-ke-type="opengraph"
+                                    data-ke-align="alignCenter" data-og-type="website"
+                                    data-og-title="Standard URL Syntax - Thymeleaf"
+                                    data-og-description="The Thymeleaf standard dialects &ndash;called Standard and SpringStandard&ndash; offer a way to easily create URLs in your web applications so that they include any required URL preparation artifacts. This is done by means of the so-called link expressions, a type"
+                                    data-og-host="www.thymeleaf.org"
+                                    data-og-source-url="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html"
+                                    data-og-url="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html"
+                                    data-og-image=""><a
+                                        href="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html"
+                                        target="_blank" rel="noopener"
+                                        data-source-url="https://www.thymeleaf.org/doc/articles/standardurlsyntax.html">
+                                        <div class="og-image" style="background-image: url();">&nbsp;</div>
+                                        <div class="og-text">
+                                            <p class="og-title" data-ke-size="size16">Standard URL Syntax - Thymeleaf
+                                            </p>
+                                            <p class="og-desc" data-ke-size="size16">The Thymeleaf standard dialects
+                                                &ndash;called Standard and SpringStandard&ndash; offer a way to easily
+                                                create URLs in your web applications so that they include any required
+                                                URL preparation artifacts. This is done by means of the so-called link
+                                                expressions, a type</p>
+                                            <p class="og-host" data-ke-size="size16">www.thymeleaf.org</p>
+                                        </div>
+                                    </a></figure>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16"><a
+                                        href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609"
+                                        target="_blank"
+                                        rel="noopener&nbsp;noreferrer">https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609</a>
+                                </p>
+                                <figure id="og_1699250299169" contenteditable="false" data-ke-type="opengraph"
+                                    data-ke-align="alignCenter" data-og-type="article"
+                                    data-og-title="[Percent Encoding] 왜 때문에 URL Encoding?"
+                                    data-og-description="1루수가 누구야? 누구 1루수! 1루수가 누구냐고 1루수 이름이 누구라고. &nbsp;-&nbsp;'who's on first' &amp;l..."
+                                    data-og-host="blog.naver.com"
+                                    data-og-source-url="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609"
+                                    data-og-url="https://blog.naver.com/j880825/221231640609"
+                                    data-og-image="https://scrap.kakaocdn.net/dn/bwnd3m/hyUrt0od5T/xZTvg2VTqyM1Av7jBDXy50/img.png?width=743&amp;height=59&amp;face=0_0_743_59">
+                                    <a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609"
+                                        target="_blank" rel="noopener"
+                                        data-source-url="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=j880825&amp;logNo=221231640609">
+                                        <div class="og-image"
+                                            style="background-image: url('https://scrap.kakaocdn.net/dn/bwnd3m/hyUrt0od5T/xZTvg2VTqyM1Av7jBDXy50/img.png?width=743&amp;height=59&amp;face=0_0_743_59');">
+                                            &nbsp;</div>
+                                        <div class="og-text">
+                                            <p class="og-title" data-ke-size="size16">[Percent Encoding] 왜 때문에 URL
+                                                Encoding?</p>
+                                            <p class="og-desc" data-ke-size="size16">1루수가 누구야? 누구 1루수! 1루수가 누구냐고 1루수 이름이
+                                                누구라고. &nbsp;-&nbsp;'who's on first' &amp;l...</p>
+                                            <p class="og-host" data-ke-size="size16">blog.naver.com</p>
+                                        </div>
+                                    </a></figure>
+                                <p data-ke-size="size16">&nbsp;</p>
+                                <p data-ke-size="size16"><a
+                                        href="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable"
+                                        target="_blank"
+                                        rel="noopener&nbsp;noreferrer">https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable</a>
+                                </p>
+                                <figure id="og_1699250315578" contenteditable="false" data-ke-type="opengraph"
+                                    data-ke-align="alignCenter" data-og-type="website"
+                                    data-og-title="How to automatically escape special characters in a thymeleaf pathvariable?"
+                                    data-og-description="I am sending a string pathvariable from a thymeleaf href template to a Spring-boot controller but if a URL is contained in this string, its slash characters &quot;//&quot; get interpreted as a part..."
+                                    data-og-host="stackoverflow.com"
+                                    data-og-source-url="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable"
+                                    data-og-url="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable"
+                                    data-og-image="https://scrap.kakaocdn.net/dn/bSFkKZ/hyUrxPgEw1/e1uG7vc61GQtYAHnL625kk/img.png?width=316&amp;height=316&amp;face=0_0_316_316">
+                                    <a href="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable"
+                                        target="_blank" rel="noopener"
+                                        data-source-url="https://stackoverflow.com/questions/63675425/how-to-automatically-escape-special-characters-in-a-thymeleaf-pathvariable">
+                                        <div class="og-image"
+                                            style="background-image: url('https://scrap.kakaocdn.net/dn/bSFkKZ/hyUrxPgEw1/e1uG7vc61GQtYAHnL625kk/img.png?width=316&amp;height=316&amp;face=0_0_316_316');">
+                                            &nbsp;</div>
+                                        <div class="og-text">
+                                            <p class="og-title" data-ke-size="size16">How to automatically escape
+                                                special characters in a thymeleaf pathvariable?</p>
+                                            <p class="og-desc" data-ke-size="size16">I am sending a string pathvariable
+                                                from a thymeleaf href template to a Spring-boot controller but if a URL
+                                                is contained in this string, its slash characters "//" get interpreted
+                                                as a part...</p>
+                                            <p class="og-host" data-ke-size="size16">stackoverflow.com</p>
+                                        </div>
+                                    </a></figure>
+                                <p data-ke-size="size16">&nbsp;</p>
+                            </div>
+                            <br />
+                            <div class="tags">
+                                #URL #HTTP #Thymeleaf
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
 </body>
+
 </html>
