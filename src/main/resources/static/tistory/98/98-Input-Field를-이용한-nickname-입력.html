@@ -1,0 +1,106 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Input Field를 이용한 nickname 입력</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Input Field를 이용한 nickname 입력</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2021-03-05 17:47:26</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p><figure class="imageblock alignCenter" data-filename="스크린샷 2021-03-05 오후 5.29.24.png" data-origin-width="898" data-origin-height="208" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png" data-filename="스크린샷 2021-03-05 오후 5.29.24.png" data-origin-width="898" data-origin-height="208" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>위와 같이 닉네임 입력하고 싶을때.</p>
+<p>&nbsp;</p>
+<p><figure class="imageblock alignCenter" data-filename="스크린샷 2021-03-05 오후 5.28.42.png" data-origin-width="586" data-origin-height="98" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png" data-filename="스크린샷 2021-03-05 오후 5.28.42.png" data-origin-width="586" data-origin-height="98" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>&nbsp;Hierarchy에서 UI - InputFiled 생성.</p>
+<p>생성 하면 위와같이 자식이 딸린 InputField 오브젝트 생성됨.</p>
+<p>Place에서 inputfiled에 보여질 텍스트 수정 할수 있다.</p>
+<p>&nbsp;</p>
+<p>게임을 실행하면 다음과 같이</p>
+<p><figure class="imageblock alignCenter" data-filename="스크린샷 2021-03-05 오후 5.36.23.png" data-origin-width="554" data-origin-height="124" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_2.png" data-filename="스크린샷 2021-03-05 오후 5.36.23.png" data-origin-width="554" data-origin-height="124" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>InputField Input Caret이 생성된다.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p><figure class="imageblock alignCenter" data-filename="스크린샷 2021-03-05 오후 5.29.24.png" data-origin-width="898" data-origin-height="208" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_3.png" data-filename="스크린샷 2021-03-05 오후 5.29.24.png" data-origin-width="898" data-origin-height="208" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>Name버튼을 누르면 InputField가 나타나고, InputField에 닉네임을 입력해서 저장하고 싶다.</p>
+<p><figure class="imageblock alignCenter" data-filename="스크린샷 2021-03-05 오후 5.41.45.png" data-origin-width="470" data-origin-height="162" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_4.png" data-filename="스크린샷 2021-03-05 오후 5.41.45.png" data-origin-width="470" data-origin-height="162" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p>Name버튼 생성 (btnNickname)</p>
+<p>InputField 생성</p>
+<p>&nbsp;</p>
+<pre id="code_1614933905290" class="cs" data-ke-language="cs" data-ke-type="codeblock"><code>    public void onClickName()
+    {
+        status = !status; // 버튼 클릭하면 status값이 true가 됨
+        textBtnName.text = (status) ? "Okay" : "Name"; // 상태값에 따라 버튼 문자열 변경
+        pInputField.SetActive(status); // Name버튼 클릭시 InputField 나타남.
+
+		// 닉네임 입력 후 버튼을 다시 클릭하면 status값이 false가 되고 InputField에 입력한
+        // 문자열이 저장되는 방식.
+        if(status == false &amp;&amp; textIF.text != "") 
+        {
+            // 입력한 닉네임 저장.
+        }
+    }</code></pre>
+<p>&nbsp;</p>
+<p>버튼에 onClickName함수 연결</p>
+<p><figure class="imageblock alignCenter" data-filename="스크린샷 2021-03-05 오후 5.46.51.png" data-origin-width="548" data-origin-height="214" data-ke-mobilestyle="widthContent">
+    <span data-lightbox="lightbox">
+        <img src="./img/img_5.png" data-filename="스크린샷 2021-03-05 오후 5.46.51.png" data-origin-width="548" data-origin-height="214" data-ke-mobilestyle="widthContent" />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

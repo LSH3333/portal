@@ -101,7 +101,7 @@
             </div>
 
             <div class="paperRow">
-                <a href="https://tose33.tistory.com/1303" class="paperBlock">
+                <a target="_blank" href="https://tose33.tistory.com/1303" class="paperBlock">
                     <div class="imgArea">
                         <img th:src="@{/images/papers/oauth.png}" src="/static/images/papers/oauth.png" alt="">
                     </div>
@@ -115,7 +115,7 @@
                     </div>
                 </a>
 
-                <a href="https://tose33.tistory.com/1304" class="paperBlock">
+                <a target="_blank" href="https://tose33.tistory.com/1304" class="paperBlock">
                     <div class="imgArea">
                         <img th:src="@{/images/papers/scretkey.png}" src="/static/images/papers/scretkey.png" alt="">
                     </div>
@@ -127,7 +127,7 @@
                     </div>
                 </a>
 
-                <a href="https://tose33.tistory.com/1305" class="paperBlock">
+                <a target="_blank" href="https://tose33.tistory.com/1305" class="paperBlock">
                     <div class="imgArea">
                         <img th:src="@{/images/papers/webclient.jpg}" src="/static/images/papers/webclient.jpg" alt="">
                     </div>
@@ -208,6 +208,20 @@
                         </p>
                     </div>
                 </a>
+
+                <a th:href="@{/blog/804-Ch12.-MVC-2-_-Bean-Validation을-이용한-검증.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/beanValid.png}" src="/static/images/papers/beanValid.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Ch12. MVC 2 : Bean Validation을 이용한 검증</p>
+                        <p class="paperBlock_content">
+                            @Valid 애노테이션은 Bean Validation 스펙에 정의되어 있다.
+                            Bean Validation 스펙이란 특정한 구현체가 아닌 Bean Validation 2.0 이라는 기술 표준을 말한다. (애노테이션과 인터페이스의 모음)
+                        </p>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -223,7 +237,7 @@
                     <div class="textArea">
                         <p class="paperBlock_title">Java) 함수의 파라미터에는 복사된 주소값이 전달된다</p>
                         <p class="paperBlock_content">
-                            내가 든 의문은 주소값을 복사해서 전달하더라도 어쨌든 주소를 넘겼고 실제로 객체의 데이터도 변경...                            
+                            내가 든 의문은 주소값을 복사해서 전달하더라도 어쨌든 주소를 넘겼고 실제로 객체의 데이터도 변경...
                         </p>
                     </div>
                 </a>
@@ -298,8 +312,7 @@
                     </div>
                 </a>
 
-                <a th:href="@{/blog/474-c#)-가변배열.html
-                }" class="paperBlock">
+                <a th:href="@{/blog/{pageName}(pageName='474-c#)-가변배열.html')}" class="paperBlock">
                     <div class="imgArea">
                         <img th:src="@{/images/papers/jaggedArr.png}" src="/static/images/papers/jaggedArr.png" alt="">
                     </div>
@@ -312,7 +325,7 @@
                     </div>
                 </a>
 
-                <a th:href="@{/blog/474-c#)-가변배열.html
+                <a th:href="@{/blog/461-java-buffered.html
                 }" class="paperBlock">
                     <div class="imgArea">
                         <img th:src="@{/images/papers/buffered.png}" src="/static/images/papers/buffered.png" alt="">
@@ -322,6 +335,264 @@
                         <p class="paperBlock_content">
                             버퍼를 사용하지 않는 입력은 키보드의 입력이 키를 누르는 즉시 바로 프로그램에 전달된다.
                             버퍼를 사용하는 입력은 키보드의 입력이 있을때마다 버퍼로 전송되고,
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="paperArea">
+            <h4>Unity</h4>
+            <hr>
+            <div class="paperRow">
+                <a th:href="@{/blog/715-Coroutine.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/coroutine.png}" src="/static/images/papers/coroutine.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Coroutine</p>
+                        <p class="paperBlock_content">
+                            유니티는 한번에 하나의 일만을 수행하는 단일 쓰레드 방식.
+                            Update 함수는 매 프레임 실행되기 때문에 보통 주기적으로 수행해줘야 할 일들을 Update 문에 작성하게 되는데,
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/318-mac에서.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/macdll.png}" src="/static/images/papers/macdll.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">mac에서 직접 라이브러리 만들기 (dll 파일, unityengine.dll 참조)</p>
+                        <p class="paperBlock_content">
+                            dll 파일 생성
+                            1. Visual Studio에서 파일->새솔루션
+                            2. 앱 및 콘솔 -> 라이브러리 -> 클래스 라이브러...
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/179-상속을-이용해-다른-이름의-클래스-스크립트-접근하기.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/unity_inherit.png}" src="/static/images/papers/unity_inherit.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">상속을 이용해 다른 이름의 클래스 스크립트 접근하기</p>
+                        <p class="paperBlock_content">
+                            프로젝트 진행중에 문제가 생겼다.
+                            구조가 메인타이틀 화면이 있고 거기서 여러개의 작은 미니게임을 선택해서 플레이 하는 방식인데,
+                            각각의 미니게임마다 각각의 게임의 점수를 관리하는 스크립트가 있다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/162-Lerp와-Time.deltaTime.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/lerp.webp}" src="/static/images/papers/lerp.webp" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Lerp와 Time.deltaTime</p>
+                        <p class="paperBlock_content">
+                            Mathf.Lerp 함수를 쓰면서 이상한 현상을 발견했다.
+                            카메라의 Field of View를 Lerp를 이용해서 값을 변경했는데
+                            예를들어 아래와 같이 코드를 작성하면
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="paperRow">
+                <a th:href="@{/blog/164-오브젝트를-움직이는-방법들.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/traslate.png}" src="/static/images/papers/traslate.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">오브젝트를 움직이는 방법들</p>
+                        <p class="paperBlock_content">
+                            transform.position을 변경하는 움직임
+                            void Translate(Vector3 translation);
+                            transform.translate는 오브젝트의 transform.position을 translation의 방향과 거리에 따라 이동시켜준다.
+                            즉 이 이동방법은 오브젝트의 transform.position 자체를 변경시키면서 이동한다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/163-SmoothDamp.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/smooth.png}" src="/static/images/papers/smooth.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">SmoothDamp</p>
+                        <p class="paperBlock_content">
+                            Lerp에 관해 찾다가 SmoothDamp 쓰는걸 권장하는 글을 많이봐서 찾아봤다.
+                            Vector3 SmoothDamp(Vector3 current, Vector3 target, ref Vector3 currentVelocity, float
+                            smoothTime)
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/98-Input-Field를-이용한-nickname-입력.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/inputfield.png}" src="/static/images/papers/inputfield.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Input Field를 이용한 nickname 입력</p>
+                        <p class="paperBlock_content">
+                            Hierarchy에서 UI - InputFiled 생성.
+                            생성 하면 위와같이 자식이 딸린 InputField 오브젝트 생성됨.
+                            Place에서 inputfiled에 보여질 텍스트 수정 할수 있다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/76-Animator에서의 transition.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/animTrigger.png}" src="/static/images/papers/animTrigger.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Animator에서의 transition, trigger했을때 애니메이션 바로바로 진행되게하기</p>
+                        <p class="paperBlock_content">
+                            transition의 Has Exit Time : 애니메이션 클립의 재생 시간을 보장할 것인가?
+                            활성화 : 종료 시점이 존재하게 되 condition을 만족해도 다음 상태로 전이하지 않음.
+                            비활성화 : condition 만족시 즉시 전이.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="paperArea">
+            <h4>Algorithm, Data structure</h4>
+            <hr>
+            <div class="paperRow">
+                <a th:href="@{/blog/1032-세그먼트-트리-(Segment-Tree).html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/segmentTree.png}" src="/static/images/papers/segmentTree.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">세그먼트 트리 (Segment Tree)</p>
+                        <p class="paperBlock_content">
+                            세그먼트 트리의 아이디어
+                            범위를 반으로 나누어서 왼쪽 반의 합은 이진트리의 왼쪽 자식에,
+                            오른쪽 반의 합은 이진트리의 오른쪽 자식에 저장하는 것이다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/864-Bellman-Ford-Algorithm.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/bellmanford.gif}" src="/static/images/papers/bellmanford.gif"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Bellman Ford Algorithm</p>
+                        <p class="paperBlock_content">
+                            Bellman Ford 알고리즘은 다익스트라 알고리즘과 비슷하게 하나의 정점에서 다른 정점까지의 최소 비용을 구하는데 음의 가중치가 있어도 사용 가능하다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/848-베지어-곡선.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/bezierCurve.gif}" src="/static/images/papers/bezierCurve.gif"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">베지어 곡선</p>
+                        <p class="paperBlock_content">
+                            유니티에서 구현해 봤다.
+                            베지어 곡선을 만드는 알고리즘은 재귀적으로 구현하는데 다음과 같이 구현했다.
+                            1. n개의 점을 잇는 n-1개의 선분을 만든다.
+                            2. 만들어진 각 선분에 t값에 비례하는 곳에 점을 찍는다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/616-위상-정렬-(Topology-sort).html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/topologicalSort.png}"
+                            src="/static/images/papers/topologicalSort.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">위상 정렬 (Topology sort)</p>
+                        <p class="paperBlock_content">
+                            토폴로지(영어: topology, 문화어: 망구성방식)는 컴퓨터 네트워크의 요소들(링크, 노드 등)을 물리적으로 연결해 놓은 것, 또는 그 연결 방식을 말한다.
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="paperRow">
+                <a th:href="@{/blog/614-Union-Find-Algorithm.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/unionFind.png}" src="/static/images/papers/unionFind.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Union-Find Algorithm</p>
+                        <p class="paperBlock_content">
+                            Union-Find 알고리즘은 이름 그대로 union(합하고), Find(찾는) 알고리즘이다.
+                            서로소 집합 (Disjoint-set) 알고리즘이라고도 불리는데, 두 노드를 선택했을때 두 노드가 같은 그래프에 속하는지 판별하는 알고리즘이기 때문이다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/549-Dijkstra-Algorithm-(다익스트라).html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/dijkstra.png}" src="/static/images/papers/dijkstra.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Dijkstra Algorithm (다익스트라)</p>
+                        <p class="paperBlock_content">
+                            하나의 정점을 기준으로 나머지 모든 정점까지의 최소비용을 구한다.
+                            1. vector&ltpair&ltint,int&gt&gt graph[V] 에 간선 정보 저장함.
+                            graph[2] = pair(1,10)이면 2노드에서 1노드까지 10 가중치의 간선 존재
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/533-트라이-자료구조.html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/trie.png}" src="/static/images/papers/trie.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">트라이 자료구조</p>
+                        <p class="paperBlock_content">
+                            트라이 자료구조는 문자열을 트리의 형태로 저장하는 자료구조다.
+                            트리의 각 노드에 문자를 저장해서 관리한다.
+                            중복되는 부분이 존재하는 문자열들을 저장하기 용이하고, 문자열을 빠르게 탐색할수 있다.
+                        </p>
+                    </div>
+                </a>
+
+                <a th:href="@{/blog/537-ccw-(Counter-Clockwise).html
+                }" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/ccw.png}" src="/static/images/papers/ccw.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">ccw (Counter Clockwise)</p>
+                        <p class="paperBlock_content">
+                            - ccw는 평면에 세 점의 위치가 주어졌을때 점들의 방향성을 판별한다.
+                            - 두 벡터의 외적은, 두 벡터에 의해 만들어지는 평행사변형의 넓이와 같다.
                         </p>
                     </div>
                 </a>
