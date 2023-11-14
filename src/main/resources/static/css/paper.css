@@ -3,6 +3,7 @@ header {
     min-height: 50vh;
     width: 100%;
 }
+
 #headerBackground {
     height: 40vh;
     background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../images/interface-3614766_1280.png);
@@ -21,5 +22,78 @@ header {
 }
 
 .explainBlock a {
-    color: black;    
+    color: black;
+}
+
+main {
+    font-size: 30px;
+}
+
+
+/* paper area */
+.paperArea {
+    /* background-color: aqua; */
+    padding: 1em 3em;
+}
+
+.paperArea hr {
+    margin: .5em 0;
+    height: .5px;
+    background-color: gray;
+}
+
+.paperRow {
+    display: flex;
+}
+
+
+/*  */
+.paperBlock {
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    width: 8em;
+    min-width: 8em;
+    height: 11em;
+    min-height: 11em;
+    margin: .5%;
+    color: black;
+    text-decoration: none;
+}
+
+.paperBlock .imgArea {
+    /* background-color: aqua; */
+    width: inherit;
+    /* height: 4.5em; */
+    height: 45%;
+}
+
+.imgArea img {
+    width: inherit;
+    height: 100%;
+}
+
+.paperBlock .textArea {
+    /* background-color: red; */
+    width: inherit;
+    height: 65%;    
+}
+
+.textArea .paperBlock_title {
+    /* background-color: yellow; */
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.textArea .paperBlock_content {    
+    padding-top: 3%;
+    font-size: 17px;
+    max-height: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-height: 1.5em;
 }
