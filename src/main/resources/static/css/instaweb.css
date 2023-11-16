@@ -24,18 +24,17 @@ header {
 
 /* MAIN */
 main {
-    /* background-color: gray; */
     width: 100%;
     margin: auto;
-    /* text-align: center; */
-    /* padding-top: 100px; */
+}
+
+.mainContentBlock {  
+    padding: 0 16%;
+    margin: 10px 0;
 }
 
 /* mainBlock1 */
 #mainBlock1 {
-    /* width: 100%; */
-    /* background-color: antiquewhite; */
-    /* background-color: rgb(239, 239, 245); */
     justify-content: space-around;
     padding: 6% 6%;
     min-height: 45vh;
@@ -73,5 +72,8 @@ main {
     margin-top: 20%;
 }
 
-
+.instaweb_exp_ul > li {
+    margin-top: 2%;
+    margin-top: 2%;
+}
 
