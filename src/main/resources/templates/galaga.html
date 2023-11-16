@@ -43,14 +43,18 @@
             <span style="position: absolute;" id="p3"></span>
             <span style="position: absolute;" id="p4"></span>
             <div id="mainBlock1Content">
-                <p>
+                <p>                  
                     Unity 로 구현한 갤러그.<br><br>
-                    중점은 오브젝트의 곡선 이동 구현이었고 <a href="https://tose33.tistory.com/848" target="_blank">베지어 곡선</a>으로
-                    구현했습니다.<br><br>
+                    <ul>
+                        <li><a href="https://tose33.tistory.com/848" target="_blank"><b>베지어 곡선</b></a>을 구현해 적들의 곡선 이동 구현</li>
+                        <li><b>비동기 작업</b> 처리에는 <a href="https://tose33.tistory.com/715" target="_blank"><b>코루틴</b></a> 사용해서 nested Update 최소화 </li>
+                        <li><b>싱글톤</b> 객체에 주요 객체(플레이어블 캐릭터)들의 레퍼런스,  게임의 진행 상태를 포함시켜서 관리</li>                                            
+                    </ul>
+                    <br>
                     지금 앞에서 움직이고 있는 갤러그 오브젝트들도 C# 에서 구현한 베지어 곡선을 그대로 javascript로 구현해 사용했습니다.
                     <br><a href="https://tose33.tistory.com/1192" target="_blank">(C# -> js 과정)</a>
                     <br><br>
-                    <a href="https://lsh3333.itch.io/galaga" target="_blank"><i class="fa-solid fa-gamepad"></i>play game →</a><br>
+                    <!-- <a href="https://lsh3333.itch.io/galaga" target="_blank"><i class="fa-solid fa-gamepad"></i>play game →</a><br> -->
                     <a href="https://github.com/LSH3333/Galaga" target="_blank"><i class="fa-brands fa-github"></i>
                         visit git →</a>
                 </p>
@@ -75,9 +79,7 @@
                         alt="">
                     <img style="max-width: 30%;" src="/static/images/galaga_drain.png"
                         th:src="@{/images/galaga_drain.png}" alt="">
-                    <p>베지어 곡선을 이용한 적들의 곡선 이동 구현.</p>
-                    <p><a href="https://tose33.tistory.com/848"
-                            target="_blank">Bezier 곡선 구현</a></p>
+                        
                     <div class="divider">
                         <hr>
                     </div>

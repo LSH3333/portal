@@ -99,3 +99,7 @@ main {
     -webkit-line-clamp: 4;
     line-height: 1.5em;
 }
+
+.explainBlock {    
+    font-size: 20px;
+}
