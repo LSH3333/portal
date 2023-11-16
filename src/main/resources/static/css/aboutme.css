@@ -54,15 +54,18 @@ main {
 
 #mainBlock1Content #title {
     font-size: 30px;
-    margin: 5% 0;
+    /* margin-bottom: 1%; */
     color: #3db39e;
-}
-
-#mainBlock1Content p {
-
 }
 
 #mainBlock1Content a {
     color: black;
     text-decoration: underline;
+}
+
+.block1 {
+    margin: 3% 0;
+}
+.block1 li {
+    margin: 1% 0;
 }
