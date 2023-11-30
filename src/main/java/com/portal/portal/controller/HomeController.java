@@ -43,7 +43,7 @@ public class HomeController {
     @GetMapping("restserver")
     public String restserver(Model model) {
         model.addAttribute("headerTextBoxText", "REST 서버");
-        return "RestServer";
+        return "RESTServer";
     }
 
     ////////
