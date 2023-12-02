@@ -47,10 +47,11 @@
                     <h2>ManyGames REST 서버</h2>
                     <hr>
                     <ul class="instaweb_exp_ul">
-                        <li><a href="/templates/manygames.html" th:href="@{/manygames}">ManyGames</a>의 데이터 저장을 위한 <b>DB 와
-                            유니티 클라이언트 사이의 서버</b>입니다.</li>
-                        <li>서버에 <b>REST api</b> 를 구현했습니다.</li>
-                        <li>유니티 클라이언트에서 요청을 보내오면, 요청 경로에 따라 데이터를 처리하고 DB와 소통합니다.</li>
+                        <li><a href="/templates/manygames.html" th:href="@{/manygames}">ManyGames</a>의 데이터 저장을 위한 <b>DB
+                                와
+                                유니티 클라이언트 사이의 서버</b>입니다.</li>
+                        <li>원래 NCMB 라는 back end as service 로 데이터를 저장하고 있었는데 <b>서비스가 종료</b> 예정이라는 통보를 받고 <b>새로운 DB 가 필요</b>했습니다.</li>
+                        <li>서버는 <b>REST api</b> 를 구현해 유니티 클라이언트에서 HTTP 요청을 보내면 경로에 따라 데이터를 처리하고 DB 와 소통합니다</li>                        
                         <li><b>JPA</b>로 객체와 테이블을 매핑해서 소통했습니다. </li>
                     </ul>
                 </div>
@@ -64,7 +65,7 @@
                     <hr>
                     <ul class="instaweb_exp_ul">
                         <li>유니티 클라이언트에서는 로그인 요청, 데이터 요청 등 <b>REST 서버에 맞는 경로에 요청</b>을 보냅니다.</li>
-                        <li>아래는 이름,점수,게임종류 의 폼데이터를 만들어 REST 서버에 보내는 부분입니다.</li>    
+                        <li>아래는 이름,점수,게임종류 의 폼데이터를 만들어 REST 서버에 보내는 부분입니다.</li>
                     </ul>
                     <div class="img-block">
                         <img src="/static/images/unity_client_send_data.png"
@@ -99,7 +100,7 @@
                     <h4>DB (PostrgreSQL)</h4>
                     <hr>
                     <ul class="instaweb_exp_ul">
-                        <li>REST 서버와 DB 는 JPA 를 이용해 소통합니다.</li>                        
+                        <li>REST 서버와 DB 는 JPA 를 이용해 소통합니다.</li>
                     </ul>
                     <div class="img-block">
                         <img src="/static/images/getRank.png" th:src="@{/images/getRank.png}" alt="">
