@@ -40,7 +40,13 @@ public class HomeController {
         return "instaweb";
     }
 
+    @GetMapping("restserver")
+    public String restserver(Model model) {
+        model.addAttribute("headerTextBoxText", "REST 서버");
+        return "RESTServer";
+    }
 
+    ////////
 
     @GetMapping("manygames")
     public String manygames(Model model) {

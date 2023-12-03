@@ -51,8 +51,16 @@
                 <div class="ContentBlock">
                     <h2>아키텍처</h2>
                     <hr>
-                    <iframe frameborder="0" src="https://itch.io/embed-upload/9097730?color=333333" allowfullscreen=""
-                        width="960" height="620"><a href="https://lsh3333.itch.io/instawebarchitecture">Play
+                    <ul>
+                        <li><i class="fa-solid fa-computer-mouse"></i>&nbsp;&nbsp;마우스 우클릭 : 되돌아가기</li>
+                        <li>보라박스 : 클릭해서 상세보기</li>
+                    </ul>
+                    <br>
+                    <!-- <iframe frameborder="0" src="https://itch.io/embed-upload/9192097?color=333333" allowfullscreen=""
+                        width="1000" height="700"><a href="https://lsh3333.itch.io/instawebarchitecture">Play
+                            InstawebArchitecture on itch.io</a></iframe> -->
+                    <iframe frameborder="0" src="https://itch.io/embed-upload/9213539?color=333333" allowfullscreen=""
+                        width="1000" height="700"><a href="https://lsh3333.itch.io/instawebarchitecture">Play
                             InstawebArchitecture on itch.io</a></iframe>
                 </div>
             </div>
@@ -65,27 +73,28 @@
                     <hr>
                     <ul class="instaweb_exp_ul">
                         <li>회원들이 글과 댓글을 작성하고 열람 할 수 있는 게시판형 웹</li>
-                        <li><b>OAuth2</b>를 통한 구글, 카카오 로그인
+                        <li><b>스프링 MVC</b> 기반으로 클라이언트 요청을 처리했습니다
                             <ul>
-                                <li>외부 유출되면 안되는 <b>비밀키</b>는 <b>intellij</b> 환경변수, git.ignore 통한 관리
-                                </li>
+                                <li>서버도 <b>사용자의 편의성</b>을 생각해야 한다고 생각해 로그인 세션 없는 상태에서 로그인이 필요한 경로에 접근 시 <b>인터셉터로 로그인 후 바로
+                                        원래 접근하려던
+                                        경로에 리다이렉트 되도록</b> 신경 쓰기도 했습니다.</li>
                             </ul>
                         </li>
-                        <li>글 작성 에디터
+                        <li>익명을 원하거나 가입이 귀찮은 사람들을 위해 <b>OAuth2</b> 작동 원리를 공부하고 구현해 카카오, 구글 아이디로 로그인 할 수 있도록 했습니다
                             <ul>
-                                <li>javascript 를 이용해 외부 게시판 라이브러리 사용하지 않고 직접 구현</li>
+                                <li>OAuth2 구현 과정 중 <b>비밀키가 git 에 유출</b>되는 문제가 발견됐고, Intellij의 환경변수, git.ignore 을 통해 비밀키를
+                                    관리하도록 변경했습니다</li>
                             </ul>
                         </li>
-                        <li><b>스프링 MVC</b> 기반 클라이언트 요청 처리</li>
-                        <li><b>JPA, JPQL</b> 을 통한 데이터 저장
+                        <li>글을 작성하는 <b>에디터</b>는 찾아보니 라이브러리가 이미 많이 존재했지만 직접 구현해보고 싶어 Range,Select,Promise 등을
+                            이용해javascript 로 구현해봤습니다</li>
+                        <li>JPA 로 객체와 테이블을 매핑하고 데이터를 저장했습니다
                             <ul>
-                                <li>DB: PostgreSQL</li>
+                                <li>대부분의 데이터는 fetch type 을 lazy 로 만들고, 데이터를 가져와서 작업을 수행할 때 하나의 <b>트랜잭션 단위가 보장되는 서비스 영역에서
+                                        작업</b>
+                                    해 내가 필요한 연관된 테이블들을 DB에서 확실히 가져오도록 했습니다</li>
                             </ul>
                         </li>
-                        <li><b>Ajax</b> 통신을 이용해 동적으로 작성된 글 목록, 검색결과 서버에게 요청</li>
-                        <li><b>Rest api 규칙</b> 기반 요청 경로 설계</li>
-                        <li><b>Thymeleaf</b> 통한 서버 사이드 랜더링</li>
-                        <li>Heroku, Github 를 통한 배포</li>
                     </ul>
                 </div>
             </div>
@@ -128,113 +137,124 @@
                     <h2>문제와 해결</h2>
                     <hr>
                     <h3>서버</h3>
-                    <ul>
-                        <li><b>서버와 클라이언트간의 통신</b></li>
-                    </ul>
-                    <p>html 폼을 이용해서 데이터를 주고 받았는데, 주고 받아야 하는 데이터의 종류가 많아질수록
-                        <b>폼은 사용자에게 입력을 받는 용도로만 사용하고 ajax 로 모든 데이터를 주고 받는게</b> 편하단것을 깨달았습니다.
-                    </p>
-                    <p>글 작성폼, 글 수정폼에서 사용자가 글을 작성하고 서버로 보내는경우 로직이 같기 때문에 ajax 로 통째로 받아서
-                        데이터베이스에 저장하는 로직을 공유하도록 했습니다.
-                    </p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/9b0255a273a59cbad612864c74110c0b4da1f82f/src/main/java/web/instaweb/controller/PageController.java#L309-L365"
-                        target="_blank">클라이언트에서 받은 데이터 저장</a>
-                    <br><br>
+                    <details>
+                        <summary>접기/펼치기</summary>
 
-                    <ul>
-                        <li><b>검색 쿼리와 페이징</b></li>
-                    </ul>
-                    <p>사용자가 검색시 클라이언트로 몇 개의 결과를 보내야 하는지에 대한 문제가 있었습니다.</p>
-                    <p>&nbsp;&nbsp;1. <b>모든 결과를 우선 클라이언트에 보내고</b>, 일부만 보여준 후에 사용자 스크롤이 아래에 닿으면 더 많이 보여준다.</p>
-                    <p>&nbsp;&nbsp;2. 최초 검색시 <b>일정 갯수만 클라이언트로 보내주고</b>, 사용자 스크롤이 아래에 닿으면 다시 서버에게 요청한다.</p>
-                    <p><b>1번의 경우</b>, 우선 모든 검색결과를 클라이언트에 저장해야 하는데 검색결과가 엄청 많다면 그 많은 검색결과를 클라이언트에 임시로 저장하는게 맞는지에 대한 고민이
-                        있었습니다.</p>
-                    <p><b>2번의 경우</b>는 사용자의 스크롤이 아래에 닿을때마다 SELECT 쿼리가 호출되는 문제가 있었습니다.</p>
-                    <p>고민 결과 SELECT 쿼리가 매번 나가도 오버헤드가 그렇게 크지 않을것이라고 판단해 2번으로 구현했습니다.</p>
-                    <p>클라이언트에 Page 의 리스트의 몇 번 부터 검색할지를 나타내는 beginIdx 를 저장하고,
-                        서버에서 검색 쿼리 실행 후 결과의 갯수에 따라 beginIdx 값을 업데이트 시키는 방식으로 구현했습니다.</p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/6556da8533685f1f20a3ab8a3e4f2cffb10446ff/src/main/java/web/instaweb/repository/PageRepository.java#L74-L103"
-                        target="_blank">사용자의 검색 쿼리 처리</a>
-                    <br><br>
+                        <ul>
+                            <li><b>서버와 클라이언트간의 통신</b></li>
+                        </ul>
+                        <p>html 폼을 이용해서 데이터를 주고 받았는데, 주고 받아야 하는 데이터의 종류가 많아질수록
+                            <b>폼은 사용자에게 입력을 받는 용도로만 사용하고 ajax 로 모든 데이터를 주고 받는게</b> 편하단것을 깨달았습니다.
+                        </p>
+                        <p>글 작성폼, 글 수정폼에서 사용자가 글을 작성하고 서버로 보내는경우 로직이 같기 때문에 ajax 로 통째로 받아서
+                            데이터베이스에 저장하는 로직을 공유하도록 했습니다.
+                        </p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/9b0255a273a59cbad612864c74110c0b4da1f82f/src/main/java/web/instaweb/controller/PageController.java#L309-L365"
+                            target="_blank">클라이언트에서 받은 데이터 저장</a>
+                        <br><br>
 
-                    <ul>
-                        <li><b>이미지 저장에 대한 고민</b></li>
-                    </ul>
-                    <p>이미지를 어떤 방식으로 저장할지에 대한 고민이 있었습니다.</p>
-                    <p>사실 처음에는 이미지를 base64 형식으로 글 내용에 삽입하는 방식으로 할까 생각했지만 이후
-                        유저가 작성한 글을 수정하는 기능을 구현하면서 해당 방식으로는 html element 전체를 읽어서 base64인 이미지를 삭제하고 교체하는 복잡한 작업을 거쳐야 했기
-                        때문에
-                        <b>이미지도 하나의 도메인으로 분리했습니다.</b>
-                    </p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Image.java#L28-L34"
-                        target="_blank">이미지 도메인의 UUID 존재 이유</a><br>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Page.java#L25-L34"
-                        target="_blank">Page 에 텍스트로 저장되는 이미지 엘러먼트와 저장 및 처리 방식</a>
-                    <br><br>
+                        <ul>
+                            <li><b>검색 쿼리와 페이징</b></li>
+                        </ul>
+                        <p>사용자가 검색시 클라이언트로 몇 개의 결과를 보내야 하는지에 대한 문제가 있었습니다.</p>
+                        <p>&nbsp;&nbsp;1. <b>모든 결과를 우선 클라이언트에 보내고</b>, 일부만 보여준 후에 사용자 스크롤이 아래에 닿으면 더 많이 보여준다.</p>
+                        <p>&nbsp;&nbsp;2. 최초 검색시 <b>일정 갯수만 클라이언트로 보내주고</b>, 사용자 스크롤이 아래에 닿으면 다시 서버에게 요청한다.</p>
+                        <p><b>1번의 경우</b>, 우선 모든 검색결과를 클라이언트에 저장해야 하는데 검색결과가 엄청 많다면 그 많은 검색결과를 클라이언트에 임시로 저장하는게 맞는지에 대한
+                            고민이
+                            있었습니다.</p>
+                        <p><b>2번의 경우</b>는 사용자의 스크롤이 아래에 닿을때마다 SELECT 쿼리가 호출되는 문제가 있었습니다.</p>
+                        <p>고민 결과 SELECT 쿼리가 매번 나가도 오버헤드가 그렇게 크지 않을것이라고 판단해 2번으로 구현했습니다.</p>
+                        <p>클라이언트에 Page 의 리스트의 몇 번 부터 검색할지를 나타내는 beginIdx 를 저장하고,
+                            서버에서 검색 쿼리 실행 후 결과의 갯수에 따라 beginIdx 값을 업데이트 시키는 방식으로 구현했습니다.</p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/6556da8533685f1f20a3ab8a3e4f2cffb10446ff/src/main/java/web/instaweb/repository/PageRepository.java#L74-L103"
+                            target="_blank">사용자의 검색 쿼리 처리</a>
+                        <br><br>
 
-                    <ul>
-                        <li><b>JPA의 연관관계</b></li>
-                    </ul>
-                    <p>트랜잭션 외부에서 객체를 갖고 왔을때 해당 객체와 연관관계에 있는 객체들에 대한 에러를 많이 경험했습니다.</p>
-                    <p>원인은 객체와 연관관계에 있는 다른 객체를 가져올때 fetchType=LAZY 로 설정했기 때문인데 (LAZY 아닌 EAGER 설정 시 객체와 연관관계 있는 모든 객체
-                        갖고오게됨)
-                        개발을 하면서 <b>트랜잭션 내부인 서비스 영역에서 모든 관계를 맺어준 후에 다른 영역에서 사용</b>할수 있도록 변경했습니다.</p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/7078d707a190f29a52695487881d17305b6b0124/src/main/java/web/instaweb/service/CommentService.java#L26-L47"
-                        target="_blank">Service에서 연관관계 맺고 레포지토리를 통해 저장</a>
-                    <br><br>
+                        <ul>
+                            <li><b>이미지 저장에 대한 고민</b></li>
+                        </ul>
+                        <p>이미지를 어떤 방식으로 저장할지에 대한 고민이 있었습니다.</p>
+                        <p>사실 처음에는 이미지를 base64 형식으로 글 내용에 삽입하는 방식으로 할까 생각했지만 이후
+                            유저가 작성한 글을 수정하는 기능을 구현하면서 해당 방식으로는 html element 전체를 읽어서 base64인 이미지를 삭제하고 교체하는 복잡한 작업을 거쳐야
+                            했기
+                            때문에
+                            <b>이미지도 하나의 도메인으로 분리했습니다.</b>
+                        </p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Image.java#L28-L34"
+                            target="_blank">이미지 도메인의 UUID 존재 이유</a><br>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Page.java#L25-L34"
+                            target="_blank">Page 에 텍스트로 저장되는 이미지 엘러먼트와 저장 및 처리 방식</a>
+                        <br><br>
 
-                    <ul>
-                        <li><b>폼과 DTO</b></li>
-                    </ul>
-                    <p>서버에서 클라이언트로 보내는 모든 데이터는 폼, DTO 로 보내도록 했습니다.</p>
-                    <p>폼이나 DTO 를 사용하는 이유는 다음과 같습니다.</p>
-                    <p>&nbsp;&nbsp;1. 엔티티 자체를 트랜잭션을 벗어나서 접근하는 경우 문제가 생깁니다. (fetch 타입이 lazy 일 경우)</p>
-                    <p>&nbsp;&nbsp;2. 엔티티에 있는 맴버변수와 실제로 클라이언트쪽에서 사용할 맴버변수는 대부분의 경우 일부뿐입니다.</p>
-                    <p>저는 클라이언트에서 사용자와 뭔가 상호작용이 있는 데이터들은 폼이라는 이름으로,</p>
-                    <p>제가 직접 클라이언트에서 javascript 등으로 다뤄야 하거나 서버 내부 트랜잭션을 벗어나 다뤄야하는 데이터들은 DTO 라는 이름으로 전송했습니다.</p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/a296d2413b51942f814136a1833db362d388ba3b/src/main/java/web/instaweb/controller/PageController.java#L159-L204"
-                        target="_blank">DTO 로 데이터 받아 Wrap 후 클라이언트에 보내기</a><br>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/a296d2413b51942f814136a1833db362d388ba3b/src/main/java/web/instaweb/controller/PageController.java#L58-L62"
-                        target="_blank">이미 저장된 작성중 글 존재하는 경우 해당 데이터 폼에 채워서 클라이언트에 보내기</a>
-                    <br><br>
+                        <ul>
+                            <li><b>JPA의 연관관계</b></li>
+                        </ul>
+                        <p>트랜잭션 외부에서 객체를 갖고 왔을때 해당 객체와 연관관계에 있는 객체들에 대한 에러를 많이 경험했습니다.</p>
+                        <p>원인은 객체와 연관관계에 있는 다른 객체를 가져올때 fetchType=LAZY 로 설정했기 때문인데 (LAZY 아닌 EAGER 설정 시 객체와 연관관계 있는 모든 객체
+                            갖고오게됨)
+                            개발을 하면서 <b>트랜잭션 내부인 서비스 영역에서 모든 관계를 맺어준 후에 다른 영역에서 사용</b>할수 있도록 변경했습니다.</p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/7078d707a190f29a52695487881d17305b6b0124/src/main/java/web/instaweb/service/CommentService.java#L26-L47"
+                            target="_blank">Service에서 연관관계 맺고 레포지토리를 통해 저장</a>
+                        <br><br>
 
+                        <ul>
+                            <li><b>폼과 DTO</b></li>
+                        </ul>
+                        <p>서버에서 클라이언트로 보내는 모든 데이터는 폼, DTO 로 보내도록 했습니다.</p>
+                        <p>폼이나 DTO 를 사용하는 이유는 다음과 같습니다.</p>
+                        <p>&nbsp;&nbsp;1. 엔티티 자체를 트랜잭션을 벗어나서 접근하는 경우 문제가 생깁니다. (fetch 타입이 lazy 일 경우)</p>
+                        <p>&nbsp;&nbsp;2. 엔티티에 있는 맴버변수와 실제로 클라이언트쪽에서 사용할 맴버변수는 대부분의 경우 일부뿐입니다.</p>
+                        <p>저는 클라이언트에서 사용자와 뭔가 상호작용이 있는 데이터들은 폼이라는 이름으로,</p>
+                        <p>제가 직접 클라이언트에서 javascript 등으로 다뤄야 하거나 서버 내부 트랜잭션을 벗어나 다뤄야하는 데이터들은 DTO 라는 이름으로 전송했습니다.</p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/a296d2413b51942f814136a1833db362d388ba3b/src/main/java/web/instaweb/controller/PageController.java#L159-L204"
+                            target="_blank">DTO 로 데이터 받아 Wrap 후 클라이언트에 보내기</a><br>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/a296d2413b51942f814136a1833db362d388ba3b/src/main/java/web/instaweb/controller/PageController.java#L58-L62"
+                            target="_blank">이미 저장된 작성중 글 존재하는 경우 해당 데이터 폼에 채워서 클라이언트에 보내기</a>
+                        <br><br>
+                    </details>
 
-
+                    <br>
                     <h3>클라이언트</h3>
-                    <h4>에디터</h4>
-                    <img src="/static/images/instaweb_edit.png" th:src="@{/images/instaweb_edit.png}" alt="">
-                    <p>생각보다 구현이 어려웠던 에디터입니다.</p><br>
-                    <ul>
-                        <li><b>글자크기,유형 변경 시 텍스트 드래그 영역 혹은 커서 위치 텍스트 식별</b></li>
-                    </ul>
-                    <p> javascript 의 selection, range api 로 식별 후 선택된 html element 저장 해놓은 후에, 사용자가 글자크기, 글자 유형 변경 버튼 클릭시
-                        이전 선택된 element 들 style 변경 처리했습니다. </p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/dd6dc38f09933af91270c3124fdc179c0fbbff80/src/main/resources/templates/fragment/editorData.html#L182-L201"
-                        target="_blank">선택한 텍스트 크기 변경</a>
+                    <details>
+                        <summary>접기/펼치기</summary>
 
-                    <br><br>
+                        <h4>에디터</h4>
+                        <img src="/static/images/instaweb_edit.png" th:src="@{/images/instaweb_edit.png}" alt="">
+                        <p>생각보다 구현이 어려웠던 에디터입니다.</p><br>
+                        <ul>
+                            <li><b>글자크기,유형 변경 시 텍스트 드래그 영역 혹은 커서 위치 텍스트 식별</b></li>
+                        </ul>
+                        <p> javascript 의 selection, range api 로 식별 후 선택된 html element 저장 해놓은 후에, 사용자가 글자크기, 글자 유형 변경 버튼
+                            클릭시
+                            이전 선택된 element 들 style 변경 처리했습니다. </p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/dd6dc38f09933af91270c3124fdc179c0fbbff80/src/main/resources/templates/fragment/editorData.html#L182-L201"
+                            target="_blank">선택한 텍스트 크기 변경</a>
 
-                    <ul>
-                        <li><b>복사, 붙여넣기</b></li>
-                    </ul>
-                    <p>현재 페이지의 에디터에서 복사 한 경우, 외부 사이트에서 복사한 경우가 다른게 문제였습니다. </p>
-                    <p>현재 페이지의 에디터에서의 복사는 저의 의도대로 에디터 내부의 html element 들이 복사되어 어렵지 않았지만 외부에서 복사한 경우 순수 문자열 형태로
-                        복사 되었기 때문에 문자열을 분석해서 (링크인지, 순수 텍스트인지, &lt;script&gt 인지 등) 새로운 html element 를 조립해야 했습니다.
-                    </p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/85b098a3ed8da1dbe86df9914428463f688748b9/src/main/resources/templates/fragment/editorData.html#L271C6-L360"
-                        target="_blank">붙여넣기 처리 함수</a>
+                        <br><br>
 
-                    <br><br>
+                        <ul>
+                            <li><b>복사, 붙여넣기</b></li>
+                        </ul>
+                        <p>현재 페이지의 에디터에서 복사 한 경우, 외부 사이트에서 복사한 경우가 다른게 문제였습니다. </p>
+                        <p>현재 페이지의 에디터에서의 복사는 저의 의도대로 에디터 내부의 html element 들이 복사되어 어렵지 않았지만 외부에서 복사한 경우 순수 문자열 형태로
+                            복사 되었기 때문에 문자열을 분석해서 (링크인지, 순수 텍스트인지, &lt;script&gt 인지 등) 새로운 html element 를 조립해야 했습니다.
+                        </p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/85b098a3ed8da1dbe86df9914428463f688748b9/src/main/resources/templates/fragment/editorData.html#L271C6-L360"
+                            target="_blank">붙여넣기 처리 함수</a>
 
-                    <ul>
-                        <li><b>이미지 로드 될때까지 대기해야 하는 문제</b></li>
-                    </ul>
-                    <p>예를들어 사용자가 글을 써내려가거나 개행 했을 시 에디터의 크기는 점점 커져야 합니다.</p>
-                    <p>일반적인 상황에서는 문제가 없지만 이미지가 로드가 아직 다 안됐는데 에디터 크기 조절 연산을 하는 경우,
-                        아직 이미지가 로드되지 않아 이미지의 크기가 포함되지 않는 문제가 있었습니다.</p>
-                    <p>Promise 내부에서 이미지 모두 로드 됐는지 확인하고 로드 완료했다면 다음으로 진행, 아직이라면 다시 시도 하도록 했습니다. </p>
-                    <a href="https://github.com/LSH3333/Instaweb/blob/70861f21f9cd46b404f6340cf7f566ac5c5b086c/src/main/resources/templates/fragment/editorData.html#L929-L959"
-                        target="_blank">Promise 내부에서 이미지 로드 시도</a>
+                        <br><br>
+
+                        <ul>
+                            <li><b>이미지 로드 될때까지 대기해야 하는 문제</b></li>
+                        </ul>
+                        <p>예를들어 사용자가 글을 써내려가거나 개행 했을 시 에디터의 크기는 점점 커져야 합니다.</p>
+                        <p>일반적인 상황에서는 문제가 없지만 이미지가 로드가 아직 다 안됐는데 에디터 크기 조절 연산을 하는 경우,
+                            아직 이미지가 로드되지 않아 이미지의 크기가 포함되지 않는 문제가 있었습니다.</p>
+                        <p>Promise 내부에서 이미지 모두 로드 됐는지 확인하고 로드 완료했다면 다음으로 진행, 아직이라면 다시 시도 하도록 했습니다. </p>
+                        <a href="https://github.com/LSH3333/Instaweb/blob/70861f21f9cd46b404f6340cf7f566ac5c5b086c/src/main/resources/templates/fragment/editorData.html#L929-L959"
+                            target="_blank">Promise 내부에서 이미지 로드 시도</a>
+                    </details>
+
 
                 </div>
             </div>
