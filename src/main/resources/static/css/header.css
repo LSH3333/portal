@@ -5,6 +5,11 @@
     font-family: 'Noto Sans KR', sans-serif;
 }
 
+/* mac chrome 에서 bold 폰트 bold 로 표시되지 않는 오류 해결  */
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
 /* HEADER */
 header {
     min-height: 100vh;

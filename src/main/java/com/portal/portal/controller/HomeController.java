@@ -46,6 +46,12 @@ public class HomeController {
         return "RESTServer";
     }
 
+    @GetMapping("shPortal")
+    public String shPortal(Model model) {
+        model.addAttribute("headerTextBoxText", "LSH-Portal");
+        return "shPortal";
+    }
+
     ////////
 
     @GetMapping("manygames")
