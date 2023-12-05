@@ -71,6 +71,40 @@
                 <div class="ContentBlock">
                     <h2>문제와 해결</h2>
                     <hr>
+
+                    <ul>
+                        <li><b>OAuth 로그인 아키텍처 리팩토링</b></li>
+                    </ul>
+                    <p><b>리팩토링 이전</b></p>
+                    <p>                        
+                        <img src="/static/images/instawebOAuthBefore.png" th:src="@{/images/instawebOAuthBefore.png}" alt="">                        
+                    </p>
+                    <p>
+                        처음에 OAuth 기반 구글 로그인을 구현했고 이후에 계획에 없던 카카오 로그인을 구현하게 됐습니다.
+                        <br>카카오가 이후에 추가 되는 과정에서 각 구글과 카카오가 Controller, Service 를 따로 갖도록 구현했는데 
+                        <b>코드 중복이 많고 확장성에 문제가 있어보여 리팩토링을 진행했습니다.</b>
+                    </p><br>
+                    <p><b>리팩토링 이후</b></p>
+                    <p>
+                        <img src="/static/images/instawebOAuth.png" th:src="@{/images/instawebOAuth.png}" alt="">                    
+                    </p>                 
+                    <p>
+                        1. 서비스를 인터페이스화 시키고 구글,카카오 구현체가 구현하도록 해서 <b>컨트롤러가 구현체를 직접 의존하지 않도록</b> 했습니다.                                            
+                    </p>
+                    <p>
+                        2. <b>컨트롤러는 ServiceFactory 에 의존</b>하고 ServiceFactory는 적합한 서비스를 컨트롤러에 제공하도록 했습니다. 
+                    </p>
+                    <p>
+                        3. 리소스 서버(구글, 카카오 등)와 소통할때 플랫폼 별로 전달되거나 전달 받는 데이터가 조금씩 다를수 있어서 
+                        OAuthLoginResponse, OAuthUserInfoDto 로 인터페이스화 시켜 <b>서비스는 인터페이스에 의존하고, 구현은 플랫폼별로 하도록 변경</b>했습니다.
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://github.com/LSH3333/Instaweb/blob/12bf68217d39031bb5d7ec0fa461c29b50886fa9/src/main/java/web/instaweb/controller/KakaoOAuthController.java#L20-L57">리팩토링 이전 카카오 컨트롤러</a>
+                        <br>
+                        <a target="_blank" href="https://github.com/LSH3333/Instaweb/blob/5c1fc88768bd04406fb043bb908505fae9f5661a/src/main/java/web/instaweb/controller/OAuthController.java#L15-L86">리팩토링 이후 컨트롤러</a>
+                    </p>
+                    <br><br>
+
                     <ul>
                         <li><b>이미지 저장 형식에 대한 문제</b></li>
                     </ul>
