@@ -66,7 +66,78 @@
             </div>
         </div>
 
-        <div class="mainContentBlock">
+        <div class="mainContentBlock" >
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h2>문제와 해결</h2>
+                    <hr>
+                    <ul>
+                        <li><b>이미지 저장 형식에 대한 문제</b></li>
+                    </ul>
+                    <p>
+                        최초에 이미지 저장은 base64 형식으로 html 에 인라인 형식으로 저장했습니다.
+                    </p>
+                    <p>
+                        문제는 이후 유저가 작성한 글을 수정하는 기능을 구현하면서, 기존 방식으로는 html 엘레먼트 전체를 탐색해 base64 형식의 이미지 엘러먼트를 삭제하고 교체하는
+                        비효율적인 작업을 거쳐야 했습니다.
+                    </p>
+                    <p>
+                        <b>(해결)</b><br> 따라서 이미지도 <b>하나의 도메인으로 분리</b>하고, 클라이언트에서 이미지 삽입시 <a target="_blank"
+                            href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Image.java#L28-L34">이미지에
+                            고유 UUID 를 부여</a>해서 서버에서 DB에 저장하도록 했습니다.
+                    </p>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/c811e797f408422cc509d30051bc3e90bf4cfe45/src/main/java/web/instaweb/domain/Page.java#L25-L34"
+                        target="_blank">서버에서 이미지 전달되는 형태와 저장 방식</a>
+                    <br><br>
+
+                    <ul>
+                        <li><b>폼 전송 사용하지 않고 ajax 사용하는 이유</b></li>
+                    </ul>
+                    <p>
+                        개발하면서 점점 폼 전송은 사용하지 않고 ajax 로 통일했습니다.
+                    </p>
+                    <p>
+                        <b>폼 사용의 문제점은 비동기 통신이 많아지면서</b> 생겼습니다.
+                    </p>
+                    <p>
+                        서버로 데이터를 보내는 시간이 폼 전송 시 그리고 ajax와 같은 비동기 통신을 할때 달랐기 때문에 서버와 여러번 소통해야 했고 서버에서도 각 요청마다 각각 처리 코드를
+                        만들어야
+                        했습니다.
+                    </p>
+                    <p>
+                        <b>(해결)</b><br> 개발이 진행됨에 따라 <b>클라이언트에서 서버로 보낼 데이터는 다 모아놨다가 ajax 로 한번에 서버로 보내도록</b> 했습니다.
+                        이렇게 하면 <a href="https://github.com/LSH3333/Instaweb/blob/9b0255a273a59cbad612864c74110c0b4da1f82f/src/main/java/web/instaweb/controller/PageController.java#L309-L365"
+                        target="_blank">서버에서도 한번에 받아서 데이터를 처리할수 있습니다.</a> 
+                    </p>
+                    
+                    <br><br>
+
+                    <ul>
+                        <li><b>에디터의 복사 붙여넣기 기능 구현시, 나의 에디터에서 복사했을때와 외부에서 복사했을때가 다르다</b></li>
+                    </ul>
+                    <p>
+                        제가 만든 에디터에서 사용자가 내용을 작성하면 각 줄을 html 엘러먼트로 만들어서 삽입하도록 구현했습니다.
+                    </p>
+                    <p>
+                        현재 페이지의 에디터에서의 복사는 저의 의도대로 에디터 내부의 html 엘레먼트들이 복사되어 붙여넣을때 그대로 삽입하면 되서 문제가 없었지만, 
+                        <b>외부 페이지에서 복사 시 변수가 많았습니다.  </b>                      
+                    </p>
+                    <p>
+                        순수 문자열이 복사되기도 하고, 복사한 문자열이 하이퍼링크여야 하는 경우, &lt;script&gt; 이 복사되는 경우도 있었습니다.
+                    </p>
+                    <p>
+                        <b>(해결)</b><br>
+                        <p>클립보드에 복사된 내용을 가져올때 엘러먼트인지 순수 텍스트인지 여부로 현재 에디터에서 복사했는지 외부에서 복사했는지 판단합니다. </p>
+                        <p>외부에서 복사한 순수 텍스트일 경우 텍스트를
+                            <b>개행 기준으로 분리한 후에 읽어서</b> script, 하이퍼링크 등 어떤 유형의 데이터인지 판단 후, 엘레먼트로 조립해서 삽입하도록 했습니다.</p>                        
+                    </p>
+                    <a href="https://github.com/LSH3333/Instaweb/blob/85b098a3ed8da1dbe86df9914428463f688748b9/src/main/resources/templates/fragment/editorData.html#L271C6-L360"
+                    target="_blank">붙여넣기 처리 함수</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
             <div class="mainContentBlockWrap">
                 <div class="ContentBlock">
                     <h2>InstaWeb</h2>
@@ -113,25 +184,11 @@
 
 
 
-        <div class="mainContentBlock" style="background-color: rgb(239, 239, 245); ">
-            <div class="mainContentBlockWrap">
-                <div class="ContentBlock">
-                    <h2>기술 스택</h2>
-                    <hr>
-                    <img src="/static/images/spring.svg" th:src="@{/images/spring.svg}" alt="">
-                    <img src="/static/images/hibernate.svg" th:src="@{/images/hibernate.svg}" alt="">
-                    <img src="/static/images/html.svg" th:src="@{/images/html.svg}" alt="">
-                    <img src="/static/images/css.svg" th:src="@{/images/css.svg}" alt="">
-                    <img src="/static/images/thymeleaf.svg" th:src="@{/images/thymeleaf.svg}" alt="">
-                    <img src="/static/images/js.svg" th:src="@{/images/js.svg}" alt="">
-                    <br>
-                    <img src="/static/images/heroku.svg" th:src="@{/images/heroku.svg}" alt="">
-                    <img src="/static/images/postgres.svg" th:src="@{/images/postgres.svg}" alt="">
-                </div>
-            </div>
-        </div>
 
-        <div class="mainContentBlock">
+       
+
+
+        <!-- <div class="mainContentBlock">
             <div class="mainContentBlockWrap">
                 <div class="ContentBlock">
                     <h2>문제와 해결</h2>
@@ -258,7 +315,7 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
