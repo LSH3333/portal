@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instawebv-V2</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mainContentBlock.css"
+        th:href="@{/css/mainContentBlock.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/readmoreBtn.css" th:href="@{/css/readmoreBtn.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/footer.css" th:href="@{/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css" th:href="@{/css/header.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/RESTServer.css" th:href="@{/css/RESTServer.css}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/instawebv2.css" th:href="@{/css/instawebv2.css}" />
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Noto+Sans+KR&family=Skranji&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <script src="https://kit.fontawesome.com/c39d59a5ec.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header th:replace="fragment/header :: header"></header>
+
+    <!-- MAIN -->
+    <main>
+
+        <div class="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h2>링크</h2>
+                    <hr>
+                    <a style="text-decoration: none;" class="readmoreBtn" target="_blank"
+                        href="https://instawebv2.sehyun-portal.com/">
+                        <div>InstaWebV2</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h2>Instaweb-V2</h2>
+                    <hr>
+                    <a target="_blank" href="/templates/instaweb.html" th:href="@{/instaweb}">
+                        Instaweb</a>을 만들고 개선하고 싶었던 부분을 고친 버전 2 입니다.
+                </div>
+            </div>
+        </div>
+
+        <div class="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h4>Docker를 이용한 AWS EC2 배포</h4>
+                    <hr>
+                    <img src="/static/images/instawebv2-ec2.png" th:src="@{/images/instawebv2-ec2.png}" alt="">
+                    <ul class="instaweb_exp_ul">
+                        <li>spring boot(app), postgres(db) 두 개의 컨테이너를 사용하는 하나의 <b>도커 브릿지 네트워크를 docker-compose 파일</b>로 만들었습니다.</li>
+                        <li>AWS EC2 인스턴스에서는 github에서 가져온 <b>docker-compose 빌드로 app, db 컨테이너를 바로 생성해서 배포</b> 가능하도록 했습니다.</li>
+                        <li><a target="_blank" href="https://tose33.tistory.com/category/Web/Docker?page=2">블로그 정리글</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h4>DNS 구조</h4>
+                    <hr>
+                    <img src="/static/images/instawebv2-http.png" th:src="@{/images/instawebv2-http.png}" alt="">
+                    <ul class="instaweb_exp_ul">
+                        <li>기존에 squarespace 에서 사서 중이었던 도메인 'sehyun-portal.com' 의 네임서버를 AWS Route53 를 가르키도록 해 
+                            <b>도메인 AWS Route 53 에서 관리</b> 합니다.
+                        </li>
+                        <li>
+                            로브 밸런서에서 기본 80번 포트 (http) 요청 시 443번 포트 (https) 재요청 하도록 리다이렉트 처리했습니다.
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://tose33.tistory.com/1339">블로그 정리글</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mainContentBlock">
+            <div class="mainContentBlockWrap">
+                <div class="ContentBlock">
+                    <h4>어플리케이션 구조 / 버전1,2 변경점</h4>
+                    <hr>
+                    <img src="/static/images/instawebv2-arch.png" th:src="@{/images/instawebv2-arch.png}" alt="">
+                    <div class="two-col">
+                        <div>
+                            <h4>내용</h4>
+                            <ul>
+                                <li>로그인, 세션확인</li>
+                                <li>경로 접근 시 권한(Authorization) 확인</li>
+                                <li class="height-6em">OAuth2 로그인</li>
+                                <li class="height-6em">에디터</li>
+                                <li>프론트 UI</li>
+                                <li>배포</li>
+                                <li>컨테이너화</li>
+                            </ul>
+                        </div>
+
+                        <div >
+                            <h4>버전 1</h4>
+                            <ul>
+                                <li><b>인터셉터</b>에서 체크</li>
+                                <li>로그인 여부, 사용자 이름만 확인</li>
+                                <li class="height-6em"><a target="_blank" href="https://tose33.tistory.com/1305">Spring Webclient</a>로 리소스 서버와 직접 소통해서 권한,유저정보 받아오도록 <b>직접 구현</b></li>
+                                <li class="height-6em">javascript 로 직접 구현</li>
+                                <li>html,css,js 이용해 직접 구현</li>
+                                <li><b>heroku</b>에서 배포</li>
+                                <li>X</li>
+                            </ul>
+                        </div>
+
+                        <div >
+                            <h4>버전 2</h4>
+                            <ul>
+                                <li><a target="_blank" href="https://tose33.tistory.com/1333">스프링 시큐리티</a> 필터 체인 사용</li>
+                                <li>각 사용자에게 Role 부여</li>
+                                <li class="height-6em"><a target="_blank" href="https://tose33.tistory.com/1336">스프링 시큐리티 OAuth2</a> 관련 인터페이스 구현</li>
+                                <li class="height-6em"><a target="_blank" href="https://ckeditor.com/ckeditor-5/">ckeditor5</a> WYSIWYG(What You See Is What You Get) editing framework 를 이용</li>
+                                <li><b>Bootstrap</b> 사용</li>
+                                <li><a target="_blank" href="https://tose33.tistory.com/1339">AWS EC2, Route53, 로드 밸런서</a> 사용해 배포</li>
+                                <li><a target="_blank" href="https://tose33.tistory.com/1344">Docker</a> 사용해 브릿지 네트워크 구성</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div><a target="_blank" href="https://tose33.tistory.com/1340">블로그 정리글</a></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer th:replace="fragment/footer :: footer"></footer>
+</body>
+
+</html>

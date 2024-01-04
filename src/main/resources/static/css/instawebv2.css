@@ -1,0 +1,31 @@
+.two-col {
+    display: flex;
+    justify-content: space-between;
+}
+
+.two-col div {
+    flex: 1;
+    padding: .5em;
+}
+
+.two-col h4 {
+    text-decoration: underline;
+}
+
+.two-col ul {
+    list-style-type: none;
+}
+
+.two-col ul li {
+    min-height: 4em;
+    margin: 0 .5em 0 0;
+    border-bottom: 1px solid black;
+}
+
+.height-5em {
+    height: 5em;
+}
+
+.height-6em {
+    height: 6em;
+}

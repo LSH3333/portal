@@ -85,6 +85,11 @@ public class HomeController {
     }
 
 
+    @GetMapping("instawebv2")
+    public String instawebv2(Model model) {
+        model.addAttribute("headerTextBoxText", "INSTAWEB-V2");
+        return "instawebv2";
+    }
 
 
 
