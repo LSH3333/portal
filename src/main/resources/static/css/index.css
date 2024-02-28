@@ -210,6 +210,9 @@ main {
     border-radius: 25px;
     margin: 0 20px;
     height: 400px;
+
+    /* width: 90%;  */
+    /* max-width: 40em;  */
 }
 
 .roundBlock_upper {
@@ -256,15 +259,15 @@ main {
 
 /* roundBlock 크기 */
 .roundBlock_1 {
-    width: 40em;
+    /* width: 40em; */
     /* width: 55%; */
-    min-width: 500px;
+    min-width: 30rem;
 }
 
 .roundBlock_2 {
-    width: 25em;
+    /* width: 25em; */
     /* width: 35%; */
-    min-width: 400px;
+    min-width: 20rem;
 }
 
 .roundBlock_upper_web {
