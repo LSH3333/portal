@@ -91,7 +91,7 @@ public class HomeController {
         return "instawebv2";
     }
 
-    @GetMapping("/mavikarga")
+    @GetMapping("mavikarga")
     public String mavikarga(Model model) {
         model.addAttribute("headerTextBoxText", "mavi-karga");
         return "mavikarga";
