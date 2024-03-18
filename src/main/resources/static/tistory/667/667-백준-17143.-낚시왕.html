@@ -1,0 +1,64 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 17143. 낚시왕</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 17143. 낚시왕</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-05-11 17:47:27</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/17143" target="_blank" rel="noopener">https://www.acmicpc.net/problem/17143</a></p>
+<figure id="og_1652258492852" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="17143번: 낚시왕" data-og-description="낚시왕이 상어 낚시를 하는 곳은 크기가 R&times;C인 격자판으로 나타낼 수 있다. 격자판의 각 칸은 (r, c)로 나타낼 수 있다. r은 행, c는 열이고, (R, C)는 아래 그림에서 가장 오른쪽 아래에 있는 칸이다." data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/17143" data-og-url="https://www.acmicpc.net/problem/17143" data-og-image="https://scrap.kakaocdn.net/dn/mlZlw/hyOmpXJ3A4/1jTwhTzY50kKJkpBlUkTM1/img.jpg?width=2048&amp;height=703&amp;face=0_0_2048_703,https://scrap.kakaocdn.net/dn/2cprd/hyOmy07LuF/V5t9r3u1g4fr6QwFDT9Kk0/img.jpg?width=2048&amp;height=689&amp;face=0_0_2048_689"><a href="https://www.acmicpc.net/problem/17143" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/17143">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/mlZlw/hyOmpXJ3A4/1jTwhTzY50kKJkpBlUkTM1/img.jpg?width=2048&amp;height=703&amp;face=0_0_2048_703,https://scrap.kakaocdn.net/dn/2cprd/hyOmy07LuF/V5t9r3u1g4fr6QwFDT9Kk0/img.jpg?width=2048&amp;height=689&amp;face=0_0_2048_689');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">17143번: 낚시왕</p>
+<p class="og-desc" data-ke-size="size16">낚시왕이 상어 낚시를 하는 곳은 크기가 R&times;C인 격자판으로 나타낼 수 있다. 격자판의 각 칸은 (r, c)로 나타낼 수 있다. r은 행, c는 열이고, (R, C)는 아래 그림에서 가장 오른쪽 아래에 있는 칸이다.</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이 문제는 상어를 이동시키는것이 핵심인 문제다.&nbsp;</p>
+<p data-ke-size="size16">그런데 상어를 이동시킬때 생각해야할 부분들이 있다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">우선 상어를 이동시켰을때 최종적으로 같은 위치에 여러마리의 상어들이 있다면 그 중 가장 크기가 큰 상어만 남겨야한다.</p>
+<p data-ke-size="size16">만약 2차원 배열 하나를 기준으로 상어를 이동시킨다면 아직 이동시키지 않은 상어의 정보가 사라질수 있기 때문에 <b>임시 2차원 배열을 하나 만들어서 그곳에 이동시켜야한다.</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">그리고 처음에 제출했을때<b> 시간초과가 나왔는데 이유는 상어의 이동을 한칸 한칸 직접 이동</b> 시켰기 떄문이다.</p>
+<p data-ke-size="size16">상어의 속도는 최대 1000이기 때문에 최악의 경우 모든 상어들이 1000의 속도를 갖고 있다면 상어들이 1초 움직일때마다 1000x100x100이 되고, 낚시왕이 최대 100칸 이동한다면<b> 시간복잡도는 최악의 경우&nbsp; O(1000x100x100x100) = O(10억)</b>이 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">나는 상어를 이동시킬때 상어를 해당 방향으로 끝까지 한번에 이동시키고 남은 이동거리 만큼 반대로 이동시키는 방식으로 해결했다.</p>
+<p data-ke-size="size16">(이동해야하는 칸이 최대 1000이기 때문에 방향을 여러번 바꾸게 될 수도 있다)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/638bdd27401f784bee3e82b97302a6d5.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>kotlin) Array<Int> vs IntArray</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">kotlin) Array<Int> vs IntArray</h2>
+                                <div class="box-info">
+                                    <p class="category">노트</p>
+                                    <p class="date">2022-04-28 22:22:50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아래 문제를 코틀린 언어로 풀다가 시간초과가 발생했다.</p>
+<p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2805" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2805</a></p>
+<figure id="og_1651152122231" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2805번: 나무 자르기" data-og-description="첫째 줄에 나무의 수 N과 상근이가 집으로 가져가려고 하는 나무의 길이 M이 주어진다. (1 &le; N &le; 1,000,000, 1 &le; M &le; 2,000,000,000) 둘째 줄에는 나무의 높이가 주어진다. 나무의 높이의 합은 항상 M보" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2805" data-og-url="https://www.acmicpc.net/problem/2805" data-og-image=""><a href="https://www.acmicpc.net/problem/2805" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2805">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2805번: 나무 자르기</p>
+<p class="og-desc" data-ke-size="size16">첫째 줄에 나무의 수 N과 상근이가 집으로 가져가려고 하는 나무의 길이 M이 주어진다. (1 &le; N &le; 1,000,000, 1 &le; M &le; 2,000,000,000) 둘째 줄에는 나무의 높이가 주어진다. 나무의 높이의 합은 항상 M보</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">시간 초과가 발생한 코드는 아래 코드다&nbsp;</p>
+<pre class="excel"><code>import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.*
+import kotlin.math.sqrt
+
+fun main()
+{
+    val sc = Scanner(System.`in`)
+    var N = sc.nextInt()
+    var M = sc.nextInt()
+    val trees = Array&lt;Long&gt;(N) {0}
+
+    var left = 0L
+    var right = 0L
+    for(i in 0 until N)
+    {
+        trees[i] = sc.nextLong()
+        right = Math.max(right, trees[i])
+    }
+
+    var answer = 0L
+    Arrays.sort(trees)
+
+    while(left &lt;= right)
+    {
+        var mid = (left + right) / 2
+
+        var sum = 0L
+        for(i in 0 until N)
+        {
+            if(trees[i] &gt; mid) sum += (trees[i] - mid)
+        }
+
+        if(sum &lt; M)
+        {
+            right = mid - 1
+        }
+        else
+        {
+            left = mid + 1
+            answer = mid
+        }
+    }
+    print(answer)
+}
+</code></pre>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">이분탐색을 이용해 풀었는데 위의 코드에서 11번째 줄&nbsp; Array&lt;Long&gt;을 LongArray로 바꿔줬더니 통과했다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">찾아보니 코틀린의 IntArray, LongArray는 박싱을 안하는 자바로 따지면 int[], long[]과 같고 Array&lt;Int&gt;, Array&lt;Long&gt;은 자동 박싱이 진행되는 Integer[] 같은것이라고 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">코드를 수정해본 결과 Array&lt;Long&gt; 사용시 정렬할때 LongArray를 정렬하는것 보다 훨씬 많은 시간을 사용하는것 같다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">찾아본 결과<b> Arrays.sort는 정렬 대상이 Primitive type (int, long 등) 인 경우 DualPivotQuickSort 라는 정렬방식으로 정렬을하고, object type인 경우 timsort 라는 방식으로 정렬을 한다</b>고 한다.</p>
+<p data-ke-size="size16">이 두 정렬방식이 어떤식으로 다른지는 찾아보지 않았지만 아마 정렬방식의 차이 때문에 Array&lt;Long&gt; 으로 선언했을때 시간초과가 난것같다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><a href="https://stackoverflow.com/questions/45090808/intarray-vs-arrayint-in-kotlin" target="_blank" rel="noopener">https://stackoverflow.com/questions/45090808/intarray-vs-arrayint-in-kotlin</a></p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Kotlin 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Dijkstra Algorithm (다익스트라)</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Dijkstra Algorithm (다익스트라)</h2>
+                                <div class="box-info">
+                                    <p class="category">알고리즘</p>
+                                    <p class="date">2022-02-28 19:31:55</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <h2 data-ke-size="size26"><b>다익스트라 알고리즘</b></h2>
+<p data-ke-size="size16">하나의 정점을 기준으로 나머지 모든 정점까지의 최소비용을 구한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. vector&lt;pair&lt;int,int&gt;&gt; graph[V] 에 간선 정보 저장함.</p>
+<p data-ke-size="size16">&nbsp; &nbsp;graph[2] = pair(1,10)이면 2노드에서 1노드까지 10 가중치의 간선 존재</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">2. 시작 노드에서 시작.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3. 현재 노드에서 갈수 있는 노드 중 가중치가 가장 작은 노드 방문.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">4. 해당 노드 거쳐 가는 거리 계산하고 최소값 갱신.&nbsp;</p>
+<p data-ke-size="size16">(반복)&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">3번을 수행할때<b> 우선순위 큐</b>가 쓰이는데 우선순위 큐를 쓰지 않아도 되긴한다.</p>
+<p data-ke-size="size16">그럴 경우 그냥 인접한 노드를 모두 방문해도 최종적으로 우리가 원하는 값을 얻을수는 있지만 이 경우 하나의 노드를 방문할때마다 인접한 모든 노드를 방문해야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/f6e156effa2ba3078b67e2c458ffe773.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #C++ #Dijkstra 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

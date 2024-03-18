@@ -1,0 +1,79 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>Coroutine</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Coroutine</h2>
+                                <div class="box-info">
+                                    <p class="category">유니티</p>
+                                    <p class="date">2022-06-19 11:34:59</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">유니티는 한번에 하나의 일만을 수행하는 단일 쓰레드 방식.</p>
+<p data-ke-size="size16">Update 함수는 매 프레임 실행되기 때문에 보통 주기적으로 수행해줘야 할 일들을 Update 문에 작성하게 되는데,&nbsp;</p>
+<p data-ke-size="size16">Update는 무조건 매 프레임 실행되기 때문에, 해당 일이 수행될 필요가 없을때도 항상 체크해주게 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">코루틴은 실행시 잠시<b> 유니티에서 제어권을 갖고와서 yield 문을 만날 때까지 수행</b>되고,&nbsp;</p>
+<p data-ke-size="size16">yield 문을 만나면 코루틴은 다시 제어권을 유니티에 돌려준 후, 다음 프레임에 다시 제어권을 갖고와 yield 문 이후 부터 수행한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>코루틴 실행 -&gt; </b></p>
+<p data-ke-size="size16"><b>유니티에서 제어권 갖고와 yield문 만날때 까지 실행 (이때 유니티의 프레임은 멈춰있다) -&gt;&nbsp;</b></p>
+<p data-ke-size="size16"><b>제어권 유니티에 반납, 1 프레임 흐름 (다음 Update까지 대기) -&gt;&nbsp;</b></p>
+<p data-ke-size="size16"><b>제어권은 다시 코루틴에게, 또다시 yield문 만날때까지 실행&nbsp; ... 코루틴 함수 블럭 끝날때까지 반복&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>중첩된 코루틴 함수</b>가 있을때, 내부 코루틴 함수에서 yield return시,&nbsp;</p>
+<p data-ke-size="size16">내부 코루틴을 호출한 외부 코루틴 함수로 리턴되는 것이 아닌 유니티로 yield return 된다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">다음과 같이 두개의 코루틴 함수가 있을때 StartCoroutine(Coroutine1())으로 코루틴1 함수 부터 실행되면</p>
+<pre id="code_1655606280979" class="csharp" data-ke-language="csharp" data-ke-type="codeblock"><code>IEnumerator Coroutine1()
+{
+    yield return StartCoroutine(Coroutine2());
+}
+
+IEnumerator Coroutine2()
+{
+	for (int i = 1; i &lt;= 3; i++)            
+	{           
+		print(i);                
+		yield return null;                
+	}            
+}</code></pre>
+<p data-ke-size="size16">Coroutine1 실행 -&gt;</p>
+<p data-ke-size="size16">Coroutine2 실행 -&gt;</p>
+<p data-ke-size="size16">1 출력 -&gt; 유니티에 제어권 돌려준후 1 프레임 흐름 -&gt; 코루틴에 제어권 돌아옴 -&gt;</p>
+<p data-ke-size="size16">2 출력 -&gt; 유니티에 제어권 돌려준후 1 프레임 흐름 -&gt; 코루틴에 제어권 돌아옴 -&gt;</p>
+<p data-ke-size="size16">3 출력 -&gt; 유니티에 제어권 돌려준후 1 프레임 흐름 -&gt; 코루틴에 제어권 돌아옴 -&gt;</p>
+<p data-ke-size="size16">Coroutine2 함수 블럭 끝에 도달, 종료 -&gt;&nbsp;</p>
+<p data-ke-size="size16">Coroutine1 으로 돌아와 yield return&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Unity #coroutine 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

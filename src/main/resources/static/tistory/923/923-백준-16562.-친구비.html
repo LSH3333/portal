@@ -1,0 +1,65 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 16562. 친구비</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 16562. 친구비</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-10-27 14:24:40</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/16562" target="_blank" rel="noopener">https://www.acmicpc.net/problem/16562</a></p>
+<figure id="og_1666847925234" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="16562번: 친구비" data-og-description="첫 줄에 학생 수 N (1 &le; N &le; 10,000)과 친구관계 수 M (0 &le; M &le; 10,000), 가지고 있는 돈 k (1 &le; k &le; 10,000,000)가 주어진다. 두번째 줄에 N개의 각각의 학생이 원하는 친구비 Ai가 주어진다. (1 &le; Ai &le; 10," data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/16562" data-og-url="https://www.acmicpc.net/problem/16562" data-og-image=""><a href="https://www.acmicpc.net/problem/16562" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/16562">
+<div class="og-image" style="background-image: url();">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">16562번: 친구비</p>
+<p class="og-desc" data-ke-size="size16">첫 줄에 학생 수 N (1 &le; N &le; 10,000)과 친구관계 수 M (0 &le; M &le; 10,000), 가지고 있는 돈 k (1 &le; k &le; 10,000,000)가 주어진다. 두번째 줄에 N개의 각각의 학생이 원하는 친구비 Ai가 주어진다. (1 &le; Ai &le; 10,</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">크루스칼로 mst를 만들면 된다.&nbsp;</p>
+<p data-ke-size="size16">좀 신경써야 할 부분은 입력조건에서 다음 부분이다&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><span style="background-color: #ffffff; color: #555555;">다음 M개의 줄에는 숫자 v, w가 주어진다. 이것은 학생 v와 학생 w가 서로 친구라는 뜻이다. 자기 자신과 친구일 수도 있고, 같은 친구 관계가 여러 번 주어질 수도 있다.</span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>크루스칼 알고리즘을 수행한후에 mst가 만들어졌는지 판단하는 방법은 최종적으로 간선의 갯수가 노드의 갯수보다 하나 작다면 정상적으로 mst가 만들어진 것이다.&nbsp;</b></p>
+<p data-ke-size="size16">따라서 입력에서 친구 관계가 주어질 때부터 간선의 갯수를 세어야 한다.&nbsp;</p>
+<p data-ke-size="size16">그런데 위 조건 때문에 그냥 친구관계가 주어질때마다 간선의 갯수를 세어주면 안된다는 것을 알 수 있다.</p>
+<p data-ke-size="size16">따라서 크루스칼 알고리즘 처럼 부모가 같은지 확인하고 아니면 간선을 연결하면서 간선의 갯수도 늘려주면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>크루스칼 알고리즘을 돌릴때는 나를 0번 노드로 하고, 친구비가 적은 친구부터 0번과 이어주면 되는데</b> 돈이 부족하면 종료하면 된다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">최종적으로 크루스칼 알고리즘 수행 이후 간선의 갯수가 N개라면 MST가 만들어진 것이고 아니라면 못만든 것이다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/f783c414cbc3915fb733e22783b2aca0.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #MST #Kruskal 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

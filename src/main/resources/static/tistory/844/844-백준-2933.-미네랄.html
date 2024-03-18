@@ -1,0 +1,66 @@
+
+<meta charset="utf-8">
+<html lang="ko">
+<head>
+    <link rel="stylesheet" type="text/css" href="./../style.css" />
+    <title>백준 2933. 미네랄</title>
+</head>
+<body id="tt-body-page" class="">
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">백준 2933. 미네랄</h2>
+                                <div class="box-info">
+                                    <p class="category">PS</p>
+                                    <p class="date">2022-08-15 15:40:32</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16"><a href="https://www.acmicpc.net/problem/2933" target="_blank" rel="noopener">https://www.acmicpc.net/problem/2933</a></p>
+<figure id="og_1660545156352" contenteditable="false" data-ke-type="opengraph" data-ke-align="alignCenter" data-og-type="website" data-og-title="2933번: 미네랄" data-og-description="창영과 상근은 한 동굴을 놓고 소유권을 주장하고 있다. 두 사람은 막대기를 서로에게 던지는 방법을 이용해 누구의 소유인지를 결정하기로 했다. 싸움은 동굴에서 벌어진다. 동굴에는 미네랄" data-og-host="www.acmicpc.net" data-og-source-url="https://www.acmicpc.net/problem/2933" data-og-url="https://www.acmicpc.net/problem/2933" data-og-image="https://scrap.kakaocdn.net/dn/bIS6IO/hyPq6iXfnK/fQkatAtconNJsmfRIe4xTk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480"><a href="https://www.acmicpc.net/problem/2933" target="_blank" rel="noopener" data-source-url="https://www.acmicpc.net/problem/2933">
+<div class="og-image" style="background-image: url('https://scrap.kakaocdn.net/dn/bIS6IO/hyPq6iXfnK/fQkatAtconNJsmfRIe4xTk/img.png?width=2834&amp;height=1480&amp;face=0_0_2834_1480');">&nbsp;</div>
+<div class="og-text">
+<p class="og-title" data-ke-size="size16">2933번: 미네랄</p>
+<p class="og-desc" data-ke-size="size16">창영과 상근은 한 동굴을 놓고 소유권을 주장하고 있다. 두 사람은 막대기를 서로에게 던지는 방법을 이용해 누구의 소유인지를 결정하기로 했다. 싸움은 동굴에서 벌어진다. 동굴에는 미네랄</p>
+<p class="og-host" data-ke-size="size16">www.acmicpc.net</p>
+</div>
+</a></figure>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">쉽지 않은 문제였다.&nbsp;</p>
+<p data-ke-size="size16">이 문제는 처음에 봤을때는 그냥 뿌요뿌요 처럼 한 부분의 미네랄이 사라지면 아래로 내릴수 있는 미네랄들을 내려서 쉽게 구현할수 있을것 같다. 하지만 <b>문제는 미네랄들이 하나의 클러스터로 합쳐져 있는게 문제</b>다.</p>
+<p data-ke-size="size16">하나의 미네랄을 보면 아래가 비어있어서 중력의 영향을 받을것 같아도, 해당 미네랄이 속한 클러스터 전체로 보면 중력의 영향을 받지 않을수 있기 때문에 그냥 미네랄의 아랫부분이 비었다고 내려버릴수가 없는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>1.</b> bfs 알고리즘으로 클러스터들을 나눈다. 각 클러스터에 번호를 부여한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>2.</b> 클러스터들 중 떨어져야할 클러스터를 찾아서, 떨어져야할 클러스터들을 한칸 아래로 내린다.&nbsp;</p>
+<p data-ke-size="size16">bfs 탐색으로 클러스터에 속한 미네랄 중 하나라도 바닥에 있거나, 아래에 다른 클러스터의 미네랄이 있으면 떨어질수 없는 클러스터다.&nbsp;</p>
+<p data-ke-size="size16">떨어지는 클러스터가 없을때까지 2번을 반복한다.&nbsp;</p>
+<p data-ke-size="size16">2번의 핵심은 떨어질수 있는 클러스터들을 한 칸씩 내리는것을 반복하는 것이다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<script src="https://gist.github.com/LSH3333/ff1899162a9739e2819102fd49ad30b4.js"></script>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Implementation #BFS 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>

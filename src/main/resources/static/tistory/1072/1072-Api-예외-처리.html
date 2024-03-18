@@ -1,90 +1,74 @@
+
 <meta charset="utf-8">
 <html lang="ko">
-
 <head>
     <link rel="stylesheet" type="text/css" href="./../style.css" />
     <title>Api 예외 처리</title>
 </head>
-
 <body id="tt-body-page" class="">
-    <div id="wrap" class="wrap-right">
-        <div id="container">
-            <main class="main ">
-                <div class="area-main">
-                    <div class="area-view">
-                        <div class="article-header">
-                            <div class="inner-article-header">
-                                <div class="box-meta">
-                                    <h2 class="title-article">Api 예외 처리</h2>
-                                    <div class="box-info">
-                                        <p class="category">Web</p>
-                                        <p class="date">2023-02-18 18:34:57</p>
-                                    </div>
+<div id="wrap" class="wrap-right">
+    <div id="container">
+        <main class="main ">
+            <div class="area-main">
+                <div class="area-view">
+                    <div class="article-header">
+                        <div class="inner-article-header">
+                            <div class="box-meta">
+                                <h2 class="title-article">Api 예외 처리</h2>
+                                <div class="box-info">
+                                    <p class="category">Web</p>
+                                    <p class="date">2023-02-18 18:34:57</p>
                                 </div>
                             </div>
                         </div>
-                        <hr>
-                        <div class="article-view">
-                            <div class="contents_style">
-                                <p data-ke-size="size16">html 페이지 예외 처리:</p>
-                                <p data-ke-size="size16"><a href="https://tose33.tistory.com/1069" target="_blank"
-                                        rel="noopener">https://tose33.tistory.com/1069</a></p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">오류 페이지는 단순히 사용자에게 에러 페이지를 보여주면 끝이지만, api 통신의 예외는 각 오류에 맞는 오류 응답
-                                    스펙을 정하고, JSON 으로 데이터를 보내줘야 한다.</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">컨트롤러에서 어떻게든 예외를 처리하지 않으면 서블렛, WAS 까지 갔을때는 무조건 500 대 로
-                                    인식한다.&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">아래는<b> 컨트롤러에서 예외가 터졌을때</b>의 흐름이다.</p>
-                                <p>
-                                <figure class="imageblock alignCenter">
-                                    <span data-lightbox="lightbox">
-                                        <img src="./img/img.png" />
-                                    </span>
-                                    <figcaption></figcaption>
-                                </figure>
-                                </p>
-                                <p data-ke-size="size16">컨트롤러에서 예외가 터지면 예외가 WAS까지 전달된다.</p>
-                                <p data-ke-size="size16">이렇게 예외가 WAS 까지 그냥 가버리는 것을 막고싶다.</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p>
-                                <figure class="imageblock alignCenter">
-                                    <span data-lightbox="lightbox">
-                                        <img src="./img/img_1.png" />
-                                    </span>
-                                    <figcaption></figcaption>
-                                </figure>
-                                </p>
-                                <p data-ke-size="size16">이렇게 <b>ExceptionResolver</b> 를 쓰면 예외가 터졌을때 뷰 렌더링 이전에 호출된다.</p>
-                                <p data-ke-size="size16">ExceptionResolver 는 스프링의 HandlerExceptionResolver 인터페이스를
-                                    implement 하면 된다.</p>
-                                <p data-ke-size="size16">ExceptionResolver 에서 우리는 해당 예외를 해결하거나 반환하거나 우리가 원하는대로 처리할수
-                                    있다.&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">1. HandlerExceptionResolver 인터페이스를 구현하는 클래스를 만든다.</p>
-                                <p data-ke-size="size16">2. HandlerExceptionResolver 인터페이스에는 resolveException이 정의되어 있다,
-                                    이 메소드를 오버라이드해서 예외 처리하도록 한다.</p>
-                                <p data-ke-size="size16">3. WebMvcConfigurer 의 extendHandlerExceptionResolvers() 에서 위
-                                    클래스를 등록한다.&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
-                                <p data-ke-size="size16">위 과정을 직접 일일히 하기에는 복잡하기 때문에 역시 스프링에서
-                                    <b><i>HandlerExceptionResolverComposite </i>라는 것에 자동으로 resolver 들을 등록해
-                                        놓는다.&nbsp;</b>
-                                </p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16"><b><i>HandlerExceptionResolverComposite </i></b>에 다음 순서로 등록.
-                                </p>
-                                <p data-ke-size="size16">1. ExceptionHandlerExceptionResolver&nbsp; (우선순위 높음)&nbsp;</p>
-                                <p data-ke-size="size16">2. ResponseStatusExceptionResolver</p>
-                                <p data-ke-size="size16">3. DefaultHandlerExceptionResolver&nbsp; (우선순위 낮음)</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16"><u><b>2번 ResponseStatusExceptionResolver</b></u></p>
-                                <pre class="java" data-ke-language="java"><code>package hello.exception.exception;
+                    </div>
+                    <hr>
+                    <div class="article-view">
+                        <div class="contents_style">
+                            <p data-ke-size="size16">html 페이지 예외 처리:</p>
+<p data-ke-size="size16"><a href="https://tose33.tistory.com/1069" target="_blank" rel="noopener">https://tose33.tistory.com/1069</a></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">오류 페이지는 단순히 사용자에게 에러 페이지를 보여주면 끝이지만, api 통신의 예외는 각 오류에 맞는 오류 응답 스펙을 정하고, JSON 으로 데이터를 보내줘야 한다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">컨트롤러에서 어떻게든 예외를 처리하지 않으면 서블렛, WAS 까지 갔을때는 무조건 500 대 로 인식한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">아래는<b> 컨트롤러에서 예외가 터졌을때</b>의 흐름이다.</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">컨트롤러에서 예외가 터지면 예외가 WAS까지 전달된다.</p>
+<p data-ke-size="size16">이렇게 예외가 WAS 까지 그냥 가버리는 것을 막고싶다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p><figure class="imageblock alignCenter" >
+    <span data-lightbox="lightbox">
+        <img src="./img/img_1.png"  />
+    </span>
+    <figcaption></figcaption>
+</figure></p>
+<p data-ke-size="size16">이렇게 <b>ExceptionResolver</b> 를 쓰면 예외가 터졌을때 뷰 렌더링 이전에 호출된다.</p>
+<p data-ke-size="size16">ExceptionResolver 는 스프링의 HandlerExceptionResolver 인터페이스를 implement 하면 된다.</p>
+<p data-ke-size="size16">ExceptionResolver 에서 우리는 해당 예외를 해결하거나 반환하거나 우리가 원하는대로 처리할수 있다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">1. HandlerExceptionResolver 인터페이스를 구현하는 클래스를 만든다.</p>
+<p data-ke-size="size16">2. HandlerExceptionResolver 인터페이스에는 resolveException이 정의되어 있다, 이 메소드를 오버라이드해서 예외 처리하도록 한다.</p>
+<p data-ke-size="size16">3. WebMvcConfigurer 의 extendHandlerExceptionResolvers() 에서 위 클래스를 등록한다.&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<hr contenteditable="false" data-ke-type="horizontalRule" data-ke-style="style3" />
+<p data-ke-size="size16">위 과정을 직접 일일히 하기에는 복잡하기 때문에 역시 스프링에서 <b><i>HandlerExceptionResolverComposite </i>라는 것에 자동으로 resolver 들을 등록해 놓는다.&nbsp;</b></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b><i>HandlerExceptionResolverComposite </i></b>에 다음 순서로 등록.</p>
+<p data-ke-size="size16">1. ExceptionHandlerExceptionResolver&nbsp; (우선순위 높음)&nbsp;</p>
+<p data-ke-size="size16">2. ResponseStatusExceptionResolver</p>
+<p data-ke-size="size16">3. DefaultHandlerExceptionResolver&nbsp; (우선순위 낮음)</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><u><b>2번 ResponseStatusExceptionResolver</b></u></p>
+<pre class="java" data-ke-language="java"><code>package hello.exception.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -98,34 +82,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class BadRequestException extends RuntimeException {
 
 }</code></pre>
-                                <p data-ke-size="size16">이런식으로 예외에 따라서 HTTP 상태 코드를 변경해준다.</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16"><b>ResponseStatusExceptionResolver</b><span><span> 는
-                                            @ResponseStatus 가 달려있는 예외를 처리한는데 애노테이션을 붙여야 하므로 라이브러리 같은 내가 직접 수정할수 없는 예외에는
-                                            적용할수 없다.</span></span></p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16"><u><b><span><span>3번
-                                                    <span>DefaultHandlerExceptionResolver</span></span></span></b></u>
-                                </p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">DefaultHandlerExceptionResolver 는 스프링 내부에서 발생하는 스프링 예외를 해결한다.
-                                </p>
-                                <p data-ke-size="size16">대표적으로 파라미터 바인딩 시점에 타입이 맞지 않으면 내부에서 TypeMismatchException 이
-                                    발생하는데, 이 경우 예외가 발생했기 때문에 그냥 두면 서블릿 컨테이너까지 오류가 올라가고, 결과적으로 500 오류가 발생한다. 그런데 파라미터
-                                    바인딩은 대부분 클라이언트가 HTTP 요청 정보를 잘못 호출해서 발생하는 문제이다. HTTP 에서는 이런 경우 HTTP 상태 코드 400을 사용하도록
-                                    되어 있다. DefaultHandlerExceptionResolver 는 이것을 500 오류가 아니라 HTTP 상태 코드 400 오류로 변경한다.
-                                    스프링 내부 오류를 어떻게 처리할지 수 많은 내용이 정의되어 있다</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <h2 data-ke-size="size26"><u><b>1번 @ExceptionHandler</b></u></h2>
-                                <p data-ke-size="size16">대부분의 api 예외는 이걸로 해결한다.</p>
-                                <p data-ke-size="size16"><span>ExceptionHandlerExceptionResolver&nbsp;<span> 가 이 애노테이션이
-                                            붙어 있는 매소드를 호출한다.</span></span></p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <pre class="less"><code>/**
+<p data-ke-size="size16">이런식으로 예외에 따라서 HTTP 상태 코드를 변경해준다.</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><b>ResponseStatusExceptionResolver</b><span><span> 는 @ResponseStatus 가 달려있는 예외를 처리한는데 애노테이션을 붙여야 하므로 라이브러리 같은 내가 직접 수정할수 없는 예외에는 적용할수 없다.</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><u><b><span><span>3번 <span>DefaultHandlerExceptionResolver</span></span></span></b></u></p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">DefaultHandlerExceptionResolver 는 스프링 내부에서 발생하는 스프링 예외를 해결한다.</p>
+<p data-ke-size="size16">대표적으로 파라미터 바인딩 시점에 타입이 맞지 않으면 내부에서 TypeMismatchException 이 발생하는데, 이 경우 예외가 발생했기 때문에 그냥 두면 서블릿 컨테이너까지 오류가 올라가고, 결과적으로 500 오류가 발생한다. 그런데 파라미터 바인딩은 대부분 클라이언트가 HTTP 요청 정보를 잘못 호출해서 발생하는 문제이다. HTTP 에서는 이런 경우 HTTP 상태 코드 400을 사용하도록 되어 있다. DefaultHandlerExceptionResolver 는 이것을 500 오류가 아니라 HTTP 상태 코드 400 오류로 변경한다. 스프링 내부 오류를 어떻게 처리할지 수 많은 내용이 정의되어 있다</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><u><b>1번 @ExceptionHandler</b></u></h2>
+<p data-ke-size="size16">대부분의 api 예외는 이걸로 해결한다.</p>
+<p data-ke-size="size16"><span>ExceptionHandlerExceptionResolver&nbsp;<span> 가 이 애노테이션이 붙어 있는 매소드를 호출한다.</span></span></p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="less"><code>/**
  * 이 컨트롤러에서 IllegalArgumentException 예외가 발생시 이 메소드가 호출된다
  * 이 컨트롤러는 @RestController 이기 때문에 JSON 으로 반환된다
  * (ExceptionResolver가 이 메소드를 호출한다)
@@ -139,28 +113,23 @@ public ErrorResult illegalExHandler(IllegalArgumentException e) {
     log.error("[exceptionHandler] ex", e);
     return new ErrorResult("BAD", e.getMessage());
 }</code></pre>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16"><u>실행흐름</u></p>
-                                <ul style="list-style-type: disc;" data-ke-list-type="disc">
-                                    <li>컨트롤러를 호출한 결과 IllegalArgumentException 예외가 컨트롤러 밖으로 던져진다.</li>
-                                    <li>예외가 발생했으로 ExceptionResolver 가 작동한다. 가장 우선순위가 높은
-                                        ExceptionHandlerExceptionResolver 가 실행된다.</li>
-                                    <li><span>ExceptionHandlerExceptionResolver 는 해당 컨트롤러에 IllegalArgumentException 을
-                                            처리할 수 있는 @ExceptionHandler 가 있는지 확인한다.<span>&nbsp;</span></span></li>
-                                    <li><span><span>illegalExHandle() 를 실행한다. @RestController 이므로 illegalExHandle() 에도
-                                                @ResponseBody 가 적용된다. 따라서 HTTP 컨버터가 사용되고, 응답이 다음과 같은 JSON으로
-                                                반환된다.<span>&nbsp;</span></span></span></li>
-                                    <li><span><span>@ResponseStatus(HttpStatus.BAD_REQUEST) 를 지정했으므로 HTTP 상태 코드 400으로
-                                                응답한다</span></span></li>
-                                </ul>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <h2 data-ke-size="size26"><b>@RestControllerAdvice</b></h2>
-                                <p data-ke-size="size16">@RestControllerAdvice 는 대상으로 지정한 컨트롤러에서 발생한 예외를 처리하도록함.</p>
-                                <p data-ke-size="size16">대상&nbsp;지정&nbsp;하지&nbsp;않으면&nbsp;모든&nbsp;컨트롤러에&nbsp;적용</p>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <pre class="less"><code>// Target all Controllers annotated with @RestController
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16"><u>실행흐름</u></p>
+<ul style="list-style-type: disc;" data-ke-list-type="disc">
+<li>컨트롤러를 호출한 결과 IllegalArgumentException 예외가 컨트롤러 밖으로 던져진다.</li>
+<li>예외가 발생했으로 ExceptionResolver 가 작동한다. 가장 우선순위가 높은 ExceptionHandlerExceptionResolver 가 실행된다.</li>
+<li><span>ExceptionHandlerExceptionResolver 는 해당 컨트롤러에 IllegalArgumentException 을 처리할 수 있는 @ExceptionHandler 가 있는지 확인한다.<span>&nbsp;</span></span></li>
+<li><span><span>illegalExHandle() 를 실행한다. @RestController 이므로 illegalExHandle() 에도 @ResponseBody 가 적용된다. 따라서 HTTP 컨버터가 사용되고, 응답이 다음과 같은 JSON으로 반환된다.<span>&nbsp;</span></span></span></li>
+<li><span><span>@ResponseStatus(HttpStatus.BAD_REQUEST) 를 지정했으므로 HTTP 상태 코드 400으로 응답한다</span></span></li>
+</ul>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<p data-ke-size="size16">&nbsp;</p>
+<h2 data-ke-size="size26"><b>@RestControllerAdvice</b></h2>
+<p data-ke-size="size16">@RestControllerAdvice 는 대상으로 지정한 컨트롤러에서 발생한 예외를 처리하도록함.</p>
+<p data-ke-size="size16">대상&nbsp;지정&nbsp;하지&nbsp;않으면&nbsp;모든&nbsp;컨트롤러에&nbsp;적용</p>
+<p data-ke-size="size16">&nbsp;</p>
+<pre class="less"><code>// Target all Controllers annotated with @RestController
 @ControllerAdvice(annotations = RestController.class)
 public class ExampleAdvice1 {}
 
@@ -172,24 +141,16 @@ public class ExampleAdvice2 {}
 @ControllerAdvice(assignableTypes = {ControllerInterface.class,
         AbstractController.class})
 public class ExampleAdvice3 {}</code></pre>
-                                <p data-ke-size="size16">&nbsp;</p>
-                                <p data-ke-size="size16">출처:</p>
-                                <p><a
-                                        href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-2/dashboard"
-                                        target="_blank"
-                                        rel="noopener">https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-2/dashboard</a>
-                                </p>
-                            </div>
-                            <br />
-                            <div class="tags">
-                                #Spring #api exception
-                            </div>
+                        </div>
+                        <br/>
+                        <div class="tags">
+                            #Spring #api exception 
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
+</div>
 </body>
-
 </html>
