@@ -85,6 +85,13 @@ main {
     /* background-color: yellow; */
     font-size: 25px;
     text-decoration: underline;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5em;
 }
 
 .textArea .paperBlock_content {    

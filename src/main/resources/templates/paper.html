@@ -35,15 +35,188 @@
 
     <!-- MAIN -->
     <main>
-   
+
         <div class="paperArea">
             <div class="explainBlock">
                 <p>글들은 제 티스토리 글들의 일부를 가져왔습니다.</p>
                 <p><a target="_blank" href="https://lsh-instaweb.herokuapp.com/9/pages/352">> 티스토리 글들 가져온 방법</a></p>
-            </div>            
+            </div>
             <h4>Web</h4>
             <hr>
+
             <div class="paperRow">
+                <a target="_blank" href="https://tose33.tistory.com/1364" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/webhook.png}" src="/static/images/papers/webhook.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">포트원 웹훅 결제 검증</p>
+                        <p class="paperBlock_content">
+                            클라이언트는 얼마든지 위변조가 가능하기 때문에 실제로 클라이언트에서 결제한 값과, 내 서버의 db의 상품의 실제 값을 비교해서 같은 값인지 아닌지 검증하는 것이다.
+                            이런 과정이 없다면 예를들어 실제 상품의 가격은 10000원인데 클라이언트에서 100원으로 바꿔서 결제를 해도 서버는 그냥 결제성공이라고만 전달 받고 성공
+                            처리할것이다.
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1361" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/spring-security.png}"
+                            src="/static/images/papers/spring-security.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">로그인 성공 후 로직 처리, AuthenticationSuccessHandler</p>
+                        <p class="paperBlock_content">
+                            위 그림처럼 스프링 시큐리티가 authentication (인증) 성공하면 AuthenticationSuccessHandler 가 호출된다.
+                            실패하면 AuthenticationFailureHandler.
+                            따라서 로그인 성공 후 하고 싶은 일을 우리가 구현할수 있다.
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1355" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/kube.png}" src="/static/images/papers/kube.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Kubernetes로 배포하기, yml 정리</p>
+                        <p class="paperBlock_content">
+                            selector
+                            Deployment 의 selector 는 관리할 pod 를 명시한다
+                            Service에서 selector는 서비스가 트래픽을 라우팅할 파드들의 레이블을 명시한다
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1346" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/docker-dep.png}" src="/static/images/papers/docker-dep.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">docker-compose로 AWS EC2에 배포 완료</p>
+                        <p class="paperBlock_content">
+                            이전에 spring boot app, postgres 두 개의 컨테이너를 사용하는 하나의 도커 브릿지 네트워크를 docker-compose 파일로 만들었다.
+                            목적은 결국 내 컴퓨터에서 개발하고 개발 완료된 앱을, AWS EC2 서버에서 편하게 배포하기 위함이었다.
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="paperRow">
+                <a target="_blank" href="https://tose33.tistory.com/1345" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/docker-error.png}" src="/static/images/papers/docker-error.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">docker 컨테이너의 Connection to localhost:5432 refused.</p>
+                        <p class="paperBlock_content">
+                            에러
+                            Connection to localhost:5432 refused. Check that the hostname and port are correct and that
+                            the postmaster is accepting TCP/IP connections.
+                            아래 글 처럼 spring boot app 컨테이너와 postgres 컨테이너를 같은 도커 브릿지 네트워크에 구성했다.
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1344" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/docker-project.png}"
+                            src="/static/images/papers/docker-project.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">postgresql 사용하는 스프링부트 프로젝트 도커화</p>
+                        <p class="paperBlock_content">
+                            도커에 대해 충분히 알아봤으니 이제 기존의 내 스프링 프로젝트를 도커화 해보자.
+                            내 스프링 웹 프로젝트는 디비로 postgres 를 사용하고 있다.
+                            따라서 spring app 컨테이너와 postgres 컨테이너 총 두개의 컨테이너를 하나의 네트워크를 구성해 만들것이다.
+                            그리고 docker-compose 를 사용해 네트워크를 구축할것이다.
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1339" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/aws-domain.png}" src="/static/images/papers/aws-domain.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">AWS Load Balancer, Route53 로 서브도메인 https 적용</p>
+                        <p class="paperBlock_content">
+                            새로운 프로젝트를 만들었는데 이 프로젝트의 도메인을 따로 사기 보다는 기존에 갖고 있는 도메인의 서브도메인을 만들기로 했다.
+                            목표를 달성하기 위해 aws load balanacer, route 53, target group 등을 공부하면서 내가 이해한 내용을 정리했다.
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1336" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/security-response.png}"
+                            src="/static/images/papers/security-response.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Spring Security 의 OAuth2</p>
+                        <p class="paperBlock_content">
+                            이전에 직접 구현한 OAuth2 로그인 서비스를 이제 Spring Security 에서 제공하는 방법으로 구현해 봤다.
+                            스프링 프레임워크를 쓰면서 항상 느끼지만 정말 너무너무 좋다..
+                            내가 열심히 공부한 내용들, 그리고 각 프로바이더 (네이버 구글 등) 가 리턴하는 값이 다르기 때문에 발생하는 문제 등을 다 해결해 놓았다.
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="paperRow">
+                <a target="_blank" href="https://tose33.tistory.com/1335" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/recursive-err.png}" src="/static/images/papers/recursive-err.png"
+                            alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Spring 순환 참조 해결</p>
+                        <p class="paperBlock_content">
+                            에러 메세지를 읽어 보면 principalOAuth2Service 와 securityConfig 가 서로 순환참조를 하고 있기 때문에 실패했다고 한다.
+                            내가 알기로 설정에서 이걸 그냥 무시할수도 있기는 한데 원인과 해결방법을 기록한다.
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1333" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/spring-security-auth.png}"
+                            src="/static/images/papers/spring-security-auth.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">Spring Security 구조</p>
+                        <p class="paperBlock_content">
+                            아래는 Authentication (인증) 요청부터 Spring security 가 어떤 흐름으로 처리하는지 정리한 것이다.
+                            위 그림의 번호와는 상관없다.
+                            사용자가 인증을 요청한다
+                            SecurityConfig 설정 클래스에서 설정한 인증이 필요한 경로에 요청이 왔을때 포함
+                            스프링 시큐리티가 요청을 intercept 해서 사용자가 인증됐는지 확인한다. 인증이 안됐다면 로그인 페이지로 리다이렉트 시킨다.
+                        </p>
+                    </div>
+                </a>
+
+                <a target="_blank" href="https://tose33.tistory.com/1330" class="paperBlock">
+                    <div class="imgArea">
+                        <img th:src="@{/images/papers/oauth-refactoring.png}"
+                            src="/static/images/papers/oauth-refactoring.png" alt="">
+                    </div>
+                    <div class="textArea">
+                        <p class="paperBlock_title">OAuth2 로그인 시스템 구조 리팩토링</p>
+                        <p class="paperBlock_content">
+                            처음에 OAuth 기반 구글 로그인을 구현했고 이후에 카카오 로그인을 구현하게 됐다.
+                            최초에는 구글 로그인만 구현할 생각이었는데 추가됐기 때문에 카카오 로그인을 구현할때 코드 중복이 많고 확장성에 문제가 많아보여 바꾸고 싶었는데 못하고 있다가 이번에
+                            리팩토링을 진행했다.
+                        </p>
+                    </div>
+                </a>
+            </div>
+                <!-- ------------------------------------ -->
+
+            <div class="paperRow">
+
                 <a th:href="@{/blog/941-Spring-MVC-구조.html}" class="paperBlock">
                     <div class="imgArea">
                         <img th:src="@{/images/papers/mvc.png}" src="/static/images/papers/mvc.png" alt="">
