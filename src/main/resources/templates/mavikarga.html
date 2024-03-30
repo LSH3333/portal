@@ -45,7 +45,9 @@
                         <div>mavi-karga</div>
                     </a>
                     <p><a target="_blank" href="https://github.com/LSH3333/mavi-karga">github</a></p>
-                </div>
+                    <img th:src="@{/images/mavikarga/20240330202703.png}" src="/static/images/mavikarga/20240330202703.png">
+                    <img th:src="@{/images/mavikarga/20240330141404.png}" src="/static/images/mavikarga/20240330141404.png">
+                </div>                
             </div>
         </div>
 
@@ -168,7 +170,7 @@
                     </ul>
                     <p>OAuth2 를 이용한 구글,네이버,카카오 로그인을 만들었었고 이때 각 플랫폼들에게서 사용자의 이메일,성별,나이,이름 등 개인정보를 받아서 DB에 저장했었습니다.</p>
                     <p>그런데 결제 시스템을 포함한 실제 서비스되는 웹서비스를 만들다보니 수집하는 개인정보에 대해서도 지켜야할 규약들이 있었습니다. (수집한 개인정보의 파기)</p>
-                    <p>스프링이 제공하는 <b>@Scheduled 어노테이션을 이용해 매일 자정에 마지막으로 로그인한지 6개월 지난 유저 데이터를 삭제하도록</b>스케줄링했습니다.</p>
+                    <p>스프링이 제공하는 <b>@Scheduled 어노테이션을 이용해 매일 자정에 마지막으로 로그인한지 6개월 지난 유저 데이터를 삭제하도록 </b>스케줄링했습니다.</p>
                     <p>유저 삭제는 실제 테이블을 지우지는 않고 값만 지우는 <b>Soft Deletion 으로 안전하게 삭제</b>했습니다.</p>
                 </div>
             </div>
